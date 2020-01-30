@@ -1,0 +1,94 @@
+[Config]
+Compilator.SaveAll=0
+Compilator.Capture=0
+Compilator.CompileOnBackground=0
+Compilator.ProgSaveAll=0
+Compilator.ProgRunSelection=0
+Compilator.LogType=0
+DefaultDir=C:\TPhpPrown
+DefaultCP=0
+LogtoEnd=1
+DontOpen=0
+AbsolutePath=0
+FileFormat=0
+ProjectFilesOnly=0
+Extensions=*.*
+[Project tree]
+TPhpPrown
+	+TPhpPrown
+		-TPhpPrown
+			TPhpPrown\CtrlArray.php
+			TPhpPrown\CtrlNumber.php
+			TPhpPrown\Findes.php
+			TPhpPrown\getAbove.php
+			TPhpPrown\getSiteDevice.php
+			TPhpPrown\getTranslit.php
+			TPhpPrown\iniConstMem.php
+			TPhpPrown\iniErrMessage.php
+			TPhpPrown\iniRegExp.php
+			TPhpPrown\isCalcInBrowser.php
+			TPhpPrown\isCookie.php
+			TPhpPrown\isCountArrays.php
+			TPhpPrown\isSubstrInUri.php
+			TPhpPrown\iViewArray.php
+			TPhpPrown\LICENSE
+			TPhpPrown\MakeCookie.php
+			TPhpPrown\MakeParm.php
+			TPhpPrown\MakeRegExp.php
+			TPhpPrown\MakeSession.php
+			TPhpPrown\MakeType.php
+			TPhpPrown\MakeUserError.php
+			TPhpPrown\Mobile_Detect.php
+			TPhpPrown\NoZero.php
+			TPhpPrown\Number1string.php
+			TPhpPrown\Number2string.php
+			TPhpPrown\PullArray.php
+			TPhpPrown\SqueezeArrays.php
+			TPhpPrown\StringFilters.php
+			TPhpPrown\TestNumerical.php
+			TPhpPrown\ViewGlobal.php
+			TPhpPrown\ViewSimpleArray.php
+			TPhpPrown\пример_регекс.txt
+			TPhpPrown\регекс_тест.html
+		+TPhpPrownTests
+			TPhpPrownTests\FinalMessage_test.php
+			TPhpPrownTests\Findes_test.php
+			TPhpPrownTests\FunctionsBlock.php
+			TPhpPrownTests\isCalcInBrowser_test.php
+			TPhpPrownTests\MakeType_test.php
+			TPhpPrownTests\MakeUserError_test.php
+		+www
+			www\favicon.ico
+			www\index.php
+			www\iniWorkSpace.php
+			www\Main.php
+		-Материалы
+			Материалы\Библиотека для определения типа и модели устройства на PHP.doc
+			Материалы\Руководство по разработке через тестирование для начинающих.doc
+			Материалы\Урок14 - Безопасное программирование.doc
+		Favicon-doc.jpg
+		Favicon-png.png
+		README.md
+		README-styled.html
+		TPhpPrown.png
+		TPhpPrown.ppr
+[Open project files]
+0=TPhpPrownTests\FunctionsBlock.php
+1=www\index.php
+2=www\Main.php
+3=TPhpPrownTests\MakeType_test.php
+[Selected Project Files]
+Main=
+Selected=TPhpPrownTests\MakeType_test.php
+[TPhpPrownTests\FunctionsBlock.php]
+TopLine=45
+Caret=43,63
+[www\index.php]
+TopLine=1
+Caret=11,18
+[www\Main.php]
+TopLine=1
+Caret=1,1
+[TPhpPrownTests\MakeType_test.php]
+TopLine=7
+Caret=24,13
