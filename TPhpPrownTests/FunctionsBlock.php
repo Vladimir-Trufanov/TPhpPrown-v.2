@@ -68,10 +68,11 @@ function MakeTest($SiteRoot,$aPhpPrown)
             if(IsChecked('formDoor',$k))
             {
                //echo $k.' тестируется.<br>';
-               require_once $SiteAbove."/TPhpPrownTests/".$k."_test.php";
+               //echo $SiteHost."/TPhpPrown/TPhpPrownTests/".$k."_test.php";
+               require_once $SiteHost."/TPhpPrown/TPhpPrownTests/".$k."_test.php";
             }
          }
-         require_once $SiteAbove."/TPhpPrownTests/"."FinalMessage_test.php";
+         require_once $SiteHost."/TPhpPrown/TPhpPrownTests/"."FinalMessage_test.php";
       } 
    }
 }
@@ -97,8 +98,7 @@ function SimpleMessage($Name2=' ')
    echo 
       "<span style=\"color:#993300; font-weight:bold; ".
       "font-family:'Anonymous Pro', monospace; font-size:0.9em\">".
-      $Name2.
-      "</span>"."<br>";
+      $Name2."</span>".' <br>';
 }
 function MakeTestMessage($Name,$Name2='',$len=64)
 {

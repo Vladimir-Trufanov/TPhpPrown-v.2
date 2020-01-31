@@ -12,16 +12,18 @@ DontOpen=0
 AbsolutePath=0
 FileFormat=0
 ProjectFilesOnly=0
+HTServer=localhost
 Extensions=*.*
 [Project tree]
 TPhpPrown
 	+TPhpPrown
-		-TPhpPrown
+		+TPhpPrown
+			+WorkSpace
+				TPhpPrown\WorkSpace\getSiteDevice.php
+				TPhpPrown\WorkSpace\Mobile_Detect.php
 			TPhpPrown\CtrlArray.php
 			TPhpPrown\CtrlNumber.php
 			TPhpPrown\Findes.php
-			TPhpPrown\getAbove.php
-			TPhpPrown\getSiteDevice.php
 			TPhpPrown\getTranslit.php
 			TPhpPrown\iniConstMem.php
 			TPhpPrown\iniErrMessage.php
@@ -38,7 +40,6 @@ TPhpPrown
 			TPhpPrown\MakeSession.php
 			TPhpPrown\MakeType.php
 			TPhpPrown\MakeUserError.php
-			TPhpPrown\Mobile_Detect.php
 			TPhpPrown\NoZero.php
 			TPhpPrown\Number1string.php
 			TPhpPrown\Number2string.php
@@ -54,10 +55,11 @@ TPhpPrown
 			TPhpPrownTests\FinalMessage_test.php
 			TPhpPrownTests\Findes_test.php
 			TPhpPrownTests\FunctionsBlock.php
+			TPhpPrownTests\iniWorkSpace_test.php
 			TPhpPrownTests\isCalcInBrowser_test.php
 			TPhpPrownTests\MakeType_test.php
 			TPhpPrownTests\MakeUserError_test.php
-		+www
+		-www
 			www\favicon.ico
 			www\index.php
 			www\iniWorkSpace.php
@@ -73,22 +75,26 @@ TPhpPrown
 		TPhpPrown.png
 		TPhpPrown.ppr
 [Open project files]
-0=TPhpPrownTests\FunctionsBlock.php
-1=www\index.php
-2=www\Main.php
-3=TPhpPrownTests\MakeType_test.php
+0=www\index.php
+1=www\Main.php
+2=www\iniWorkSpace.php
+3=TPhpPrownTests\iniWorkSpace_test.php
+4=TPhpPrownTests\isCalcInBrowser_test.php
 [Selected Project Files]
 Main=
-Selected=TPhpPrownTests\MakeType_test.php
-[TPhpPrownTests\FunctionsBlock.php]
-TopLine=45
-Caret=43,63
+Selected=TPhpPrownTests\iniWorkSpace_test.php
 [www\index.php]
 TopLine=1
-Caret=11,18
+Caret=8,17
 [www\Main.php]
-TopLine=1
-Caret=1,1
-[TPhpPrownTests\MakeType_test.php]
-TopLine=7
-Caret=24,13
+TopLine=65
+Caret=1,15
+[www\iniWorkSpace.php]
+TopLine=31
+Caret=52,38
+[TPhpPrownTests\iniWorkSpace_test.php]
+TopLine=21
+Caret=4,46
+[TPhpPrownTests\isCalcInBrowser_test.php]
+TopLine=17
+Caret=1,35

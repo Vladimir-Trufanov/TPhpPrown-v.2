@@ -7,16 +7,18 @@
 
 //                                                   Автор:       Труфанов В.Е.
 //                                                   Дата создания:  13.01.2019
-// Copyright © 2019 tve                              Посл.изменение: 27.12.2019
+// Copyright © 2019 tve                              Посл.изменение: 31.01.2020
 
-// Подключаем файлы библиотеки прикладных модулей
-require_once $SiteAbove."/TPhpPrown/Findes.php";
-require_once $SiteAbove."/TPhpPrown/getTranslit.php";
-require_once $SiteAbove."/TPhpPrown/iniConstMem.php";
-require_once $SiteAbove."/TPhpPrown/isCalcInBrowser.php";
-require_once $SiteAbove."/TPhpPrown/MakeType.php";
+// Подключаем файлы библиотеки прикладных модулей и рабочего пространства
+require_once $SiteRoot."/iniWorkSpace.php";
+$TPhpPrown=$SiteHost.'/TPhpPrown';
+require_once $TPhpPrown."/TPhpPrown/Findes.php";
+require_once $TPhpPrown."/TPhpPrown/getTranslit.php";
+require_once $TPhpPrown."/TPhpPrown/iniConstMem.php";
+require_once $TPhpPrown."/TPhpPrown/isCalcInBrowser.php";
+require_once $TPhpPrown."/TPhpPrown/MakeType.php";
 // Подключаем модуль обеспечения тестов
-require_once $SiteAbove."/TPhpPrownTests/FunctionsBlock.php";
+require_once $TPhpPrown."/TPhpPrownTests/FunctionsBlock.php";
 ?>
 <!DOCTYPE html>
 <html>
@@ -43,9 +45,11 @@ require_once $SiteAbove."/TPhpPrownTests/FunctionsBlock.php";
 define ("ChooseAll",  "Выбрать все функции"); // Первая кнопка Submit  
 define ("ToTest",     "Протестировать");      // Вторая кнопка Submit 
 
-// Инициализируем список прикладных функций библиотеки TPhpPrown
+// Инициализируем список прикладных функций библиотеки TPhpPrown 
+// и рабочего пространства сайта
 $aPhpPrown=array
 (            
+   'iniWorkSpace'   =>'cформировать массив параметров рабочего пространства сайта',   
    'Findes'         =>'выбрать из строки подстроку, соответствующую регулярному выражению',   
    'isCalcInBrowser'=>'определить по родительским браузерам работает ли функция Calc для CSS',   
    'MakeType'       =>'преобразовать значение к заданному типу',

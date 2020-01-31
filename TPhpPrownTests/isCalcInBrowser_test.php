@@ -17,6 +17,13 @@ class test_isCalcInBrowser extends UnitTestCase
    {
       $ModeError=rvsCurrentPos;
       MakeTitle("isCalcInBrowser");
+         
+      // Нормальный UserAgent от Chrome
+      $UserAgent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) ".
+         "Chrome/72.0.3626.96 Safari/537.36 ";
+      $Result=\prown\isCalcInBrowser($UserAgent,$ModeError); 
+      $this->assertTrue($Result);   
+      MakeTestMessage($UserAgent,'"Calc" работает, определено по версии Chrome=72',90);
 
       // Ошибочный UserAgent, так как 2 Chrome
       $UserAgent1="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) ";
@@ -24,22 +31,15 @@ class test_isCalcInBrowser extends UnitTestCase
       $UserAgent=$UserAgent1.$UserAgent2;
       $Result=\prown\isCalcInBrowser($UserAgent,$ModeError); 
       $this->assertTrue($Result);   
-      SimpleMessage($UserAgent1);
+      SimpleMessage(); SimpleMessage($UserAgent1);
       MakeTestMessage($UserAgent2,'Ошибочный UserAgent, так как 2 Chrome',90);
 
       // Ошибочный UserAgent, так как Chrome c неопределённой версией
       $UserAgent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 "."Chrome/аа ";
       $Result=\prown\isCalcInBrowser($UserAgent,$ModeError); 
       $this->assertFalse($Result);   
+      SimpleMessage(); 
       MakeTestMessage($UserAgent,'Ошибочный UserAgent, так как Chrome c неопределённой версией',90);
-         
-      // Нормальный UserAgent от Chrome
-      $UserAgent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) ".
-         "Chrome/72.0.3626.96 Safari/537.36 ";
-      $Result=\prown\isCalcInBrowser($UserAgent,$ModeError); 
-      $this->assertTrue($Result);   
-      SimpleMessage();
-      MakeTestMessage($UserAgent,'"Calc" работает, определено по версии Chrome=72',90);
    }
    // Проверяем 2 версии от Safari
    function test_isCalcInBrowser_Safari()
@@ -93,6 +93,7 @@ class test_isCalcInBrowser extends UnitTestCase
       $Result=\prown\isCalcInBrowser($UserAgent,$ModeError); 
       $this->assertTrue($Result);
       MakeTestMessage($UserAgent,'Функция Calc работает по Safari/537.36',90);
+      SimpleMessage();
    }
 }
 

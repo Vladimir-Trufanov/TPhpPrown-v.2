@@ -10,7 +10,7 @@
 //                                                   Дата создания:  20.04.2019
 // Copyright © 2019 tve                              Посл.изменение: 24.05.2019
 
-require_once $SiteAbove."/TPhpPrown/iniConstMem.php";
+require_once $SiteHost."/TPhpPrown/TPhpPrown/iniConstMem.php";
 
 class test_MakeType extends UnitTestCase 
 {
@@ -18,7 +18,6 @@ class test_MakeType extends UnitTestCase
    function test_MakeType_Simple()
    {
       MakeTitle("MakeType");
-      SimpleMessage();
       $string='1958';
       $Result=\prown\MakeType($string,tInt);
       $this->assertEqual($Result,1958);
@@ -52,6 +51,7 @@ class test_MakeType extends UnitTestCase
       MakeTestMessage(
          '$Result=\prown\MakeType(100,tBool); ',
          'Преобразования целого = 100 к логическому типу: True',70);
+      SimpleMessage();
   }
 }
 // ****************************************************** MakeType_test.php ***

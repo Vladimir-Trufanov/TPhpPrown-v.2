@@ -1,4 +1,4 @@
-<?php namespace prown; // Эта строка добавлена для подключения к TPhpPrown
+<?php
 /**
  * Mobile Detect Library
  * Motto: "Every business should have a mobile detection script to detect mobile readers"

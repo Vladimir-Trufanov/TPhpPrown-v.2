@@ -14,7 +14,6 @@ class test_MakeUserError extends UnitTestCase
    function test_MakeUserError_First()
    {
       MakeTitle("MakeUserError");
-      SimpleMessage();
       /*
       $Mode=rvsDialogWindow;
       $Mess='Текст сообщения в диалоговом окне через JQueryUI';
@@ -38,6 +37,7 @@ class test_MakeUserError extends UnitTestCase
       //MakeTestMessage('\prown\MakeUserError("'.$Mess.'"'.",'Test',".$Mode.',E_USER_ERROR,"Err"); ',
       MakeTestMessage('MakeUserError("'.$Mess.'"'.",'Test',".'$Mode'.',E_USER_ERROR,"Err"); ',
         'Сообщение в режиме $Mode=rvsMakeDiv',90);
+      SimpleMessage();
    }
    /*
    function test_MakeUserError_Second()

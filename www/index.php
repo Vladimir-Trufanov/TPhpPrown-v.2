@@ -7,16 +7,19 @@
 
 //                                                   Автор:       Труфанов В.Е.
 //                                                   Дата создания:  13.01.2019
-// Copyright © 2019 tve                              Посл.изменение: 17.02.2019
+// Copyright © 2019 tve                              Посл.изменение: 31.01.2020
 
 session_start(); 
 
-// Инициализируем рабочее пространство: корневой каталог сайта, надсайтовый каталог, каталог хостинга
+// Инициализируем рабочее пространство: корневой каталог сайта и т.д.
 require_once $_SERVER['DOCUMENT_ROOT'].'/iniWorkSpace.php';
+$_WORKSPACE=iniWorkSpace();
 
-$SiteRoot=$_SERVER['DOCUMENT_ROOT'];  // Корневой каталог сайта
-$SiteAbove=GetAbove($SiteRoot);       // Надсайтовый каталог
-$SiteHost=GetAbove($SiteAbove);       // Каталог хостинга
+$SiteRoot   = $_WORKSPACE[wsSiteRoot];    // Корневой каталог сайта
+$SiteAbove  = $_WORKSPACE[wsSiteAbove];   // Надсайтовый каталог
+$SiteHost   = $_WORKSPACE[wsSiteHost];    // Каталог хостинга
+$SiteDevice = $_WORKSPACE[wsSiteDevice];  // 'Computer' | 'Mobile' | 'Tablet'
+$UserAgent  = $_WORKSPACE[wsUserAgent];   // HTTP_USER_AGENT
 
 require_once "Main.php";
 
