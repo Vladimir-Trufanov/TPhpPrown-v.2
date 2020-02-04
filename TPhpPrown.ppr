@@ -18,9 +18,10 @@ Extensions=*.*
 TPhpPrown
 	+TPhpPrown
 		+TPhpPrown
-			+WorkSpace
+			-WorkSpace
 				TPhpPrown\WorkSpace\getSiteDevice.php
 				TPhpPrown\WorkSpace\Mobile_Detect.php
+			TPhpPrown\CommonPrown.php
 			TPhpPrown\CtrlArray.php
 			TPhpPrown\CtrlNumber.php
 			TPhpPrown\Findes.php
@@ -51,7 +52,7 @@ TPhpPrown
 			TPhpPrown\ViewSimpleArray.php
 			TPhpPrown\пример_регекс.txt
 			TPhpPrown\регекс_тест.html
-		+TPhpPrownTests
+		-TPhpPrownTests
 			TPhpPrownTests\FinalMessage_test.php
 			TPhpPrownTests\Findes_test.php
 			TPhpPrownTests\FunctionsBlock.php
@@ -80,15 +81,16 @@ TPhpPrown
 2=www\iniWorkSpace.php
 3=TPhpPrownTests\iniWorkSpace_test.php
 4=TPhpPrownTests\isCalcInBrowser_test.php
+5=TPhpPrown\CommonPrown.php
 [Selected Project Files]
 Main=
-Selected=TPhpPrownTests\iniWorkSpace_test.php
+Selected=www\Main.php
 [www\index.php]
 TopLine=1
 Caret=8,17
 [www\Main.php]
-TopLine=65
-Caret=1,15
+TopLine=93
+Caret=16,105
 [www\iniWorkSpace.php]
 TopLine=31
 Caret=52,38
@@ -98,3 +100,6 @@ Caret=4,46
 [TPhpPrownTests\isCalcInBrowser_test.php]
 TopLine=17
 Caret=1,35
+[TPhpPrown\CommonPrown.php]
+TopLine=19
+Caret=1,1

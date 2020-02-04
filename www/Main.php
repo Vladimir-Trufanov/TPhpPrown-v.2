@@ -12,6 +12,7 @@
 // Подключаем файлы библиотеки прикладных модулей и рабочего пространства
 require_once $SiteRoot."/iniWorkSpace.php";
 $TPhpPrown=$SiteHost.'/TPhpPrown';
+require_once $TPhpPrown."/TPhpPrown/CommonPrown.php";
 require_once $TPhpPrown."/TPhpPrown/Findes.php";
 require_once $TPhpPrown."/TPhpPrown/getTranslit.php";
 require_once $TPhpPrown."/TPhpPrown/iniConstMem.php";
@@ -97,11 +98,11 @@ function FunctionsCheckbox($aPhpPrown,$isCheck=ToTest)
    return $Result;
 }
 
-if (isComRequest(ChooseAll,'formSubmit'))
+if (prown\isComRequest(ChooseAll,'formSubmit'))
 {
    FunctionsCheckbox($aPhpPrown,ChooseAll);
 }
-else if (isComRequest(ToTest,'formSubmit'))
+else if (prown\isComRequest(ToTest,'formSubmit'))
 {
    // Вырисовываем чекбоксы для тестирования
    FunctionsCheckbox($aPhpPrown,ToTest);
