@@ -189,6 +189,12 @@ function ViewGlobal($Parm)
         //ViewArr("Элементы \$_FILES, загруженные в текущий скрипт через метод HTTP POST",$_FILES,"\$_FILES");
         //else echo 'Нет загруженных файлов!<br>';
     }
+    elseif ($Parm==avgSERVER)
+    {
+        if (IsSet($_SERVER))
+        ViewArr("Информация о сервере и среде исполнения \$_SERVER",$_SERVER,"\$_SERVER");
+        else echo 'Нет $_SERVER!<br>';
+    }
 }
 
 

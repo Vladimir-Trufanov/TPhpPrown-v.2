@@ -10,7 +10,7 @@
 // Copyright © 2019 tve                              Посл.изменение: 31.01.2020
 
 // Подключаем файлы библиотеки прикладных модулей и рабочего пространства
-require_once $SiteRoot."/iniWorkSpace.php";
+
 $TPhpPrown=$SiteHost.'/TPhpPrown';
 require_once $TPhpPrown."/TPhpPrown/CommonPrown.php";
 require_once $TPhpPrown."/TPhpPrown/Findes.php";
@@ -18,6 +18,7 @@ require_once $TPhpPrown."/TPhpPrown/getTranslit.php";
 require_once $TPhpPrown."/TPhpPrown/iniConstMem.php";
 require_once $TPhpPrown."/TPhpPrown/isCalcInBrowser.php";
 require_once $TPhpPrown."/TPhpPrown/MakeType.php";
+require_once $TPhpPrown."/TPhpPrown/ViewGlobal.php";
 // Подключаем модуль обеспечения тестов
 require_once $TPhpPrown."/TPhpPrownTests/FunctionsBlock.php";
 ?>
@@ -97,6 +98,15 @@ function FunctionsCheckbox($aPhpPrown,$isCheck=ToTest)
    echo '</form>';
    return $Result;
 }
+// ---
+//phpinfo();
+//echo 'Работаю!<br>';
+//echo $SiteRoot.'<br>';
+//echo $SiteHost.' Работаю!<br>';
+//echo $TPhpPrown.' Работаю!<br>';
+//echo $UserAgent.' Работаю!<br>';
+//prown\ViewGlobal(avgSERVER);
+// ---
 
 if (prown\isComRequest(ChooseAll,'formSubmit'))
 {
@@ -114,6 +124,7 @@ else
    // Вырисовываем чекбоксы 
    FunctionsCheckbox($aPhpPrown,ToTest);
 }
+
 ?>
 </body> 
 </html>

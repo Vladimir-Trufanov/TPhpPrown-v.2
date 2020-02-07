@@ -52,7 +52,7 @@ TPhpPrown
 			TPhpPrown\ViewSimpleArray.php
 			TPhpPrown\пример_регекс.txt
 			TPhpPrown\регекс_тест.html
-		-TPhpPrownTests
+		+TPhpPrownTests
 			TPhpPrownTests\FinalMessage_test.php
 			TPhpPrownTests\Findes_test.php
 			TPhpPrownTests\FunctionsBlock.php
@@ -60,7 +60,7 @@ TPhpPrown
 			TPhpPrownTests\isCalcInBrowser_test.php
 			TPhpPrownTests\MakeType_test.php
 			TPhpPrownTests\MakeUserError_test.php
-		-www
+		+www
 			www\favicon.ico
 			www\index.php
 			www\iniWorkSpace.php
@@ -79,27 +79,23 @@ TPhpPrown
 0=www\index.php
 1=www\Main.php
 2=www\iniWorkSpace.php
-3=TPhpPrownTests\iniWorkSpace_test.php
-4=TPhpPrownTests\isCalcInBrowser_test.php
-5=TPhpPrown\CommonPrown.php
+3=TPhpPrown\ViewGlobal.php
+4=TPhpPrownTests\iniWorkSpace_test.php
 [Selected Project Files]
 Main=
-Selected=www\Main.php
+Selected=TPhpPrownTests\iniWorkSpace_test.php
 [www\index.php]
 TopLine=1
-Caret=8,17
+Caret=11,22
 [www\Main.php]
-TopLine=93
-Caret=16,105
+TopLine=1
+Caret=1,127
 [www\iniWorkSpace.php]
-TopLine=31
+TopLine=13
 Caret=52,38
+[TPhpPrown\ViewGlobal.php]
+TopLine=173
+Caret=29,192
 [TPhpPrownTests\iniWorkSpace_test.php]
-TopLine=21
-Caret=4,46
-[TPhpPrownTests\isCalcInBrowser_test.php]
-TopLine=17
-Caret=1,35
-[TPhpPrown\CommonPrown.php]
-TopLine=19
-Caret=1,1
+TopLine=5
+Caret=80,44
