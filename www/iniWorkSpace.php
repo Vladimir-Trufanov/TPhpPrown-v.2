@@ -8,14 +8,16 @@
 
 //                                                   Автор:       Труфанов В.Е.
 //                                                   Дата создания:  31.01.2020
-// Copyright © 2018 TVE                              Посл.изменение: 31.01.2020
+// Copyright © 2018 TVE                              Посл.изменение: 09.02.2020
 
 // ----------------------- Перечень элементов массива рабочего пространства ---
-define ("wsSiteRoot",   0);        // Корневой каталог сайта 
-define ("wsSiteAbove",  1);        // Надсайтовый каталог
-define ("wsSiteHost",   2);        // Каталог хостинга
-define ("wsSiteDevice", 3);        // 'Computer' | 'Mobile' | 'Tablet'
-define ("wsUserAgent",  4);        // HTTP_USER_AGENT
+define ("wsSiteRoot",    0);        // Корневой каталог сайта 
+define ("wsSiteAbove",   1);        // Надсайтовый каталог
+define ("wsSiteHost",    2);        // Каталог хостинга
+define ("wsSiteDevice",  3);        // 'Computer' | 'Mobile' | 'Tablet'
+define ("wsUserAgent",   4);        // HTTP_USER_AGENT
+define ("wsTimeRequest", 5);        // Время запроса сайта
+define ("wsRemoteAddr",  6);        // IP-адрес запроса сайта
 
 // ****************************************************************************
 // *         Cформировать массив параметров рабочего пространства сайта       *
@@ -36,6 +38,8 @@ function iniWorkSpace()
       wsSiteHost    => $SiteHost, 
       wsSiteDevice  => getSiteDevice(),  // 'Computer' | 'Mobile' | 'Tablet'
       wsUserAgent   => $_SERVER['HTTP_USER_AGENT'],    
+      wsTimeRequest => $_SERVER['REQUEST_TIME'],    
+      wsRemoteAddr  => $_SERVER['REMOTE_ADDR'],    
    );
 
    return $_WORKSPACE;

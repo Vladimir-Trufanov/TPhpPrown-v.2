@@ -37,11 +37,20 @@ class test_iniWorkSpace extends UnitTestCase
       MakeTestMessage('$_WORKSPACE[wsSiteDevice] = '.$path.' ','определен верно!',$WidthLine);
       
       $path=$_SERVER['HTTP_USER_AGENT'];
-      //echo $_WORKSPACE[wsUserAgent].'<br>';
-      //echo $path.'<br>';
       $this->assertEqual($_WORKSPACE[wsUserAgent],$path);
-      SimpleMessage(); SimpleMessage($path);
+      //SimpleMessage(); 
+      SimpleMessage($path);
       MakeTestMessage('$_WORKSPACE[wsUserAgent] ','определен верно!',$WidthLine);
+      
+      $path=$_SERVER['REQUEST_TIME'];
+      $this->assertEqual($_WORKSPACE[wsTimeRequest],$path);
+      MakeTestMessage('$_WORKSPACE[wsTimeRequest] = '.$path.' ','определен верно!',$WidthLine);
+      
+      $path=$_SERVER['REMOTE_ADDR'];
+      //echo $_WORKSPACE[wsRemoteAddr].'<br>';
+      //echo $path.'<br>';
+      $this->assertEqual($_WORKSPACE[wsRemoteAddr],$path);
+      MakeTestMessage('$_WORKSPACE[wsRemoteAddr] = '.$path.' ','определен верно!',$WidthLine);
       
       SimpleMessage();
    }

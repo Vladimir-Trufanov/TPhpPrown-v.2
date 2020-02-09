@@ -126,6 +126,13 @@ else
 }
 
 ?>
+<a target="_blank" href="#"><img src="89.gif" ></a>
+<!-- 
+<a target="_blank" href="#">
+<img src="http://s14.rimg.info/89ec86760c43451421aef6bd4dbd2c65.gif" ></a>
+<a target="_blank" href="http://smayliki.ru/smilie-873369351.html">
+<img src="http://s14.rimg.info/89ec86760c43451421aef6bd4dbd2c65.gif" ></a>
+-->
 </body> 
 </html>
 <?php
