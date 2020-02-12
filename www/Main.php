@@ -125,6 +125,11 @@ else
    FunctionsCheckbox($aPhpPrown,ToTest);
 }
 
+
+
+require("user_agent_parse.php");
+
+
 ?>
 <a target="_blank" href="#"><img src="89.gif" ></a>
 <!-- 

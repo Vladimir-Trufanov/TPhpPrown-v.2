@@ -17,7 +17,7 @@ Extensions=*.*
 [Project tree]
 TPhpPrown
 	+TPhpPrown
-		+TPhpPrown
+		-TPhpPrown
 			-WorkSpace
 				TPhpPrown\WorkSpace\getSiteDevice.php
 				TPhpPrown\WorkSpace\Mobile_Detect.php
@@ -52,7 +52,7 @@ TPhpPrown
 			TPhpPrown\ViewSimpleArray.php
 			TPhpPrown\пример_регекс.txt
 			TPhpPrown\регекс_тест.html
-		+TPhpPrownTests
+		-TPhpPrownTests
 			TPhpPrownTests\FinalMessage_test.php
 			TPhpPrownTests\Findes_test.php
 			TPhpPrownTests\FunctionsBlock.php
@@ -61,10 +61,13 @@ TPhpPrown
 			TPhpPrownTests\MakeType_test.php
 			TPhpPrownTests\MakeUserError_test.php
 		+www
+			www\89.gif
 			www\favicon.ico
 			www\index.php
 			www\iniWorkSpace.php
 			www\Main.php
+			www\user_agent_config.php
+			www\user_agent_parse.php
 		-Материалы
 			Материалы\Библиотека для определения типа и модели устройства на PHP.doc
 			Материалы\Руководство по разработке через тестирование для начинающих.doc
@@ -81,15 +84,17 @@ TPhpPrown
 2=www\iniWorkSpace.php
 3=TPhpPrown\ViewGlobal.php
 4=TPhpPrownTests\iniWorkSpace_test.php
+5=www\user_agent_config.php
+6=www\user_agent_parse.php
 [Selected Project Files]
 Main=
-Selected=TPhpPrownTests\iniWorkSpace_test.php
+Selected=www\user_agent_parse.php
 [www\index.php]
 TopLine=1
 Caret=11,22
 [www\Main.php]
-TopLine=117
-Caret=1,131
+TopLine=119
+Caret=1,130
 [www\iniWorkSpace.php]
 TopLine=32
 Caret=19,42
@@ -97,5 +102,11 @@ Caret=19,42
 TopLine=192
 Caret=29,192
 [TPhpPrownTests\iniWorkSpace_test.php]
-TopLine=26
+TopLine=40
 Caret=7,42
+[www\user_agent_config.php]
+TopLine=1
+Caret=45,7
+[www\user_agent_parse.php]
+TopLine=3
+Caret=36,29

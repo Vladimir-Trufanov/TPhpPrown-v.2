@@ -7,7 +7,7 @@
 
 //                                                   Автор:       Труфанов В.Е.
 //                                                   Дата создания:  13.01.2019
-// Copyright © 2019 tve                              Посл.изменение: 06.01.2020
+// Copyright © 2019 tve                              Посл.изменение: 12.02.2020
 
 // ****************************************************************************
 // *             Проверить, выбрана ли указанная функция библиотеки           *
@@ -32,7 +32,7 @@ function IsChecked($chkname,$value)
 // ****************************************************************************
 // http://form.guide/php-form/php-form-checkbox.html
 // http://dnzl.ru/view_post.php?id=182
-function MakeTest($SiteRoot,$aPhpPrown)
+function MakeTest($SiteRoot,$aPhpPrown,$lang='PHP')
 {
    $SiteAbove=GetAbove($SiteRoot);       // Надсайтовый каталог
    $SiteHost=GetAbove($SiteAbove);       // Каталог хостинга
@@ -47,7 +47,7 @@ function MakeTest($SiteRoot,$aPhpPrown)
          $aDoor=$_POST['formDoor'];
          $N=count($aDoor);
          // Запускаем тестирование и трассировку выбранных функций
-         require_once($SiteHost.'/TSimpleTest/autorun.php');
+         if ($lang=='PHP') require_once($SiteHost.'/TSimpleTest/autorun.php');
 
          foreach($aPhpPrown as $k=>$v)
          {
@@ -55,11 +55,17 @@ function MakeTest($SiteRoot,$aPhpPrown)
             if(IsChecked('formDoor',$k))
             {
                //echo $k.' тестируется.<br>';
-               //echo $SiteHost."/TPhpPrown/TPhpPrownTests/".$k."_test.php";
-               require_once $SiteHost."/TPhpPrown/TPhpPrownTests/".$k."_test.php";
+               if ($lang=='PHP') 
+               {
+                  //echo $SiteHost."/TPhpPrown/TPhpPrownTests/".$k."_test.php";
+                  require_once $SiteHost."/TPhpPrown/TPhpPrownTests/".$k."_test.php";
+               }
             }
          }
-         require_once $SiteHost."/TPhpPrown/TPhpPrownTests/"."FinalMessage_test.php";
+         if ($lang=='PHP') 
+         {
+            require_once $SiteHost."/TPhpPrown/TPhpPrownTests/"."FinalMessage_test.php";
+         }
       } 
    }
 }
