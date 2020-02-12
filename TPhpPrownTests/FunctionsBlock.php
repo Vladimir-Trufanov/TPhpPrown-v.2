@@ -26,6 +26,52 @@ function IsChecked($chkname,$value)
    }
    return false;
 }
+
+// ****************************************************************************
+// *            Вывести список прикладных классов библиотеки TJsTools         *
+// ****************************************************************************
+
+// Выводим форму для следующего тестирования, которая предоставляет пользователю
+// несколько вариантов выбора: 
+
+// все флажки имеют одно имя (formDoor[]). Одно имя говорит о том, 
+// что все флажки связаны между собой. Квадратные скобки указывают на то, 
+// что все значения будут доступны из одного массива. 
+// То есть $_POST['formDoor'] возврашает массив, содержащий значения флажков, 
+// которые были выбраны пользователем.
+// 
+// С помощью кнопки "Выбрать всё" и запроса соответствующего типа
+// http://localhost:84/index.php?
+//    formSubmit=%D0%92%D1%8B%D0%B1%D1%80%D0%B0%D1%82%D1%8C+%D0%B2%D1%81%D1%91
+//    &
+//    formDoor%5B%5D=Findes можно выбрать все флажки
+
+function FunctionsCheckbox($aTJsTools,$isCheck=ToTest)
+{
+   $Result = true;
+   echo '<form action="'.htmlentities($_SERVER['PHP_SELF']).'" method="post">';
+   echo '<p>Укажите прототипы объектов в TJsTools, которые следует протестировать?<br><br>';
+   echo '<input type="submit" name="formSubmit" value="'.ChooseAll.'"/><br><br>';
+   foreach($aTJsTools as $k=>$v)
+   {
+      if ($isCheck==ChooseAll)
+      {
+         echo '<input type="checkbox" checked name="formDoor[]" value="'.$k.'"/>'.$k.' - '.$v.'<br>';
+      }
+      else
+      {
+         echo '<input type="checkbox" name="formDoor[]" value="'.$k.'"/>'.$k.' - '.$v.'<br>';
+      }
+   }
+   echo '</p>';
+   echo '<input type="submit" name="formSubmit" value="'.ToTest.'"/><br><br>';
+   echo '</form>';
+   return $Result;
+}
+
+
+
+
 // ****************************************************************************
 // *     Проверить выбор флажков, указывающих на функции TPhpPrown, которые   *
 // *              следует протестировать и выполнить тестирование             *
@@ -60,6 +106,22 @@ function MakeTest($SiteRoot,$aPhpPrown,$lang='PHP')
                   //echo $SiteHost."/TPhpPrown/TPhpPrownTests/".$k."_test.php";
                   require_once $SiteHost."/TPhpPrown/TPhpPrownTests/".$k."_test.php";
                }
+               else if ($lang=='JS') 
+               {
+                  $scri='TJsTools/'.$k.'.js';
+                  $scritest='TJsToolsTests/'.$k.'Test.js';
+                  //echo '<br>'.$scri.'<br>'; echo $scritest.'<br>'; 
+                                    
+                  echo '<script src="'.$scri.'"></script>';
+                  echo '<script src="'.$scritest.'"></script>'; 
+
+//'<script src="TJsTools/Trim.js"></script>';
+                 // echo '<script src="TJsToolsTests/TTrimTest.js"></script>'; 
+                  //echo '<script src="TJsTools/Trim.js"></script>';
+                  //echo '<script src="TJsToolsTests/TTrimTest.js"></script>'; 
+                  //echo $SiteHost."/TPhpPrown/TPhpPrownTests/".$k."_test.php";
+                  //require_once $SiteHost."/TPhpPrown/TPhpPrownTests/".$k."_test.php";
+               }
             }
          }
          if ($lang=='PHP') 
@@ -69,6 +131,39 @@ function MakeTest($SiteRoot,$aPhpPrown,$lang='PHP')
       } 
    }
 }
+
+
+function LeadTest()
+{
+?>
+<!-- 
+<h1 id="qunit-header">Заголовок страницы</h1>
+<h2 id="qunit-banner"></h2>
+<div id="qunit-testrunner-toolbar">Панель инструментов</div>
+<h2 id="qunit-userAgent">UserAgent</h2>
+<div id="qunit-fixture">Привет!</div>
+<div id="qunit"></div>
+<ol id="qunit-tests"></ol>
+
+Делаем общий вывод прохождения тестов
+в следующей последовательности: 
+   а) заголовок страницы;
+   б) разделитель (если он не был вызван ранее, в остальных случаях 
+      без <div id="qunit"></div> тоже выводится один раз);    
+   в) панель инструментов (если она не была вызвана отдельно);    
+   г) UserAgent (если он не был вызван отдельно); 
+   д) По клику на числе проверок в тесте, разворачивается список проверок 
+   е) <div id="qunit-fixture"></div> - образец кода и разметки до тестов
+<div id="qunit"></div>
+-->
+<h2 id="qunit-userAgent"></h2>
+<h2 id="qunit-banner"></h2>
+<ol id="qunit-tests"></ol>
+<h2 id="qunit-userAgent"></h2>
+<div id="qunit-fixture">Привет!</div>
+<?php
+}
+
 
 /*
 function mb_str_pad ($input,$pad_length,$pad_string,$pad_style,$encoding="UTF-8")
