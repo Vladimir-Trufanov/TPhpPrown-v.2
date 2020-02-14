@@ -18,6 +18,7 @@ define ("wsSiteDevice",  3);        // 'Computer' | 'Mobile' | 'Tablet'
 define ("wsUserAgent",   4);        // HTTP_USER_AGENT
 define ("wsTimeRequest", 5);        // Время запроса сайта
 define ("wsRemoteAddr",  6);        // IP-адрес запроса сайта
+define ("wsSiteName",    7);        // Доменное имя сайта
 
 // ****************************************************************************
 // *         Cформировать массив параметров рабочего пространства сайта       *
@@ -40,6 +41,7 @@ function iniWorkSpace()
       wsUserAgent   => $_SERVER['HTTP_USER_AGENT'],    
       wsTimeRequest => $_SERVER['REQUEST_TIME'],    
       wsRemoteAddr  => $_SERVER['REMOTE_ADDR'],    
+      wsSiteName    => $_SERVER['HTTP_HOST'],    
    );
 
    return $_WORKSPACE;
@@ -72,6 +74,60 @@ function getAbove($SiteRoot)
     }
     return $Result;
 }
-
+// ****************************************************************************
+// *        По заданному доменному имени ...         *
+// ****************************************************************************
+function isHost($SiteName,$kwinflatht_nichost_ru='')
+{
+   $Result=false;
+   // Вначале проверяем сайт по доменному имени в $_SERVER['HTTP_HOST'] 
+   $regexp='/'.$SiteName.'/'; 
+   echo '$SiteName='.$SiteName.'<br>';
+   echo 'strlen($SiteName)='.strlen($SiteName).'<br>';
+   echo '$regexp='.$regexp.'<br>';
+   echo '$_SERVER["HTTP_HOST"]='.$_SERVER['HTTP_HOST'].'<br>';
+   // Выполняем регулярное выражение и получаем результаты поиска
+   preg_match($regexp,$_SERVER['HTTP_HOST'],$imatches,PREG_OFFSET_CAPTURE);
+   // Функция preg_match в случае неудачного поиска возвращает пустой массив
+   // или массив вида  Array([0]=>Array([0]=> ''       [1]=>0)), 
+   // а при удаче      Array([0]=>Array([0]=>$SiteName [1]=>0)) 
+   print_r($imatches);
+   echo '<br>1 $kwinflatht_nichost_ru='.$kwinflatht_nichost_ru.'<br>';
+   if (count($imatches)>0)
+   {
+   if ($imatches[0][0]>'')
+   { 
+      echo '<br>$imatches[0][0]='.$imatches[0][0].'<br>';
+      $Result=true;
+      //print_r($Result);
+      //echo '$matches='.$matches.'<br>';
+      //echo '$matches='.$imatches[0][0].'<br>';
+   }
+   }
+   // и при необходимости проверяем отладочный сайт
+   else if (strlen($kwinflatht_nichost_ru)>0)
+   {
+      $regexp='/'.$kwinflatht_nichost_ru.'/'; 
+      echo '$kwinflatht_nichost_ru='.$kwinflatht_nichost_ru.'<br>';
+      echo 'strlen($SiteName)='.strlen($SiteName).'<br>';
+      echo '$regexp='.$regexp.'<br>';
+      echo '$_SERVER["HTTP_HOST"]='.$_SERVER['HTTP_HOST'].'<br>';
+      // Выполняем регулярное выражение и получаем результаты поиска
+      preg_match($regexp,$_SERVER['HTTP_HOST'],$imatches,PREG_OFFSET_CAPTURE);
+      print_r($imatches);
+      if (count($imatches)>0)
+      {
+      if ($imatches[0][0]>'')
+      { 
+         echo '<br>$imatches[0][0]='.$imatches[0][0].'<br>';
+         $Result=true;
+         //print_r($Result);
+         //echo '$matches='.$matches.'<br>';
+         //echo '$matches='.$imatches[0][0].'<br>';
+      }
+      }
+   }
+   return $Result;
+}
 // ******************************************************* iniWorkSpace.php ***
  

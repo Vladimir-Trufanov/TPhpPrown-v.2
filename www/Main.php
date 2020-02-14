@@ -76,6 +76,7 @@ $aPhpPrown=array
 //    &
 //    formDoor%5B%5D=Findes можно выбрать все флажки
 
+/*
 function FunctionsCheckbox($aPhpPrown,$isCheck=ToTest)
 {
    $Result = true;
@@ -98,6 +99,7 @@ function FunctionsCheckbox($aPhpPrown,$isCheck=ToTest)
    echo '</form>';
    return $Result;
 }
+*/
 // ---
 //phpinfo();
 //echo 'Работаю!<br>';
@@ -126,8 +128,14 @@ else
 }
 
 
+//require("user_agent_parse.php");
+//echo 'https://doortry.ru/TPhpPrown/fil.php<br>';
+//echo $_SERVER['HTTP_HOST'].'<br>';
+//echo $_SERVER['DOCUMENT_ROOT'].'<br>';
 
-require("user_agent_parse.php");
+//include $_SERVER['DOCUMENT_ROOT'].'/fil.php';
+//include 'https://doortry.ru/TPhpPrown/fil.php';
+//require("user_agent_parse.php");
 
 
 ?>

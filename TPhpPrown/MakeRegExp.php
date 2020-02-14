@@ -50,8 +50,8 @@ function MakeRegExp($pattern,$text,&$matches=null,$isTrass=false)
    //        C:\Webservers\kwinflat-ru\www\TPHPPROWN\regx.php on line 20
     
    // Выполняем регулярное выражение и получаем результаты поиска
-   $Result=preg_match_all($pattern,$text,$imatches,PREG_OFFSET_CAPTURE);
-   if (!($matches=null)) $matches=$imatches;
+   $Result=preg_match($pattern,$text,$imatches,PREG_OFFSET_CAPTURE);
+   if (!($matches==null)) $matches=$imatches;   // здесь что-то не так
 
    // При трассировке показываем текст, шаблон поиска 
    if ($isTrass)
