@@ -7,10 +7,10 @@
 
 //                                                   Автор:       Труфанов В.Е.
 //                                                   Дата создания:  13.01.2019
-// Copyright © 2019 tve                              Посл.изменение: 31.01.2020
+// Copyright © 2019 tve                              Посл.изменение: 15.02.2020
 
+echo '13$SiteRoot='.$SiteRoot.'<br>';
 // Подключаем файлы библиотеки прикладных модулей и рабочего пространства
-
 $TPhpPrown=$SiteHost.'/TPhpPrown';
 require_once $TPhpPrown."/TPhpPrown/CommonPrown.php";
 require_once $TPhpPrown."/TPhpPrown/Findes.php";
@@ -25,7 +25,7 @@ require_once $TPhpPrown."/TPhpPrownTests/FunctionsBlock.php";
 <!DOCTYPE html>
 <html>
 <head>
-<title>Кто прожил жизнь, тот больше не спешит!</title>
+<title>TPhpPrown - библиотека PHP-прикладных функций</title>
 <meta charset="utf-8">
 <link href="https://fonts.googleapis.com/css?family=Anonymous+Pro:400,400i,700,700i&amp;subset=cyrillic" rel="stylesheet">
 <link rel="stylesheet" type="text/css" href="Styles/Styles.css">
@@ -57,6 +57,16 @@ $aPhpPrown=array
    'MakeType'       =>'преобразовать значение к заданному типу',
    'MakeUserError'  =>'cгенерировать ошибку/исключение или просто сформировать сообщение об ошибке',
 );
+
+// ---
+//phpinfo();
+//echo $SiteRoot.'<br>';
+//echo $SiteHost.'<br>';
+//echo $TPhpPrown.'<br>';
+//echo $UserAgent.'<br>';
+//prown\ViewGlobal(avgSERVER);
+// ---
+
 // ****************************************************************************
 // *            Вывести список прикладных функций библиотеки TPhpPrown        *
 // ****************************************************************************
@@ -76,40 +86,6 @@ $aPhpPrown=array
 //    &
 //    formDoor%5B%5D=Findes можно выбрать все флажки
 
-/*
-function FunctionsCheckbox($aPhpPrown,$isCheck=ToTest)
-{
-   $Result = true;
-   echo '<form action="'.htmlentities($_SERVER['PHP_SELF']).'" method="post">';
-   echo '<p>Укажите функции TPhpPrown, которые следует протестировать?<br><br>';
-   echo '<input type="submit" name="formSubmit" value="'.ChooseAll.'"/><br><br>';
-   foreach($aPhpPrown as $k=>$v)
-   {
-      if ($isCheck==ChooseAll)
-      {
-         echo '<input type="checkbox" checked name="formDoor[]" value="'.$k.'"/>'.$k.' - '.$v.'<br>';
-      }
-      else
-      {
-         echo '<input type="checkbox" name="formDoor[]" value="'.$k.'"/>'.$k.' - '.$v.'<br>';
-      }
-   }
-   echo '</p>';
-   echo '<input type="submit" name="formSubmit" value="'.ToTest.'"/><br><br>';
-   echo '</form>';
-   return $Result;
-}
-*/
-// ---
-//phpinfo();
-//echo 'Работаю!<br>';
-//echo $SiteRoot.'<br>';
-//echo $SiteHost.' Работаю!<br>';
-//echo $TPhpPrown.' Работаю!<br>';
-//echo $UserAgent.' Работаю!<br>';
-//prown\ViewGlobal(avgSERVER);
-// ---
-
 if (prown\isComRequest(ChooseAll,'formSubmit'))
 {
    FunctionsCheckbox($aPhpPrown,ChooseAll);
@@ -128,14 +104,11 @@ else
 }
 
 
-//require("user_agent_parse.php");
-//echo 'https://doortry.ru/TPhpPrown/fil.php<br>';
-//echo $_SERVER['HTTP_HOST'].'<br>';
-//echo $_SERVER['DOCUMENT_ROOT'].'<br>';
+      // Запускаем тестирование и трассировку выбранных функций
+      //require_once('simpletest/autorun.php');
+      //require_once('MakeType.php');
+      //require_once('MakeType_test.php');
 
-//include $_SERVER['DOCUMENT_ROOT'].'/fil.php';
-//include 'https://doortry.ru/TPhpPrown/fil.php';
-//require("user_agent_parse.php");
 
 
 ?>

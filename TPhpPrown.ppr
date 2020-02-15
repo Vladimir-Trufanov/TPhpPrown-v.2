@@ -17,13 +17,15 @@ Extensions=*.*
 [Project tree]
 TPhpPrown
 	+TPhpPrown
-		+TPhpPrown
-			+WorkSpace
+		-TPhpPrown
+			-WorkSpace
 				TPhpPrown\WorkSpace\getSiteDevice.php
+				TPhpPrown\WorkSpace\iniWorkSpace.php
 				TPhpPrown\WorkSpace\Mobile_Detect.php
 			TPhpPrown\CommonPrown.php
 			TPhpPrown\CtrlArray.php
 			TPhpPrown\CtrlNumber.php
+			TPhpPrown\fil.php
 			TPhpPrown\Findes.php
 			TPhpPrown\getTranslit.php
 			TPhpPrown\iniConstMem.php
@@ -52,7 +54,7 @@ TPhpPrown
 			TPhpPrown\ViewSimpleArray.php
 			TPhpPrown\пример_регекс.txt
 			TPhpPrown\регекс_тест.html
-		-TPhpPrownTests
+		+TPhpPrownTests
 			TPhpPrownTests\FinalMessage_test.php
 			TPhpPrownTests\Findes_test.php
 			TPhpPrownTests\FunctionsBlock.php
@@ -63,12 +65,9 @@ TPhpPrown
 		+www
 			www\89.gif
 			www\favicon.ico
-			www\fil.php
 			www\index.php
 			www\iniWorkSpace.php
 			www\Main.php
-			www\user_agent_config.php
-			www\user_agent_parse.php
 		-Материалы
 			Материалы\Библиотека для определения типа и модели устройства на PHP.doc
 			Материалы\Руководство по разработке через тестирование для начинающих.doc
@@ -80,30 +79,26 @@ TPhpPrown
 		TPhpPrown.png
 		TPhpPrown.ppr
 [Open project files]
-0=www\fil.php
-1=www\Main.php
-2=TPhpPrown\MakeRegExp.php
-3=TPhpPrown\iniRegExp.php
+0=TPhpPrownTests\FunctionsBlock.php
+1=TPhpPrownTests\iniWorkSpace_test.php
+2=www\index.php
+3=www\Main.php
 4=www\iniWorkSpace.php
-5=www\index.php
 [Selected Project Files]
 Main=
-Selected=www\iniWorkSpace.php
-[www\fil.php]
-TopLine=1
-Caret=46,5
-[www\Main.php]
-TopLine=127
-Caret=3,136
-[TPhpPrown\MakeRegExp.php]
-TopLine=51
-Caret=71,54
-[TPhpPrown\iniRegExp.php]
-TopLine=9
-Caret=1,1
-[www\iniWorkSpace.php]
-TopLine=90
-Caret=14,95
+Selected=TPhpPrownTests\iniWorkSpace_test.php
+[TPhpPrownTests\FunctionsBlock.php]
+TopLine=83
+Caret=1,83
+[TPhpPrownTests\iniWorkSpace_test.php]
+TopLine=7
+Caret=19,19
 [www\index.php]
-TopLine=9
-Caret=1,22
+TopLine=21
+Caret=1,27
+[www\Main.php]
+TopLine=3
+Caret=9,12
+[www\iniWorkSpace.php]
+TopLine=67
+Caret=7,50

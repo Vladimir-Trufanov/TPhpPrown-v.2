@@ -100,10 +100,10 @@ function MakeTest($SiteRoot,$aPhpPrown,$lang='PHP')
             //echo '<input type="checkbox" checked name="formDoor[]" value="'.$k.'"/>'.$k.' - '.$v.'<br>';
             if(IsChecked('formDoor',$k))
             {
-               //echo $k.' тестируется.<br>';
+               echo $k.' тестируется.<br>';
                if ($lang=='PHP') 
                {
-                  //echo $SiteHost."/TPhpPrown/TPhpPrownTests/".$k."_test.php";
+                  echo $SiteHost."/TPhpPrown/TPhpPrownTests/".$k."_test.php";
                   require_once $SiteHost."/TPhpPrown/TPhpPrownTests/".$k."_test.php";
                }
                else if ($lang=='JS') 

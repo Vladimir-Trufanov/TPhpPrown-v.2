@@ -1,34 +1,40 @@
 <?php
+                                         
 // PHP7/HTML5, EDGE/CHROME                             *** iniWorkSpace.php ***
+
 // ****************************************************************************
 // *         Cформировать массив параметров рабочего пространства сайта       *
 // ****************************************************************************
 
 //                                                   Автор:       Труфанов В.Е.
 //                                                   Дата создания:  31.01.2020
-// Copyright © 2018 TVE                              Посл.изменение: 15.02.2020
+// Copyright © 2018 TVE                              Посл.изменение: 09.02.2020
 
-// Определяем константы перечня элементов массива рабочего пространства ---
-define ("wsSiteRoot",    0);          // Корневой каталог сайта 
-define ("wsSiteAbove",   1);          // Надсайтовый каталог
-define ("wsSiteHost",    2);          // Каталог хостинга
-define ("wsSiteDevice",  3);          // 'Computer' | 'Mobile' | 'Tablet'
-define ("wsUserAgent",   4);          // HTTP_USER_AGENT
-define ("wsTimeRequest", 5);          // Время запроса сайта
-define ("wsRemoteAddr",  6);          // IP-адрес запроса сайта
-define ("wsSiteName",    7);          // Доменное имя сайта
-// Формируем массив параметров рабочего пространства сайта 
-// и соответствующие глобальные переменные
+// ----------------------- Перечень элементов массива рабочего пространства ---
+define ("wsSiteRoot",    0);        // Корневой каталог сайта 
+define ("wsSiteAbove",   1);        // Надсайтовый каталог
+define ("wsSiteHost",    2);        // Каталог хостинга
+define ("wsSiteDevice",  3);        // 'Computer' | 'Mobile' | 'Tablet'
+define ("wsUserAgent",   4);        // HTTP_USER_AGENT
+define ("wsTimeRequest", 5);        // Время запроса сайта
+define ("wsRemoteAddr",  6);        // IP-адрес запроса сайта
+define ("wsSiteName",    7);        // Доменное имя сайта
+
+// ****************************************************************************
+// *         Cформировать массив параметров рабочего пространства сайта       *
+// ****************************************************************************
 function iniWorkSpace()
 {
    $SiteRoot=$_SERVER['DOCUMENT_ROOT'];  // Корневой каталог сайта
    $SiteAbove=GetAbove($SiteRoot);       // Надсайтовый каталог
    $SiteHost=GetAbove($SiteAbove);       // Каталог хостинга
-   //echo '1$SiteRoot='.$SiteRoot.'<br>';
-   include($SiteHost.'/TPhpPrown/TPhpPrown/WorkSpace/getSiteDevice.php');
+
+   require_once($SiteHost.'/TPhpPrown/TPhpPrown/WorkSpace/getSiteDevice.php');
+
+   // Инициализируем массив параметров рабочего пространства сайта
    $_WORKSPACE=array
    (
-      wsSiteRoot    => $SiteRoot,  // Корневой каталог сайта
+      wsSiteRoot    => $SiteRoot,        // Корневой каталог сайта
       wsSiteAbove   => $SiteAbove, 
       wsSiteHost    => $SiteHost, 
       wsSiteDevice  => getSiteDevice(),  // 'Computer' | 'Mobile' | 'Tablet'
@@ -37,8 +43,9 @@ function iniWorkSpace()
       wsRemoteAddr  => $_SERVER['REMOTE_ADDR'],    
       wsSiteName    => $_SERVER['HTTP_HOST'],    
    );
+
    return $_WORKSPACE;
-}   
+}
 // ****************************************************************************
 // *        По абсолютному пути каталога выделить вышестоящий каталог         *
 // *   (основное назначение - по абсолютному пути корневого каталога сайта    *
@@ -47,7 +54,6 @@ function iniWorkSpace()
 function getAbove($SiteRoot)
 {
     $Result=$SiteRoot;
-    //echo 'GetAboveuu])';
     // Считаем, что отладка идет в Windows IIS,
     // поэтому вначале ищем последний обратный слэш
     $Point=strrpos($Result,'\\');
