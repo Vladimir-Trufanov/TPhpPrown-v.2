@@ -17,6 +17,7 @@ class test_iniWorkSpace extends UnitTestCase
    {
       $_WORKSPACE=iniWorkSpace();
       $SiteRoot=$_WORKSPACE[wsSiteRoot];     // Корневой каталог сайта
+      $SiteName=$_WORKSPACE[wsSiteName];     // Доменное имя сайта
       MakeTitle("iniWorkSpace");
       $WidthLine=80;
       $this->assertEqual($SiteRoot,$_SERVER['DOCUMENT_ROOT']);
@@ -39,7 +40,7 @@ class test_iniWorkSpace extends UnitTestCase
       SimpleMessage($path);
       MakeTestMessage('$_WORKSPACE[wsUserAgent] ',
          'UserAgent определен верно!',$WidthLine);
-     $path=$_SERVER['REQUEST_TIME'];
+      $path=$_SERVER['REQUEST_TIME'];
       $this->assertEqual($_WORKSPACE[wsTimeRequest],$path);
       MakeTestMessage('$_WORKSPACE[wsTimeRequest] = '.$path.' ',
          'Время запроса сайта зафиксировано!',$WidthLine);
@@ -52,21 +53,20 @@ class test_iniWorkSpace extends UnitTestCase
       MakeTestMessage('$_WORKSPACE[wsSiteName] = '.$path.' ',
          'Доменное имя извлечено!',$WidthLine);
       // Проверяем isHost
-      if (isHost('localhost')) $path='true'; else $path='false' ;
+      if (isHost($SiteName)) $path='true'; else $path='false' ;
       $this->assertEqual('true',$path);
-      if (isHost('localhosting')) $path='true'; else $path='false' ;
+      if (isHost('no'.$SiteName)) $path='true'; else $path='false' ;
       $this->assertEqual('false',$path);
-      MakeTestMessage("isHost('localhost')=true; isHost('localhosting')=false ",
-         'Текущий сайт соответствует заданному доменному имени!',$WidthLine);
-      if (isHost('localhosting','localhost')) $path='true'; else $path='false' ;
+      MakeTestMessage("isHost('".$SiteName."')=true; isHost('no".$SiteName."')=false ",
+      'Текущий сайт соответствует заданному доменному имени!',$WidthLine);
+      if (isHost('no'.$SiteName,$SiteName)) $path='true'; else $path='false';
       $this->assertEqual('true',$path);
-      if (isHost('localhost','localhost')) $path='true'; else $path='false' ;
-      //echo 'true'.'<br>';
-      //echo $path.'<br>';
+      MakeTestMessage("isHost('no".$SiteName."','".$SiteName."')=true ",
+      'Отладочный сайт соответствует заданному доменному имени!',$WidthLine);
+      if (isHost($SiteName,'no'.$SiteName)) $path='true'; else $path='false';
       $this->assertEqual('true',$path);
-      MakeTestMessage("isHost('localhosting','localhost')=true; ".
-         "isHost('localhost','localhost')=true ",
-         'Отладочный сайт соответствует заданному доменному имени!',$WidthLine);
+      MakeTestMessage("isHost('".$SiteName."','no".$SiteName."')=true ",
+      'В проверке подтвержден текущий сайт!',$WidthLine);
       SimpleMessage();
    }
 }
