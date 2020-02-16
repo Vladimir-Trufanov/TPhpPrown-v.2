@@ -27,7 +27,6 @@ require_once $TPhpPrown."/TPhpPrownTests/FunctionsBlock.php";
 <title>TPhpPrown - библиотека PHP-прикладных функций</title>
 <meta charset="utf-8">
 <link href="https://fonts.googleapis.com/css?family=Anonymous+Pro:400,400i,700,700i&amp;subset=cyrillic" rel="stylesheet">
-<link rel="stylesheet" type="text/css" href="Styles/Styles.css">
 
 <link rel="stylesheet" type="text/css" 
    href="https://ajax.aspnetcdn.com/ajax/jquery.ui/1.10.3/themes/ui-lightness/jquery-ui.css">

@@ -26,20 +26,18 @@ $SiteName    = $_WORKSPACE[wsSiteName];     // Доменное имя сайт�
 
 // Подключаем сайт сбора сообщений об ошибках/исключениях и формирования 
 // страницы с выводом сообщений, а также комментариев для PHP5-PHP7
-//echo $SiteHost."/TDoorTryer/DoorTryerPage.php";
-//require_once $SiteHost."/TDoorTryer/DoorTryerPage.php";
-
-//try 
-//{
+require_once $SiteHost."/TDoorTryer/DoorTryerPage.php";
+try 
+{
    // Запускаем сценарий сайта
-   require_once "Main.php";
+   require_once $SiteRoot."/Main.php";
    // Запускаем примеры ошибок и исключений
    //require_once $_SERVER['DOCUMENT_ROOT']."/MainDoorTry.php";
-//}
-//catch (E_EXCEPTION $e) 
-//{
+}
+catch (E_EXCEPTION $e) 
+{
    // Подключаем обработку исключений верхнего уровня
-//   DoorTryPage($e);
-//}
+   DoorTryPage($e);
+}
 
 // ************************************************************** index.php ***

@@ -67,11 +67,6 @@ class test_iniWorkSpace extends UnitTestCase
       MakeTestMessage("isHost('localhosting','localhost')=true; ".
          "isHost('localhost','localhost')=true ",
          'Отладочный сайт соответствует заданному доменному имени!',$WidthLine);
-      
-
-
-
-
       SimpleMessage();
    }
 }
