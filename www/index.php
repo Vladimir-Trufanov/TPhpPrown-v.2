@@ -23,8 +23,6 @@ $UserAgent   = $_WORKSPACE[wsUserAgent];    // HTTP_USER_AGENT
 $TimeRequest = $_WORKSPACE[wsTimeRequest];  // Время запроса сайта
 $Ip          = $_WORKSPACE[wsRemoteAddr];   // IP-адрес запроса сайта
 $SiteName    = $_WORKSPACE[wsSiteName];     // Доменное имя сайта
-//echo '12$SiteRoot='.$SiteRoot.'<br>';
-
 
 // Подключаем сайт сбора сообщений об ошибках/исключениях и формирования 
 // страницы с выводом сообщений, а также комментариев для PHP5-PHP7
@@ -43,17 +41,5 @@ $SiteName    = $_WORKSPACE[wsSiteName];     // Доменное имя сайт�
    // Подключаем обработку исключений верхнего уровня
 //   DoorTryPage($e);
 //}
-
-/*
-// Включить в тесты iniWorkSpace
-if (isHost('localhost')) echo 'true<br><br>';
-else echo 'false<br><br>';
-
-if (isHost('localhosti','kwinflatht.nichost.ru')) echo 'true<br><br>';
-else echo 'false<br><br>';
-
-if (isHost('kwinflatht.nichost.ru')) echo 'true<br><br>';
-else echo 'false<br><br>';
-*/
 
 // ************************************************************** index.php ***

@@ -9,7 +9,6 @@
 //                                                   Дата создания:  13.01.2019
 // Copyright © 2019 tve                              Посл.изменение: 15.02.2020
 
-echo '13$SiteRoot='.$SiteRoot.'<br>';
 // Подключаем файлы библиотеки прикладных модулей и рабочего пространства
 $TPhpPrown=$SiteHost.'/TPhpPrown';
 require_once $TPhpPrown."/TPhpPrown/CommonPrown.php";
@@ -44,9 +43,9 @@ require_once $TPhpPrown."/TPhpPrownTests/FunctionsBlock.php";
 
 <?php
 // Определяем сайтовые константы
-define ("ChooseAll",  "Выбрать все функции"); // Первая кнопка Submit  
-define ("ToTest",     "Протестировать");      // Вторая кнопка Submit 
-
+define ("ChooseAll",  "Выбрать все элементы"); // Первая кнопка Submit  
+define ("ToTest",     "Протестировать");       // Вторая кнопка Submit 
+define ("ChoiceList", "Укажите список прикладных функций библиотеки TPhpPrown"); 
 // Инициализируем список прикладных функций библиотеки TPhpPrown 
 // и рабочего пространства сайта
 $aPhpPrown=array
@@ -57,7 +56,6 @@ $aPhpPrown=array
    'MakeType'       =>'преобразовать значение к заданному типу',
    'MakeUserError'  =>'cгенерировать ошибку/исключение или просто сформировать сообщение об ошибке',
 );
-
 // ---
 //phpinfo();
 //echo $SiteRoot.'<br>';
@@ -66,7 +64,6 @@ $aPhpPrown=array
 //echo $UserAgent.'<br>';
 //prown\ViewGlobal(avgSERVER);
 // ---
-
 // ****************************************************************************
 // *            Вывести список прикладных функций библиотеки TPhpPrown        *
 // ****************************************************************************
@@ -88,29 +85,20 @@ $aPhpPrown=array
 
 if (prown\isComRequest(ChooseAll,'formSubmit'))
 {
-   FunctionsCheckbox($aPhpPrown,ChooseAll);
+   FunctionsCheckbox($aPhpPrown,ChooseAll,ChoiceList);
 }
 else if (prown\isComRequest(ToTest,'formSubmit'))
 {
    // Вырисовываем чекбоксы для тестирования
-   FunctionsCheckbox($aPhpPrown,ToTest);
+   FunctionsCheckbox($aPhpPrown,ToTest,ChoiceList);
    // Запускаем тестирование
    MakeTest($SiteRoot,$aPhpPrown);
 }
 else
 {
    // Вырисовываем чекбоксы 
-   FunctionsCheckbox($aPhpPrown,ToTest);
+   FunctionsCheckbox($aPhpPrown,ToTest,ChoiceList);
 }
-
-
-      // Запускаем тестирование и трассировку выбранных функций
-      //require_once('simpletest/autorun.php');
-      //require_once('MakeType.php');
-      //require_once('MakeType_test.php');
-
-
-
 ?>
 <a target="_blank" href="#"><img src="89.gif" ></a>
 <!-- 

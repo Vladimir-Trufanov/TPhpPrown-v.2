@@ -24,11 +24,10 @@ function iniWorkSpace()
    $SiteRoot=$_SERVER['DOCUMENT_ROOT'];  // Корневой каталог сайта
    $SiteAbove=GetAbove($SiteRoot);       // Надсайтовый каталог
    $SiteHost=GetAbove($SiteAbove);       // Каталог хостинга
-   //echo '1$SiteRoot='.$SiteRoot.'<br>';
-   include($SiteHost.'/TPhpPrown/TPhpPrown/WorkSpace/getSiteDevice.php');
+   include_once($SiteHost.'/TPhpPrown/TPhpPrown/WorkSpace/getSiteDevice.php');
    $_WORKSPACE=array
    (
-      wsSiteRoot    => $SiteRoot,  // Корневой каталог сайта
+      wsSiteRoot    => $SiteRoot,  
       wsSiteAbove   => $SiteAbove, 
       wsSiteHost    => $SiteHost, 
       wsSiteDevice  => getSiteDevice(),  // 'Computer' | 'Mobile' | 'Tablet'

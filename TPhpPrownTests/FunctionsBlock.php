@@ -7,10 +7,10 @@
 
 //                                                   Автор:       Труфанов В.Е.
 //                                                   Дата создания:  13.01.2019
-// Copyright © 2019 tve                              Посл.изменение: 12.02.2020
+// Copyright © 2019 tve                              Посл.изменение: 16.02.2020
 
 // ****************************************************************************
-// *             Проверить, выбрана ли указанная функция библиотеки           *
+// *             Проверить, выбран ли указанный элемент библиотеки            *
 // ****************************************************************************
 function IsChecked($chkname,$value)
 {
@@ -26,14 +26,11 @@ function IsChecked($chkname,$value)
    }
    return false;
 }
-
 // ****************************************************************************
-// *            Вывести список прикладных классов библиотеки TJsTools         *
+// *                    Вывести список элементов библиотеки                   *
 // ****************************************************************************
-
 // Выводим форму для следующего тестирования, которая предоставляет пользователю
 // несколько вариантов выбора: 
-
 // все флажки имеют одно имя (formDoor[]). Одно имя говорит о том, 
 // что все флажки связаны между собой. Квадратные скобки указывают на то, 
 // что все значения будут доступны из одного массива. 
@@ -45,14 +42,14 @@ function IsChecked($chkname,$value)
 //    formSubmit=%D0%92%D1%8B%D0%B1%D1%80%D0%B0%D1%82%D1%8C+%D0%B2%D1%81%D1%91
 //    &
 //    formDoor%5B%5D=Findes можно выбрать все флажки
-
-function FunctionsCheckbox($aTJsTools,$isCheck=ToTest)
+function FunctionsCheckbox($aElements,$isCheck=ToTest,
+   $cMess='Укажите прототипы объектов в TJsTools, которые следует протестировать')
 {
    $Result = true;
    echo '<form action="'.htmlentities($_SERVER['PHP_SELF']).'" method="post">';
-   echo '<p>Укажите прототипы объектов в TJsTools, которые следует протестировать?<br><br>';
+   echo '<p>'.$cMess.'?<br><br>';
    echo '<input type="submit" name="formSubmit" value="'.ChooseAll.'"/><br><br>';
-   foreach($aTJsTools as $k=>$v)
+   foreach($aElements as $k=>$v)
    {
       if ($isCheck==ChooseAll)
       {
@@ -68,13 +65,9 @@ function FunctionsCheckbox($aTJsTools,$isCheck=ToTest)
    echo '</form>';
    return $Result;
 }
-
-
-
-
 // ****************************************************************************
-// *     Проверить выбор флажков, указывающих на функции TPhpPrown, которые   *
-// *              следует протестировать и выполнить тестирование             *
+// *      Проверить выбор флажков, указывающих на элементы списка, которые    *
+// *                            следует протестировать                        *
 // ****************************************************************************
 // http://form.guide/php-form/php-form-checkbox.html
 // http://dnzl.ru/view_post.php?id=182
@@ -84,26 +77,25 @@ function MakeTest($SiteRoot,$aPhpPrown,$lang='PHP')
    $SiteHost=GetAbove($SiteAbove);       // Каталог хостинга
    if(isset($_POST['formSubmit'])) 
    {
-	  if(empty($_POST['formDoor']))
+      if(empty($_POST['formDoor']))
       {
-         echo("<p>Функции для тестирования Вами не выбраны!</p>\n");
+         echo("<p>Элементы для тестирования Вами не выбраны!</p>\n");
       }
       else
       {
          $aDoor=$_POST['formDoor'];
          $N=count($aDoor);
-         // Запускаем тестирование и трассировку выбранных функций
+         // Запускаем тестирование и трассировку выбранных элементов
          if ($lang=='PHP') require_once($SiteHost.'/TSimpleTest/autorun.php');
-
          foreach($aPhpPrown as $k=>$v)
          {
             //echo '<input type="checkbox" checked name="formDoor[]" value="'.$k.'"/>'.$k.' - '.$v.'<br>';
             if(IsChecked('formDoor',$k))
             {
-               echo $k.' тестируется.<br>';
+               //echo $k.' тестируется.<br>';
                if ($lang=='PHP') 
                {
-                  echo $SiteHost."/TPhpPrown/TPhpPrownTests/".$k."_test.php";
+                  //echo $SiteHost."/TPhpPrown/TPhpPrownTests/".$k."_test.php";
                   require_once $SiteHost."/TPhpPrown/TPhpPrownTests/".$k."_test.php";
                }
                else if ($lang=='JS') 
@@ -111,12 +103,10 @@ function MakeTest($SiteRoot,$aPhpPrown,$lang='PHP')
                   $scri='TJsTools/'.$k.'.js';
                   $scritest='TJsToolsTests/'.$k.'Test.js';
                   //echo '<br>'.$scri.'<br>'; echo $scritest.'<br>'; 
-                                    
                   echo '<script src="'.$scri.'"></script>';
                   echo '<script src="'.$scritest.'"></script>'; 
-
-//'<script src="TJsTools/Trim.js"></script>';
-                 // echo '<script src="TJsToolsTests/TTrimTest.js"></script>'; 
+                  //'<script src="TJsTools/Trim.js"></script>';
+                  //echo '<script src="TJsToolsTests/TTrimTest.js"></script>'; 
                   //echo '<script src="TJsTools/Trim.js"></script>';
                   //echo '<script src="TJsToolsTests/TTrimTest.js"></script>'; 
                   //echo $SiteHost."/TPhpPrown/TPhpPrownTests/".$k."_test.php";
@@ -131,8 +121,9 @@ function MakeTest($SiteRoot,$aPhpPrown,$lang='PHP')
       } 
    }
 }
-
-
+// ****************************************************************************
+// *       Сформировать оболочку для тестирования JavaScript сценариев        *
+// ****************************************************************************
 function LeadTest()
 {
 ?>
@@ -163,8 +154,6 @@ function LeadTest()
 <div id="qunit-fixture">Привет!</div>
 <?php
 }
-
-
 /*
 function mb_str_pad ($input,$pad_length,$pad_string,$pad_style,$encoding="UTF-8")
 {
