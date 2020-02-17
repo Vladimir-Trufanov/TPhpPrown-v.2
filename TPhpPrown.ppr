@@ -17,7 +17,7 @@ Extensions=*.*
 [Project tree]
 TPhpPrown
 	+TPhpPrown
-		+TPhpPrown
+		-TPhpPrown
 			-WorkSpace
 				TPhpPrown\WorkSpace\getSiteDevice.php
 				TPhpPrown\WorkSpace\iniWorkSpace.php
@@ -87,9 +87,9 @@ TPhpPrown
 5=..\TDoorTryer\DoorTryerPage.php
 [Selected Project Files]
 Main=
-Selected=TPhpPrownTests\iniWorkSpace_test.php
+Selected=TPhpPrownTests\FunctionsBlock.php
 [www\Main.php]
-TopLine=9
+TopLine=30
 Caret=1,30
 [www\iniWorkSpace.php]
 TopLine=67
@@ -98,11 +98,11 @@ Caret=20,70
 TopLine=47
 Caret=44,69
 [TPhpPrownTests\FunctionsBlock.php]
-TopLine=1
-Caret=1,1
+TopLine=69
+Caret=1,88
 [www\index.php]
-TopLine=1
+TopLine=19
 Caret=45,25
 [..\TDoorTryer\DoorTryerPage.php]
-TopLine=248
-Caret=1,264
+TopLine=115
+Caret=1,127
