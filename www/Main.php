@@ -7,7 +7,7 @@
 
 //                                                   Автор:       Труфанов В.Е.
 //                                                   Дата создания:  13.01.2019
-// Copyright © 2019 tve                              Посл.изменение: 15.02.2020
+// Copyright © 2019 tve                              Посл.изменение: 23.02.2020
 
 // Подключаем файлы библиотеки прикладных модулей и рабочего пространства
 $TPhpPrown=$SiteHost.'/TPhpPrown';
@@ -16,6 +16,7 @@ require_once $TPhpPrown."/TPhpPrown/Findes.php";
 require_once $TPhpPrown."/TPhpPrown/getTranslit.php";
 require_once $TPhpPrown."/TPhpPrown/iniConstMem.php";
 require_once $TPhpPrown."/TPhpPrown/isCalcInBrowser.php";
+require_once $TPhpPrown."/TPhpPrown/MakeCookie.php";
 require_once $TPhpPrown."/TPhpPrown/MakeType.php";
 require_once $TPhpPrown."/TPhpPrown/ViewGlobal.php";
 // Подключаем модуль обеспечения тестов
@@ -36,7 +37,7 @@ require_once $TPhpPrown."/TPhpPrownTests/FunctionsBlock.php";
 <script 
    src="https://ajax.aspnetcdn.com/ajax/jquery.ui/1.11.2/jquery-ui.min.js">
 </script>
-
+<script src="/TPhpPrownTests.js"> </script>
 </head>
 <body>
 
@@ -52,6 +53,7 @@ $aPhpPrown=array
    'iniWorkSpace'   =>'cформировать массив параметров рабочего пространства сайта',   
    'Findes'         =>'выбрать из строки подстроку, соответствующую регулярному выражению',   
    'isCalcInBrowser'=>'определить по родительским браузерам работает ли функция Calc для CSS',   
+   'MakeCookie'     =>'установить новое значение COOKIE в браузере и в массиве $_COOKIE',
    'MakeType'       =>'преобразовать значение к заданному типу',
    'MakeUserError'  =>'cгенерировать ошибку/исключение или просто сформировать сообщение об ошибке',
 );
@@ -63,6 +65,8 @@ $aPhpPrown=array
 //echo $UserAgent.'<br>';
 //prown\ViewGlobal(avgSERVER);
 // ---
+
+$TestsWere=false;
 // ****************************************************************************
 // *            Вывести список прикладных функций библиотеки TPhpPrown        *
 // ****************************************************************************
@@ -84,17 +88,21 @@ $aPhpPrown=array
 
 if (prown\isComRequest(ChooseAll,'formSubmit'))
 {
+   //echo 'Test1<br>';
    FunctionsCheckbox($aPhpPrown,ChooseAll,ChoiceList);
 }
 else if (prown\isComRequest(ToTest,'formSubmit'))
 {
    // Вырисовываем чекбоксы для тестирования
    FunctionsCheckbox($aPhpPrown,ToTest,ChoiceList);
+   //echo 'Test2<br>';
    // Запускаем тестирование
    MakeTest($SiteRoot,$aPhpPrown);
+   $TestsWere=true;
 }
 else
 {
+   //echo 'Test3<br>';
    // Вырисовываем чекбоксы 
    FunctionsCheckbox($aPhpPrown,ToTest,ChoiceList);
 }
@@ -106,7 +114,7 @@ else
 <a target="_blank" href="http://smayliki.ru/smilie-873369351.html">
 <img src="http://s14.rimg.info/89ec86760c43451421aef6bd4dbd2c65.gif" ></a>
 -->
-</body> 
-</html>
 <?php
+if (!($TestsWere)) echo '</body></html>';
+ 
 // *************************************************************** Main.php ***

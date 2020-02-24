@@ -125,7 +125,7 @@ function VerOneBrowser($UserAgent,$Browser,$ModeError=rvsCurrentPos)
       // Вытаскиваем массив вхождений и определяем позицию последнего 
       // (или единственного) вхождения
       for ($i=0; $i<count($findes); $i++)
-	   {
+	  {
          $Point=$findes[$i][1];  
       }
       // Выделяем подстроку после имени браузера
