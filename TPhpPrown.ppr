@@ -63,13 +63,13 @@ TPhpPrown
 			TPhpPrownTests\MakeCookie_test.php
 			TPhpPrownTests\MakeType_test.php
 			TPhpPrownTests\MakeUserError_test.php
-			TPhpPrownTests\TPhpPrownTests.js
 		+www
 			www\89.gif
 			www\favicon.ico
 			www\index.php
 			www\iniWorkSpace.php
 			www\Main.php
+			www\TPhpPrownTests.js
 		-Материалы
 			Материалы\Библиотека для определения типа и модели устройства на PHP.doc
 			Материалы\Руководство по разработке через тестирование для начинающих.doc
@@ -81,14 +81,22 @@ TPhpPrown
 		TPhpPrown.png
 		TPhpPrown.ppr
 [Open project files]
-0=www\Main.php
-1=TPhpPrownTests\FunctionsBlock.php
+0=TPhpPrownTests\FunctionsBlock.php
+1=www\Main.php
+2=www\TPhpPrownTests.js
+3=TPhpPrownTests\MakeCookie_test.php
 [Selected Project Files]
 Main=
-Selected=TPhpPrownTests\FunctionsBlock.php
-[www\Main.php]
-TopLine=101
-Caret=44,118
+Selected=TPhpPrownTests\MakeCookie_test.php
 [TPhpPrownTests\FunctionsBlock.php]
-TopLine=71
-Caret=79,82
+TopLine=67
+Caret=1,1
+[www\Main.php]
+TopLine=17
+Caret=1,1
+[www\TPhpPrownTests.js]
+TopLine=1
+Caret=1,9
+[TPhpPrownTests\MakeCookie_test.php]
+TopLine=3
+Caret=23,24

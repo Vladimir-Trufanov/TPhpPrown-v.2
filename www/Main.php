@@ -41,6 +41,8 @@ require_once $TPhpPrown."/TPhpPrownTests/FunctionsBlock.php";
 </head>
 <body>
 
+<a target="_blank" href="#"><img src="89.gif" ></a>
+
 <?php
 // Определяем сайтовые константы
 define ("ChooseAll",  "Выбрать все элементы"); // Первая кнопка Submit  
@@ -57,6 +59,7 @@ $aPhpPrown=array
    'MakeType'       =>'преобразовать значение к заданному типу',
    'MakeUserError'  =>'cгенерировать ошибку/исключение или просто сформировать сообщение об ошибке',
 );
+
 // ---
 //phpinfo();
 //echo $SiteRoot.'<br>';
@@ -66,13 +69,10 @@ $aPhpPrown=array
 //prown\ViewGlobal(avgSERVER);
 // ---
 
-$TestsWere=false;
-// ****************************************************************************
-// *            Вывести список прикладных функций библиотеки TPhpPrown        *
-// ****************************************************************************
+// Выводим список прикладных функций библиотеки TPhpPrown и обрабатываем
+// выбранные тесты
 
-// Выводим форму для следующего тестирования, которая предоставляет пользователю
-// несколько вариантов выбора: 
+// Форма для тестирования предоставляет несколько вариантов выбора: 
 
 // все флажки имеют одно имя (formDoor[]). Одно имя говорит о том, 
 // что все флажки связаны между собой. Квадратные скобки указывают на то, 
@@ -86,35 +86,32 @@ $TestsWere=false;
 //    &
 //    formDoor%5B%5D=Findes можно выбрать все флажки
 
+// Представленные далее три ветки выбора являются заключительными для 
+// создаваемой страницы: вторая ветка инициирует тестовую оболочку TSimpleTest, 
+// которая всегда запускает тесты в завершении текущей страницы и заканчивает
+// страницу тегами </body></html>.
+
+// Поэтому теги </body></html> принудительно вставляются в первую и третью ветки,
+// а также выводятся вместе с сообщением "Элементы для тестирования Вами не 
+// выбраны!"
+
 if (prown\isComRequest(ChooseAll,'formSubmit'))
 {
-   //echo 'Test1<br>';
    FunctionsCheckbox($aPhpPrown,ChooseAll,ChoiceList);
+   echo "\n</body>\n</html>\n";   
 }
 else if (prown\isComRequest(ToTest,'formSubmit'))
 {
    // Вырисовываем чекбоксы для тестирования
    FunctionsCheckbox($aPhpPrown,ToTest,ChoiceList);
-   //echo 'Test2<br>';
    // Запускаем тестирование
    MakeTest($SiteRoot,$aPhpPrown);
-   $TestsWere=true;
 }
 else
 {
-   //echo 'Test3<br>';
    // Вырисовываем чекбоксы 
    FunctionsCheckbox($aPhpPrown,ToTest,ChoiceList);
+   echo "\n</body>\n</html>\n";   
 }
-?>
-<a target="_blank" href="#"><img src="89.gif" ></a>
-<!-- 
-<a target="_blank" href="#">
-<img src="http://s14.rimg.info/89ec86760c43451421aef6bd4dbd2c65.gif" ></a>
-<a target="_blank" href="http://smayliki.ru/smilie-873369351.html">
-<img src="http://s14.rimg.info/89ec86760c43451421aef6bd4dbd2c65.gif" ></a>
--->
-<?php
-if (!($TestsWere)) echo 'УРА!</body></html>';
  
 // *************************************************************** Main.php ***

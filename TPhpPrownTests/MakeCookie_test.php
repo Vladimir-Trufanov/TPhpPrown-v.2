@@ -10,7 +10,7 @@
 //                                                   Дата создания:  23.02.2020
 // Copyright © 2020 tve                              Посл.изменение: 23.02.2020
 
-require_once $SiteHost."/TPhpPrown/TPhpPrown/iniConstMem.php";
+//require_once $SiteHost."/TPhpPrown/TPhpPrown/iniConstMem.php";
 
 class test_MakeCookie extends UnitTestCase 
 {
@@ -19,14 +19,10 @@ class test_MakeCookie extends UnitTestCase
    {
       ?>
       <script>
-
-      function ali(varName)
-      {
-         //alert(varName);
-         return varName;
-      }
-
-      ali('varName');
+      //$(document).ready(function()
+      //{
+         ali('varName2');
+      //});
       </script>
       <?php
       

@@ -79,7 +79,7 @@ function MakeTest($SiteRoot,$aPhpPrown,$lang='PHP')
    {
       if(empty($_POST['formDoor']))
       {
-         echo("<p>Элементы для тестирования Вами не выбраны!</p></body></html>");
+         echo("<p>Элементы для тестирования Вами не выбраны!</p>\n</body>\n</html>\n");
       }
       else
       {
