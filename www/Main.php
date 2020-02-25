@@ -115,6 +115,6 @@ else
 <img src="http://s14.rimg.info/89ec86760c43451421aef6bd4dbd2c65.gif" ></a>
 -->
 <?php
-if (!($TestsWere)) echo '</body></html>';
+if (!($TestsWere)) echo 'УРА!</body></html>';
  
 // *************************************************************** Main.php ***
