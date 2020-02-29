@@ -17,7 +17,7 @@ Extensions=*.*
 [Project tree]
 TPhpPrown
 	+TPhpPrown
-		-TPhpPrown
+		+TPhpPrown
 			-WorkSpace
 				TPhpPrown\WorkSpace\getSiteDevice.php
 				TPhpPrown\WorkSpace\iniWorkSpace.php
@@ -69,6 +69,7 @@ TPhpPrown
 			www\index.php
 			www\iniWorkSpace.php
 			www\Main.php
+			www\save.php
 			www\TPhpPrownTests.js
 		-Материалы
 			Материалы\Библиотека для определения типа и модели устройства на PHP.doc
@@ -82,21 +83,33 @@ TPhpPrown
 		TPhpPrown.ppr
 [Open project files]
 0=TPhpPrownTests\FunctionsBlock.php
-1=www\Main.php
+1=www\save.php
 2=www\TPhpPrownTests.js
-3=TPhpPrownTests\MakeCookie_test.php
+3=TPhpPrown\ViewGlobal.php
+4=TPhpPrown\MakeCookie.php
+5=TPhpPrownTests\MakeCookie_test.php
+6=www\Main.php
 [Selected Project Files]
 Main=
 Selected=TPhpPrownTests\MakeCookie_test.php
 [TPhpPrownTests\FunctionsBlock.php]
 TopLine=67
 Caret=1,1
-[www\Main.php]
-TopLine=17
-Caret=1,1
-[www\TPhpPrownTests.js]
+[www\save.php]
 TopLine=1
-Caret=1,9
-[TPhpPrownTests\MakeCookie_test.php]
+Caret=19,5
+[www\TPhpPrownTests.js]
 TopLine=3
-Caret=23,24
+Caret=20,14
+[TPhpPrown\ViewGlobal.php]
+TopLine=11
+Caret=1,1
+[TPhpPrown\MakeCookie.php]
+TopLine=89
+Caret=4,111
+[TPhpPrownTests\MakeCookie_test.php]
+TopLine=9
+Caret=21,26
+[www\Main.php]
+TopLine=65
+Caret=21,70

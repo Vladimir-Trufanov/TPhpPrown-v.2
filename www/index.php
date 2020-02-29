@@ -12,7 +12,7 @@
 // Инициализируем рабочее пространство: корневой каталог сайта и т.д.
 session_start(); 
 // Извлекаем переменные рабочего пространства
-require_once 'iniWorkSpace.php';
+require_once $_SERVER['DOCUMENT_ROOT'].'/iniWorkSpace.php';
 $_WORKSPACE=iniWorkSpace();
 
 $SiteRoot    = $_WORKSPACE[wsSiteRoot];     // Корневой каталог сайта

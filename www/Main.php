@@ -40,7 +40,7 @@ require_once $TPhpPrown."/TPhpPrownTests/FunctionsBlock.php";
 <script src="/TPhpPrownTests.js"> </script>
 </head>
 <body>
-
+<div id="res"></div>
 <a target="_blank" href="#"><img src="89.gif" ></a>
 
 <?php
@@ -67,6 +67,9 @@ $aPhpPrown=array
 //echo $TPhpPrown.'<br>';
 //echo $UserAgent.'<br>';
 //prown\ViewGlobal(avgSERVER);
+      $Result=prown\MakeCookie('cookType1','Типичный');
+      echo '$Result='.$Result.'<br>';
+ 
 // ---
 
 // Выводим список прикладных функций библиотеки TPhpPrown и обрабатываем

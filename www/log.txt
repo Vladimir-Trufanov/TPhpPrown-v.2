@@ -1,0 +1,14 @@
+[28-Feb-2020 15:49:15 Asia/Kuwait] PHP Parse error:  syntax error, unexpected '=', expecting ']' in C:\TPhpPrown\TPhpPrown\MakeCookie.php on line 72
+[28-Feb-2020 15:49:15 Asia/Kuwait] PHP Parse error:  syntax error, unexpected '=', expecting ']' in C:\TPhpPrown\TPhpPrown\MakeCookie.php on line 72
+[28-Feb-2020 15:49:52 Asia/Kuwait] PHP Parse error:  syntax error, unexpected '=', expecting ']' in C:\TPhpPrown\TPhpPrown\MakeCookie.php on line 72
+[28-Feb-2020 15:51:17 Asia/Kuwait] PHP Parse error:  syntax error, unexpected ';', expecting '{' in C:\TPhpPrown\TPhpPrown\MakeCookie.php on line 73
+[28-Feb-2020 15:51:17 Asia/Kuwait] PHP Parse error:  syntax error, unexpected ';', expecting '{' in C:\TPhpPrown\TPhpPrown\MakeCookie.php on line 73
+[28-Feb-2020 15:57:42 Asia/Kuwait] PHP Fatal error:  Constant expression contains invalid operations in C:\TPhpPrown\TPhpPrown\MakeCookie.php on line 93
+[28-Feb-2020 15:59:20 Asia/Kuwait] PHP Fatal error:  Constant expression contains invalid operations in C:\TPhpPrown\TPhpPrown\MakeCookie.php on line 93
+[28-Feb-2020 15:59:20 Asia/Kuwait] PHP Fatal error:  Constant expression contains invalid operations in C:\TPhpPrown\TPhpPrown\MakeCookie.php on line 93
+[28-Feb-2020 16:01:47 Asia/Kuwait] PHP Fatal error:  Constant expression contains invalid operations in C:\TPhpPrown\TPhpPrown\MakeCookie.php on line 93
+[29-Feb-2020 16:51:14 Asia/Kuwait] PHP Fatal error:  Uncaught Error: Call to undefined function MakeCookie() in C:\TPhpPrown\www\Main.php:70
+Stack trace:
+#0 C:\TPhpPrown\www\index.php(33): require_once()
+#1 {main}
+  thrown in C:\TPhpPrown\www\Main.php on line 70

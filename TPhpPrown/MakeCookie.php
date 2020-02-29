@@ -30,29 +30,29 @@
 
 // Синтаксис:
 //
-//   $Result=MakeCookie($Name,$Value,$Type=tStr,$Init=false,$Duration=44236800);
+//   $Result=MakeCookie($Name,$Value,$Type=tStr,$Init=false,$Duration=44236800,
+//      $Options=["expires"=>$Duration,"path"="/","domain"="","secure"=false,
+//      "httponly"=false,"samesite"=Strict]);
 
 // Параметры:
 //
-//   $Name     - имя кукиса в браузере клиента (как правило, по имени кукиса 
+//   $Name - имя кукиса в браузере клиента (как правило, по имени кукиса 
 //      формируется глобальная переменная сайтовой страницы добавлением префикса
 //      "с_". Например: "BrowEntry" --> "$с_BrowEntry");
-//   $Value    - значение кукиса браузера, это же значение во внутреннем массиве
+//   $Value - значение кукиса браузера, это же значение во внутреннем массиве
 //      $_COOKIE и у соответствующей глобальной переменной сайтовой страницы. 
-//      Если $Value==null, то функция возвращает установленное значение кукиса
-//      Пример #1 Пример использования $_COOKIE
-//      echo 'Привет, ' . htmlspecialchars($_COOKIE["name"]) . '!';
-//   $Type     - константа, определяющая тип значения: tArr, tObj, tInt, tFloat, 
+//      Если $Value==null, то функция возвращает установленное значение кукиса;
+//   $Type - константа, определяющая тип значения: tArr, tObj, tInt, tFloat, 
 //      tStr, tBool, tNull. По умолчанию - tStr;
-//   $Init     = true, это означает, что требуется установить указанное значение 
+//   $Init = true, это означает, что требуется установить указанное значение 
 //      кукиса, только в том случае, если кукиса еще не было. В обычных условиях
 //      (по умолчанию, когда $Init=false) значение кукиса меняется всегда;
 //   $Duration - время жизни кукиса (по умолчанию 44236800 = 512 дней =
 //      512д*24ч*60м*60с): 
 //      cookDelete=-3600, для удаления кукиса; 
 //      cookSession=0, для задания кукиса только на время сессии;
-//      cook512=44236800
-//   $Options - опции кукиса
+//      cook512=44236800;
+//   $Options - опции кукиса = параметры кукиса
 
 // Возвращаемое значение: 
 //
@@ -68,7 +68,7 @@
 
 require_once "MakeType.php";
 
-function _MakeCookie($Name,$Value,$Type,$Dur)
+function _MakeCookie($Name,$Value,$Type,$Dur,$Options)
 {
    $Result=MakeType($Value,$Type);
    $Duration=time()+$Dur;
@@ -76,12 +76,12 @@ function _MakeCookie($Name,$Value,$Type,$Dur)
    setcookie($Name,$Value,$Duration);
    /*
    ?>
-   <script  language="JavaScript">
+   <SCRIPT  language="JavaScript">
       var Name="<?php echo $Name; ?>";
       var Value="<?php echo $Value; ?>";
       var Duration="<?php echo $Duration; ?>";
       setcookie(Name,Value,Duration);
-   </script>
+   </SCRIPT>
    <?php
    */
    // Устанавливаем новое куки в массиве кукисов
@@ -90,19 +90,25 @@ function _MakeCookie($Name,$Value,$Type,$Dur)
    return $Result;
 }
 
-function MakeCookie($Name,$Value,$Type=tStr,$Init=false,$Duration=44236800)
+function MakeCookie($Name,$Value,$Type=tStr,$Init=false,$Duration=44236800,$Options=null)
+//   $Options=["expires"=>44236800,"path"=>"/","domain"=>"","secure"=>false,
+//   "httponly"=>false,"samesite"=>'Strict'])
 {
+   echo $Name.'='.$Value.'<br>';
    // Устанавливаем значение, если инициализация
    if ($Init==true) 
    {
       if (!(IsSet($_COOKIE[$Name]))) 
       {
-         $Result=_MakeCookie($Name,$Value,$Type,$Duration);
+         $Result=_MakeCookie($Name,$Value,$Type,$Duration,$Options);
       }
       else $Result=$_COOKIE[$Name];
    }
    // Устанавливаем значение в обычном режиме
-   else {$Result=_MakeCookie($Name,$Value,$Type,$Duration);} 
+   else 
+   {
+      $Result=_MakeCookie($Name,$Value,$Type,$Duration,$Options);
+   } 
    return $Result;
 }
 // ********************************************************* MakeCookie.php ***
