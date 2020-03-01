@@ -21,6 +21,9 @@ require_once $TPhpPrown."/TPhpPrown/MakeType.php";
 require_once $TPhpPrown."/TPhpPrown/ViewGlobal.php";
 // Подключаем модуль обеспечения тестов
 require_once $TPhpPrown."/TPhpPrownTests/FunctionsBlock.php";
+
+MakeCookieTest(1);
+
 ?>
 <!DOCTYPE html>
 <html>

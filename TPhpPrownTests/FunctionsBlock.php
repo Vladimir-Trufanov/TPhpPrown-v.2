@@ -7,25 +7,8 @@
 
 //                                                   Автор:       Труфанов В.Е.
 //                                                   Дата создания:  13.01.2019
-// Copyright © 2019 tve                              Посл.изменение: 16.02.2020
+// Copyright © 2019 tve                              Посл.изменение: 01.03.2020
 
-// ****************************************************************************
-// *             Проверить, выбран ли указанный элемент библиотеки            *
-// ****************************************************************************
-function IsChecked($chkname,$value)
-{
-   if(!empty($_POST[$chkname]))
-   {
-      foreach($_POST[$chkname] as $chkval)
-      {
-         if($chkval == $value)
-         {
-            return true;
-         }
-      }
-   }
-   return false;
-}
 // ****************************************************************************
 // *                    Вывести список элементов библиотеки                   *
 // ****************************************************************************
@@ -65,6 +48,71 @@ function FunctionsCheckbox($aElements,$isCheck=ToTest,
    echo '</form>';
    return $Result;
 }
+// ****************************************************************************
+// *             Проверить, выбран ли указанный элемент библиотеки            *
+// ****************************************************************************
+function IsChecked($chkname,$value)
+{
+   if(!empty($_POST[$chkname]))
+   {
+      foreach($_POST[$chkname] as $chkval)
+      {
+         if($chkval == $value)
+         {
+            return true;
+         }
+      }
+   }
+   return false;
+}
+// ****************************************************************************
+// *       Сформировать оболочку для тестирования JavaScript сценариев        *
+// ****************************************************************************
+function LeadTest()
+{
+?>
+<!-- 
+<h1 id="qunit-header">Заголовок страницы</h1>
+<h2 id="qunit-banner"></h2>
+<div id="qunit-testrunner-toolbar">Панель инструментов</div>
+<h2 id="qunit-userAgent">UserAgent</h2>
+<div id="qunit-fixture">Привет!</div>
+<div id="qunit"></div>
+<ol id="qunit-tests"></ol>
+
+Делаем общий вывод прохождения тестов
+в следующей последовательности: 
+   а) заголовок страницы;
+   б) разделитель (если он не был вызван ранее, в остальных случаях 
+      без <div id="qunit"></div> тоже выводится один раз);    
+   в) панель инструментов (если она не была вызвана отдельно);    
+   г) UserAgent (если он не был вызван отдельно); 
+   д) По клику на числе проверок в тесте, разворачивается список проверок 
+   е) <div id="qunit-fixture"></div> - образец кода и разметки до тестов
+<div id="qunit"></div>
+-->
+<h2 id="qunit-userAgent"></h2>
+<h2 id="qunit-banner"></h2>
+<ol id="qunit-tests"></ol>
+<h2 id="qunit-userAgent"></h2>
+<div id="qunit-fixture">Привет!</div>
+<?php
+}
+// ****************************************************************************
+// *                  Задать очередную порцию кукисов для теста               *
+// ****************************************************************************
+function MakeCookieTest($NumTest=1)
+{
+   $Result='None';
+   if ($NumTest==1)
+   {
+      $Result=prown\MakeCookie('cookTypical','Типичный');
+   }
+   return $Result;  
+}
+
+
+
 // ****************************************************************************
 // *      Проверить выбор флажков, указывающих на элементы списка, которые    *
 // *                            следует протестировать                        *
@@ -122,52 +170,6 @@ function MakeTest($SiteRoot,$aPhpPrown,$lang='PHP')
    }
 }
 // ****************************************************************************
-// *       Сформировать оболочку для тестирования JavaScript сценариев        *
-// ****************************************************************************
-function LeadTest()
-{
-?>
-<!-- 
-<h1 id="qunit-header">Заголовок страницы</h1>
-<h2 id="qunit-banner"></h2>
-<div id="qunit-testrunner-toolbar">Панель инструментов</div>
-<h2 id="qunit-userAgent">UserAgent</h2>
-<div id="qunit-fixture">Привет!</div>
-<div id="qunit"></div>
-<ol id="qunit-tests"></ol>
-
-Делаем общий вывод прохождения тестов
-в следующей последовательности: 
-   а) заголовок страницы;
-   б) разделитель (если он не был вызван ранее, в остальных случаях 
-      без <div id="qunit"></div> тоже выводится один раз);    
-   в) панель инструментов (если она не была вызвана отдельно);    
-   г) UserAgent (если он не был вызван отдельно); 
-   д) По клику на числе проверок в тесте, разворачивается список проверок 
-   е) <div id="qunit-fixture"></div> - образец кода и разметки до тестов
-<div id="qunit"></div>
--->
-<h2 id="qunit-userAgent"></h2>
-<h2 id="qunit-banner"></h2>
-<ol id="qunit-tests"></ol>
-<h2 id="qunit-userAgent"></h2>
-<div id="qunit-fixture">Привет!</div>
-<?php
-}
-/*
-function mb_str_pad ($input,$pad_length,$pad_string,$pad_style,$encoding="UTF-8")
-{
-   return str_pad($input,strlen($input)-mb_strlen($input,$encoding)+$pad_length,$pad_string,$pad_style);
-};
-*/
-function mb_str_padi($input, $pad_length, $pad_string = '-', $pad_type = STR_PAD_RIGHT)
-{
-	$diff = strlen($input) - mb_strlen($input);
-	return str_pad($input, $pad_length + $diff, $pad_string, $pad_type);
-}
-
-
-// ****************************************************************************
 // *        Вывести сообщение по завершении очередного теста/подтеста         *
 // ****************************************************************************
 function SimpleMessage($Name2=' ')
@@ -195,5 +197,16 @@ function MakeTitle($Name,$br="<br>")
       "<span style=\"color:blue; font-weight:bold; font-size:1.1em\">".
       $br.$Name.
       "</span>"."<br>";
+}
+/*
+function mb_str_pad ($input,$pad_length,$pad_string,$pad_style,$encoding="UTF-8")
+{
+   return str_pad($input,strlen($input)-mb_strlen($input,$encoding)+$pad_length,$pad_string,$pad_style);
+};
+*/
+function mb_str_padi($input, $pad_length, $pad_string = '-', $pad_type = STR_PAD_RIGHT)
+{
+	$diff = strlen($input) - mb_strlen($input);
+	return str_pad($input, $pad_length + $diff, $pad_string, $pad_type);
 }
 // ***************************************************** FunctionsBlock.php ***

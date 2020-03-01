@@ -23,8 +23,11 @@ class test_MakeCookie extends UnitTestCase
       require_once $SiteHost."/TPhpPrown/TPhpPrown/ViewGlobal.php";
       //\prown\ViewGlobal(avgCOOKIE);
       */
-      $Result=prown\MakeCookie('cookType2','Типичный');
-      echo '$Result='.$Result.'<br>';
+      
+      if (IsSet($_COOKIE['cookTypical']))
+      {
+         echo 'cookTypical='.$_COOKIE['cookTypical'].'<br>';
+      }
       
       
       /*
