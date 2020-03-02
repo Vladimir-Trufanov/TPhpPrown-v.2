@@ -29,17 +29,16 @@ class test_MakeCookie extends UnitTestCase
          echo 'cookTypical='.$_COOKIE['cookTypical'].'<br>';
       }
       
-      
-      /*
-      ?>
-      <script>
-      //$(document).ready(function()
-      //{
-         gali('Привет!');
-      //});
-      </script>
-      <?php
-      */
+      if (IsSet($_SESSION))
+      {
+         if (IsSet($_SESSION['CookTrack']))
+         {
+            $s_CookTrack=$_SESSION['CookTrack']+1;  
+            prown\MakeSession('CookTrack',$s_CookTrack,tInt);     
+         }
+      }
+
+       
    
    
    

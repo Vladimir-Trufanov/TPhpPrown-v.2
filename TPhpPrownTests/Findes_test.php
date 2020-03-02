@@ -16,7 +16,7 @@ class test_Findes extends UnitTestCase
    function test_Findes_Simple()
    {
       MakeTitle("Findes",'');
-      
+      //sleep(1);
       $string='Это строка для проверки функции Findes';
       $preg='/Это/u';
       $prefix='Findes("'.$preg.'","'.$string.'"); ';

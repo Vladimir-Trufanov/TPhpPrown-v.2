@@ -17,12 +17,20 @@ require_once $TPhpPrown."/TPhpPrown/getTranslit.php";
 require_once $TPhpPrown."/TPhpPrown/iniConstMem.php";
 require_once $TPhpPrown."/TPhpPrown/isCalcInBrowser.php";
 require_once $TPhpPrown."/TPhpPrown/MakeCookie.php";
+require_once $TPhpPrown."/TPhpPrown/MakeSession.php";
 require_once $TPhpPrown."/TPhpPrown/MakeType.php";
 require_once $TPhpPrown."/TPhpPrown/ViewGlobal.php";
+require_once $TPhpPrown."/TPhpPrown/ViewSimpleArray.php";
 // Подключаем модуль обеспечения тестов
 require_once $TPhpPrown."/TPhpPrownTests/FunctionsBlock.php";
 
-MakeCookieTest(1);
+// Инициализируем сессионную переменную для возможного теста MakeCookie
+// и делаем подготовку текущего прохода этого теста
+prown\ViewGlobal(avgWORKSPACE,$_WORKSPACE);
+
+$s_CookTrack=prown\MakeSession('CookTrack',0,tInt,true);      
+echo('$s_CookTrack='.$s_CookTrack.'<br>');
+MakeCookieTest($s_CookTrack);
 
 ?>
 <!DOCTYPE html>
@@ -70,8 +78,6 @@ $aPhpPrown=array
 //echo $TPhpPrown.'<br>';
 //echo $UserAgent.'<br>';
 //prown\ViewGlobal(avgSERVER);
-      $Result=prown\MakeCookie('cookType1','Типичный');
-      echo '$Result='.$Result.'<br>';
  
 // ---
 

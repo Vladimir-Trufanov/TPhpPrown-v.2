@@ -43,7 +43,7 @@ TPhpPrown
 			TPhpPrown\MakeSession.php
 			TPhpPrown\MakeType.php
 			TPhpPrown\MakeUserError.php
-			TPhpPrown\NoZero.php
+			TPhpPrown\DebugBlock.php
 			TPhpPrown\Number1string.php
 			TPhpPrown\Number2string.php
 			TPhpPrown\PullArray.php
@@ -69,7 +69,6 @@ TPhpPrown
 			www\index.php
 			www\iniWorkSpace.php
 			www\Main.php
-			www\save.php
 			www\TPhpPrownTests.js
 		-Материалы
 			Материалы\Библиотека для определения типа и модели устройства на PHP.doc
@@ -83,30 +82,41 @@ TPhpPrown
 		TPhpPrown.ppr
 [Open project files]
 0=www\TPhpPrownTests.js
-1=TPhpPrown\ViewGlobal.php
-2=TPhpPrown\MakeCookie.php
+1=www\index.php
+2=TPhpPrown\MakeSession.php
 3=TPhpPrownTests\FunctionsBlock.php
 4=TPhpPrownTests\MakeCookie_test.php
-5=www\Main.php
+5=TPhpPrown\iniConstMem.php
+6=TPhpPrown\ViewGlobal.php
+7=TPhpPrown\DebugBlock.php
+8=www\Main.php
 [Selected Project Files]
 Main=
 Selected=www\Main.php
 [www\TPhpPrownTests.js]
 TopLine=9
 Caret=1,36
-[TPhpPrown\ViewGlobal.php]
-TopLine=163
-Caret=43,164
-[TPhpPrown\MakeCookie.php]
-TopLine=89
-Caret=4,111
-[TPhpPrownTests\FunctionsBlock.php]
-TopLine=87
-Caret=9,104
-[TPhpPrownTests\MakeCookie_test.php]
+[www\index.php]
 TopLine=13
-Caret=1,26
-Mark1=1,26
-[www\Main.php]
+Caret=27,22
+[TPhpPrown\MakeSession.php]
+TopLine=27
+Caret=1,1
+[TPhpPrownTests\FunctionsBlock.php]
+TopLine=177
+Caret=35,108
+[TPhpPrownTests\MakeCookie_test.php]
 TopLine=7
-Caret=19,25
+Caret=1,1
+[TPhpPrown\iniConstMem.php]
+TopLine=29
+Caret=1,1
+[TPhpPrown\ViewGlobal.php]
+TopLine=161
+Caret=89,172
+[TPhpPrown\DebugBlock.php]
+TopLine=16
+Caret=12,36
+[www\Main.php]
+TopLine=4
+Caret=42,29

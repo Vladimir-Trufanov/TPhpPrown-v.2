@@ -31,8 +31,8 @@
 // Синтаксис:
 //
 //   $Result=MakeCookie($Name,$Value,$Type=tStr,$Init=false,$Duration=44236800,
-//      $Options=["expires"=>$Duration,"path"="/","domain"="","secure"=false,
-//      "httponly"=false,"samesite"=Strict]);
+//      $Options=["expires"=>44236800,"path"=>"/","domain"=>"","secure"=>false,
+//      "httponly"=>false,"samesite"=>'Strict'])
 
 // Параметры:
 //
@@ -67,32 +67,29 @@
 // сервере) следует использовать MakeCookie.
 
 require_once "MakeType.php";
+require_once "ViewSimpleArray.php";
 
 function _MakeCookie($Name,$Value,$Type,$Dur,$Options)
 {
+   //ViewArray($Options,"Options");
+   
+   //if (!defined('PHP_VERSION_ID')) {
+   // $version = explode('.', PHP_VERSION);
+
+   
    $Result=MakeType($Value,$Type);
    $Duration=time()+$Dur;
    // Отправляем новое куки браузеру
    setcookie($Name,$Value,$Duration);
-   /*
-   ?>
-   <SCRIPT  language="JavaScript">
-      var Name="<?php echo $Name; ?>";
-      var Value="<?php echo $Value; ?>";
-      var Duration="<?php echo $Duration; ?>";
-      setcookie(Name,Value,Duration);
-   </SCRIPT>
-   <?php
-   */
    // Устанавливаем новое куки в массиве кукисов
    if (IsSet($_COOKIE[$Name])) $_COOKIE[$Name]=$Value;
    // Возвращаем новое куки на выход в переменную страницы сайта
    return $Result;
 }
 
-function MakeCookie($Name,$Value,$Type=tStr,$Init=false,$Duration=44236800,$Options=null)
-//   $Options=["expires"=>44236800,"path"=>"/","domain"=>"","secure"=>false,
-//   "httponly"=>false,"samesite"=>'Strict'])
+function MakeCookie($Name,$Value,$Type=tStr,$Init=false,$Duration=44236800,
+   $Options=["expires"=>44236800,"path"=>"/","domain"=>"","secure"=>false,
+   "httponly"=>false,"samesite"=>'Strict'])
 {
    echo $Name.'='.$Value.'<br>';
    // Устанавливаем значение, если инициализация

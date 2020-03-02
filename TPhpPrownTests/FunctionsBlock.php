@@ -41,6 +41,10 @@ function FunctionsCheckbox($aElements,$isCheck=ToTest,
       else
       {
          echo '<input type="checkbox" name="formDoor[]" value="'.$k.'"/>'.$k.' - '.$v.'<br>';
+         //if ($k=='Findes') 
+         //{
+         //echo '<input type="checkbox" checked name="formDoor[]" value="'.$k.'"/>'.$k.' - '.$v.'<br>';
+         //}
       }
    }
    echo '</p>';
@@ -101,7 +105,7 @@ function LeadTest()
 // ****************************************************************************
 // *                  Задать очередную порцию кукисов для теста               *
 // ****************************************************************************
-function MakeCookieTest($NumTest=1)
+function MakeCookieTest($NumTest=0)
 {
    $Result='None';
    if ($NumTest==1)

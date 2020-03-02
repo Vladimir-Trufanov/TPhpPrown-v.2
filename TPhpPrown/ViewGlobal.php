@@ -37,6 +37,7 @@
 
 //require_once "MakeType.php";
 require_once "iniConstMem.php";
+require_once "DebugBlock.php";
 
 define ('avgAll',    0);    // Все массивы
 define ('avgCOOKIE', 1);    // Массив значений $_COOKIE, переданных скрипту через HTTP Cookies
@@ -48,6 +49,7 @@ define ('avgPOST',   32);   // Массив параметров, скрыто �
 define ('avgREQUEST',64);   // Массив \$_REQUEST, по умолчанию содержащий переменные \$_GET,\$_POST,\$_COOKIE
 define ('avgSESSION',128);  // Переменные сессии, которые доступны для текущего скрипта $_SESSION
 define ('avgSERVER', 256);  // Информация о сервере и среде исполнения $_SERVER
+define ('avgWORKSPACE', 528);  // Переменные рабочего пространства $_WORKSPACE
 
 // Вывести шапку таблицы                          
 function ViewCaption($Caption)
@@ -111,6 +113,7 @@ function ViewGlobalMiddle($aArray,$Name)
             ||($key=='_SESSION')
             ||($key=='GLOBALS')
             ||($key=='_REQUEST')
+            ||($key=='_WORKSPACE')
             ))
         { 
             ViewLineMiddle($Name,$key,$value);
@@ -157,11 +160,16 @@ function ViewArr($Caption,$aArray,$Name)
 }
 
 // Показать значения глобальных переменных 
-function ViewGlobal($Parm)
+function ViewGlobal($Parm,$_Array=null)
 {
     if ($Parm==avgCOOKIE)
     {
         ViewArr("Массив значений \$_COOKIE, переданных скрипту через HTTP Cookies",$_COOKIE,"\$_COOKIE");
+    }
+    elseif ($Parm==avgWORKSPACE)
+    {
+       Alert('$Parmi',$Parm);
+       ViewArr("Массив значений \$_WORKSPACE - переменных рабочего пространства",$_Array,"\$_WORKSPACE");
     }
     elseif ($Parm=='avgGET')
     {
