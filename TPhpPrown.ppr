@@ -18,13 +18,14 @@ Extensions=*.*
 TPhpPrown
 	+TPhpPrown
 		+TPhpPrown
-			-WorkSpace
+			+WorkSpace
 				TPhpPrown\WorkSpace\getSiteDevice.php
 				TPhpPrown\WorkSpace\iniWorkSpace.php
 				TPhpPrown\WorkSpace\Mobile_Detect.php
 			TPhpPrown\CommonPrown.php
 			TPhpPrown\CtrlArray.php
 			TPhpPrown\CtrlNumber.php
+			TPhpPrown\DebugBlock.php
 			TPhpPrown\fil.php
 			TPhpPrown\Findes.php
 			TPhpPrown\getTranslit.php
@@ -43,7 +44,7 @@ TPhpPrown
 			TPhpPrown\MakeSession.php
 			TPhpPrown\MakeType.php
 			TPhpPrown\MakeUserError.php
-			TPhpPrown\DebugBlock.php
+			TPhpPrown\NoZero.php
 			TPhpPrown\Number1string.php
 			TPhpPrown\Number2string.php
 			TPhpPrown\PullArray.php
@@ -54,7 +55,7 @@ TPhpPrown
 			TPhpPrown\ViewSimpleArray.php
 			TPhpPrown\пример_регекс.txt
 			TPhpPrown\регекс_тест.html
-		+TPhpPrownTests
+		-TPhpPrownTests
 			TPhpPrownTests\FinalMessage_test.php
 			TPhpPrownTests\Findes_test.php
 			TPhpPrownTests\FunctionsBlock.php
@@ -63,11 +64,12 @@ TPhpPrown
 			TPhpPrownTests\MakeCookie_test.php
 			TPhpPrownTests\MakeType_test.php
 			TPhpPrownTests\MakeUserError_test.php
-		+www
+		-www
 			www\89.gif
 			www\favicon.ico
 			www\index.php
 			www\iniWorkSpace.php
+			www\log.txt
 			www\Main.php
 			www\TPhpPrownTests.js
 		-Материалы
@@ -88,35 +90,43 @@ TPhpPrown
 4=TPhpPrownTests\MakeCookie_test.php
 5=TPhpPrown\iniConstMem.php
 6=TPhpPrown\ViewGlobal.php
-7=TPhpPrown\DebugBlock.php
-8=www\Main.php
+7=www\Main.php
+8=TPhpPrown\MakeCookie.php
+9=TPhpPrown\DebugBlock.php
+10=TPhpPrown\WorkSpace\iniWorkSpace.php
 [Selected Project Files]
 Main=
-Selected=www\Main.php
+Selected=www\index.php
 [www\TPhpPrownTests.js]
 TopLine=9
 Caret=1,36
 [www\index.php]
 TopLine=13
-Caret=27,22
+Caret=45,26
 [TPhpPrown\MakeSession.php]
 TopLine=27
 Caret=1,1
 [TPhpPrownTests\FunctionsBlock.php]
-TopLine=177
+TopLine=83
 Caret=35,108
 [TPhpPrownTests\MakeCookie_test.php]
-TopLine=7
+TopLine=1
 Caret=1,1
 [TPhpPrown\iniConstMem.php]
 TopLine=29
 Caret=1,1
 [TPhpPrown\ViewGlobal.php]
-TopLine=161
+TopLine=157
 Caret=89,172
-[TPhpPrown\DebugBlock.php]
-TopLine=16
-Caret=12,36
 [www\Main.php]
-TopLine=4
-Caret=42,29
+TopLine=70
+Caret=3,77
+[TPhpPrown\MakeCookie.php]
+TopLine=63
+Caret=42,77
+[TPhpPrown\DebugBlock.php]
+TopLine=47
+Caret=1,26
+[TPhpPrown\WorkSpace\iniWorkSpace.php]
+TopLine=30
+Caret=19,39

@@ -17,6 +17,7 @@ define ("wsUserAgent",   4);          // HTTP_USER_AGENT
 define ("wsTimeRequest", 5);          // Время запроса сайта
 define ("wsRemoteAddr",  6);          // IP-адрес запроса сайта
 define ("wsSiteName",    7);          // Доменное имя сайта
+define ("wsPhpVersion",  8);          // Версия PHP
 // Формируем массив параметров рабочего пространства сайта 
 // и соответствующие глобальные переменные
 function iniWorkSpace()
@@ -35,6 +36,7 @@ function iniWorkSpace()
       wsTimeRequest => $_SERVER['REQUEST_TIME'],    
       wsRemoteAddr  => $_SERVER['REMOTE_ADDR'],    
       wsSiteName    => $_SERVER['HTTP_HOST'],    
+      wsPhpVersion  => getPhpVersion(),    
    );
    return $_WORKSPACE;
 }   
@@ -67,14 +69,24 @@ function getAbove($SiteRoot)
     }
     return $Result;
 }
-function ConsoleLog($messa='Сообщение в консоли!')
+// ****************************************************************************
+// *                         Сформировать версию PHP                          *
+// ****************************************************************************
+function getPhpVersion()
 {
-?>
-   <script>
-      var messa = "<?php echo $messa; ?>";
-      console.log(messa);
-   </script>
-<?php
+   $Result=00000;
+   // PHP_VERSION_ID доступна в версиях PHP 5.2.7 и выше. Если
+   // наша версия ниже, можно ее сэмулировать
+   if (defined('PHP_VERSION_ID')) 
+   {
+      $Result=PHP_VERSION_ID;
+   } 
+   if (!defined('PHP_VERSION_ID')) 
+   { 
+      $version=explode('.',PHP_VERSION);
+      $Result=$version[0]*10000+$version[1]*100+$version[2];
+   }
+   return $Result;
 }
 // ****************************************************************************
 // *    Определить соответствует ли текущий сайт заданному доменному имени    *

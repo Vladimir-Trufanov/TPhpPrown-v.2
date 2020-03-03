@@ -23,7 +23,6 @@ function ConsoleLog($String,$Parm=null)
    </script>
    <?php
 }
-
 function Alert($String,$Parm=null)
 {
    // Формируем текст сообщения

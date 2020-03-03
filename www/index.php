@@ -23,6 +23,7 @@ $UserAgent   = $_WORKSPACE[wsUserAgent];    // HTTP_USER_AGENT
 $TimeRequest = $_WORKSPACE[wsTimeRequest];  // Время запроса сайта
 $Ip          = $_WORKSPACE[wsRemoteAddr];   // IP-адрес запроса сайта
 $SiteName    = $_WORKSPACE[wsSiteName];     // Доменное имя сайта
+$PhpVersion  = $_WORKSPACE[wsPhpVersion];   // Версия PHP
 
 // Подключаем сайт сбора сообщений об ошибках/исключениях и формирования 
 // страницы с выводом сообщений, а также комментариев для PHP5-PHP7

@@ -73,6 +73,8 @@ $aPhpPrown=array
 
 // ---
 //phpinfo();
+//echo 'PHP_VERSION_ID='.PHP_VERSION_ID.'<br>';
+//echo 'PHP_VERSION='.PHP_VERSION.'<br>';
 //echo $SiteRoot.'<br>';
 //echo $SiteHost.'<br>';
 //echo $TPhpPrown.'<br>';
