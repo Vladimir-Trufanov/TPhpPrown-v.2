@@ -67,20 +67,42 @@
 // сервере) следует использовать MakeCookie.
 
 require_once "MakeType.php";
-require_once "ViewSimpleArray.php";
 
 function _MakeCookie($Name,$Value,$Type,$Dur,$Options)
 {
-   //ViewArray($Options,"Options");
-   
-   //if (!defined('PHP_VERSION_ID')) {
-   // $version = explode('.', PHP_VERSION);
-
-   
+   if (!(function_exists('iniWorkSpace'))) 
+   {
+      ---require_once "WorkSpace/iniWorkSpace.php";
+   } 
+   $_WORKSPACE=iniWorkSpace();
+   $PhpVersion=$_WORKSPACE[wsPhpVersion]; 
+   // Определяем длительность кукиса
    $Result=MakeType($Value,$Type);
-   $Duration=time()+$Dur;
-   // Отправляем новое куки браузеру
-   setcookie($Name,$Value,$Duration);
+   if (IsSet($Options['expires'])) $Duration=time()+$Options['expires'];
+   else $Duration=time()+$Dur;
+   // Определяем другие параметры кукиса
+   if (IsSet($Options['path'])) $Pathi=$Options['path'];
+   else $Pathi="";
+   if (IsSet($Options['domain'])) $Domaini=$Options['domain'];
+   else $Domaini="";
+   if (IsSet($Options['secure'])) $Securi=$Options['secure'];
+   else $Securi=FALSE;
+   if (IsSet($Options['httponly'])) $Httponli=$Options['httponly'];
+   else $Httponly=FALSE;
+   // Отправляем новое куки браузеру для соответствующих версий
+   //setcookie($Name,$Value,$Duration);
+   if ($PhpVersion<50200)
+   {
+      setcookie($Name,$Value,$Duration,$Pathi,$Domaini,$Securi);
+   }
+   elseif ($PhpVersion<70300)
+   {
+      setcookie($Name,$Value,$Duration,$Pathi,$Domaini,$Securi,$Httponly);
+   }
+   else
+   {
+      setcookie($Name,$Value,$Options);
+   }
    // Устанавливаем новое куки в массиве кукисов
    if (IsSet($_COOKIE[$Name])) $_COOKIE[$Name]=$Value;
    // Возвращаем новое куки на выход в переменную страницы сайта
