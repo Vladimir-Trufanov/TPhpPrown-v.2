@@ -18,7 +18,7 @@ Extensions=*.*
 TPhpPrown
 	+TPhpPrown
 		+TPhpPrown
-			+WorkSpace
+			-WorkSpace
 				TPhpPrown\WorkSpace\getSiteDevice.php
 				TPhpPrown\WorkSpace\iniWorkSpace.php
 				TPhpPrown\WorkSpace\Mobile_Detect.php
@@ -55,7 +55,7 @@ TPhpPrown
 			TPhpPrown\ViewSimpleArray.php
 			TPhpPrown\пример_регекс.txt
 			TPhpPrown\регекс_тест.html
-		-TPhpPrownTests
+		+TPhpPrownTests
 			TPhpPrownTests\FinalMessage_test.php
 			TPhpPrownTests\Findes_test.php
 			TPhpPrownTests\FunctionsBlock.php
@@ -64,7 +64,9 @@ TPhpPrown
 			TPhpPrownTests\MakeCookie_test.php
 			TPhpPrownTests\MakeType_test.php
 			TPhpPrownTests\MakeUserError_test.php
-		-www
+		+www
+			-WorkSpace
+				www\WorkSpace\iniWorkSpace.php
 			www\89.gif
 			www\favicon.ico
 			www\index.php
@@ -83,50 +85,30 @@ TPhpPrown
 		TPhpPrown.png
 		TPhpPrown.ppr
 [Open project files]
-0=www\TPhpPrownTests.js
-1=www\index.php
-2=TPhpPrown\MakeSession.php
-3=TPhpPrownTests\FunctionsBlock.php
-4=TPhpPrownTests\MakeCookie_test.php
-5=TPhpPrown\iniConstMem.php
-6=TPhpPrown\ViewGlobal.php
-7=www\Main.php
-8=TPhpPrown\MakeCookie.php
-9=TPhpPrown\DebugBlock.php
-10=TPhpPrown\WorkSpace\iniWorkSpace.php
+0=www\index.php
+1=www\Main.php
+2=TPhpPrownTests\FunctionsBlock.php
+3=TPhpPrown\DebugBlock.php
+4=TPhpPrown\ViewGlobal.php
+5=TPhpPrown\MakeCookie.php
 [Selected Project Files]
 Main=
-Selected=www\index.php
-[www\TPhpPrownTests.js]
-TopLine=9
-Caret=1,36
+Selected=TPhpPrownTests\FunctionsBlock.php
 [www\index.php]
-TopLine=13
-Caret=45,26
-[TPhpPrown\MakeSession.php]
-TopLine=27
+TopLine=9
 Caret=1,1
+[www\Main.php]
+TopLine=55
+Caret=1,33
 [TPhpPrownTests\FunctionsBlock.php]
-TopLine=83
-Caret=35,108
-[TPhpPrownTests\MakeCookie_test.php]
-TopLine=1
-Caret=1,1
-[TPhpPrown\iniConstMem.php]
-TopLine=29
+TopLine=107
+Caret=56,115
+[TPhpPrown\DebugBlock.php]
+TopLine=9
 Caret=1,1
 [TPhpPrown\ViewGlobal.php]
-TopLine=157
-Caret=89,172
-[www\Main.php]
-TopLine=70
-Caret=3,77
+TopLine=168
+Caret=10,171
 [TPhpPrown\MakeCookie.php]
-TopLine=63
-Caret=42,77
-[TPhpPrown\DebugBlock.php]
-TopLine=47
-Caret=1,26
-[TPhpPrown\WorkSpace\iniWorkSpace.php]
-TopLine=30
-Caret=19,39
+TopLine=75
+Caret=1,1

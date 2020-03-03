@@ -108,8 +108,10 @@ function LeadTest()
 function MakeCookieTest($NumTest=0)
 {
    $Result='None';
+   $ModeError=rvsCurrentPos;
    if ($NumTest==1)
    {
+      //$Result=prown\MakeCookie('cookTypical','Типичный',null,null,null,null,$ModeError);
       $Result=prown\MakeCookie('cookTypical','Типичный');
    }
    return $Result;  

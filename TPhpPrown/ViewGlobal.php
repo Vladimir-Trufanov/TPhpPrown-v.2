@@ -168,7 +168,7 @@ function ViewGlobal($Parm,$_Array=null)
     }
     elseif ($Parm==avgWORKSPACE)
     {
-       Alert('$Parmi',$Parm);
+       //Alert('$Parmi',$Parm);
        ViewArr("Массив значений \$_WORKSPACE - переменных рабочего пространства",$_Array,"\$_WORKSPACE");
     }
     elseif ($Parm=='avgGET')

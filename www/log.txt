@@ -25,3 +25,9 @@ Stack trace:
   thrown in C:\TPhpPrown\TPhpPrown\DebugBlock.php on line 26
 [02-Mar-2020 20:16:40 Asia/Kuwait] PHP Parse error:  syntax error, unexpected ';', expecting '{' in C:\TPhpPrown\TPhpPrown\DebugBlock.php on line 13
 [02-Mar-2020 20:17:07 Asia/Kuwait] PHP Parse error:  syntax error, unexpected ''$Parm'' (T_CONSTANT_ENCAPSED_STRING), expecting variable (T_VARIABLE) in C:\TPhpPrown\TPhpPrown\DebugBlock.php on line 26
+[03-Mar-2020 15:40:42 Asia/Kuwait] PHP Fatal error:  Cannot redeclare iniWorkSpace() (previously declared in C:\TPhpPrown\www\iniWorkSpace.php:25) in C:\TPhpPrown\TPhpPrown\WorkSpace\iniWorkSpace.php on line 42
+[03-Mar-2020 15:44:09 Asia/Kuwait] PHP Fatal error:  Cannot redeclare iniWorkSpace() (previously declared in C:\TPhpPrown\www\iniWorkSpace.php:25) in C:\TPhpPrown\TPhpPrown\WorkSpace\iniWorkSpace.php on line 42
+[03-Mar-2020 15:57:35 Asia/Kuwait] PHP Parse error:  syntax error, unexpected '-' in C:\TPhpPrown\TPhpPrown\MakeCookie.php on line 75
+[03-Mar-2020 21:18:27 Asia/Kuwait] PHP Fatal error:  Cannot redeclare prown\MakeType() (previously declared in C:\TPhpPrown\www\MakeType.php:53) in C:\TPhpPrown\TPhpPrown\MakeType.php on line 74
+[03-Mar-2020 21:26:19 Asia/Kuwait] PHP Parse error:  syntax error, unexpected ',' in C:\TPhpPrown\TPhpPrownTests\FunctionsBlock.php on line 114
+[03-Mar-2020 21:27:46 Asia/Kuwait] PHP Parse error:  syntax error, unexpected ',' in C:\TPhpPrown\TPhpPrownTests\FunctionsBlock.php on line 114

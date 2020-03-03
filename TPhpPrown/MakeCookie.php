@@ -5,9 +5,9 @@
 // ****************************************************************************
 // * TPhpPrown          Установить новое значение COOKIE в браузере, заменить *
 // *              этим значением соответствующее данное во внутреннем массиве *
-// *        $_COOKIE и установить новое значение переменной-кукиса в сценарии *
+// *       $_COOKIE и установить новое значение переменной-кукиса в программе *
 // *                                                                          *
-// * v1.2, 31.05.2019                              Автор:       Труфанов В.Е. *
+// * v1.3, 03.03.2020                              Автор:       Труфанов В.Е. *
 // * Copyright © 2018 tve                          Дата создания:  03.02.2018 *
 // ****************************************************************************
 
@@ -66,18 +66,27 @@
 // PHP-сценарии остается без изменения. Поэтому для синхронизации значений (на 
 // сервере) следует использовать MakeCookie.
 
+require_once "iniConstMem.php";
+require_once "iniErrMessage.php";
 require_once "MakeType.php";
+require_once "MakeUserError.php";
 
-function _MakeCookie($Name,$Value,$Type,$Dur,$Options)
+function _MakeCookie($Name,$Value,$Type,$Dur,$Options,$ModeError)
 {
    if (!(function_exists('iniWorkSpace'))) 
    {
-      ---require_once "WorkSpace/iniWorkSpace.php";
+      require_once "WorkSpace/iniWorkSpace.php";
    } 
    $_WORKSPACE=iniWorkSpace();
    $PhpVersion=$_WORKSPACE[wsPhpVersion]; 
-   // Определяем длительность кукиса
+   // Приводим кукис к заданному типу
    $Result=MakeType($Value,$Type);
+   // Отмечаем, что "Невозможно привести кукис к указанному типу"
+   if ($Result==null)
+   {
+      \prown\MakeUserError(CantСookiesToType.' ['.$Value.'-->'.$Type.']','TPhpPrown',$ModeError);
+   }
+   // Определяем длительность кукиса
    if (IsSet($Options['expires'])) $Duration=time()+$Options['expires'];
    else $Duration=time()+$Dur;
    // Определяем другие параметры кукиса
@@ -88,21 +97,34 @@ function _MakeCookie($Name,$Value,$Type,$Dur,$Options)
    if (IsSet($Options['secure'])) $Securi=$Options['secure'];
    else $Securi=FALSE;
    if (IsSet($Options['httponly'])) $Httponli=$Options['httponly'];
-   else $Httponly=FALSE;
+   else $Httponli=FALSE;
    // Отправляем новое куки браузеру для соответствующих версий
    //setcookie($Name,$Value,$Duration);
+   echo '$PhpVersion='.$PhpVersion.'<br>';
    if ($PhpVersion<50200)
    {
-      setcookie($Name,$Value,$Duration,$Pathi,$Domaini,$Securi);
+      $Ret=setcookie($Name,$Value,$Duration,$Pathi,$Domaini,$Securi);
    }
    elseif ($PhpVersion<70300)
    {
-      setcookie($Name,$Value,$Duration,$Pathi,$Domaini,$Securi,$Httponly);
+      $Ret=setcookie($Name,$Value,$Duration,$Pathi,$Domaini,$Securi,$Httponli);
    }
    else
    {
-      setcookie($Name,$Value,$Options);
+      //$Ret=setcookie($Name,$Value,$Options);
+      $Ret=setcookie($Name,$Value,$Duration);
+      echo 't=setcookie(Name,Value);<br>';
    }
+   // Если перед вызовом функции клиенту уже передавался какой-либо вывод 
+   // (теги, пустые строки, пробелы, текст и т.п.), setcookie() потерпит 
+   // неудачу и вернет FALSE. Если setcookie() успешно отработает, то вернет 
+   // TRUE. Это, однако, не означает, что клиентское приложение (браузер) 
+   // правильно приняло и обработало cookie.
+   if ($Ret==FALSE)
+   {
+      \prown\MakeUserError(SendCookieFailed.' ['.$Name.']','TPhpPrown',$ModeError);
+   }
+
    // Устанавливаем новое куки в массиве кукисов
    if (IsSet($_COOKIE[$Name])) $_COOKIE[$Name]=$Value;
    // Возвращаем новое куки на выход в переменную страницы сайта
@@ -111,7 +133,7 @@ function _MakeCookie($Name,$Value,$Type,$Dur,$Options)
 
 function MakeCookie($Name,$Value,$Type=tStr,$Init=false,$Duration=44236800,
    $Options=["expires"=>44236800,"path"=>"/","domain"=>"","secure"=>false,
-   "httponly"=>false,"samesite"=>'Strict'])
+   "httponly"=>false,"samesite"=>'Strict'],$ModeError=rvsTriggerError)
 {
    echo $Name.'='.$Value.'<br>';
    // Устанавливаем значение, если инициализация
@@ -119,14 +141,14 @@ function MakeCookie($Name,$Value,$Type=tStr,$Init=false,$Duration=44236800,
    {
       if (!(IsSet($_COOKIE[$Name]))) 
       {
-         $Result=_MakeCookie($Name,$Value,$Type,$Duration,$Options);
+         $Result=_MakeCookie($Name,$Value,$Type,$Duration,$Options,$ModeError);
       }
       else $Result=$_COOKIE[$Name];
    }
    // Устанавливаем значение в обычном режиме
    else 
    {
-      $Result=_MakeCookie($Name,$Value,$Type,$Duration,$Options);
+      $Result=_MakeCookie($Name,$Value,$Type,$Duration,$Options,$ModeError);
    } 
    return $Result;
 }

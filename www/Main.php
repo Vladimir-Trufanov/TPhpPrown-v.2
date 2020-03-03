@@ -29,8 +29,8 @@ require_once $TPhpPrown."/TPhpPrownTests/FunctionsBlock.php";
 prown\ViewGlobal(avgWORKSPACE,$_WORKSPACE);
 
 $s_CookTrack=prown\MakeSession('CookTrack',0,tInt,true);      
-echo('$s_CookTrack='.$s_CookTrack.'<br>');
 MakeCookieTest($s_CookTrack);
+echo('$s_CookTrack='.$s_CookTrack.'<br>');
 
 ?>
 <!DOCTYPE html>
@@ -79,7 +79,7 @@ $aPhpPrown=array
 //echo $SiteHost.'<br>';
 //echo $TPhpPrown.'<br>';
 //echo $UserAgent.'<br>';
-//prown\ViewGlobal(avgSERVER);
+prown\ViewGlobal(avgCOOKIE);
  
 // ---
 

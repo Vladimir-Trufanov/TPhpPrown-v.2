@@ -147,7 +147,7 @@ function VerOneBrowser($UserAgent,$Browser,$ModeError=rvsCurrentPos)
 // *   Проанализировать UserAgent браузера по версиям родительских браузеров  *
 // *               и определить работает ли функция Calc для CSS              *
 // ****************************************************************************
-function isCalcInBrowser($UserAgent,$ModeError=rvsCurrentPos)
+function isCalcInBrowser($UserAgent,$ModeError=rvsTriggerError)
 {
    $Result=false;
    // Вначале проверяем по браузеру Chrome. Если он указан и версия больше 55,
