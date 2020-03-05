@@ -7,7 +7,7 @@
 // *              этим значением соответствующее данное во внутреннем массиве *
 // *       $_COOKIE и установить новое значение переменной-кукиса в программе *
 // *                                                                          *
-// * v1.3, 03.03.2020                              Автор:       Труфанов В.Е. *
+// * v1.4, 05.03.2020                              Автор:       Труфанов В.Е. *
 // * Copyright © 2018 tve                          Дата создания:  03.02.2018 *
 // ****************************************************************************
 
@@ -31,14 +31,14 @@
 // Синтаксис:
 //
 //   $Result=MakeCookie($Name,$Value,$Type=tStr,$Init=false,$Duration=44236800,
-//      $Options=["expires"=>44236800,"path"=>"/","domain"=>"","secure"=>false,
-//      "httponly"=>false,"samesite"=>'Strict'])
+//   $Options=["expires"=>44236800,"path"=>"/","domain"=>"","secure"=>false,
+//   "httponly"=>false,"samesite"=>null],$ModeError=rvsTriggerError)
 
 // Параметры:
 //
-//   $Name - имя кукиса в браузере клиента (как правило, по имени кукиса 
-//      формируется глобальная переменная сайтовой страницы добавлением префикса
-//      "с_". Например: "BrowEntry" --> "$с_BrowEntry");
+//   $Name - имя кукиса в браузере клиента (по имени кукиса можно формировать 
+//      глобальную переменную сайтовой страницы добавлением префикса "с_". 
+//      Например: "BrowEntry" --> "$с_BrowEntry");
 //   $Value - значение кукиса браузера, это же значение во внутреннем массиве
 //      $_COOKIE и у соответствующей глобальной переменной сайтовой страницы. 
 //      Если $Value==null, то функция возвращает установленное значение кукиса;
@@ -52,7 +52,13 @@
 //      cookDelete=-3600, для удаления кукиса; 
 //      cookSession=0, для задания кукиса только на время сессии;
 //      cook512=44236800;
-//   $Options - опции кукиса = параметры кукиса
+//   $Options - опции кукиса, это дополнительные параметры кукиса (RFC6265bis):
+//   "expires" - время, когда срок действия кукиса истекает; "path" - путь к 
+//   каталогу на сервере, из которого будет доступен кукис; "domain" - домен, 
+//   на котором возникает кукис; "secure" - указывает на то, что кукис должен
+//   передаваться от клиента по защищенному соединению; "httponly" - кукис
+//   будет доступен только через HTTP-протокол; "samesite" - режим связывания 
+//   кукиса со сторонними сайтами (должен быть либо None, либо Lax, либо Strict)
 
 // Возвращаемое значение: 
 //
@@ -60,7 +66,6 @@
 //      $_COOKIE и переменной-кукиса в сценарии сайтовой страницы
 
 // Замечание: 
-//
 //   При изменении кукиса встроенной функцией PHP setcookie меняется только 
 // значение кукиса в браузере, а его величина в массиве $_COOKIE в текущем
 // PHP-сценарии остается без изменения. Поэтому для синхронизации значений (на 
@@ -98,9 +103,9 @@ function _MakeCookie($Name,$Value,$Type,$Dur,$Options,$ModeError)
    else $Securi=FALSE;
    if (IsSet($Options['httponly'])) $Httponli=$Options['httponly'];
    else $Httponli=FALSE;
+   if (IsSet($Options['samesite'])) $Samesite=$Options['samesite'];
+   else $Samesite=null;
    // Отправляем новое куки браузеру для соответствующих версий
-   //setcookie($Name,$Value,$Duration);
-   echo '$PhpVersion='.$PhpVersion.'<br>';
    if ($PhpVersion<50200)
    {
       $Ret=setcookie($Name,$Value,$Duration,$Pathi,$Domaini,$Securi);
@@ -111,9 +116,8 @@ function _MakeCookie($Name,$Value,$Type,$Dur,$Options,$ModeError)
    }
    else
    {
-      //$Ret=setcookie($Name,$Value,$Options);
-      $Ret=setcookie($Name,$Value,$Duration);
-      echo 't=setcookie(Name,Value);<br>';
+      // $Ret=setcookie($Name,$Value,$Options); 05.03.2020, "samesite" не работает
+      $Ret=setcookie($Name,$Value,$Duration,$Pathi,$Domaini,$Securi,$Httponli);
    }
    // Если перед вызовом функции клиенту уже передавался какой-либо вывод 
    // (теги, пустые строки, пробелы, текст и т.п.), setcookie() потерпит 
@@ -124,7 +128,6 @@ function _MakeCookie($Name,$Value,$Type,$Dur,$Options,$ModeError)
    {
       \prown\MakeUserError(SendCookieFailed.' ['.$Name.']','TPhpPrown',$ModeError);
    }
-
    // Устанавливаем новое куки в массиве кукисов
    if (IsSet($_COOKIE[$Name])) $_COOKIE[$Name]=$Value;
    // Возвращаем новое куки на выход в переменную страницы сайта
@@ -133,9 +136,11 @@ function _MakeCookie($Name,$Value,$Type,$Dur,$Options,$ModeError)
 
 function MakeCookie($Name,$Value,$Type=tStr,$Init=false,$Duration=44236800,
    $Options=["expires"=>44236800,"path"=>"/","domain"=>"","secure"=>false,
-   "httponly"=>false,"samesite"=>'Strict'],$ModeError=rvsTriggerError)
+   "httponly"=>false,"samesite"=>null],$ModeError=rvsTriggerError)
 {
-   echo $Name.'='.$Value.'<br>';
+   // Внимание: 05.03.2020 на версии PHP 7.3.8 не удалось проверить действие 
+   // параметра "samesite". Не обнаруживаются константы None, Lax, Strict.
+
    // Устанавливаем значение, если инициализация
    if ($Init==true) 
    {

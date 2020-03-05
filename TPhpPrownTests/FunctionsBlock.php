@@ -112,7 +112,10 @@ function MakeCookieTest($NumTest=0)
    if ($NumTest==1)
    {
       //$Result=prown\MakeCookie('cookTypical','Типичный',null,null,null,null,$ModeError);
-      $Result=prown\MakeCookie('cookTypical','Типичный');
+      // Обычное задание кукиса через имя и значение
+      $Result=prown\MakeCookie('cookTypeStr','Типичный');
+      $Result=prown\MakeCookie('cookTypeInt',137);
+      $Result=prown\MakeCookie('cookTypeFloat',3.1415926);
    }
    return $Result;  
 }

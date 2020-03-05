@@ -26,10 +26,9 @@ require_once $TPhpPrown."/TPhpPrownTests/FunctionsBlock.php";
 
 // Инициализируем сессионную переменную для возможного теста MakeCookie
 // и делаем подготовку текущего прохода этого теста
-prown\ViewGlobal(avgWORKSPACE,$_WORKSPACE);
-
 $s_CookTrack=prown\MakeSession('CookTrack',0,tInt,true);      
 MakeCookieTest($s_CookTrack);
+prown\ViewGlobal(avgWORKSPACE,$_WORKSPACE);
 echo('$s_CookTrack='.$s_CookTrack.'<br>');
 
 ?>
