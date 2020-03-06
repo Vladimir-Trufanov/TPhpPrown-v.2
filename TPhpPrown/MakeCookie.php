@@ -87,10 +87,10 @@ function _MakeCookie($Name,$Value,$Type,$Dur,$Options,$ModeError)
    // Приводим кукис к заданному типу
    $Result=MakeType($Value,$Type);
    // Отмечаем, что "Невозможно привести кукис к указанному типу"
-   if ($Result==null)
-   {
-      \prown\MakeUserError(CantСookiesToType.' ['.$Value.'-->'.$Type.']','TPhpPrown',$ModeError);
-   }
+   //if ($Result==null)
+   //{
+   //   \prown\MakeUserError(CantСookiesToType.' ['.$Value.'-->'.$Type.']','TPhpPrown',$ModeError);
+   //}
    // Определяем длительность кукиса
    if (IsSet($Options['expires'])) $Duration=time()+$Options['expires'];
    else $Duration=time()+$Dur;
