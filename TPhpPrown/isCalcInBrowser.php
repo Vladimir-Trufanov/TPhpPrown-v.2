@@ -5,19 +5,19 @@
 // * TPhpPrown    Проанализировать UserAgent браузера по версиям родительских *
 // *                  браузеров и определить работает ли функция Calc для CSS *
 // *                                                                          *
-// * v1.0, 13.02.2019 (ревизия в 02.2020)          Автор:       Труфанов В.Е. *
+// * v1.1, 07.03.2020                              Автор:       Труфанов В.Е. *
 // * Copyright © 2019 tve                          Дата создания:  13.02.2019 *
 // ****************************************************************************
 
 // Синтаксис:
 //
-//   $Result=isCalcInBrowser($UserAgent,$ModeError=rvsCurrentPos);
+//   $Result=isCalcInBrowser($UserAgent,$ModeError=rvsTriggerError);
 //
 // Параметры:
 //
 //   $UserAgent - UserAgent браузера.
-//   $ModeError - режим вывода сообщений об ошибке (по умолчанию в текущей 
-//                позиции сайта)
+//   $ModeError - режим вывода сообщений об ошибке (по умолчанию через 
+//      исключение с пользовательской ошибкой на сайте doortry.ru)
 // 
 // Возвращаемое значение: 
 //
@@ -90,7 +90,7 @@ require_once "MakeUserError.php";
 // ****************************************************************************
 // *             Собственно определить версию/подверсию браузера              *
 // ****************************************************************************
-function MakeNumbVer($Browser,$str,&$Ver,&$Point,$ModeError=rvsCurrentPos)
+function MakeNumbVer($Browser,$str,&$Ver,&$Point,$ModeError)
 {
    $Point=0; 
    $Ver=\prown\Findes(regInteger,$str,$Point);
@@ -102,7 +102,7 @@ function MakeNumbVer($Browser,$str,&$Ver,&$Point,$ModeError=rvsCurrentPos)
 // ****************************************************************************
 // *     Определить присутствие браузера в UserAgent и выделить версию        *
 // ****************************************************************************
-function VerOneBrowser($UserAgent,$Browser,$ModeError=rvsCurrentPos)
+function VerOneBrowser($UserAgent,$Browser,$ModeError)
 {
    $Ver=0;
    $Result=false;

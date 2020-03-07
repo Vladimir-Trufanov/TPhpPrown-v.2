@@ -26,6 +26,17 @@ class test_MakeType extends UnitTestCase
          '$string="1958"; $Result=\prown\MakeType($string,tInt); ',
          'Преобразование строчного "1958" к целому 1958',70);
   }
+   // Преобразование строки, как числа по неверному типу
+   function test_MakeType_Inpos()
+   {
+      $string='1958';
+      $Result=\prown\MakeType($string,135,rvsCurrentPos);
+      $this->assertEqual($Result,null);
+      SimpleMessage(); 
+      MakeTestMessage(
+         '$Result=\prown\MakeType("1958",tInt,rvsCurrentPos); ',
+         'Преобразование строчного "1958" к целому, но тип указан неверно',70);
+  }
    // Преобразование целого числа к логической переменной
    function test_MakeType_Boolean()
    {
