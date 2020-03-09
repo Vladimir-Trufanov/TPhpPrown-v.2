@@ -34,7 +34,7 @@ class test_MakeType extends UnitTestCase
       $this->assertEqual($Result,null);
       SimpleMessage(); 
       MakeTestMessage(
-         '$Result=\prown\MakeType("1958",tInt,rvsCurrentPos); ',
+         '$Result=\prown\MakeType("1958",135,rvsCurrentPos); ',
          'Преобразование строчного "1958" к целому, но тип указан неверно',70);
   }
    // Преобразование целого числа к логической переменной
