@@ -28,7 +28,7 @@ require_once $TPhpPrown."/TPhpPrownTests/FunctionsBlock.php";
 // и делаем подготовку текущего прохода этого теста
 $s_CookTrack=prown\MakeSession('CookTrack',0,tInt,true);      
 MakeCookieTest($s_CookTrack);
-prown\ViewGlobal(avgWORKSPACE,$_WORKSPACE);
+//prown\ViewGlobal(avgWORKSPACE,$_WORKSPACE);
 echo('$s_CookTrack='.$s_CookTrack.'<br>');
 
 ?>
@@ -78,8 +78,6 @@ $aPhpPrown=array
 //echo $SiteHost.'<br>';
 //echo $TPhpPrown.'<br>';
 //echo $UserAgent.'<br>';
-prown\ViewGlobal(avgCOOKIE);
- 
 // ---
 
 // Выводим список прикладных функций библиотеки TPhpPrown и обрабатываем

@@ -31,3 +31,12 @@ Stack trace:
 [03-Mar-2020 21:18:27 Asia/Kuwait] PHP Fatal error:  Cannot redeclare prown\MakeType() (previously declared in C:\TPhpPrown\www\MakeType.php:53) in C:\TPhpPrown\TPhpPrown\MakeType.php on line 74
 [03-Mar-2020 21:26:19 Asia/Kuwait] PHP Parse error:  syntax error, unexpected ',' in C:\TPhpPrown\TPhpPrownTests\FunctionsBlock.php on line 114
 [03-Mar-2020 21:27:46 Asia/Kuwait] PHP Parse error:  syntax error, unexpected ',' in C:\TPhpPrown\TPhpPrownTests\FunctionsBlock.php on line 114
+[09-Mar-2020 17:32:33 Asia/Kuwait] PHP Fatal error:  Uncaught Error: Call to undefined function Alert() in C:\TPhpPrown\TPhpPrownTests\FunctionsBlock.php:106
+Stack trace:
+#0 C:\TPhpPrown\TPhpPrownTests\FunctionsBlock.php(61): isMakeCookie(Array)
+#1 C:\TPhpPrown\www\Main.php(117): FunctionsCheckbox(Array, '\xD0\x9F\xD1\x80\xD0\xBE\xD1\x82\xD0\xB5\xD1\x81\xD1\x82\xD0...', '\xD0\xA3\xD0\xBA\xD0\xB0\xD0\xB6\xD0\xB8\xD1\x82\xD0\xB5 ...')
+#2 C:\TPhpPrown\www\index.php(35): require_once('C:\\TPhpPrown\\ww...')
+#3 {main}
+  thrown in C:\TPhpPrown\TPhpPrownTests\FunctionsBlock.php on line 106
+[09-Mar-2020 17:39:03 Asia/Kuwait] PHP Fatal error:  require_once(): Failed opening required 'DebugBlock.php' (include_path='.;C:\php\pear') in C:\TPhpPrown\TPhpPrownTests\FunctionsBlock.php on line 29
+[09-Mar-2020 18:01:25 Asia/Kuwait] PHP Fatal error:  require_once(): Failed opening required 'DebugBlock.php' (include_path='.;C:\php\pear') in C:\TPhpPrown\TPhpPrownTests\FunctionsBlock.php on line 29

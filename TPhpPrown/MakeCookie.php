@@ -90,7 +90,7 @@ function _MakeCookie($Name,$Value,$Type,$Dur,$Options,$ModeError)
    // Приводим кукис к заданному типу
    $Result=MakeType($Value,$Type);
    // Отмечаем, что "Невозможно привести кукис к указанному типу"
-   if ($Result==null)
+   if ($Result===null)
    {
       \prown\MakeUserError(CantСookiesToType.' ['.$Value.'-->'.$Type.']','TPhpPrown',$ModeError);
    }

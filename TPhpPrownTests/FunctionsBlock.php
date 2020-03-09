@@ -7,7 +7,7 @@
 
 //                                                   Автор:       Труфанов В.Е.
 //                                                   Дата создания:  13.01.2019
-// Copyright © 2019 tve                              Посл.изменение: 01.03.2020
+// Copyright © 2019 tve                              Посл.изменение: 09 .03.2020
 
 // ****************************************************************************
 // *                    Вывести список элементов библиотеки                   *
@@ -25,6 +25,9 @@
 //    formSubmit=%D0%92%D1%8B%D0%B1%D1%80%D0%B0%D1%82%D1%8C+%D0%B2%D1%81%D1%91
 //    &
 //    formDoor%5B%5D=Findes можно выбрать все флажки
+
+//require_once 'DebugBlock.php';
+
 function FunctionsCheckbox($aElements,$isCheck=ToTest,
    $cMess='Укажите прототипы объектов в TJsTools, которые следует протестировать')
 {
@@ -36,26 +39,33 @@ function FunctionsCheckbox($aElements,$isCheck=ToTest,
    {
       if ($isCheck==ChooseAll)
       {
-         echo '<input type="checkbox" checked name="formDoor[]" value="'.$k.'"/>'.$k.' - '.$v.'<br>';
+         if (!($k=='MakeCookie')) 
+         {
+            echo '<input type="checkbox" checked name="formDoor[]" value="'.$k.'"/>'.$k.' - '.$v.'<br>';
+         }
+         else
+         {
+            echo '<input type="checkbox" name="formDoor[]" value="'.$k.'"/>'.$k.' - '.$v.'<br>';
+         }
       }
       else
       {
          echo '<input type="checkbox" name="formDoor[]" value="'.$k.'"/>'.$k.' - '.$v.'<br>';
-         //if ($k=='Findes') 
-         //{
-         //echo '<input type="checkbox" checked name="formDoor[]" value="'.$k.'"/>'.$k.' - '.$v.'<br>';
-         //}
       }
    }
    echo '</p>';
    echo '<input type="submit" name="formSubmit" value="'.ToTest.'"/><br><br>';
    echo '</form>';
+   
+   isMakeCookie($aElements);
+
+   
    return $Result;
 }
 // ****************************************************************************
 // *             Проверить, выбран ли указанный элемент библиотеки            *
 // ****************************************************************************
-function IsChecked($chkname,$value)
+function isChecked($chkname,$value)
 {
    if(!empty($_POST[$chkname]))
    {
@@ -68,6 +78,39 @@ function IsChecked($chkname,$value)
       }
    }
    return false;
+}
+// ****************************************************************************
+// *           Проверить, можно ли выбирать тестирование MakeCookie           *
+// ****************************************************************************
+function isMakeCookie($aPhpPrown)
+{
+   $Result=true;
+   if(!empty($_POST['formDoor']))
+   {
+      // Подбираем выбранные чекбоксы
+      $aDoor=$_POST['formDoor'];
+      $n=count($aDoor); $i=0;
+      echo '$n='.$n.'<br>';
+      // Перебираем список чекбоксов,
+      // чтобы найти среди них выбранные
+      foreach($aPhpPrown as $k=>$v)
+      {
+         // echo '$k='.$k.'<br>';
+         // Если среди быбранных чекбоксов есть отличные от MakeCockie,
+         // то считаем, что тест с MakeCookie запускать нельзя
+         if(isChecked('formDoor',$k))
+         {
+            if (!($k=='MakeCookie')) 
+            {
+               //Alert('Тест с MakeCookie запускать нельзя, так выбраны и другие '.
+               //'модули для тестирования');
+               $Result=true;
+               break;
+            }
+         }
+      }
+   }
+   return $Result;
 }
 // ****************************************************************************
 // *       Сформировать оболочку для тестирования JavaScript сценариев        *
@@ -109,6 +152,7 @@ function MakeCookieTest($NumTest=0)
 {
    $Result='None';
    $ModeError=rvsCurrentPos;
+   
    if ($NumTest==1)
    {
       //$Result=prown\MakeCookie('cookTypical','Типичный',null,null,null,null,$ModeError);
@@ -116,6 +160,8 @@ function MakeCookieTest($NumTest=0)
       $Result=prown\MakeCookie('cookTypeStr','Типичный');
       $Result=prown\MakeCookie('cookTypeInt',137);
       $Result=prown\MakeCookie('cookTypeFloat',3.1415926);
+      $Result=prown\MakeCookie('cookTypeFloat',3.1415926);
+      $Result=prown\MakeCookie('cookTypeZero',0,tInt,true);
    }
    return $Result;  
 }
@@ -147,7 +193,7 @@ function MakeTest($SiteRoot,$aPhpPrown,$lang='PHP')
          foreach($aPhpPrown as $k=>$v)
          {
             //echo '<input type="checkbox" checked name="formDoor[]" value="'.$k.'"/>'.$k.' - '.$v.'<br>';
-            if(IsChecked('formDoor',$k))
+            if(isChecked('formDoor',$k))
             {
                //echo $k.' тестируется.<br>';
                if ($lang=='PHP') 
