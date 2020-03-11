@@ -77,8 +77,10 @@ echo('$s_CookTrack='.$s_CookTrack.'<br>');
          {
             checked.push(i);
          }
+         i++;
       }
-      //console.log(checked); 
+      console.log(checked); 
+      console.log(checked.length); 
    }
    </script>
  

@@ -107,8 +107,8 @@ Caret=1,41
 TopLine=1
 Caret=39,21
 [www\Main.php]
-TopLine=60
-Caret=9,81
+TopLine=52
+Caret=54,52
 [TPhpPrownTests\FunctionsBlock.php]
 TopLine=23
 Caret=51,30
