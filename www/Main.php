@@ -7,11 +7,12 @@
 
 //                                                   Автор:       Труфанов В.Е.
 //                                                   Дата создания:  13.01.2019
-// Copyright © 2019 tve                              Посл.изменение: 23.02.2020
+// Copyright © 2019 tve                              Посл.изменение: 10.03.2020
 
 // Подключаем файлы библиотеки прикладных модулей и рабочего пространства
 $TPhpPrown=$SiteHost.'/TPhpPrown';
 require_once $TPhpPrown."/TPhpPrown/CommonPrown.php";
+require_once $TPhpPrown."/TPhpPrown/DebugBlock.php";
 require_once $TPhpPrown."/TPhpPrown/Findes.php";
 require_once $TPhpPrown."/TPhpPrown/getTranslit.php";
 require_once $TPhpPrown."/TPhpPrown/iniConstMem.php";
@@ -48,6 +49,48 @@ echo('$s_CookTrack='.$s_CookTrack.'<br>');
    src="https://ajax.aspnetcdn.com/ajax/jquery.ui/1.11.2/jquery-ui.min.js">
 </script>
 <script src="/TPhpPrownTests.js"> </script>
+
+<script>
+   function isCheckClick() 
+   {
+      //var parentDOM=document.getElementById("myform");
+      //var test=parentDOM.getElementsByName("formDoor[]");  //test is not target element
+        //console.log(test);//HTMLCollection[1]
+      var up_names = document.getElementsByName("formDoor[]");
+      console.log(up_names.length); // displays "INPUT"
+      
+      for (let i = 0; i < up_names.length; i++) 
+      {
+         console.log(up_names[i].tagName);  
+         //console.log(up_names[i].nodeName); 
+         //console.log(up_names[i].innerHTML); 
+         console.log(up_names[i].outerHTML); 
+         console.log(up_names[i].value); 
+      }
+
+
+      //console.log('messa');
+      /*
+    var str = document.getElementById("email").value;
+    var status = document.getElementById("status");
+    var re = /^[^\s()<>@,;:\/]+@\w[\w\.-]+\.[a-z]{2,}$/i;
+    if (re.test(str)) status.innerHTML = "Адрес правильный";
+      else status.innerHTML = "Адрес неверный";
+    if(isEmpty(str)) status.innerHTML = "Поле пустое";
+    */
+   }
+   /*
+   function isEmpty(str){
+    return (str == null) || (str.length == 0);
+   }
+   */
+  </script>
+ 
+
+
+
+
+
 </head>
 <body>
 <div id="res"></div>
@@ -108,20 +151,23 @@ $aPhpPrown=array
 
 if (prown\isComRequest(ChooseAll,'formSubmit'))
 {
+   // Вырисовываем чекбоксы для тестирования
    FunctionsCheckbox($aPhpPrown,ChooseAll,ChoiceList);
+   // Завершаем разметку, так как здесь теста не будет
    echo "\n</body>\n</html>\n";   
 }
 else if (prown\isComRequest(ToTest,'formSubmit'))
 {
    // Вырисовываем чекбоксы для тестирования
    FunctionsCheckbox($aPhpPrown,ToTest,ChoiceList);
-   // Запускаем тестирование
+   // Запускаем тестирование (тестом будет и завершена разметка)
    MakeTest($SiteRoot,$aPhpPrown);
 }
 else
 {
    // Вырисовываем чекбоксы 
    FunctionsCheckbox($aPhpPrown,ToTest,ChoiceList);
+   // Завершаем разметку, так как здесь теста не будет
    echo "\n</body>\n</html>\n";   
 }
  

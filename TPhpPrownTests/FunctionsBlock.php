@@ -25,14 +25,18 @@
 //    formSubmit=%D0%92%D1%8B%D0%B1%D1%80%D0%B0%D1%82%D1%8C+%D0%B2%D1%81%D1%91
 //    &
 //    formDoor%5B%5D=Findes можно выбрать все флажки
-
-//require_once 'DebugBlock.php';
-
+function EchoCheck($k,$v,$checkin='')
+{
+   echo '<input type="checkbox" '.$checkin.' name="formDoor[]" '.'onclick="isCheckClick()" '.
+   'value="'.$k.'"/>'.$k.' - '.$v.
+   //'<span id="sp'.$k.'">'.'</span>'.
+   '<br>';
+}
 function FunctionsCheckbox($aElements,$isCheck=ToTest,
    $cMess='Укажите прототипы объектов в TJsTools, которые следует протестировать')
 {
    $Result = true;
-   echo '<form action="'.htmlentities($_SERVER['PHP_SELF']).'" method="post">';
+   echo '<form action="'.htmlentities($_SERVER['PHP_SELF']).'" method="post" id="myform">';
    echo '<p>'.$cMess.'?<br><br>';
    echo '<input type="submit" name="formSubmit" value="'.ChooseAll.'"/><br><br>';
    foreach($aElements as $k=>$v)
@@ -41,23 +45,23 @@ function FunctionsCheckbox($aElements,$isCheck=ToTest,
       {
          if (!($k=='MakeCookie')) 
          {
-            echo '<input type="checkbox" checked name="formDoor[]" value="'.$k.'"/>'.$k.' - '.$v.'<br>';
+            EchoCheck($k,$v,'checked');
          }
          else
          {
-            echo '<input type="checkbox" name="formDoor[]" value="'.$k.'"/>'.$k.' - '.$v.'<br>';
+            EchoCheck($k,$v);
          }
       }
       else
       {
-         echo '<input type="checkbox" name="formDoor[]" value="'.$k.'"/>'.$k.' - '.$v.'<br>';
+         EchoCheck($k,$v);
       }
    }
    echo '</p>';
    echo '<input type="submit" name="formSubmit" value="'.ToTest.'"/><br><br>';
    echo '</form>';
    
-   isMakeCookie($aElements);
+   //isMakeCookie($aElements);
 
    
    return $Result;
@@ -88,9 +92,9 @@ function isMakeCookie($aPhpPrown)
    if(!empty($_POST['formDoor']))
    {
       // Подбираем выбранные чекбоксы
-      $aDoor=$_POST['formDoor'];
-      $n=count($aDoor); $i=0;
-      echo '$n='.$n.'<br>';
+      //$aDoor=$_POST['formDoor'];
+      //$n=count($aDoor); $i=0;
+      //echo '$n='.$n.'<br>';
       // Перебираем список чекбоксов,
       // чтобы найти среди них выбранные
       foreach($aPhpPrown as $k=>$v)
@@ -102,8 +106,8 @@ function isMakeCookie($aPhpPrown)
          {
             if (!($k=='MakeCookie')) 
             {
-               //Alert('Тест с MakeCookie запускать нельзя, так выбраны и другие '.
-               //'модули для тестирования');
+               prown\Alert('Тест с MakeCookie запускать нельзя, так выбраны'.
+               'и другие функции для тестирования');
                $Result=true;
                break;
             }
@@ -152,7 +156,6 @@ function MakeCookieTest($NumTest=0)
 {
    $Result='None';
    $ModeError=rvsCurrentPos;
-   
    if ($NumTest==1)
    {
       //$Result=prown\MakeCookie('cookTypical','Типичный',null,null,null,null,$ModeError);
@@ -160,14 +163,10 @@ function MakeCookieTest($NumTest=0)
       $Result=prown\MakeCookie('cookTypeStr','Типичный');
       $Result=prown\MakeCookie('cookTypeInt',137);
       $Result=prown\MakeCookie('cookTypeFloat',3.1415926);
-      $Result=prown\MakeCookie('cookTypeFloat',3.1415926);
       $Result=prown\MakeCookie('cookTypeZero',0,tInt,true);
    }
    return $Result;  
 }
-
-
-
 // ****************************************************************************
 // *      Проверить выбор флажков, указывающих на элементы списка, которые    *
 // *                            следует протестировать                        *

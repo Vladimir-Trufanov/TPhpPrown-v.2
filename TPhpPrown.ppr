@@ -87,7 +87,10 @@ TPhpPrown
 [Open project files]
 0=www\index.php
 1=TPhpPrownTests\MakeCookie_test.php
-2=www\Main.php
+2=TPhpPrown\ViewGlobal.php
+3=TPhpPrown\DebugBlock.php
+4=www\Main.php
+5=TPhpPrownTests\FunctionsBlock.php
 [Selected Project Files]
 Main=
 Selected=www\Main.php
@@ -95,8 +98,17 @@ Selected=www\Main.php
 TopLine=15
 Caret=1,1
 [TPhpPrownTests\MakeCookie_test.php]
-TopLine=5
+TopLine=11
 Caret=1,1
+[TPhpPrown\ViewGlobal.php]
+TopLine=41
+Caret=1,41
+[TPhpPrown\DebugBlock.php]
+TopLine=1
+Caret=39,21
 [www\Main.php]
-TopLine=40
-Caret=15,68
+TopLine=45
+Caret=39,68
+[TPhpPrownTests\FunctionsBlock.php]
+TopLine=13
+Caret=51,30
