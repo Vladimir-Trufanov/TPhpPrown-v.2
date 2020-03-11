@@ -67,24 +67,20 @@ echo('$s_CookTrack='.$s_CookTrack.'<br>');
          console.log(up_names[i].outerHTML); 
          console.log(up_names[i].value); 
       }
-
-
-      //console.log('messa');
-      /*
-    var str = document.getElementById("email").value;
-    var status = document.getElementById("status");
-    var re = /^[^\s()<>@,;:\/]+@\w[\w\.-]+\.[a-z]{2,}$/i;
-    if (re.test(str)) status.innerHTML = "Адрес правильный";
-      else status.innerHTML = "Адрес неверный";
-    if(isEmpty(str)) status.innerHTML = "Поле пустое";
-    */
+      
+      var checked=[];
+      var count=up_names.length;
+      var i = 0;
+      while (i<count) 
+      {
+         if (up_names[i].checked) 
+         {
+            checked.push(i);
+         }
+      }
+      //console.log(checked); 
    }
-   /*
-   function isEmpty(str){
-    return (str == null) || (str.length == 0);
-   }
-   */
-  </script>
+   </script>
  
 
 
