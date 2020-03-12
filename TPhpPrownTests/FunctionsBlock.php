@@ -27,9 +27,9 @@
 //    formDoor%5B%5D=Findes можно выбрать все флажки
 function EchoCheck($k,$v,$checkin='')
 {
-   echo '<input type="checkbox" '.$checkin.' name="formDoor[]" '.'onclick="isCheckClick()" '.
-   'value="'.$k.'"/>'.$k.' - '.$v.
-   //'<span id="sp'.$k.'">'.'</span>'.
+   echo '<input type="checkbox" id="'.$k.'" value="'.$k.'" '.$checkin.' '.
+   'name="formDoor[]" onclick="isCheckClick()">'.$k.' - '.$v.
+   '<span id="sp'.$k.'">'.''.'</span>'.
    '<br>';
 }
 function FunctionsCheckbox($aElements,$isCheck=ToTest,

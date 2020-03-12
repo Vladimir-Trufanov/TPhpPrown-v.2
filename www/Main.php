@@ -53,34 +53,49 @@ echo('$s_CookTrack='.$s_CookTrack.'<br>');
 <script>
    function isCheckClick() 
    {
-      //var parentDOM=document.getElementById("myform");
-      //var test=parentDOM.getElementsByName("formDoor[]");  //test is not target element
-        //console.log(test);//HTMLCollection[1]
+      var mcChecked=
+      '<input type="checkbox" id="MakeCookie" value="MakeCookie" checked name="formDoor[]" onclick="isCheckClick()">';
+      var mcNoCheck=
+      '<input type="checkbox" id="MakeCookie" value="MakeCookie1" name="formDoor[]" onclick="isCheckClick()">';
+
+
+      // Выбираем все элементы с именем "formDoor[]"
       var up_names = document.getElementsByName("formDoor[]");
-      console.log(up_names.length); // displays "INPUT"
-      
+      // Определяем, сколько из них чекбоксов c выбранным чекбоксом
+      var count=0;
       for (let i = 0; i < up_names.length; i++) 
       {
-         console.log(up_names[i].tagName);  
-         //console.log(up_names[i].nodeName); 
-         //console.log(up_names[i].innerHTML); 
-         console.log(up_names[i].outerHTML); 
-         console.log(up_names[i].value); 
+         if (up_names[i].tagName=='INPUT')
+         {
+            if (up_names[i].type=='checkbox') 
+            {
+               if (up_names[i].checked) count++;
+            }
+         }  
       }
-      
-      var checked=[];
-      var count=up_names.length;
+      // Находим Определяем, включен ли чекбокс у MakeCookie
+      var Result=false;
       var i = 0;
-      while (i<count) 
+      while (i<up_names.length) 
       {
          if (up_names[i].checked) 
          {
-            checked.push(i);
+            if (up_names[i].value=="MakeCookie")
+            {
+            
+               //console.log(MakeCookie.outerHTML);
+               //MakeCookie.outerHTML=mcNoCheck;
+               MakeCookie.checked=false;
+               //console.log(MakeCookie.outerHTML);
+               spMakeCookie.innerHTML="<br>MakeCokie должен быть выбран отдельно от всех!"
+               Result=true;
+               break;
+            }
          }
          i++;
       }
-      console.log(checked); 
-      console.log(checked.length); 
+      if (Result) console.log('true'); else console.log('false'); 
+      return Result;
    }
    </script>
  
