@@ -29,7 +29,7 @@ function EchoCheck($k,$v,$checkin='')
 {
    echo '<input type="checkbox" id="'.$k.'" value="'.$k.'" '.$checkin.' '.
    'name="formDoor[]" onclick="isCheckClick()">'.$k.' - '.$v.
-   '<span id="sp'.$k.'">'.''.'</span>'.
+   '<span style="color: red" id="sp'.$k.'">'.''.'</span>'.
    '<br>';
 }
 function FunctionsCheckbox($aElements,$isCheck=ToTest,
@@ -60,10 +60,6 @@ function FunctionsCheckbox($aElements,$isCheck=ToTest,
    echo '</p>';
    echo '<input type="submit" name="formSubmit" value="'.ToTest.'"/><br><br>';
    echo '</form>';
-   
-   //isMakeCookie($aElements);
-
-   
    return $Result;
 }
 // ****************************************************************************
@@ -82,39 +78,6 @@ function isChecked($chkname,$value)
       }
    }
    return false;
-}
-// ****************************************************************************
-// *           Проверить, можно ли выбирать тестирование MakeCookie           *
-// ****************************************************************************
-function isMakeCookie($aPhpPrown)
-{
-   $Result=true;
-   if(!empty($_POST['formDoor']))
-   {
-      // Подбираем выбранные чекбоксы
-      //$aDoor=$_POST['formDoor'];
-      //$n=count($aDoor); $i=0;
-      //echo '$n='.$n.'<br>';
-      // Перебираем список чекбоксов,
-      // чтобы найти среди них выбранные
-      foreach($aPhpPrown as $k=>$v)
-      {
-         // echo '$k='.$k.'<br>';
-         // Если среди быбранных чекбоксов есть отличные от MakeCockie,
-         // то считаем, что тест с MakeCookie запускать нельзя
-         if(isChecked('formDoor',$k))
-         {
-            if (!($k=='MakeCookie')) 
-            {
-               prown\Alert('Тест с MakeCookie запускать нельзя, так выбраны'.
-               'и другие функции для тестирования');
-               $Result=true;
-               break;
-            }
-         }
-      }
-   }
-   return $Result;
 }
 // ****************************************************************************
 // *       Сформировать оболочку для тестирования JavaScript сценариев        *

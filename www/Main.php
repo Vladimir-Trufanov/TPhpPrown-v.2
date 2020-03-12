@@ -53,12 +53,6 @@ echo('$s_CookTrack='.$s_CookTrack.'<br>');
 <script>
    function isCheckClick() 
    {
-      var mcChecked=
-      '<input type="checkbox" id="MakeCookie" value="MakeCookie" checked name="formDoor[]" onclick="isCheckClick()">';
-      var mcNoCheck=
-      '<input type="checkbox" id="MakeCookie" value="MakeCookie1" name="formDoor[]" onclick="isCheckClick()">';
-
-
       // Выбираем все элементы с именем "formDoor[]"
       var up_names = document.getElementsByName("formDoor[]");
       // Определяем, сколько из них чекбоксов c выбранным чекбоксом
@@ -73,36 +67,37 @@ echo('$s_CookTrack='.$s_CookTrack.'<br>');
             }
          }  
       }
-      // Находим Определяем, включен ли чекбокс у MakeCookie
+      // Находим MakeCookie и не даем его включать
+      // одновременно с другими чекбоксами
       var Result=false;
       var i = 0;
       while (i<up_names.length) 
       {
-         if (up_names[i].checked) 
+         if (up_names[i].value=="MakeCookie")
          {
-            if (up_names[i].value=="MakeCookie")
+            // Если MakeCokie включен, то выводим предупреждение
+            // и выключаем чекбокс
+            if (up_names[i].checked) 
             {
-            
-               //console.log(MakeCookie.outerHTML);
-               //MakeCookie.outerHTML=mcNoCheck;
-               MakeCookie.checked=false;
-               //console.log(MakeCookie.outerHTML);
-               spMakeCookie.innerHTML="<br>MakeCokie должен быть выбран отдельно от всех!"
-               Result=true;
-               break;
+               if (count>1)
+               {
+                  MakeCookie.checked=false;
+                  spMakeCookie.innerHTML="<br>MakeCokie должен быть выбран отдельно от всех!";
+                  Result=true;
+               }
             }
+            // Если MakeCokie выключен, сбрасываем предупреждение
+            else
+            {
+               spMakeCookie.innerHTML="";
+            }
+            break
          }
          i++;
       }
-      if (Result) console.log('true'); else console.log('false'); 
       return Result;
    }
-   </script>
- 
-
-
-
-
+</script>
 
 </head>
 <body>

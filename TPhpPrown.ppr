@@ -91,6 +91,7 @@ TPhpPrown
 3=TPhpPrown\DebugBlock.php
 4=www\Main.php
 5=TPhpPrownTests\FunctionsBlock.php
+6=www\log.txt
 [Selected Project Files]
 Main=
 Selected=www\Main.php
@@ -107,8 +108,11 @@ Caret=1,41
 TopLine=1
 Caret=39,21
 [www\Main.php]
-TopLine=71
-Caret=18,76
+TopLine=109
+Caret=1,101
 [TPhpPrownTests\FunctionsBlock.php]
-TopLine=27
-Caret=37,48
+TopLine=62
+Caret=1,82
+[www\log.txt]
+TopLine=33
+Caret=1,36
