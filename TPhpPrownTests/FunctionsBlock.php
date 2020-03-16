@@ -36,7 +36,7 @@ function FunctionsCheckbox($aElements,$isCheck=ToTest,
    $cMess='Укажите прототипы объектов в TJsTools, которые следует протестировать')
 {
    $Result = true;
-   echo '<form action="'.htmlentities($_SERVER['PHP_SELF']).'" method="post" id="myform">';
+   echo '<form action="'.htmlentities($_SERVER['PHP_SELF']).'" method="get" id="myform">';
    echo '<p>'.$cMess.'?<br><br>';
    echo '<input type="submit" name="formSubmit" value="'.ChooseAll.'"/><br><br>';
    foreach($aElements as $k=>$v)
@@ -67,9 +67,9 @@ function FunctionsCheckbox($aElements,$isCheck=ToTest,
 // ****************************************************************************
 function isChecked($chkname,$value)
 {
-   if(!empty($_POST[$chkname]))
+   if(!empty($_REQUEST[$chkname]))
    {
-      foreach($_POST[$chkname] as $chkval)
+      foreach($_REQUEST[$chkname] as $chkval)
       {
          if($chkval == $value)
          {
@@ -122,15 +122,15 @@ function MakeTest($SiteRoot,$aPhpPrown,$lang='PHP')
 {
    $SiteAbove=GetAbove($SiteRoot);       // Надсайтовый каталог
    $SiteHost=GetAbove($SiteAbove);       // Каталог хостинга
-   if(isset($_POST['formSubmit'])) 
+   if(isset($_REQUEST['formSubmit'])) 
    {
-      if(empty($_POST['formDoor']))
+      if(empty($_REQUEST['formDoor']))
       {
          echo("<p>Элементы для тестирования Вами не выбраны!</p>\n</body>\n</html>\n");
       }
       else
       {
-         $aDoor=$_POST['formDoor'];
+         $aDoor=$_REQUEST['formDoor'];
          $N=count($aDoor);
          // Запускаем тестирование и трассировку выбранных элементов
          if ($lang=='PHP') require_once($SiteHost.'/TSimpleTest/autorun.php');

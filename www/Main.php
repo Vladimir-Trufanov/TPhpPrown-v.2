@@ -30,8 +30,6 @@ require_once $TPhpPrown."/TPhpPrownTests/MakeCookie_test_I.php";
 // и делаем подготовку текущего прохода этого теста
 $s_CookTrack=prown\MakeSession('CookTrack',0,tInt,true);      
 MakeCookieTest($s_CookTrack);
-//prown\ViewGlobal(avgWORKSPACE,$_WORKSPACE);
-echo('$s_CookTrack='.$s_CookTrack.'<br>');
 
 ?>
 <!DOCTYPE html>

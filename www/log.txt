@@ -40,3 +40,4 @@ Stack trace:
   thrown in C:\TPhpPrown\TPhpPrownTests\FunctionsBlock.php on line 106
 [09-Mar-2020 17:39:03 Asia/Kuwait] PHP Fatal error:  require_once(): Failed opening required 'DebugBlock.php' (include_path='.;C:\php\pear') in C:\TPhpPrown\TPhpPrownTests\FunctionsBlock.php on line 29
 [09-Mar-2020 18:01:25 Asia/Kuwait] PHP Fatal error:  require_once(): Failed opening required 'DebugBlock.php' (include_path='.;C:\php\pear') in C:\TPhpPrown\TPhpPrownTests\FunctionsBlock.php on line 29
+[16-Mar-2020 18:51:01 Asia/Kuwait] PHP Parse error:  syntax error, unexpected end of file in C:\TPhpPrown\TPhpPrownTests\MakeCookie_test_I.php on line 92

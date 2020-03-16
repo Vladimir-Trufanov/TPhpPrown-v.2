@@ -33,6 +33,7 @@ class test_MakeCookie extends UnitTestCase
       // Выбираем данные сессии для трассировки и тестирования очередного прохода
       if (IsSet($_SESSION))
       {
+         /*
          // Регистрируем очередной проход
          if (IsSet($_SESSION['CookTrack']))
          {
@@ -40,6 +41,7 @@ class test_MakeCookie extends UnitTestCase
             prown\MakeSession('CookTrack',$s_CookTrack,tInt);     
             echo 'CookTrack='.$s_CookTrack.'<br>';
          }
+         */
          // Вытаскиваем данные о ранее выведенных сообщениях
          if (IsSet($_SESSION['CookMessa']))
          {
@@ -68,8 +70,10 @@ class test_MakeCookie extends UnitTestCase
       MakeTestMessage(
          '$string="1958"; $Result=\prown\MakeType($string,tInt); ',
          'Преобразование строчного "1958" к целому 1958',70);
+      
+      /*
       // Если все проходы завершены, то останавливаем перезагрузку страниц
-      if (($s_CookTrack>4)||($s_CookTrack<0))
+      if (($s_CookTrack>3)||($s_CookTrack<0))
       {
             $s_CookTrack=0;  
             prown\MakeSession('CookTrack',$s_CookTrack,tInt);     
@@ -78,7 +82,19 @@ class test_MakeCookie extends UnitTestCase
       // Перезагружаем страницу для нового прохода 
       else
       {
+         //if ($_SERVER['HTTP_HOST']=='kwinflat.ru')
+         //{
+            //echo "Location: https://".$_SERVER['HTTP_HOST'].$page;
+            //Header("Location: https://".$_SERVER['HTTP_HOST'].$page);
+         //}
+         //else 
+         //{
+            $page="/index.php";
+            echo "Location: http://".$_SERVER['HTTP_HOST'].$page;
+            //Header("Location: http://".$_SERVER['HTTP_HOST'].$page);
+         //}
       }
+      */
   }
 }
 // **************************************************** MakeCookie_test.php ***
