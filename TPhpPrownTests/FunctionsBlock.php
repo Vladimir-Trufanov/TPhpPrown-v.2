@@ -113,24 +113,6 @@ function LeadTest()
 <?php
 }
 // ****************************************************************************
-// *                  Задать очередную порцию кукисов для теста               *
-// ****************************************************************************
-function MakeCookieTest($NumTest=0)
-{
-   $Result='None';
-   $ModeError=rvsCurrentPos;
-   if ($NumTest==1)
-   {
-      //$Result=prown\MakeCookie('cookTypical','Типичный',null,null,null,null,$ModeError);
-      // Обычное задание кукиса через имя и значение
-      $Result=prown\MakeCookie('cookTypeStr','Типичный');
-      $Result=prown\MakeCookie('cookTypeInt',137);
-      $Result=prown\MakeCookie('cookTypeFloat',3.1415926);
-      $Result=prown\MakeCookie('cookTypeZero',0,tInt,true);
-   }
-   return $Result;  
-}
-// ****************************************************************************
 // *      Проверить выбор флажков, указывающих на элементы списка, которые    *
 // *                            следует протестировать                        *
 // ****************************************************************************

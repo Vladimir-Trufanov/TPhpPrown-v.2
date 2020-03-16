@@ -17,7 +17,7 @@ Extensions=*.*
 [Project tree]
 TPhpPrown
 	+TPhpPrown
-		+TPhpPrown
+		-TPhpPrown
 			-WorkSpace
 				TPhpPrown\WorkSpace\getSiteDevice.php
 				TPhpPrown\WorkSpace\iniWorkSpace.php
@@ -62,11 +62,10 @@ TPhpPrown
 			TPhpPrownTests\iniWorkSpace_test.php
 			TPhpPrownTests\isCalcInBrowser_test.php
 			TPhpPrownTests\MakeCookie_test.php
+			TPhpPrownTests\MakeCookie_test_I.php
 			TPhpPrownTests\MakeType_test.php
 			TPhpPrownTests\MakeUserError_test.php
-		+www
-			-WorkSpace
-				www\WorkSpace\iniWorkSpace.php
+		-www
 			www\89.gif
 			www\favicon.ico
 			www\index.php
@@ -88,31 +87,23 @@ TPhpPrown
 0=www\index.php
 1=TPhpPrownTests\MakeCookie_test.php
 2=TPhpPrown\ViewGlobal.php
-3=TPhpPrown\DebugBlock.php
-4=www\Main.php
-5=TPhpPrownTests\FunctionsBlock.php
-6=www\log.txt
+3=www\Main.php
+4=TPhpPrownTests\MakeCookie_test_I.php
 [Selected Project Files]
 Main=
-Selected=www\Main.php
+Selected=TPhpPrownTests\MakeCookie_test.php
 [www\index.php]
 TopLine=21
 Caret=1,1
 [TPhpPrownTests\MakeCookie_test.php]
-TopLine=11
-Caret=1,1
+TopLine=37
+Caret=14,54
 [TPhpPrown\ViewGlobal.php]
 TopLine=41
 Caret=1,41
-[TPhpPrown\DebugBlock.php]
-TopLine=1
-Caret=39,21
 [www\Main.php]
-TopLine=109
-Caret=1,101
-[TPhpPrownTests\FunctionsBlock.php]
-TopLine=62
-Caret=1,82
-[www\log.txt]
-TopLine=33
-Caret=1,36
+TopLine=19
+Caret=1,32
+[TPhpPrownTests\MakeCookie_test_I.php]
+TopLine=16
+Caret=9,24
