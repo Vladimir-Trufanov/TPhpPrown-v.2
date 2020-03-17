@@ -98,8 +98,8 @@ Selected=TPhpPrownTests\MakeCookie_test_I.php
 TopLine=21
 Caret=1,1
 [TPhpPrownTests\MakeCookie_test.php]
-TopLine=1
-Caret=15,42
+TopLine=18
+Caret=1,71
 [TPhpPrown\ViewGlobal.php]
 TopLine=41
 Caret=1,41
@@ -108,11 +108,11 @@ TopLine=17
 Caret=16,32
 Mark1=1,33
 [TPhpPrownTests\MakeCookie_test_I.php]
-TopLine=59
-Caret=2,117
-Mark1=1,30
+TopLine=17
+Caret=12,35
+Mark1=1,31
 [TPhpPrownTests\FunctionsBlock.php]
-TopLine=185
+TopLine=174
 Caret=23,174
 [TPhpPrown\MakeCookie.php]
 TopLine=1

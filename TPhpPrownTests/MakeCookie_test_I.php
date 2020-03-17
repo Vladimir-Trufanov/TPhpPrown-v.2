@@ -22,16 +22,20 @@ function MakeCookieTest()
    {
       // –егистрируем очередной проход
       $s_CookTrack=$_SESSION['CookTrack'];  
-      echo 'CookTrack='.$s_CookTrack.'<br>';
+      //echo 'CookTrack='.$s_CookTrack.'<br>';
       // Ќа нулевом проходе инициируем массив сообщений теста
+      // и задаем кукисы дл€ их проверки на 1 проходе
       if ($s_CookTrack==0)
       {
          $aCookMessa=array(); // создали пустой массив
          $s_CookMessa=prown\MakeSession('CookMessa',serialize($aCookMessa),tStr);      
-         echo 'CookMessa='.$s_CookMessa.'<br>';
+         //echo 'CookMessa='.$s_CookMessa.'<br>';
+         // «адаем обычные кукисы через им€ и значение
+         $Result=prown\MakeCookie('cookTypeStr','“ипичный');
+         $Result=prown\MakeCookie('cookTypeInt',137);
+         $Result=prown\MakeCookie('cookTypeFloat',3.1415926);
+         //$Result=prown\MakeCookie('cookTypeZero',0,tInt,true);
       }
-
-
       // √отовим следующий проход
       $s_CookTrack++;  
       prown\MakeSession('CookTrack',$s_CookTrack,tInt);     

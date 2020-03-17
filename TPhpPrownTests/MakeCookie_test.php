@@ -29,82 +29,43 @@ class test_MakeCookie extends UnitTestCase
       if (IsSet($_SESSION))
       {
          // Вытаскиваем данные о ранее выведенных сообщениях
-         if (IsSet($_SESSION['CookMessa']))
+         if (IsSet($_SESSION['CookMessa'])&&(IsSet($_SESSION['CookTrack'])))
          {
+            // Определяем проход 
+            $s_CookTrack=$_SESSION['CookTrack'];  
+            echo 'tectCookTrack='.$s_CookTrack.'<br>';
+            // Формируем массив ранее сформированных сообщений
             $s_CookMessa=$_SESSION['CookMessa'];  
             echo 'CookMessa='.$s_CookMessa.'<br>';
-            // Формируем массив сообщений
             $aCookMessa=unserialize($s_CookMessa);
-            //$CookCount=count($aCookMessa);
-            // Определяем проход и закладываем его в сообщения
-            $s_CookTrack=$_SESSION['CookTrack'];  
-            //$aCookMessa[count($aCookMessa)]='--- '.$s_CookTrack.' проход ---'; 
-            //$aCookMessa[count($aCookMessa)]=''; 
-
-            
-            
-            $aCookMessa[count($aCookMessa)] = count($aCookMessa).': первый левый'; 
-            $aCookMessa[count($aCookMessa)] = count($aCookMessa).': первый ghfdsq'; 
+            // 
+            $CookCount=count($aCookMessa);
+            // Проводим тесты на первом проходе
+            if ($s_CookTrack==1)
+            {
+               $aCookMessa[count($aCookMessa)]='--- '.$s_CookTrack.' проход ---'; 
+               $aCookMessa[count($aCookMessa)]='';
+               //\prown\ViewGlobal(avgCOOKIE);
+               MakeTitle("MakeCookie");
+               $string='1958';
+               $Result=\prown\MakeType($string,tInt);
+               $this->assertEqual($Result,1958);
+               $this->assertNotEqual($Result,'1959');
+               // Закладываем сообщение  
+               $aCookMessa[count($aCookMessa)]=
+                  '$string="1958"; $Result=\prown\MakeType($string,tInt); '; 
+               $aCookMessa[count($aCookMessa)]=
+                  'Преобразование строчного "1958" к целому 1958'; 
+            }
+            // Фиксируем новое состояние списка сообщений
             $s_CookMessa=prown\MakeSession('CookMessa',serialize($aCookMessa),tStr);      
-
-            
-            
-
-       
-   
-   
-   
-      \prown\ViewGlobal(avgCOOKIE);
-      MakeTitle("MakeCookie");
-      $string='1958';
-      $Result=\prown\MakeType($string,tInt);
-      $this->assertEqual($Result,1958);
-      $this->assertNotEqual($Result,'1959');  
-      MakeTestMessage(
-         '$string="1958"; $Result=\prown\MakeType($string,tInt); ',
-         'Преобразование строчного "1958" к целому 1958',70);
-      
-      // Выводим все накопленные сообщения
-      for ($i=0; $i<count($aCookMessa); $i=$i+2)
-      {
-         //echo $i.': '.$aCookMessa[$i].'<br>';
-         MakeTestMessage($aCookMessa[$i],$aCookMessa[$i+1],70);
-      } 
-      
-      
-      
-      
-      
-      
-      
-      /*
-      // Если все проходы завершены, то останавливаем перезагрузку страниц
-      if (($s_CookTrack>3)||($s_CookTrack<0))
-      {
-            $s_CookTrack=0;  
-            prown\MakeSession('CookTrack',$s_CookTrack,tInt);     
-            echo 'STOP CookTrack='.$s_CookTrack.'<br>';
-      }
-      // Перезагружаем страницу для нового прохода 
-      else
-      {
-         //if ($_SERVER['HTTP_HOST']=='kwinflat.ru')
-         //{
-            //echo "Location: https://".$_SERVER['HTTP_HOST'].$page;
-            //Header("Location: https://".$_SERVER['HTTP_HOST'].$page);
-         //}
-         //else 
-         //{
-            $page="/index.php";
-            echo "Location: http://".$_SERVER['HTTP_HOST'].$page;
-            //Header("Location: http://".$_SERVER['HTTP_HOST'].$page);
-         //}
-      }
-      */
+            // Выводим все накопленные сообщения
+            for ($i=0; $i<count($aCookMessa); $i=$i+2)
+            {
+               MakeTestMessage($aCookMessa[$i],$aCookMessa[$i+1],70);
+            } 
          }
       }
-
-
-  }
+   }
 }
 // **************************************************** MakeCookie_test.php ***
