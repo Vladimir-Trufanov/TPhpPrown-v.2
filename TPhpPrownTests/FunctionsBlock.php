@@ -36,7 +36,7 @@ function FunctionsCheckbox($aElements,$isCheck=ToTest,
    $cMess='Укажите прототипы объектов в TJsTools, которые следует протестировать')
 {
    $Result = true;
-   echo '<form action="'.htmlentities($_SERVER['PHP_SELF']).'" method="get" id="myform">';
+   echo '<form action="'.htmlentities($_SERVER['PHP_SELF']).'" method="post" id="myform">';
    echo '<p>'.$cMess.'?<br><br>';
    echo '<input type="submit" name="formSubmit" value="'.ChooseAll.'"/><br><br>';
    foreach($aElements as $k=>$v)

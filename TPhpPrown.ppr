@@ -17,7 +17,7 @@ Extensions=*.*
 [Project tree]
 TPhpPrown
 	+TPhpPrown
-		-TPhpPrown
+		+TPhpPrown
 			-WorkSpace
 				TPhpPrown\WorkSpace\getSiteDevice.php
 				TPhpPrown\WorkSpace\iniWorkSpace.php
@@ -90,25 +90,30 @@ TPhpPrown
 3=www\Main.php
 4=TPhpPrownTests\MakeCookie_test_I.php
 5=TPhpPrownTests\FunctionsBlock.php
+6=TPhpPrown\MakeCookie.php
 [Selected Project Files]
 Main=
-Selected=TPhpPrownTests\FunctionsBlock.php
+Selected=TPhpPrownTests\MakeCookie_test_I.php
 [www\index.php]
 TopLine=21
 Caret=1,1
 [TPhpPrownTests\MakeCookie_test.php]
-TopLine=33
-Caret=12,44
+TopLine=1
+Caret=15,42
 [TPhpPrown\ViewGlobal.php]
 TopLine=41
 Caret=1,41
 [www\Main.php]
 TopLine=17
-Caret=22,35
+Caret=16,32
 Mark1=1,33
 [TPhpPrownTests\MakeCookie_test_I.php]
-TopLine=32
-Caret=13,60
+TopLine=59
+Caret=2,117
+Mark1=1,30
 [TPhpPrownTests\FunctionsBlock.php]
-TopLine=157
-Caret=26,133
+TopLine=185
+Caret=23,174
+[TPhpPrown\MakeCookie.php]
+TopLine=1
+Caret=78,8

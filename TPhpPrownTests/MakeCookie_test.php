@@ -3,45 +3,31 @@
 // PHP7/HTML5, EDGE/CHROME                          *** MakeCookie_test.php ***
 
 // ****************************************************************************
-// * TPhpPrown                        Преобразовать значение к заданному типу *
+// * TPhpPrown          Установить новое значение COOKIE в браузере, заменить *
+// *              этим значением соответствующее данное во внутреннем массиве *
+// *       $_COOKIE и установить новое значение переменной-кукиса в программе *
 // ****************************************************************************
 
 //                                                   Автор:       Труфанов В.Е.
 //                                                   Дата создания:  23.02.2020
-// Copyright © 2020 tve                              Посл.изменение: 23.02.2020
+// Copyright © 2020 tve                              Посл.изменение: 17.03.2020
 
 
 class test_MakeCookie extends UnitTestCase 
 {
-   // Преобразование строки к целому числу
    function test_MakeCookie_Incremental()
    {
-      require_once $_SERVER['DOCUMENT_ROOT'].'/iniWorkSpace.php';
-      $_WORKSPACE=iniWorkSpace();
-      
+      //require_once $_SERVER['DOCUMENT_ROOT'].'/iniWorkSpace.php';
+      //$_WORKSPACE=iniWorkSpace();
       /*
       $SiteHost=$_WORKSPACE[wsSiteHost];     // Каталог хостинга
       require_once $SiteHost."/TPhpPrown/TPhpPrown/ViewGlobal.php";
       //\prown\ViewGlobal(avgCOOKIE);
       */
-      
-      if (IsSet($_COOKIE['cookTypical']))
-      {
-         echo 'cookTypical='.$_COOKIE['cookTypical'].'<br>';
-      }
 
       // Выбираем данные сессии для трассировки и тестирования очередного прохода
       if (IsSet($_SESSION))
       {
-         /*
-         // Регистрируем очередной проход
-         if (IsSet($_SESSION['CookTrack']))
-         {
-            $s_CookTrack=$_SESSION['CookTrack']+1;  
-            prown\MakeSession('CookTrack',$s_CookTrack,tInt);     
-            echo 'CookTrack='.$s_CookTrack.'<br>';
-         }
-         */
          // Вытаскиваем данные о ранее выведенных сообщениях
          if (IsSet($_SESSION['CookMessa']))
          {
@@ -49,13 +35,20 @@ class test_MakeCookie extends UnitTestCase
             echo 'CookMessa='.$s_CookMessa.'<br>';
             // Формируем массив сообщений
             $aCookMessa=unserialize($s_CookMessa);
-            $CookCount=count($aCookMessa);
-            for ($i=0; $i<$CookCount; $i++)
-            {
-               echo $i.': '.$aCookMessa[$i].'<br>';
-            } 
-         }
-      }
+            //$CookCount=count($aCookMessa);
+            // Определяем проход и закладываем его в сообщения
+            $s_CookTrack=$_SESSION['CookTrack'];  
+            //$aCookMessa[count($aCookMessa)]='--- '.$s_CookTrack.' проход ---'; 
+            //$aCookMessa[count($aCookMessa)]=''; 
+
+            
+            
+            $aCookMessa[count($aCookMessa)] = count($aCookMessa).': первый левый'; 
+            $aCookMessa[count($aCookMessa)] = count($aCookMessa).': первый ghfdsq'; 
+            $s_CookMessa=prown\MakeSession('CookMessa',serialize($aCookMessa),tStr);      
+
+            
+            
 
        
    
@@ -70,6 +63,19 @@ class test_MakeCookie extends UnitTestCase
       MakeTestMessage(
          '$string="1958"; $Result=\prown\MakeType($string,tInt); ',
          'Преобразование строчного "1958" к целому 1958',70);
+      
+      // Выводим все накопленные сообщения
+      for ($i=0; $i<count($aCookMessa); $i=$i+2)
+      {
+         //echo $i.': '.$aCookMessa[$i].'<br>';
+         MakeTestMessage($aCookMessa[$i],$aCookMessa[$i+1],70);
+      } 
+      
+      
+      
+      
+      
+      
       
       /*
       // Если все проходы завершены, то останавливаем перезагрузку страниц
@@ -95,6 +101,10 @@ class test_MakeCookie extends UnitTestCase
          //}
       }
       */
+         }
+      }
+
+
   }
 }
 // **************************************************** MakeCookie_test.php ***

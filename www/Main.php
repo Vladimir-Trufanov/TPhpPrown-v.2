@@ -28,8 +28,8 @@ require_once $TPhpPrown."/TPhpPrownTests/MakeCookie_test_I.php";
 
 // Инициализируем сессионную переменную для возможного теста MakeCookie
 // и делаем подготовку текущего прохода этого теста
-$s_CookTrack=prown\MakeSession('CookTrack',0,tInt,true);      
-MakeCookieTest($s_CookTrack);
+prown\MakeSession('CookTrack',0,tInt,true);      
+MakeCookieTest();
 
 ?>
 <!DOCTYPE html>
