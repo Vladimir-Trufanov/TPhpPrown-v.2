@@ -17,7 +17,7 @@ Extensions=*.*
 [Project tree]
 TPhpPrown
 	+TPhpPrown
-		+TPhpPrown
+		-TPhpPrown
 			-WorkSpace
 				TPhpPrown\WorkSpace\getSiteDevice.php
 				TPhpPrown\WorkSpace\iniWorkSpace.php
@@ -62,6 +62,7 @@ TPhpPrown
 			TPhpPrownTests\iniWorkSpace_test.php
 			TPhpPrownTests\isCalcInBrowser_test.php
 			TPhpPrownTests\MakeCookie_test.php
+			TPhpPrownTests\MakeCookie_test_D.php
 			TPhpPrownTests\MakeCookie_test_I.php
 			TPhpPrownTests\MakeType_test.php
 			TPhpPrownTests\MakeUserError_test.php
@@ -86,34 +87,26 @@ TPhpPrown
 [Open project files]
 0=www\index.php
 1=TPhpPrownTests\MakeCookie_test.php
-2=TPhpPrown\ViewGlobal.php
-3=www\Main.php
-4=TPhpPrownTests\MakeCookie_test_I.php
-5=TPhpPrownTests\FunctionsBlock.php
-6=TPhpPrown\MakeCookie.php
+2=www\Main.php
+3=TPhpPrownTests\MakeCookie_test_I.php
+4=TPhpPrownTests\MakeCookie_test_D.php
 [Selected Project Files]
 Main=
-Selected=TPhpPrownTests\MakeCookie_test_I.php
+Selected=TPhpPrownTests\MakeCookie_test.php
 [www\index.php]
 TopLine=21
 Caret=1,1
 [TPhpPrownTests\MakeCookie_test.php]
-TopLine=18
-Caret=1,71
-[TPhpPrown\ViewGlobal.php]
-TopLine=41
-Caret=1,41
+TopLine=29
+Caret=1,44
+Mark1=1,19
 [www\Main.php]
-TopLine=17
-Caret=16,32
-Mark1=1,33
+TopLine=5
+Caret=1,28
+Mark1=1,34
 [TPhpPrownTests\MakeCookie_test_I.php]
-TopLine=17
-Caret=12,35
-Mark1=1,31
-[TPhpPrownTests\FunctionsBlock.php]
-TopLine=174
-Caret=23,174
-[TPhpPrown\MakeCookie.php]
+TopLine=27
+Caret=1,36
+[TPhpPrownTests\MakeCookie_test_D.php]
 TopLine=1
-Caret=78,8
+Caret=17,12

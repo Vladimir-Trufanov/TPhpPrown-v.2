@@ -2,54 +2,57 @@
 // PHP7/HTML5, EDGE/CHROME                        *** MakeCookie_test_I.php ***
 
 // ****************************************************************************
-// * TPhpPrown-test           Блок обслуживания перезапусков теста MakeCookie *
+// * TPhpPrown-test           Р‘Р»РѕРє РѕР±СЃР»СѓР¶РёРІР°РЅРёСЏ РїРµСЂРµР·Р°РїСѓСЃРєРѕРІ С‚РµСЃС‚Р° MakeCookie *
 // ****************************************************************************
 
-//                                                   Автор:       Труфанов В.Е.
-//                                                   Дата создания:  13.01.2019
-// Copyright © 2020 tve                              Посл.изменение: 17.03.2020
+//                                                   РђРІС‚РѕСЂ:       РўСЂСѓС„Р°РЅРѕРІ Р’.Р•.
+//                                                   Р”Р°С‚Р° СЃРѕР·РґР°РЅРёСЏ:  13.01.2019
+// Copyright В© 2020 tve                              РџРѕСЃР».РёР·РјРµРЅРµРЅРёРµ: 17.03.2020
 
 // ****************************************************************************
-// *                  Задать очередную порцию кукисов для теста               *
+// *                  Р—Р°РґР°С‚СЊ РѕС‡РµСЂРµРґРЅСѓСЋ РїРѕСЂС†РёСЋ РєСѓРєРёСЃРѕРІ РґР»СЏ С‚РµСЃС‚Р°               *
 // ****************************************************************************
 function MakeCookieTest()
 {
    $Result=true;
    $ModeError=rvsCurrentPos;
-   // Если выбрана MakeCookie и есть счетчик проходов MakeCookie, 
-   // то готовим кукисы текущего прохода и выполняем перезагрузку страницы
+   // Р•СЃР»Рё РІС‹Р±СЂР°РЅР° MakeCookie Рё РµСЃС‚СЊ СЃС‡РµС‚С‡РёРє РїСЂРѕС…РѕРґРѕРІ MakeCookie, 
+   // С‚Рѕ РіРѕС‚РѕРІРёРј РєСѓРєРёСЃС‹ С‚РµРєСѓС‰РµРіРѕ РїСЂРѕС…РѕРґР° Рё РІС‹РїРѕР»РЅСЏРµРј РїРµСЂРµР·Р°РіСЂСѓР·РєСѓ СЃС‚СЂР°РЅРёС†С‹
    if (isChecked('formDoor','MakeCookie')&&(IsSet($_SESSION['CookTrack']))) 
    {
-      // Регистрируем очередной проход
+      // Р РµРіРёСЃС‚СЂРёСЂСѓРµРј РѕС‡РµСЂРµРґРЅРѕР№ РїСЂРѕС…РѕРґ
       $s_CookTrack=$_SESSION['CookTrack'];  
-      //echo 'CookTrack='.$s_CookTrack.'<br>';
-      // На нулевом проходе инициируем массив сообщений теста
-      // и задаем кукисы для их проверки на 1 проходе
+      echo 'CookTrack='.$s_CookTrack.'<br>';
+      // РќР° РЅСѓР»РµРІРѕРј РїСЂРѕС…РѕРґРµ РёРЅРёС†РёРёСЂСѓРµРј РјР°СЃСЃРёРІ СЃРѕРѕР±С‰РµРЅРёР№ С‚РµСЃС‚Р°,
+      // РјР°СЃСЃРёРІ СЂРµР·СѓР»СЊС‚Р°С‚РѕРІ С‚РµСЃС‚РѕРІ (РїСЂРѕРІРµСЂРєР° РІСЃРµС… СЂРµР·СѓР»СЊС‚Р°С‚РѕРІ РґРµР»Р°РµС‚СЃСЏ РЅР° 
+      // РїРѕСЃР»РµРґРЅРµРј РїСЂРѕС…РѕРґРµ, С‡С‚РѕР±С‹ РІС‹СЃРІРµС‚РёС‚СЊ РІС‹РІРѕРґ)
+      // Рё Р·Р°РґР°РµРј РєСѓРєРёСЃС‹ РґР»СЏ РёС… РїСЂРѕРІРµСЂРєРё РЅР° 1 РїСЂРѕС…РѕРґРµ
       if ($s_CookTrack==0)
       {
-         $aCookMessa=array(); // создали пустой массив
+         $aCookMessa=array(); // СЃРѕР·РґР°Р»Рё РїСѓСЃС‚РѕР№ РјР°СЃСЃРёРІ
          $s_CookMessa=prown\MakeSession('CookMessa',serialize($aCookMessa),tStr);      
-         //echo 'CookMessa='.$s_CookMessa.'<br>';
-         // Задаем обычные кукисы через имя и значение
-         $Result=prown\MakeCookie('cookTypeStr','Типичный');
-         $Result=prown\MakeCookie('cookTypeInt',137);
-         $Result=prown\MakeCookie('cookTypeFloat',3.1415926);
-         //$Result=prown\MakeCookie('cookTypeZero',0,tInt,true);
+         $aEquals=array();    // СЃРѕР·РґР°Р»Рё РїСѓСЃС‚РѕР№ РјР°СЃСЃРёРІ
+         prown\MakeSession('Equals',serialize($aEquals),tStr);      
+         // Р—Р°РґР°РµРј РѕР±С‹С‡РЅС‹Рµ РєСѓРєРёСЃС‹ С‡РµСЂРµР· РёРјСЏ Рё Р·РЅР°С‡РµРЅРёРµ
+         $Result=prown\MakeCookie('cookTypeStr',cookStr);
+         $Result=prown\MakeCookie('cookTypeInt',cookInt);
+         $Result=prown\MakeCookie('cookTypeFloat',cookFloat);
+         $Result=prown\MakeCookie('cookTypeZero',cookZero,tInt,true);
       }
-      // Готовим следующий проход
+      // Р“РѕС‚РѕРІРёРј СЃР»РµРґСѓСЋС‰РёР№ РїСЂРѕС…РѕРґ
       $s_CookTrack++;  
       prown\MakeSession('CookTrack',$s_CookTrack,tInt);     
       echo 'CookTrack='.$s_CookTrack.'<br>';
       
-      // Если все проходы завершены, то останавливаем перезагрузку страниц
-      if (($s_CookTrack>3)||($s_CookTrack<0))
+      // Р•СЃР»Рё РІСЃРµ РїСЂРѕС…РѕРґС‹ Р·Р°РІРµСЂС€РµРЅС‹, С‚Рѕ РѕСЃС‚Р°РЅР°РІР»РёРІР°РµРј РїРµСЂРµР·Р°РіСЂСѓР·РєСѓ СЃС‚СЂР°РЅРёС†
+      if (($s_CookTrack>1)||($s_CookTrack<0))
       {
             $s_CookTrack=0;  
             prown\MakeSession('CookTrack',$s_CookTrack,tInt);     
             echo 'STOP CookTrack='.$s_CookTrack.'<br>';
       }
       else
-      // Перезагружаем страницу для нового прохода 
+      // РџРµСЂРµР·Р°РіСЂСѓР¶Р°РµРј СЃС‚СЂР°РЅРёС†Сѓ РґР»СЏ РЅРѕРІРѕРіРѕ РїСЂРѕС…РѕРґР° 
       {
          $page="/index.php?formDoor%5B%5D=MakeCookie&".
             "formSubmit=%D0%9F%D1%80%D0%BE%D1%82%D0%B5%D1%81%D1%82%".
@@ -60,27 +63,27 @@ function MakeCookieTest()
 
 
       /*
-     //$CookCount=count($aCookMessa);   // задали начальную размерность массива
+     //$CookCount=count($aCookMessa);   // Р·Р°РґР°Р»Рё РЅР°С‡Р°Р»СЊРЅСѓСЋ СЂР°Р·РјРµСЂРЅРѕСЃС‚СЊ РјР°СЃСЃРёРІР°
       //$s_CookCount=prown\MakeSession('CookCount',$CookCount,tInt); 
   
    }
 
-      // Выбираем данные сессии для трассировки и тестирования очередного прохода
+      // Р’С‹Р±РёСЂР°РµРј РґР°РЅРЅС‹Рµ СЃРµСЃСЃРёРё РґР»СЏ С‚СЂР°СЃСЃРёСЂРѕРІРєРё Рё С‚РµСЃС‚РёСЂРѕРІР°РЅРёСЏ РѕС‡РµСЂРµРґРЅРѕРіРѕ РїСЂРѕС…РѕРґР°
       if (IsSet($_SESSION))
       {
-         // Регистрируем очередной проход
+         // Р РµРіРёСЃС‚СЂРёСЂСѓРµРј РѕС‡РµСЂРµРґРЅРѕР№ РїСЂРѕС…РѕРґ
          if (IsSet($_SESSION['CookTrack']))
          {
             $s_CookTrack=$_SESSION['CookTrack']+1;  
             prown\MakeSession('CookTrack',$s_CookTrack,tInt);     
             echo 'CookTrack='.$s_CookTrack.'<br>';
          }
-         // Вытаскиваем данные о ранее выведенных сообщениях
+         // Р’С‹С‚Р°СЃРєРёРІР°РµРј РґР°РЅРЅС‹Рµ Рѕ СЂР°РЅРµРµ РІС‹РІРµРґРµРЅРЅС‹С… СЃРѕРѕР±С‰РµРЅРёСЏС…
          if (IsSet($_SESSION['CookMessa']))
          {
             $s_CookMessa=$_SESSION['CookMessa'];  
             echo 'CookMessa='.$s_CookMessa.'<br>';
-            // Формируем массив сообщений
+            // Р¤РѕСЂРјРёСЂСѓРµРј РјР°СЃСЃРёРІ СЃРѕРѕР±С‰РµРЅРёР№
             $aCookMessa=unserialize($s_CookMessa);
             $CookCount=count($aCookMessa);
             for ($i=0; $i<$CookCount; $i++)
@@ -97,21 +100,21 @@ function MakeCookieTest()
 
    
    /*
-   // Инициируем массив сообщений теста
+   // РРЅРёС†РёРёСЂСѓРµРј РјР°СЃСЃРёРІ СЃРѕРѕР±С‰РµРЅРёР№ С‚РµСЃС‚Р°
    if ($NumTest==0)
    {
-      $aCookMessa=array();             // создали пустой массив
-      //$aCookMessa[0] = 'первый левый'; 
-      //$aCookMessa[1] = 'первый ghfdsq'; 
+      $aCookMessa=array();             // СЃРѕР·РґР°Р»Рё РїСѓСЃС‚РѕР№ РјР°СЃСЃРёРІ
+      //$aCookMessa[0] = 'РїРµСЂРІС‹Р№ Р»РµРІС‹Р№'; 
+      //$aCookMessa[1] = 'РїРµСЂРІС‹Р№ ghfdsq'; 
       $s_CookMessa=prown\MakeSession('CookMessa',serialize($aCookMessa),tStr);      
-      //$CookCount=count($aCookMessa);   // задали начальную размерность массива
+      //$CookCount=count($aCookMessa);   // Р·Р°РґР°Р»Рё РЅР°С‡Р°Р»СЊРЅСѓСЋ СЂР°Р·РјРµСЂРЅРѕСЃС‚СЊ РјР°СЃСЃРёРІР°
       //$s_CookCount=prown\MakeSession('CookCount',$CookCount,tInt); 
    }
    elseif ($NumTest==1)
    {
-      //$Result=prown\MakeCookie('cookTypical','Типичный',null,null,null,null,$ModeError);
-      // Обычное задание кукиса через имя и значение
-      $Result=prown\MakeCookie('cookTypeStr','Типичный');
+      //$Result=prown\MakeCookie('cookTypical','РўРёРїРёС‡РЅС‹Р№',null,null,null,null,$ModeError);
+      // РћР±С‹С‡РЅРѕРµ Р·Р°РґР°РЅРёРµ РєСѓРєРёСЃР° С‡РµСЂРµР· РёРјСЏ Рё Р·РЅР°С‡РµРЅРёРµ
+      $Result=prown\MakeCookie('cookTypeStr','РўРёРїРёС‡РЅС‹Р№');
       $Result=prown\MakeCookie('cookTypeInt',137);
       $Result=prown\MakeCookie('cookTypeFloat',3.1415926);
       $Result=prown\MakeCookie('cookTypeZero',0,tInt,true);

@@ -59,6 +59,7 @@ class test_MakeType extends UnitTestCase
       $this->assertTrue($Result);
       $Result=\prown\MakeType(100,tBool);
       $this->assertTrue($Result);
+      $this->assertFalse($Result);
       MakeTestMessage(
          '$Result=\prown\MakeType(100,tBool); ',
          'Преобразования целого = 100 к логическому типу: True',70);
