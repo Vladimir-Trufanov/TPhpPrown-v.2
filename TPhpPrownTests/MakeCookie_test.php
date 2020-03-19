@@ -32,41 +32,30 @@ class test_MakeCookie extends UnitTestCase
          {
             // Определяем проход 
             $s_CookTrack=$_SESSION['CookTrack'];  
-            echo 'tectCookTrack='.$s_CookTrack.'<br>';
             // Формируем массив ранее сформированных сообщений
             $s_CookMessa=$_SESSION['CookMessa'];  
-            //echo 'CookMessa='.$s_CookMessa.'<br>';
             $aCookMessa=unserialize($s_CookMessa);
             // Формируем массив результатов тестов
             $s_Equals=$_SESSION['Equals'];  
-            echo 'Equals='.$s_Equals.'<br>';
             $aEquals=unserialize($s_Equals);
-            // 
-            //$CookCount=count($aCookMessa);
-            // Проводим тесты на первом проходе
-                  $this->assertEqual('1Типичный1','$i');
+            // Готовим данные первого прохода для проведения тестов 
             if ($s_CookTrack==1)
             {
-               $aCookMessa[count($aCookMessa)]='--- '.$s_CookTrack.' проход ---'; 
-               $aCookMessa[count($aCookMessa)]='';
-               //\prown\ViewGlobal(avgCOOKIE);
-               MakeTitle("MakeCookie");
-               if (IsSet($_COOKIE['cookTypeStr'])) 
-               {
-                  $aCookMessa[count($aCookMessa)]='MakeCookie';
-                  $aCookMessa[count($aCookMessa)]='MakeCookie';
-                  $i=$_COOKIE['cookTypeStr'];
-                  $this->assertEqual('1Типичный1',$i);
-                  //$aCookMessa[count($aCookMessa)]=$i;
-                  //$aCookMessa[count($aCookMessa)]=$i;
-               }
-               //$this->assertEqual('Типичный',$_COOKIE['cookTypeStr']);
-               
-               //$string='1958';
-               //$Result=\prown\MakeType($string,tInt);
-               //$this->assertEqual($Result,1958);
-               //$this->assertNotEqual($Result,'1959');
-               // Закладываем сообщение  
+               $pref='t11='; // В первом проходе первый тест
+               $aEquals[count($aEquals)]=$pref.strval(cookStr); 
+               $aEquals[count($aEquals)]=$pref.strval($_COOKIE['cookTypeStr']);
+               $pref='t12='; // В первом проходе второй тест
+               $aEquals[count($aEquals)]=$pref.strval(cookInt); 
+               $aEquals[count($aEquals)]=$pref.strval($_COOKIE['cookTypeInt']);
+               $pref='t13='; 
+               $aEquals[count($aEquals)]=$pref.strval(cookFloat); 
+               $aEquals[count($aEquals)]=$pref.strval($_COOKIE['cookTypeFloat']);
+               $pref='t14='; 
+               $aEquals[count($aEquals)]=$pref.strval(cookZero);                    // !!!
+               $aEquals[count($aEquals)]=$pref.strval($_COOKIE['cookTypeZero']);    // !!!
+               // Фиксируем данные для тестов
+               prown\MakeSession('Equals',serialize($aEquals),tStr);      
+               // Закладываем сообщение 1 прохода 
                $aCookMessa[count($aCookMessa)]=
                   "MakeCookie:cookTypeStr=Типичный,".
                   "cookTypeInt=137,cookTypeFloat=3.1415926 "; 
@@ -75,22 +64,23 @@ class test_MakeCookie extends UnitTestCase
             }
             // Фиксируем новое состояние списка сообщений
             $s_CookMessa=prown\MakeSession('CookMessa',serialize($aCookMessa),tStr);      
-            echo 'CookMess2='.$s_CookMessa.'<br>';
-            
             // На последнем нулевом проходе выводим все накопленные сообщения
             // и проводим тесты
             if ($s_CookTrack==0)
             {
+               MakeTitle("MakeCookie");
                // Выводим все накопленные сообщения
                for ($i=0; $i<count($aCookMessa); $i=$i+2)
                {
                   MakeTestMessage($aCookMessa[$i],$aCookMessa[$i+1],80);
                }
-               // Выводим все накопленные сообщения
-               //for ($i=0; $i<count($aCookMessa); $i=$i+2)
-               //{
-               //   MakeTestMessage($aCookMessa[$i],$aCookMessa[$i+1],80);
-               //}
+               // Выполняем все накопленные тесты
+               $s_Equals=$_SESSION['Equals'];  
+               $aEquals=unserialize($s_Equals);
+               for ($i=0; $i<count($aEquals); $i=$i+2)
+               {
+                   $this->assertEqual($aEquals[$i],$aEquals[$i+1]);
+               }
             } 
          }
       }

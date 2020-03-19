@@ -89,6 +89,7 @@ function _MakeCookie($Name,$Value,$Type,$Dur,$Options,$ModeError)
    $PhpVersion=$_WORKSPACE[wsPhpVersion]; 
    // Приводим кукис к заданному типу
    $Result=MakeType($Value,$Type);
+   // echo '$Value='.$Value.'['.$Type.'] --> $Result='.$Result;
    // Отмечаем, что "Невозможно привести кукис к указанному типу"
    if ($Result===null)
    {

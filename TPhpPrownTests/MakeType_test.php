@@ -8,7 +8,7 @@
 
 //                                                   Автор:       Труфанов В.Е.
 //                                                   Дата создания:  20.04.2019
-// Copyright © 2019 tve                              Посл.изменение: 24.05.2019
+// Copyright © 2019 tve                              Посл.изменение: 19.03.2020
 
 require_once $SiteHost."/TPhpPrown/TPhpPrown/iniConstMem.php";
 
@@ -25,10 +25,26 @@ class test_MakeType extends UnitTestCase
       MakeTestMessage(
          '$string="1958"; $Result=\prown\MakeType($string,tInt); ',
          'Преобразование строчного "1958" к целому 1958',70);
-  }
+      $string='3.1415926';
+      $Result=\prown\MakeType($string,tFloat);
+      $this->assertEqual($Result,3.1415926);
+      $this->assertNotEqual($Result,3.1415926+1959);  
+      MakeTestMessage(
+         '$string="3.1415926"; $Result=\prown\MakeType($string,tFloat); ',
+         'Преобразование строки "3.1415926" к числу 3.1415926',70);
+   }
    // Преобразование строки, как числа по неверному типу
    function test_MakeType_Inpos()
    {
+      /*
+      $string='1958';
+      $Result=\prown\MakeType($string,integer,rvsCurrentPos);
+      $this->assertEqual($Result,null);
+      SimpleMessage(); 
+      MakeTestMessage(
+         '$Result=\prown\MakeType("1958",135,rvsCurrentPos); ',
+         'Преобразование строчного "1958" к целому, но тип указан неверно',70);
+      */
       $string='1958';
       $Result=\prown\MakeType($string,135,rvsCurrentPos);
       $this->assertEqual($Result,null);
@@ -59,7 +75,6 @@ class test_MakeType extends UnitTestCase
       $this->assertTrue($Result);
       $Result=\prown\MakeType(100,tBool);
       $this->assertTrue($Result);
-      $this->assertFalse($Result);
       MakeTestMessage(
          '$Result=\prown\MakeType(100,tBool); ',
          'Преобразования целого = 100 к логическому типу: True',70);

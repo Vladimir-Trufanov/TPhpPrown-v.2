@@ -60,66 +60,7 @@ function MakeCookieTest()
          //echo "Location: http://".$_SERVER['HTTP_HOST'].$page;
          Header("Location: http://".$_SERVER['HTTP_HOST'].$page,true);
       }
-
-
-      /*
-     //$CookCount=count($aCookMessa);   // задали начальную размерность массива
-      //$s_CookCount=prown\MakeSession('CookCount',$CookCount,tInt); 
-  
    }
-
-      // Выбираем данные сессии для трассировки и тестирования очередного прохода
-      if (IsSet($_SESSION))
-      {
-         // Регистрируем очередной проход
-         if (IsSet($_SESSION['CookTrack']))
-         {
-            $s_CookTrack=$_SESSION['CookTrack']+1;  
-            prown\MakeSession('CookTrack',$s_CookTrack,tInt);     
-            echo 'CookTrack='.$s_CookTrack.'<br>';
-         }
-         // Вытаскиваем данные о ранее выведенных сообщениях
-         if (IsSet($_SESSION['CookMessa']))
-         {
-            $s_CookMessa=$_SESSION['CookMessa'];  
-            echo 'CookMessa='.$s_CookMessa.'<br>';
-            // Формируем массив сообщений
-            $aCookMessa=unserialize($s_CookMessa);
-            $CookCount=count($aCookMessa);
-            for ($i=0; $i<$CookCount; $i++)
-            {
-               echo $i.': '.$aCookMessa[$i].'<br>';
-            } 
-         }
-      }
-
-   */
-
-   }
-
-
-   
-   /*
-   // Инициируем массив сообщений теста
-   if ($NumTest==0)
-   {
-      $aCookMessa=array();             // создали пустой массив
-      //$aCookMessa[0] = 'первый левый'; 
-      //$aCookMessa[1] = 'первый ghfdsq'; 
-      $s_CookMessa=prown\MakeSession('CookMessa',serialize($aCookMessa),tStr);      
-      //$CookCount=count($aCookMessa);   // задали начальную размерность массива
-      //$s_CookCount=prown\MakeSession('CookCount',$CookCount,tInt); 
-   }
-   elseif ($NumTest==1)
-   {
-      //$Result=prown\MakeCookie('cookTypical','Типичный',null,null,null,null,$ModeError);
-      // Обычное задание кукиса через имя и значение
-      $Result=prown\MakeCookie('cookTypeStr','Типичный');
-      $Result=prown\MakeCookie('cookTypeInt',137);
-      $Result=prown\MakeCookie('cookTypeFloat',3.1415926);
-      $Result=prown\MakeCookie('cookTypeZero',0,tInt,true);
-   }
-   */
    return $Result;  
 }
 // ************************************************** MakeCookie_test_I.php ***
