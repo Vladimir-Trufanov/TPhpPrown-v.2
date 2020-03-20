@@ -37,7 +37,7 @@
 
 //require_once "MakeType.php";
 require_once "iniConstMem.php";
-require_once "DebugBlock.php";
+require_once "CommonPrown.php";
 
 define ('avgAll',    0);    // Все массивы
 define ('avgCOOKIE', 1);    // Массив значений $_COOKIE, переданных скрипту через HTTP Cookies

@@ -23,11 +23,11 @@ class test_iniWorkSpace extends UnitTestCase
       $this->assertEqual($SiteRoot,$_SERVER['DOCUMENT_ROOT']);
       MakeTestMessage('$_WORKSPACE[wsSiteRoot] = '.$_SERVER['DOCUMENT_ROOT'].' ',
          'Корневой каталог сайта определен верно!',$WidthLine);
-      $path=GetAbove($_SERVER['DOCUMENT_ROOT']);
+      $path=prown\getAbove($_SERVER['DOCUMENT_ROOT']);
       $this->assertEqual($_WORKSPACE[wsSiteAbove],$path);
       MakeTestMessage('$_WORKSPACE[wsSiteAbove] = '.$path.' ',
          'Надсайтовый каталог также определен верно!',$WidthLine);
-      $path=GetAbove(GetAbove($_SERVER['DOCUMENT_ROOT']));
+      $path=prown\getAbove(prown\getAbove($_SERVER['DOCUMENT_ROOT']));
       $this->assertEqual($_WORKSPACE[wsSiteHost],$path);
       MakeTestMessage('$_WORKSPACE[wsSiteHost] = '.$path.' ',
          'Каталог хостинга подтвержден!',$WidthLine);

@@ -25,8 +25,6 @@ TPhpPrown
 			TPhpPrown\CommonPrown.php
 			TPhpPrown\CtrlArray.php
 			TPhpPrown\CtrlNumber.php
-			TPhpPrown\DebugBlock.php
-			TPhpPrown\fil.php
 			TPhpPrown\Findes.php
 			TPhpPrown\getTranslit.php
 			TPhpPrown\iniConstMem.php
@@ -44,7 +42,6 @@ TPhpPrown
 			TPhpPrown\MakeSession.php
 			TPhpPrown\MakeType.php
 			TPhpPrown\MakeUserError.php
-			TPhpPrown\NoZero.php
 			TPhpPrown\Number1string.php
 			TPhpPrown\Number2string.php
 			TPhpPrown\PullArray.php
@@ -66,7 +63,7 @@ TPhpPrown
 			TPhpPrownTests\MakeCookie_test_I.php
 			TPhpPrownTests\MakeType_test.php
 			TPhpPrownTests\MakeUserError_test.php
-		+www
+		-www
 			www\89.gif
 			www\favicon.ico
 			www\index.php
@@ -93,43 +90,31 @@ TPhpPrown
 5=TPhpPrown\MakeType.php
 6=TPhpPrown\WorkSpace\iniWorkSpace.php
 7=TPhpPrown\CommonPrown.php
-8=TPhpPrown\DebugBlock.php
-9=TPhpPrownTests\FunctionsBlock.php
-10=TPhpPrown\NoZero.php
 [Selected Project Files]
 Main=
-Selected=TPhpPrown\NoZero.php
+Selected=www\Main.php
 [www\index.php]
-TopLine=21
+TopLine=13
 Caret=1,1
 [TPhpPrownTests\MakeCookie_test.php]
-TopLine=23
+TopLine=27
 Caret=91,55
 Mark1=1,19
 [www\Main.php]
-TopLine=23
-Caret=1,32
+TopLine=115
+Caret=44,123
 [TPhpPrownTests\MakeCookie_test_I.php]
-TopLine=25
+TopLine=10
 Caret=72,10
 [TPhpPrown\MakeCookie.php]
-TopLine=73
-Caret=77,142
+TopLine=114
+Caret=14,133
 [TPhpPrown\MakeType.php]
-TopLine=13
+TopLine=1
 Caret=71,29
 [TPhpPrown\WorkSpace\iniWorkSpace.php]
-TopLine=17
-Caret=1,1
+TopLine=19
+Caret=30,40
 [TPhpPrown\CommonPrown.php]
-TopLine=9
-Caret=78,26
-[TPhpPrown\DebugBlock.php]
-TopLine=37
-Caret=17,43
-[TPhpPrownTests\FunctionsBlock.php]
-TopLine=182
-Caret=1,185
-[TPhpPrown\NoZero.php]
-TopLine=3
-Caret=1,32
+TopLine=2
+Caret=23,23

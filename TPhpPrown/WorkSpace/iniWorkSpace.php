@@ -6,7 +6,7 @@
 
 //                                                   Автор:       Труфанов В.Е.
 //                                                   Дата создания:  31.01.2020
-// Copyright © 2018 TVE                              Посл.изменение: 15.02.2020
+// Copyright © 2020 TVE                              Посл.изменение: 20.03.2020
 
 // Определяем константы перечня элементов массива рабочего пространства ---
 define ("wsSiteRoot",    0);          // Корневой каталог сайта 
@@ -23,8 +23,9 @@ define ("wsPhpVersion",  8);          // Версия PHP
 function iniWorkSpace()
 {
    $SiteRoot=$_SERVER['DOCUMENT_ROOT'];  // Корневой каталог сайта
-   $SiteAbove=GetAbove($SiteRoot);       // Надсайтовый каталог
-   $SiteHost=GetAbove($SiteAbove);       // Каталог хостинга
+   $SiteAbove=Above($SiteRoot);          // Надсайтовый каталог
+   $SiteHost=Above($SiteAbove);          // Каталог хостинга
+   include_once($SiteHost.'/TPhpPrown/TPhpPrown/CommonPrown.php');
    include_once($SiteHost.'/TPhpPrown/TPhpPrown/WorkSpace/getSiteDevice.php');
    $_WORKSPACE=array
    (
@@ -36,55 +37,25 @@ function iniWorkSpace()
       wsTimeRequest => $_SERVER['REQUEST_TIME'],    
       wsRemoteAddr  => $_SERVER['REMOTE_ADDR'],    
       wsSiteName    => $_SERVER['HTTP_HOST'],    
-      wsPhpVersion  => getPhpVersion(),    
+      wsPhpVersion  => prown\getPhpVersion(),    
    );
    return $_WORKSPACE;
 }   
 // ****************************************************************************
 // *        По абсолютному пути каталога выделить вышестоящий каталог         *
-// *   (основное назначение - по абсолютному пути корневого каталога сайта    *
-// *          выбрать путь надсайтового каталога и каталога хостинга)         *
 // ****************************************************************************
-function getAbove($SiteRoot)
+function Above($SiteRoot)
 {
-    $Result=$SiteRoot;
-    //echo 'GetAboveuu])';
-    // Считаем, что отладка идет в Windows IIS,
-    // поэтому вначале ищем последний обратный слэш
-    $Point=strrpos($Result,'\\');
-    // Обратный слэш не найден, считаем что на хостинге (Apache,Linux)
-    if ($Point==0) 
+   $Result=$SiteRoot;
+   $Point=strrpos($Result,'\\');
+   if ($Point==0) 
 	{
-	    // echo "Обратного слэша не найдено!"."<br>";
-	    // Ищем последний слэш
-        $Point=strrpos($Result,'/');
-	    // Если слэш найден, выделяем надсайтовый каталог
-        if ($Point>0) {$Result=substr($SiteRoot,0,$Point);}
-    }
-    // Обратный слэш найден, выделяем надсайтовый каталог в Windows
-    else 
+      $Point=strrpos($Result,'/');
+      if ($Point>0) {$Result=substr($SiteRoot,0,$Point);}
+   }
+   else 
 	{
-        // echo "Обратный слэш "; echo "***".$Point."***"."<br>";
-	    $Result=substr($SiteRoot,0,$Point);
-    }
-    return $Result;
-}
-// ****************************************************************************
-// *                         Сформировать версию PHP                          *
-// ****************************************************************************
-function getPhpVersion()
-{
-   $Result=00000;
-   // PHP_VERSION_ID доступна в версиях PHP 5.2.7 и выше. Если
-   // наша версия ниже, можно ее сэмулировать
-   if (defined('PHP_VERSION_ID')) 
-   {
-      $Result=PHP_VERSION_ID;
-   } 
-   if (!defined('PHP_VERSION_ID')) 
-   { 
-      $version=explode('.',PHP_VERSION);
-      $Result=$version[0]*10000+$version[1]*100+$version[2];
+      $Result=substr($SiteRoot,0,$Point);
    }
    return $Result;
 }

@@ -120,8 +120,8 @@ function LeadTest()
 // http://dnzl.ru/view_post.php?id=182
 function MakeTest($SiteRoot,$aPhpPrown,$lang='PHP')
 {
-   $SiteAbove=GetAbove($SiteRoot);       // Надсайтовый каталог
-   $SiteHost=GetAbove($SiteAbove);       // Каталог хостинга
+   $SiteAbove=prown\getAbove($SiteRoot);       // Надсайтовый каталог
+   $SiteHost=prown\getAbove($SiteAbove);       // Каталог хостинга
    if(isset($_REQUEST['formSubmit'])) 
    {
       if(empty($_REQUEST['formDoor']))

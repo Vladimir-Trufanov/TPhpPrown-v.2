@@ -12,7 +12,6 @@
 // Подключаем файлы библиотеки прикладных модулей и рабочего пространства
 $TPhpPrown=$SiteHost.'/TPhpPrown';
 require_once $TPhpPrown."/TPhpPrown/CommonPrown.php";
-require_once $TPhpPrown."/TPhpPrown/DebugBlock.php";
 require_once $TPhpPrown."/TPhpPrown/Findes.php";
 require_once $TPhpPrown."/TPhpPrown/getTranslit.php";
 require_once $TPhpPrown."/TPhpPrown/iniConstMem.php";
@@ -121,6 +120,7 @@ $aPhpPrown=array
 );
 
 // ---
+echo  prown\getTranslit('блок общих функций').'<br>';
 //phpinfo();
 //echo 'PHP_VERSION_ID='.PHP_VERSION_ID.'<br>';
 //echo 'PHP_VERSION='.PHP_VERSION.'<br>';
