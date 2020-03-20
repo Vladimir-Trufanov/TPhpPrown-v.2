@@ -7,7 +7,7 @@
 
 //                                                   Автор:       Труфанов В.Е.
 //                                                   Дата создания:  13.01.2019
-// Copyright © 2020 tve                              Посл.изменение: 17.03.2020
+// Copyright © 2020 tve                              Посл.изменение: 20.03.2020
 
 // ****************************************************************************
 // *                  Задать очередную порцию кукисов для теста               *
@@ -16,6 +16,15 @@ function MakeCookieTest()
 {
    $Result=true;
    $ModeError=rvsCurrentPos;
+   // Если выбран MakeCookie-тест, то выделяем первый в сессии заход для того,
+   // чтобы удалить сессионный кукис и инициируем счетчик проходов
+   if (isChecked('formDoor','MakeCookie'))
+   {
+      if (!IsSet($_SESSION['CookTrack']))
+      {
+         prown\MakeSession('CookTrack',0,tInt,true);      
+      }
+   } 
    // Если выбрана MakeCookie и есть счетчик проходов MakeCookie, 
    // то готовим кукисы текущего прохода и выполняем перезагрузку страницы
    if (isChecked('formDoor','MakeCookie')&&(IsSet($_SESSION['CookTrack']))) 
