@@ -82,7 +82,7 @@ function MakeType($Value,$Type,$ModeError=rvsTriggerError)
    else 
    {
       $Result=null;
-      // Выводим сообщение "Тип значения указан неверно или преобразование невозможно!"
+      // Выводим сообщение "Неверный тип значения или преобразование невозможно!"
       \prown\MakeUserError(ConversNotPossible.' [значение='.$Value.', тип: '.$Type.']','TPhpPrown',$ModeError);
    }
    return $Result;
