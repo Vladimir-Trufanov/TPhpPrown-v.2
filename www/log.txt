@@ -56,3 +56,7 @@ Stack trace:
 #1 C:\TPhpPrown\www\index.php(35): require_once('C:\\TPhpPrown\\ww...')
 #2 {main}
   thrown in C:\TPhpPrown\TPhpPrownTests\FunctionsBlock.php on line 123
+[25-Mar-2020 18:27:22 Asia/Kuwait] PHP Parse error:  syntax error, unexpected '$aCookMessa' (T_VARIABLE) in C:\TPhpPrown\TPhpPrownTests\MakeCookie_test.php on line 70
+[25-Mar-2020 18:27:22 Asia/Kuwait] PHP Parse error:  syntax error, unexpected '$aCookMessa' (T_VARIABLE) in C:\TPhpPrown\TPhpPrownTests\MakeCookie_test.php on line 70
+[25-Mar-2020 18:43:21 Asia/Kuwait] PHP Parse error:  syntax error, unexpected ',' in C:\TPhpPrown\TPhpPrownTests\MakeCookie_test.php on line 100
+[25-Mar-2020 18:43:21 Asia/Kuwait] PHP Parse error:  syntax error, unexpected ',' in C:\TPhpPrown\TPhpPrownTests\MakeCookie_test.php on line 100

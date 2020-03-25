@@ -31,7 +31,7 @@ function MakeCookieTest()
    {
       // Регистрируем очередной проход
       $s_CookTrack=$_SESSION['CookTrack'];  
-      echo 'CookTrack='.$s_CookTrack.'<br>';
+      echo 'IN CookTrack='.$s_CookTrack.'<br>';
       // На нулевом проходе инициируем массив сообщений теста,
       // массив результатов тестов (проверка всех результатов делается на 
       // последнем проходе, чтобы высветить вывод)
@@ -48,13 +48,24 @@ function MakeCookieTest()
          $Result=prown\MakeCookie('cookTypeFloat',cookFloat);
          $Result=prown\MakeCookie('cookTypeZero',cookZero,tInt,true);
       }
+      // Готовим данные последнего прохода для проведения тестов
+      // по удалению кукисов
+      elseif ($s_CookTrack==1)
+      {
+         $Result=prown\MakeCookie('cookTypeStr',cookStr,false,cookDelete);
+         setcookie('cookTypeStr',cookStr,-3600);
+         unset($_COOKIE ["cookTypeStr"]);
+         echo 'STOP cookStr=-3600'.'<br>';
+         //$Result=prown\MakeCookie('cookTypeInt',cookInt,cookDelete);
+         //$Result=prown\MakeCookie('cookTypeFloat',cookFloat,cookDelete);
+         //$Result=prown\MakeCookie('cookTypeZero',cookZero,cookDelete);
+      }
       // Готовим следующий проход
       $s_CookTrack++;  
       prown\MakeSession('CookTrack',$s_CookTrack,tInt);     
-      echo 'CookTrack='.$s_CookTrack.'<br>';
       
       // Если все проходы завершены, то останавливаем перезагрузку страниц
-      if (($s_CookTrack>1)||($s_CookTrack<0))
+      if (($s_CookTrack>5)||($s_CookTrack<0))
       {
             $s_CookTrack=0;  
             prown\MakeSession('CookTrack',$s_CookTrack,tInt);     
@@ -66,8 +77,8 @@ function MakeCookieTest()
          $page="/index.php?formDoor%5B%5D=MakeCookie&".
             "formSubmit=%D0%9F%D1%80%D0%BE%D1%82%D0%B5%D1%81%D1%82%".
             "D0%B8%D1%80%D0%BE%D0%B2%D0%B0%D1%82%D1%8C";
-         //echo "Location: http://".$_SERVER['HTTP_HOST'].$page;
-         Header("Location: http://".$_SERVER['HTTP_HOST'].$page,true);
+         echo "Location: http://".$_SERVER['HTTP_HOST'].$page;
+         //Header("Location: http://".$_SERVER['HTTP_HOST'].$page,true);
       }
    }
    return $Result;  

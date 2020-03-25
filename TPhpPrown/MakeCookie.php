@@ -7,7 +7,7 @@
 // *              этим значением соответствующее данное во внутреннем массиве *
 // *       $_COOKIE и установить новое значение переменной-кукиса в программе *
 // *                                                                          *
-// * v1.4, 05.03.2020                              Автор:       Труфанов В.Е. *
+// * v1.5, 25.03.2020                              Автор:       Труфанов В.Е. *
 // * Copyright © 2018 tve                          Дата создания:  03.02.2018 *
 // ****************************************************************************
 
@@ -26,8 +26,8 @@
 
 // Синтаксис:
 //
-//   $Result=MakeCookie($Name,$Value=null,$Type=tStr,$Init=false,$Duration=44236800,
-//   $Options=["expires"=>44236800,"path"=>"/","domain"=>"","secure"=>false,
+//   $Result=MakeCookie($Name,$Value=null,$Type=tStr,$Init=false,$Duration=cook512,
+//   $Options=["expires"=>cook512,"path"=>"/","domain"=>"","secure"=>false,
 //   "httponly"=>false,"samesite"=>null],$ModeError=rvsTriggerError)
 
 // Параметры:
@@ -37,7 +37,7 @@
 //      Например: "BrowEntry" --> "$с_BrowEntry");
 //   $Value - значение кукиса браузера, это же значение во внутреннем массиве
 //      $_COOKIE и у соответствующей глобальной переменной сайтовой страницы. 
-//      Если $Value==null или неопределено, то функция возвращает установленное 
+//      Если $Value=null или неопределено, то функция возвращает установленное 
 //      значение кукиса;
 //   $Type - константа, определяющая тип значения: tInt - integer, целое число 
 //      (из множества {...,-2,-1,0,1,2,...}); tFloat - double, число с плавающей
@@ -49,9 +49,11 @@
 //      (по умолчанию, когда $Init=false) значение кукиса меняется всегда;
 //   $Duration - время жизни кукиса (по умолчанию 44236800 = 512 дней =
 //      512д*24ч*60м*60с): 
-//      cookDelete=-3600, для удаления кукиса; 
+
+//      cookDelete=-3600, для удаления кукиса после завершения сессии; 
 //      cookSession=0, для задания кукиса только на время сессии;
 //      cook512=44236800;
+
 //   $Options - опции кукиса, это дополнительные параметры кукиса (RFC6265bis):
 //      "expires" - время, когда срок действия кукиса истекает; "path" - путь к 
 //      каталогу на сервере, из которого будет доступен кукис; "domain" - домен, 
@@ -74,6 +76,7 @@
 // PHP-сценарии остается без изменения. Поэтому для синхронизации значений (на 
 // сервере) следует использовать MakeCookie.
 
+require_once "CommonPrown.php";
 require_once "iniConstMem.php";
 require_once "iniErrMessage.php";
 require_once "MakeType.php";
@@ -81,12 +84,7 @@ require_once "MakeUserError.php";
 
 function _MakeCookie($Name,$Value,$Type,$Dur,$Options,$ModeError)
 {
-   if (!(function_exists('iniWorkSpace'))) 
-   {
-      require_once "WorkSpace/iniWorkSpace.php";
-   } 
-   $_WORKSPACE=iniWorkSpace();
-   $PhpVersion=$_WORKSPACE[wsPhpVersion]; 
+   $PhpVersion=getPhpVersion(); 
    // Приводим кукис к заданному типу
    $Result=MakeType($Value,$Type);
    // echo '$Value='.$Value.'['.$Type.'] --> $Result='.$Result;
@@ -138,13 +136,14 @@ function _MakeCookie($Name,$Value,$Type,$Dur,$Options,$ModeError)
    return $Result;
 }
 
-function MakeCookie($Name,$Value=null,$Type=tStr,$Init=false,$Duration=44236800,
-   $Options=["expires"=>44236800,"path"=>"/","domain"=>"","secure"=>false,
+function MakeCookie($Name,$Value=null,$Type=tStr,$Init=false,$Duration=cook512,
+   $Options=["expires"=>cook512,"path"=>"/","domain"=>"","secure"=>false,
    "httponly"=>false,"samesite"=>null],$ModeError=rvsTriggerError)
-{
-   // Внимание: 05.03.2020 на версии PHP 7.3.8 не удалось проверить действие 
+
+   // Замечание: 05.03.2020 на версии PHP 7.3.8 не удалось проверить действие 
    // параметра "samesite". Не обнаруживаются константы None, Lax, Strict.
 
+{
    // Устанавливаем значение, если инициализация
    if ($Init==true) 
    {
@@ -153,6 +152,11 @@ function MakeCookie($Name,$Value=null,$Type=tStr,$Init=false,$Duration=44236800,
          $Result=_MakeCookie($Name,$Value,$Type,$Duration,$Options,$ModeError);
       }
       else $Result=$_COOKIE[$Name];
+   }
+   // При запросе значения, возвращаем установленное значение кукиса
+   elseif ($Value==null) 
+   {
+      $Result=$_COOKIE[$Name];
    }
    // Устанавливаем значение в обычном режиме
    else 

@@ -120,7 +120,7 @@ $aPhpPrown=array
 );
 
 // ---
-echo  prown\getTranslit('блок общих функций').'<br>';
+//echo  prown\getTranslit('блок общих функций').'<br>';
 //phpinfo();
 //echo 'PHP_VERSION_ID='.PHP_VERSION_ID.'<br>';
 //echo 'PHP_VERSION='.PHP_VERSION.'<br>';
