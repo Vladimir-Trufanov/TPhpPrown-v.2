@@ -17,8 +17,8 @@ Extensions=*.*
 [Project tree]
 TPhpPrown
 	+TPhpPrown
-		+TPhpPrown
-			+WorkSpace
+		-TPhpPrown
+			-WorkSpace
 				TPhpPrown\WorkSpace\getSiteDevice.php
 				TPhpPrown\WorkSpace\iniWorkSpace.php
 				TPhpPrown\WorkSpace\Mobile_Detect.php
@@ -61,9 +61,11 @@ TPhpPrown
 			TPhpPrownTests\MakeCookie_test.php
 			TPhpPrownTests\MakeCookie_test_D.php
 			TPhpPrownTests\MakeCookie_test_I.php
+			TPhpPrownTests\MakeCookie_test_Iold.php
+			TPhpPrownTests\MakeCookie_testOld.php
 			TPhpPrownTests\MakeType_test.php
 			TPhpPrownTests\MakeUserError_test.php
-		-www
+		+www
 			www\89.gif
 			www\favicon.ico
 			www\index.php
@@ -71,42 +73,50 @@ TPhpPrown
 			www\log.txt
 			www\Main.php
 			www\TPhpPrownTests.js
-		+Материалы
+		-Материалы
 			Материалы\Библиотека для определения типа и модели устройства на PHP.doc
 			Материалы\Руководство по разработке через тестирование для начинающих.doc
 			Материалы\Урок14 - Безопасное программирование.doc
 		Favicon-doc.jpg
 		Favicon-png.png
+		README.html
 		README.md
 		README-styled.html
 		TPhpPrown.png
 		TPhpPrown.ppr
 [Open project files]
 0=www\index.php
-1=TPhpPrownTests\MakeCookie_test.php
-2=www\Main.php
-3=TPhpPrownTests\MakeCookie_test_I.php
-4=TPhpPrown\MakeCookie.php
-5=TPhpPrown\iniConstMem.php
+1=www\Main.php
+2=TPhpPrown\MakeCookie.php
+3=TPhpPrown\iniConstMem.php
+4=TPhpPrownTests\MakeCookie_test.php
+5=TPhpPrownTests\MakeCookie_test_D.php
+6=TPhpPrownTests\MakeCookie_test_I.php
+7=TPhpPrownTests\MakeCookie_test_Iold.php
 [Selected Project Files]
 Main=
-Selected=TPhpPrown\iniConstMem.php
+Selected=TPhpPrownTests\MakeCookie_test_I.php
 [www\index.php]
-TopLine=21
+TopLine=19
 Caret=1,1
-[TPhpPrownTests\MakeCookie_test.php]
-TopLine=91
-Caret=47,114
-Mark1=1,19
 [www\Main.php]
-TopLine=95
-Caret=3,123
-[TPhpPrownTests\MakeCookie_test_I.php]
-TopLine=38
-Caret=40,57
+TopLine=15
+Caret=1,31
 [TPhpPrown\MakeCookie.php]
-TopLine=27
-Caret=34,52
+TopLine=103
+Caret=20,54
 [TPhpPrown\iniConstMem.php]
-TopLine=29
-Caret=57,37
+TopLine=19
+Caret=20,37
+[TPhpPrownTests\MakeCookie_test.php]
+TopLine=13
+Caret=1,48
+[TPhpPrownTests\MakeCookie_test_D.php]
+TopLine=1
+Caret=72,10
+[TPhpPrownTests\MakeCookie_test_I.php]
+TopLine=43
+Caret=62,54
+[TPhpPrownTests\MakeCookie_test_Iold.php]
+TopLine=15
+Caret=1,24

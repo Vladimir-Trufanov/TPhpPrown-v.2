@@ -50,9 +50,9 @@
 //   $Duration - время жизни кукиса (по умолчанию 44236800 = 512 дней =
 //      512д*24ч*60м*60с): 
 
-//      cookDelete=-3600, для удаления кукиса после завершения сессии; 
-//      cookSession=0, для задания кукиса только на время сессии;
-//      cook512=44236800;
+//      cook512=44236800,  время жизни кукиса составляет 512 дней
+//      cookSession=0,     время жизни кукиса - до завершения сеанса браузера
+//      cookDelete=-1,     кукис удалить по завершении сеанса браузера
 
 //   $Options - опции кукиса, это дополнительные параметры кукиса (RFC6265bis):
 //      "expires" - время, когда срок действия кукиса истекает; "path" - путь к 
@@ -91,7 +91,7 @@ function _MakeCookie($Name,$Value,$Type,$Dur,$Options,$ModeError)
    // Отмечаем, что "Невозможно привести кукис к указанному типу"
    if ($Result===null)
    {
-      \prown\MakeUserError(CantСookiesToType.' ['.$Value.'-->'.$Type.']','TPhpPrown',$ModeError);
+      MakeUserError(CantСookiesToType.' ['.$Value.'-->'.$Type.']','TPhpPrown',$ModeError);
    }
    // Определяем длительность кукиса
    if (IsSet($Options['expires'])) $Duration=time()+$Options['expires'];
@@ -128,7 +128,7 @@ function _MakeCookie($Name,$Value,$Type,$Dur,$Options,$ModeError)
    // правильно приняло и обработало cookie.
    if ($Ret==FALSE)
    {
-      \prown\MakeUserError(SendCookieFailed.' ['.$Name.']','TPhpPrown',$ModeError);
+      MakeUserError(SendCookieFailed.' ['.$Name.']','TPhpPrown',$ModeError);
    }
    // Устанавливаем новое куки в массиве кукисов
    if (IsSet($_COOKIE[$Name])) $_COOKIE[$Name]=$Value;

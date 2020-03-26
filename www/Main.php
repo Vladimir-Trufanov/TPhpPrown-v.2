@@ -23,11 +23,11 @@ require_once $TPhpPrown."/TPhpPrown/ViewGlobal.php";
 require_once $TPhpPrown."/TPhpPrown/ViewSimpleArray.php";
 // Подключаем модуль обеспечения тестов
 require_once $TPhpPrown."/TPhpPrownTests/FunctionsBlock.php";
-require_once $TPhpPrown."/TPhpPrownTests/MakeCookie_test_I.php";
 require_once $TPhpPrown."/TPhpPrownTests/MakeCookie_test_D.php";
-
+require_once $TPhpPrown."/TPhpPrownTests/MakeCookie_test_I.php";
 // Инициализируем сессионную переменную для возможного теста MakeCookie
 // и делаем подготовку текущего прохода этого теста
+prown\ViewGlobal(avgCOOKIE);
 MakeCookieTest();
 
 ?>
