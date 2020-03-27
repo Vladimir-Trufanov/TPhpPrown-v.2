@@ -20,14 +20,9 @@ class test_MakeCookie extends UnitTestCase
       // Регистрируем очередной проход
       $s_CookTrack=$_SESSION['CookTrack'];  
       echo 'CookTrack-T='.$s_CookTrack.'<br>';
-      // На нулевом проходе выполняем
-      // действия по контролю и удалению сессионного кукиса
-      if ($s_CookTrack==0)
-      {
-      }
       // Готовим данные последнего прохода для проведения тестов
       // по удалению кукисов
-      elseif ($s_CookTrack==1)
+      if ($s_CookTrack==1)
       {
          //$Result=prown\MakeCookie('cookTypeStr',cookStr,false,cookDelete);
          //setcookie('cookTypeStr',cookStr,-3600);

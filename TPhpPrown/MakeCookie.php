@@ -54,14 +54,14 @@
 //      cookSession=0,     время жизни кукиса - до завершения сеанса браузера
 //      cookDelete=-1,     кукис удалить по завершении сеанса браузера
 
-//   $Options - опции кукиса, это дополнительные параметры кукиса (RFC6265bis):
-//      "expires" - время, когда срок действия кукиса истекает; "path" - путь к 
-//      каталогу на сервере, из которого будет доступен кукис; "domain" - домен, 
-//      на котором возникает кукис; "secure" - указывает на то, что кукис должен
-//      передаваться от клиента по защищенному соединению; "httponly" - кукис
-//      будет доступен только через HTTP-протокол; "samesite" - режим связывания 
-//      кукиса со сторонними сайтами (должен быть либо None, либо Lax, либо 
-//      Strict)
+//   $Options - дополнительные параметры (RFC6265bis), по умолчанию $Options =
+//      ["path"=>"/","domain"=>"","secure"=>false,"httponly"=>false,"samesite"=>null]
+//      "path" - путь к каталогу на сервере, из которого будет доступен кукис; 
+//      "domain" - домен, на котором возникает кукис; "secure" - указывает на то, 
+//      что кукис должен передаваться от клиента по защищенному соединению; 
+//      "httponly" - кукис будет доступен только через HTTP-протокол; "samesite" 
+//      - режим связывания кукиса со сторонними сайтами (должен быть либо None, 
+//      либо Lax, либо Strict)
 //   $ModeError - режим вывода сообщений об ошибке (по умолчанию через 
 //      исключение с пользовательской ошибкой на сайте doortry.ru)
 
@@ -94,19 +94,18 @@ function _MakeCookie($Name,$Value,$Type,$Dur,$Options,$ModeError)
       MakeUserError(CantСookiesToType.' ['.$Value.'-->'.$Type.']','TPhpPrown',$ModeError);
    }
    // Определяем длительность кукиса
-   if (IsSet($Options['expires'])) $Duration=time()+$Options['expires'];
+   if ($Dur==cookSession) $Duration=cookSession;
+   elseif ($Dur==cookDelete) $Duration=cookDelete;
    else $Duration=time()+$Dur;
    // Определяем другие параметры кукиса
-   if (IsSet($Options['path'])) $Pathi=$Options['path'];
-   else $Pathi="";
-   if (IsSet($Options['domain'])) $Domaini=$Options['domain'];
-   else $Domaini="";
-   if (IsSet($Options['secure'])) $Securi=$Options['secure'];
-   else $Securi=FALSE;
-   if (IsSet($Options['httponly'])) $Httponli=$Options['httponly'];
-   else $Httponli=FALSE;
-   if (IsSet($Options['samesite'])) $Samesite=$Options['samesite'];
-   else $Samesite=null;
+   if (IsSet($Options['path'])) $Pathi=$Options['path']; else $Pathi="/";
+   if (IsSet($Options['domain'])) $Domaini=$Options['domain']; else $Domaini="";
+   if (IsSet($Options['secure'])) $Securi=$Options['secure']; else $Securi=FALSE;
+   if (IsSet($Options['httponly'])) $Httponli=$Options['httponly']; else $Httponli=FALSE;
+   if (IsSet($Options['samesite'])) $Samesite=$Options['samesite']; else $Samesite=null;
+   
+   echo 'iii '.$Name.'='.$Duration.'/'.$Dur.'<br>';
+   
    // Отправляем новое куки браузеру для соответствующих версий
    if ($PhpVersion<50200)
    {
@@ -137,8 +136,8 @@ function _MakeCookie($Name,$Value,$Type,$Dur,$Options,$ModeError)
 }
 
 function MakeCookie($Name,$Value=null,$Type=tStr,$Init=false,$Duration=cook512,
-   $Options=["expires"=>cook512,"path"=>"/","domain"=>"","secure"=>false,
-   "httponly"=>false,"samesite"=>null],$ModeError=rvsTriggerError)
+   $Options=["path"=>"/","domain"=>"","secure"=>false,"httponly"=>false,"samesite"=>null],
+   $ModeError=rvsTriggerError)
 
    // Замечание: 05.03.2020 на версии PHP 7.3.8 не удалось проверить действие 
    // параметра "samesite". Не обнаруживаются константы None, Lax, Strict.

@@ -44,16 +44,24 @@ function _MakeCookieTest()
          // Готовим массив для накопления сообщений и их вывода 
          // на последнем проходе
          $aCookMessa=array(); // создали пустой массив
-         prown\MakeSession('CookMessa',serialize($aCookMessa),tStr);      
          // Готовим массив данных тестов для накопления и их сравнения 
          // на последнем проходе
          $aEquals=array();    // создали пустой массив
+         // Выполняем контроль удаленных кукисов предыдущих тестов
+         // ---
+         // Записываем данные для тестов и сообщения в сессионные переменные
+         prown\MakeSession('CookMessa',serialize($aCookMessa),tStr);      
          prown\MakeSession('Equals',serialize($aEquals),tStr);      
-         // Задаем обычные кукисы через имя и значение
+         // Задаем кукисы для тестов на 1 проходе
          $Result=prown\MakeCookie('cookTypeStr',cookStr,tStr,false,cookSession);
-         $Result=prown\MakeCookie('cookTypeInt',cookInt,tInt,false,cookDelete);
+         $Result=prown\MakeCookie('cookTypeInt',cookInt);
          $Result=prown\MakeCookie('cookTypeFloat',cookFloat);
          $Result=prown\MakeCookie('cookTypeZero',cookZero,tInt,true);
+      }
+      elseif ($s_CookTrack==1)
+      {
+         $Result=prown\MakeCookie('cookTypeInt',cookInt,tInt,false,cookDelete);
+         $Result=prown\MakeCookie('cookTypeZero',cookZero+16,tInt,true);
       }
       // Готовим следующий проход
       $s_CookTrack++;  
@@ -67,8 +75,8 @@ function _MakeCookieTest()
          $page="/index.php?formDoor%5B%5D=MakeCookie&".
             "formSubmit=%D0%9F%D1%80%D0%BE%D1%82%D0%B5%D1%81%D1%82%".
             "D0%B8%D1%80%D0%BE%D0%B2%D0%B0%D1%82%D1%8C";
-         echo "Location: http://".$_SERVER['HTTP_HOST'].$page;
-         //Header("Location: http://".$_SERVER['HTTP_HOST'].$page,true);
+         //echo "Location: http://".$_SERVER['HTTP_HOST'].$page;
+         Header("Location: http://".$_SERVER['HTTP_HOST'].$page,true);
       }
    }
 }

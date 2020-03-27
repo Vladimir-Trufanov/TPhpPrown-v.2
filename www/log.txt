@@ -61,3 +61,8 @@ Stack trace:
 [25-Mar-2020 18:43:21 Asia/Kuwait] PHP Parse error:  syntax error, unexpected ',' in C:\TPhpPrown\TPhpPrownTests\MakeCookie_test.php on line 100
 [25-Mar-2020 18:43:21 Asia/Kuwait] PHP Parse error:  syntax error, unexpected ',' in C:\TPhpPrown\TPhpPrownTests\MakeCookie_test.php on line 100
 [26-Mar-2020 15:31:58 Asia/Kuwait] PHP Parse error:  syntax error, unexpected 'if' (T_IF), expecting ',' or ';' in C:\TPhpPrown\TPhpPrownTests\MakeCookie_test_I.php on line 28
+[27-Mar-2020 14:00:42 Asia/Kuwait] PHP Fatal error:  Constant expression contains invalid operations in C:\TPhpPrown\TPhpPrown\MakeCookie.php on line 142
+[27-Mar-2020 14:18:06 Asia/Kuwait] PHP Fatal error:  Constant expression contains invalid operations in C:\TPhpPrown\TPhpPrown\MakeCookie.php on line 138
+[27-Mar-2020 15:49:14 Asia/Kuwait] PHP Parse error:  syntax error, unexpected 'elseif' (T_ELSEIF) in C:\TPhpPrown\TPhpPrownTests\MakeCookie_test.php on line 25
+[27-Mar-2020 15:49:14 Asia/Kuwait] PHP Parse error:  syntax error, unexpected 'elseif' (T_ELSEIF) in C:\TPhpPrown\TPhpPrownTests\MakeCookie_test.php on line 25
+[27-Mar-2020 15:49:14 Asia/Kuwait] PHP Parse error:  syntax error, unexpected 'elseif' (T_ELSEIF) in C:\TPhpPrown\TPhpPrownTests\MakeCookie_test.php on line 25
