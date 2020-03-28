@@ -104,7 +104,7 @@ function _MakeCookie($Name,$Value,$Type,$Dur,$Options,$ModeError)
    if (IsSet($Options['httponly'])) $Httponli=$Options['httponly']; else $Httponli=FALSE;
    if (IsSet($Options['samesite'])) $Samesite=$Options['samesite']; else $Samesite=null;
    
-   //echo 'iii '.$Name.'='.$Duration.'/'.$Dur.'<br>';
+   echo 'iii '.$Name.'='.$Duration.'/'.$Dur.'<br>';
    
    // Отправляем новое куки браузеру для соответствующих версий
    if ($PhpVersion<50200)
@@ -146,11 +146,21 @@ function MakeCookie($Name,$Value=null,$Type=tStr,$Init=false,$Duration=cook512,
    // Устанавливаем значение, если инициализация
    if ($Init==true) 
    {
+      // Если кукиса еще нет, то устанавливаем его
       if (!(IsSet($_COOKIE[$Name]))) 
       {
          $Result=_MakeCookie($Name,$Value,$Type,$Duration,$Options,$ModeError);
       }
-      else $Result=$_COOKIE[$Name];
+      // Если кукис уже есть, но требуется ему установить время до закрытия
+      // браузера, то устанавливаем
+      else 
+      {
+         $Result=$_COOKIE[$Name];
+         if (($Duration==cookDelete)||($Duration==cookSession))
+         {
+            $Result=_MakeCookie($Name,$Value,$Type,$Duration,$Options,$ModeError);
+         }
+      }
    }
    // При запросе значения, возвращаем установленное значение кукиса
    elseif ($Value==null) 

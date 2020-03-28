@@ -75,7 +75,6 @@ class test_MakeCookie extends UnitTestCase
             $this->assertEqual($aEquals[$i],$aEquals[$i+1]);
          }
       }
-      
       // Если все проходы завершены, то останавливаем перезагрузку страниц
       if ($s_CookTrack==LastTrack) 
       {
@@ -93,11 +92,6 @@ class test_MakeCookie extends UnitTestCase
          echo "Location: http://".$_SERVER['HTTP_HOST'].$page;
          //Header("Location: http://".$_SERVER['HTTP_HOST'].$page,true);
       }
-
-      
-      
-      
-      
       prown\ViewGlobal(avgCOOKIE);
    }
 }

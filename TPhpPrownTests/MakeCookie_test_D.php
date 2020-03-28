@@ -12,7 +12,7 @@
 define ("cookStr",   "Типичный");  
 define ("cookInt",   137);    
 define ("cookFloat", 3.1415926);     
-define ("cookZero",  0);     
+define ("cookZero",  99);     
 
 define ("LastTrack", 2);     // Последний проход теста
 
