@@ -27,13 +27,20 @@ function _MakeCookieTest()
    // проходов по тесту (с перезагрузкой страницы)
    if (!IsSet($_SESSION['CookTrack']))
    {
-      prown\MakeSession('CookTrack',0,tInt,true);      
+      $s_CookTrack=prown\MakeSession('CookTrack',0,tInt,true);      
+   }
+   else
+   {
+      // Отмечаем новый проход
+      $s_CookTrack=$_SESSION['CookTrack'];      
+      $s_CookTrack++;  
+      prown\MakeSession('CookTrack',$s_CookTrack,tInt);     
    }
    // Выполняем настройки проходов теста
-   if (IsSet($_SESSION['CookTrack']))
-   {
+   //if (IsSet($_SESSION['CookTrack']))
+   //{
       // Регистрируем очередной проход
-      $s_CookTrack=$_SESSION['CookTrack'];  
+      //$s_CookTrack=$_SESSION['CookTrack'];  
       echo 'CookTrack-I='.$s_CookTrack.'<br>';
       // На нулевом проходе инициируем массив сообщений теста, 
       // массив результатов тестов (проверка всех результатов делается на 
@@ -63,11 +70,14 @@ function _MakeCookieTest()
          $Result=prown\MakeCookie('cookTypeInt',cookInt,tInt,false,cookDelete);
          $Result=prown\MakeCookie('cookTypeZero',cookZero+16,tInt,true);
       }
-      // Готовим следующий проход
-      $s_CookTrack++;  
-      prown\MakeSession('CookTrack',$s_CookTrack,tInt);     
+      /*
       // Если все проходы завершены, то останавливаем перезагрузку страниц
-      if (($s_CookTrack>LastTrack)||($s_CookTrack<0)) {}
+      if (($s_CookTrack>LastTrack)||($s_CookTrack<0)) 
+      {
+         // Cбрасываем счетчик проходов
+         $s_CookTrack=0;  
+         prown\MakeSession('CookTrack',$s_CookTrack,tInt);     
+      }
       // Перезагружаем страницу для нового прохода: 
       // "http://localhost:84/index.php?formDoor[]=MakeCookie&formSubmit=Протестировать"
       else
@@ -75,9 +85,10 @@ function _MakeCookieTest()
          $page="/index.php?formDoor%5B%5D=MakeCookie&".
             "formSubmit=%D0%9F%D1%80%D0%BE%D1%82%D0%B5%D1%81%D1%82%".
             "D0%B8%D1%80%D0%BE%D0%B2%D0%B0%D1%82%D1%8C";
-         //echo "Location: http://".$_SERVER['HTTP_HOST'].$page;
-         Header("Location: http://".$_SERVER['HTTP_HOST'].$page,true);
+         echo "Location: http://".$_SERVER['HTTP_HOST'].$page;
+         //Header("Location: http://".$_SERVER['HTTP_HOST'].$page,true);
       }
-   }
+      */
+   //}
 }
 // ************************************************** MakeCookie_test_I.php ***

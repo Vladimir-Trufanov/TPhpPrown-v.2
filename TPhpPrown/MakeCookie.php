@@ -104,7 +104,7 @@ function _MakeCookie($Name,$Value,$Type,$Dur,$Options,$ModeError)
    if (IsSet($Options['httponly'])) $Httponli=$Options['httponly']; else $Httponli=FALSE;
    if (IsSet($Options['samesite'])) $Samesite=$Options['samesite']; else $Samesite=null;
    
-   echo 'iii '.$Name.'='.$Duration.'/'.$Dur.'<br>';
+   //echo 'iii '.$Name.'='.$Duration.'/'.$Dur.'<br>';
    
    // Отправляем новое куки браузеру для соответствующих версий
    if ($PhpVersion<50200)
@@ -130,7 +130,7 @@ function _MakeCookie($Name,$Value,$Type,$Dur,$Options,$ModeError)
       MakeUserError(SendCookieFailed.' ['.$Name.']','TPhpPrown',$ModeError);
    }
    // Устанавливаем новое куки в массиве кукисов
-   if (IsSet($_COOKIE[$Name])) $_COOKIE[$Name]=$Value;
+   else $_COOKIE[$Name]=$Value;
    // Возвращаем новое куки на выход в переменную страницы сайта
    return $Result;
 }
