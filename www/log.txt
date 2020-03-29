@@ -69,3 +69,25 @@ Stack trace:
 [27-Mar-2020 18:57:42 Asia/Kuwait] PHP Parse error:  syntax error, unexpected '=' in C:\TPhpPrown\TPhpPrownTests\MakeCookie_test.php on line 61
 [27-Mar-2020 18:57:42 Asia/Kuwait] PHP Parse error:  syntax error, unexpected '=' in C:\TPhpPrown\TPhpPrownTests\MakeCookie_test.php on line 61
 [27-Mar-2020 18:57:42 Asia/Kuwait] PHP Parse error:  syntax error, unexpected '=' in C:\TPhpPrown\TPhpPrownTests\MakeCookie_test.php on line 61
+[29-Mar-2020 07:20:12 Asia/Kuwait] PHP Fatal error:  Uncaught Error: Call to undefined function sayLogic() in C:\TPhpPrown\TPhpPrownTests\MakeCookie_test_I.php:66
+Stack trace:
+#0 C:\TPhpPrown\TPhpPrownTests\MakeCookie_test_I.php(22): _MakeCookieTest()
+#1 C:\TPhpPrown\www\Main.php(31): MakeCookieTest()
+#2 C:\TPhpPrown\www\index.php(35): require_once('C:\\TPhpPrown\\ww...')
+#3 {main}
+  thrown in C:\TPhpPrown\TPhpPrownTests\MakeCookie_test_I.php on line 66
+[29-Mar-2020 07:26:39 Asia/Kuwait] PHP Fatal error:  Uncaught Error: Call to undefined function sayLogic() in C:\TPhpPrown\TPhpPrownTests\MakeCookie_test_I.php:66
+Stack trace:
+#0 C:\TPhpPrown\TPhpPrownTests\MakeCookie_test_I.php(22): _MakeCookieTest()
+#1 C:\TPhpPrown\www\Main.php(31): MakeCookieTest()
+#2 C:\TPhpPrown\www\index.php(35): require_once('C:\\TPhpPrown\\ww...')
+#3 {main}
+  thrown in C:\TPhpPrown\TPhpPrownTests\MakeCookie_test_I.php on line 66
+[29-Mar-2020 07:27:32 Asia/Kuwait] PHP Fatal error:  Uncaught Error: Call to undefined function sayLogic() in C:\TPhpPrown\TPhpPrownTests\MakeCookie_test_I.php:66
+Stack trace:
+#0 C:\TPhpPrown\TPhpPrownTests\MakeCookie_test_I.php(22): _MakeCookieTest()
+#1 C:\TPhpPrown\www\Main.php(31): MakeCookieTest()
+#2 C:\TPhpPrown\www\index.php(35): require_once('C:\\TPhpPrown\\ww...')
+#3 {main}
+  thrown in C:\TPhpPrown\TPhpPrownTests\MakeCookie_test_I.php on line 66
+[29-Mar-2020 10:39:24 Asia/Kuwait] PHP Parse error:  syntax error, unexpected 'prown' (T_STRING) in C:\TPhpPrown\TPhpPrownTests\MakeCookie_test_I.php on line 70

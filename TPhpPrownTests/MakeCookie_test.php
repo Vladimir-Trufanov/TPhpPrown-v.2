@@ -26,36 +26,10 @@ class test_MakeCookie extends UnitTestCase
       // Формируем массив результатов тестов
       $s_Equals=$_SESSION['Equals'];  
       $aEquals=unserialize($s_Equals);
-      // Готовим данные первого прохода для проведения тестов
-      // а именно парами складываем значения для сравнения 
-      // на последнем проходе 
-      if ($s_CookTrack==1)
-      {
-         // Складываем данные для проверки кукисов через имя и значение
-         $pref='t11='; // В первом проходе первый тест
-         $aEquals[count($aEquals)]=$pref.strval(cookStr); 
-         $aEquals[count($aEquals)]=$pref.strval($_COOKIE['cookTypeStr']);
-         $pref='t12='; // В первом проходе второй тест
-         $aEquals[count($aEquals)]=$pref.strval(cookInt); 
-         $aEquals[count($aEquals)]=$pref.strval($_COOKIE['cookTypeInt']);
-         $pref='t13='; 
-         $aEquals[count($aEquals)]=$pref.strval(cookFloat); 
-         $aEquals[count($aEquals)]=$pref.strval($_COOKIE['cookTypeFloat']);
-         // Закладываем 1 сообщение 1 прохода 
-         $aCookMessa[count($aCookMessa)]=
-            "MakeCookie:cookTypeStr=Типичный,".
-            "cookTypeInt=137,cookTypeFloat=3.1415926 "; 
-         $aCookMessa[count($aCookMessa)]=
-            "Установка обычных кукисов по именам и значениям подтверждена"; 
-      }
-      // Готовим данные для тестов второго прохода
-      elseif ($s_CookTrack==2)
-      {
-      }
       // Фиксируем данные для тестов
-      prown\MakeSession('Equals',serialize($aEquals),tStr);      
+      //prown\MakeSession('Equals',serialize($aEquals),tStr);      
       // Фиксируем новое состояние списка сообщений
-      $s_CookMessa=prown\MakeSession('CookMessa',serialize($aCookMessa),tStr);      
+      //$s_CookMessa=prown\MakeSession('CookMessa',serialize($aCookMessa),tStr);      
       // Проводим сравнения на последнем (нулевом) проходе,
       // готовим кукисы для удаления 
       if ($s_CookTrack==LastTrack)
@@ -84,15 +58,17 @@ class test_MakeCookie extends UnitTestCase
       }
       // Если проходы не завершены то перезагружаем страницу для нового прохода: 
       // "http://localhost:84/index.php?formDoor[]=MakeCookie&formSubmit=Протестировать"
+      /*
       else
       {
          $page="/index.php?formDoor%5B%5D=MakeCookie&".
             "formSubmit=%D0%9F%D1%80%D0%BE%D1%82%D0%B5%D1%81%D1%82%".
             "D0%B8%D1%80%D0%BE%D0%B2%D0%B0%D1%82%D1%8C";
-         echo "Location: http://".$_SERVER['HTTP_HOST'].$page;
-         //Header("Location: http://".$_SERVER['HTTP_HOST'].$page,true);
+         //echo "Location: http://".$_SERVER['HTTP_HOST'].$page;
+         Header("Location: http://".$_SERVER['HTTP_HOST'].$page,true);
       }
       prown\ViewGlobal(avgCOOKIE);
+      */
    }
 }
 // **************************************************** MakeCookie_test.php ***

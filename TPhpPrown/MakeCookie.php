@@ -27,8 +27,8 @@
 // Синтаксис:
 //
 //   $Result=MakeCookie($Name,$Value=null,$Type=tStr,$Init=false,$Duration=cook512,
-//   $Options=["expires"=>cook512,"path"=>"/","domain"=>"","secure"=>false,
-//   "httponly"=>false,"samesite"=>null],$ModeError=rvsTriggerError)
+//   $Options=["path"=>"/","domain"=>"","secure"=>false,"httponly"=>false,"samesite"=>null],
+//   $ModeError=rvsTriggerError)
 
 // Параметры:
 //

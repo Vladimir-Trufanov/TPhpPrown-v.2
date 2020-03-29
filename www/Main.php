@@ -83,6 +83,12 @@ MakeCookieTest();
                   spMakeCookie.innerHTML="<br>MakeCokie должен быть выбран отдельно от всех!";
                   Result=true;
                }
+               else
+               {
+                  spMakeCookie.innerHTML="<br>Для успешного выполнения всех "+
+                  "тестов MakeCokie браузер лучше перезапустить!";
+                  Result=true;
+               }
             }
             // Если MakeCokie выключен, сбрасываем предупреждение
             else
