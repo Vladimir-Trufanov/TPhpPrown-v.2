@@ -19,7 +19,6 @@ class test_MakeCookie extends UnitTestCase
       $ModeError=rvsCurrentPos;
       // Регистрируем очередной проход
       $s_CookTrack=$_SESSION['CookTrack'];  
-      echo 'CookTrack-T='.$s_CookTrack.'<br>';
       // Формируем массив ранее сформированных сообщений
       $s_CookMessa=$_SESSION['CookMessa'];  
       $aCookMessa=unserialize($s_CookMessa);

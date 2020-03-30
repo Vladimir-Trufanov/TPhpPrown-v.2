@@ -8,7 +8,10 @@
 //                                                   Автор:       Труфанов В.Е.
 //                                                   Дата создания:  13.01.2019
 // Copyright © 2019 tve                              Посл.изменение: 10.03.2020
-
+// Определяем сайтовые константы
+define ("ChooseAll",  "Выбрать все элементы"); // Первая кнопка Submit  
+define ("ToTest",     "Протестировать");       // Вторая кнопка Submit 
+define ("ChoiceList", "Укажите список прикладных функций библиотеки TPhpPrown"); 
 // Подключаем файлы библиотеки прикладных модулей и рабочего пространства
 $TPhpPrown=$SiteHost.'/TPhpPrown';
 require_once $TPhpPrown."/TPhpPrown/CommonPrown.php";
@@ -27,9 +30,8 @@ require_once $TPhpPrown."/TPhpPrownTests/MakeCookie_test_D.php";
 require_once $TPhpPrown."/TPhpPrownTests/MakeCookie_test_I.php";
 // Инициализируем сессионную переменную для возможного теста MakeCookie
 // и делаем подготовку текущего прохода этого теста
-prown\ViewGlobal(avgCOOKIE);
-MakeCookieTest();
-
+//prown\ViewGlobal(avgCOOKIE);
+if (prown\isComRequest(ToTest,'formSubmit')) MakeCookieTest();
 ?>
 <!DOCTYPE html>
 <html>
@@ -109,10 +111,6 @@ MakeCookieTest();
 <a target="_blank" href="#"><img src="89.gif" ></a>
 
 <?php
-// Определяем сайтовые константы
-define ("ChooseAll",  "Выбрать все элементы"); // Первая кнопка Submit  
-define ("ToTest",     "Протестировать");       // Вторая кнопка Submit 
-define ("ChoiceList", "Укажите список прикладных функций библиотеки TPhpPrown"); 
 // Инициализируем список прикладных функций библиотеки TPhpPrown 
 // и рабочего пространства сайта
 $aPhpPrown=array
@@ -162,6 +160,7 @@ $aPhpPrown=array
 // а также выводятся вместе с сообщением "Элементы для тестирования Вами не 
 // выбраны!"
 
+// Выполнить первую ветку (когда был клик "Выбрать все")
 if (prown\isComRequest(ChooseAll,'formSubmit'))
 {
    // Вырисовываем чекбоксы для тестирования
@@ -169,13 +168,15 @@ if (prown\isComRequest(ChooseAll,'formSubmit'))
    // Завершаем разметку, так как здесь теста не будет
    echo "\n</body>\n</html>\n";   
 }
-else if (prown\isComRequest(ToTest,'formSubmit'))
+// Выполнить вторую ветку (когда был клик "Протестировать")
+elseif (prown\isComRequest(ToTest,'formSubmit'))
 {
    // Вырисовываем чекбоксы для тестирования
    FunctionsCheckbox($aPhpPrown,ToTest,ChoiceList);
    // Запускаем тестирование (тестом будет и завершена разметка)
    MakeTest($SiteRoot,$aPhpPrown);
 }
+// Выполнить третью ветку (при начальном запуске страницы)
 else
 {
    // Вырисовываем чекбоксы 
@@ -183,5 +184,4 @@ else
    // Завершаем разметку, так как здесь теста не будет
    echo "\n</body>\n</html>\n";   
 }
- 
 // *************************************************************** Main.php ***

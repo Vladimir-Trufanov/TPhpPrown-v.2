@@ -62,6 +62,7 @@
 //      "httponly" - кукис будет доступен только через HTTP-протокол; "samesite" 
 //      - режим связывания кукиса со сторонними сайтами (должен быть либо None, 
 //      либо Lax, либо Strict)
+//
 //   $ModeError - режим вывода сообщений об ошибке (по умолчанию через 
 //      исключение с пользовательской ошибкой на сайте doortry.ru)
 
@@ -87,7 +88,6 @@ function _MakeCookie($Name,$Value,$Type,$Dur,$Options,$ModeError)
    $PhpVersion=getPhpVersion(); 
    // Приводим кукис к заданному типу
    $Result=MakeType($Value,$Type);
-   // echo '$Value='.$Value.'['.$Type.'] --> $Result='.$Result;
    // Отмечаем, что "Невозможно привести кукис к указанному типу"
    if ($Result===null)
    {
@@ -103,9 +103,6 @@ function _MakeCookie($Name,$Value,$Type,$Dur,$Options,$ModeError)
    if (IsSet($Options['secure'])) $Securi=$Options['secure']; else $Securi=FALSE;
    if (IsSet($Options['httponly'])) $Httponli=$Options['httponly']; else $Httponli=FALSE;
    if (IsSet($Options['samesite'])) $Samesite=$Options['samesite']; else $Samesite=null;
-   
-   echo 'iii '.$Name.'='.$Duration.'/'.$Dur.'<br>';
-   
    // Отправляем новое куки браузеру для соответствующих версий
    if ($PhpVersion<50200)
    {

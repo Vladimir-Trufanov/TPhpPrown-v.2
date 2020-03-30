@@ -38,7 +38,6 @@ function _MakeCookieTest()
       $s_CookTrack++;  
       prown\MakeSession('CookTrack',$s_CookTrack,tInt);     
    }
-   echo 'CookTrack-I='.$s_CookTrack.'<br>';
    // На нулевом проходе инициируем массив сообщений теста, 
    // массив результатов тестов (проверка всех результатов делается на 
    // последнем проходе, чтобы высветить вывод)
