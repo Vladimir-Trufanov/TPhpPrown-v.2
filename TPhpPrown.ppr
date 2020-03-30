@@ -93,9 +93,10 @@ TPhpPrown
 6=TPhpPrownTests\MakeCookie_testOld.php
 7=TPhpPrownTests\MakeCookie_test_I.php
 8=TPhpPrownTests\FunctionsBlock.php
+9=TPhpPrown\Findes.php
 [Selected Project Files]
 Main=
-Selected=TPhpPrownTests\MakeCookie_test_I.php
+Selected=TPhpPrownTests\FunctionsBlock.php
 [www\index.php]
 TopLine=13
 Caret=1,1
@@ -110,7 +111,7 @@ Mark1=1,99
 TopLine=21
 Caret=21,36
 [TPhpPrownTests\MakeCookie_test.php]
-TopLine=11
+TopLine=33
 Caret=9,32
 [TPhpPrownTests\MakeCookie_test_D.php]
 TopLine=1
@@ -120,7 +121,10 @@ TopLine=93
 Caret=1,116
 [TPhpPrownTests\MakeCookie_test_I.php]
 TopLine=104
-Caret=78,110
+Caret=27,111
 [TPhpPrownTests\FunctionsBlock.php]
-TopLine=1
-Caret=1,1
+TopLine=205
+Caret=4,224
+[TPhpPrown\Findes.php]
+TopLine=19
+Caret=48,22

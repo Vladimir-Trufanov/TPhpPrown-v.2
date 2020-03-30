@@ -19,7 +19,7 @@
  
 // Синтаксис:                                     
 //
-//   $Result=Findes($preg,$string,&$point);
+//   $Result=Findes($preg,$string,&$point=-1);
 
 // Параметры:
 //

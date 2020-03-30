@@ -107,6 +107,7 @@ function PrepareCookies($s_CookTrack,&$aEquals,&$aCookMessa)
          $aEquals[count($aEquals)]=$pref.prown\sayLogic(isCookieDel()); 
          $aEquals[count($aEquals)]=$pref.prown\sayLogic(true);
          $aCookMessa[count($aCookMessa)]=
+            "Color=Red;".
             "*** Браузер перед тестами MakeCookie следует перезапустить! *** "; 
          $aCookMessa[count($aCookMessa)]=
             "t00: Обнаружены оставшиеся кукисы от прежних тестов"; 

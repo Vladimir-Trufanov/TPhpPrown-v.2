@@ -91,3 +91,9 @@ Stack trace:
 #3 {main}
   thrown in C:\TPhpPrown\TPhpPrownTests\MakeCookie_test_I.php on line 66
 [29-Mar-2020 10:39:24 Asia/Kuwait] PHP Parse error:  syntax error, unexpected 'prown' (T_STRING) in C:\TPhpPrown\TPhpPrownTests\MakeCookie_test_I.php on line 70
+[30-Mar-2020 10:19:11 Asia/Kuwait] PHP Parse error:  syntax error, unexpected ')' in C:\TPhpPrown\TPhpPrownTests\FunctionsBlock.php on line 218
+[30-Mar-2020 10:31:38 Asia/Kuwait] PHP Parse error:  syntax error, unexpected '$n' (T_VARIABLE), expecting ',' or ';' in C:\TPhpPrown\TPhpPrownTests\FunctionsBlock.php on line 225
+[30-Mar-2020 10:32:22 Asia/Kuwait] PHP Parse error:  syntax error, unexpected '$nl' (T_VARIABLE), expecting ',' or ';' in C:\TPhpPrown\TPhpPrownTests\FunctionsBlock.php on line 225
+[30-Mar-2020 10:32:31 Asia/Kuwait] PHP Parse error:  syntax error, unexpected '$nl' (T_VARIABLE), expecting ',' or ';' in C:\TPhpPrown\TPhpPrownTests\FunctionsBlock.php on line 225
+[30-Mar-2020 10:36:45 Asia/Kuwait] PHP Parse error:  syntax error, unexpected '$nl' (T_VARIABLE), expecting ',' or ';' in C:\TPhpPrown\TPhpPrownTests\FunctionsBlock.php on line 224
+[30-Mar-2020 10:37:20 Asia/Kuwait] PHP Parse error:  syntax error, unexpected '',$Color='' (T_CONSTANT_ENCAPSED_STRING), expecting ',' or ';' in C:\TPhpPrown\TPhpPrownTests\FunctionsBlock.php on line 229

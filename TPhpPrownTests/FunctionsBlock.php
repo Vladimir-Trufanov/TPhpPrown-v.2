@@ -7,7 +7,7 @@
 
 //                                                   Автор:       Труфанов В.Е.
 //                                                   Дата создания:  13.01.2019
-// Copyright © 2019 tve                              Посл.изменение: 09 .03.2020
+// Copyright © 2019 tve                              Посл.изменение: 30.03.2020
 
 // ****************************************************************************
 // *                    Вывести список элементов библиотеки                   *
@@ -169,23 +169,19 @@ function MakeTest($SiteRoot,$aPhpPrown,$lang='PHP')
    }
 }
 // ****************************************************************************
-// *        Вывести сообщение по завершении очередного теста/подтеста         *
+// *            Вывести сообщение по тесту их двух подстрок, где              *
+// *      первая подстрока дополнена справа заполнителем до нужной длины      *
 // ****************************************************************************
-function SimpleMessage($Name2=' ')
+function MakeTestMessage($Namei,$Name2='',$len=64,$Colori='#993300')
 {
+   $Name=$Namei; $Color=$Colori;
+   PrepareColor($Name,$Color);
    echo 
-      "<span style=\"color:#993300; font-weight:bold; ".
-      "font-family:'Anonymous Pro', monospace; font-size:0.9em\">".
-      $Name2."</span>".' <br>';
-}
-function MakeTestMessage($Name,$Name2='',$len=64)
-{
-   echo 
-      "<span style=\"color:#993300; font-weight:bold; ".
+      "<span style=\"color:".$Color."; font-weight:bold; ".
       "font-family:'Anonymous Pro', monospace; font-size:0.9em\">".' '.
       mb_str_padi($Name,$len,'.').' '.
       "</span>";
-   SimpleMessage($Name2);
+   SimpleMessage($Name2,$Colori);
 }
 // ****************************************************************************
 // *         Вывести заголовок очередной тестируемой функции TPhpPrown        *
@@ -197,15 +193,44 @@ function MakeTitle($Name,$br="<br>")
       $br.$Name.
       "</span>"."<br>";
 }
-/*
-function mb_str_pad ($input,$pad_length,$pad_string,$pad_style,$encoding="UTF-8")
-{
-   return str_pad($input,strlen($input)-mb_strlen($input,$encoding)+$pad_length,$pad_string,$pad_style);
-};
-*/
+// ****************************************************************************
+// *    Дополнить строку справа заполнителем до указанного размера строки     *
+// ****************************************************************************
 function mb_str_padi($input, $pad_length, $pad_string = '-', $pad_type = STR_PAD_RIGHT)
 {
 	$diff = strlen($input) - mb_strlen($input);
 	return str_pad($input, $pad_length + $diff, $pad_string, $pad_type);
+}
+// ****************************************************************************
+// *           Установить и вырезать из подстроки указание о её цвете         *
+// ****************************************************************************
+function PrepareColor(&$Name,&$Color)
+{
+   // Указание о цвете подстроки включается в её начало с ключевым словом 
+   // "Color" и завершается ";", например:
+   // $Name="Color=#993300;"."*** Цвет подстроки должен быть коричневым ***"; 
+   //$Color='#993300';
+   // Выделяем цвет и чистую подстроку
+   
+   $pattern="/Color=([0-9a-zA-Zа-яёА-ЯЁ\s\.\$\n\r\(\)-:,=&;]+);/u";
+   $replacement="";
+   $NameItog=preg_replace($pattern,$replacement,$Name);
+   $ColorItog=prown\Findes($pattern,$Name);
+   $ColorItog=substr($ColorItog,0,strlen($ColorItog)-1);
+   $ColorItog=substr($ColorItog,6);
+   if (!($ColorItog==='')) $Color=$ColorItog;
+   $Name=$NameItog;
+   echo '$Name='.$Name.'<br>'.'$NameItog='.$NameItog.'<br>'.
+   '$ColorItog='.$ColorItog.'<br>';
+}
+// ****************************************************************************
+// *        Вывести сообщение по завершении очередного теста/подтеста         *
+// ****************************************************************************
+function SimpleMessage($Name2=' ',$Color='#993300')
+{
+   echo 
+      "<span style=\"color:".$Color."; font-weight:bold; ".
+      "font-family:'Anonymous Pro', monospace; font-size:0.9em\">".
+      $Name2."</span>".' <br>';
 }
 // ***************************************************** FunctionsBlock.php ***
