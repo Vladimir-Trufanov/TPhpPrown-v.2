@@ -26,12 +26,7 @@ class test_MakeCookie extends UnitTestCase
       // Формируем массив результатов тестов
       $s_Equals=$_SESSION['Equals'];  
       $aEquals=unserialize($s_Equals);
-      // Фиксируем данные для тестов
-      //prown\MakeSession('Equals',serialize($aEquals),tStr);      
-      // Фиксируем новое состояние списка сообщений
-      //$s_CookMessa=prown\MakeSession('CookMessa',serialize($aCookMessa),tStr);      
-      // Проводим сравнения на последнем (нулевом) проходе,
-      // готовим кукисы для удаления 
+      // Проводим сравнения на последнем проходе, выводим сообщения
       if ($s_CookTrack==LastTrack)
       {
          // Выводим все накопленные сообщения и проводим тесты
@@ -56,19 +51,6 @@ class test_MakeCookie extends UnitTestCase
          $s_CookTrack=-1;  
          prown\MakeSession('CookTrack',$s_CookTrack,tInt);     
       }
-      // Если проходы не завершены то перезагружаем страницу для нового прохода: 
-      // "http://localhost:84/index.php?formDoor[]=MakeCookie&formSubmit=Протестировать"
-      /*
-      else
-      {
-         $page="/index.php?formDoor%5B%5D=MakeCookie&".
-            "formSubmit=%D0%9F%D1%80%D0%BE%D1%82%D0%B5%D1%81%D1%82%".
-            "D0%B8%D1%80%D0%BE%D0%B2%D0%B0%D1%82%D1%8C";
-         //echo "Location: http://".$_SERVER['HTTP_HOST'].$page;
-         Header("Location: http://".$_SERVER['HTTP_HOST'].$page,true);
-      }
-      prown\ViewGlobal(avgCOOKIE);
-      */
    }
 }
 // **************************************************** MakeCookie_test.php ***

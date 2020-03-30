@@ -144,9 +144,47 @@ function PrepareCookies($s_CookTrack,&$aEquals,&$aCookMessa)
          "MakeCookie:cookTypeStr=Типичный,".
          "cookTypeInt=137,cookTypeFloat=3.1415926 "; 
       $aCookMessa[count($aCookMessa)]=
-         "t11-t12: Установка кукисов по именам и значениям подтверждена"; 
-      // Задаем кукисы для тестов на 2 проходе
+         "t11-t13: Установка кукисов по именам и значениям подтверждена"; 
+      // Пытаемся проинициализировать кукис повторно
       $Result=prown\MakeCookie('cookTypeZero',cookZero+16,tInt,true);
+   }
+   elseif ($s_CookTrack==2)
+   {
+      // Проверяем повторную инициализацию кукиса
+      $pref='t21='; 
+      $aEquals[count($aEquals)]=$pref.strval(cookZero);                   
+      $aEquals[count($aEquals)]=$pref.strval($_COOKIE['cookTypeZero']);   
+      // Закладываем 1 сообщение 2 прохода 
+      $aCookMessa[count($aCookMessa)]=
+         'prown\MakeCookie("Zero",0,tInt,true); '.
+         'prown\MakeCookie("Zero",16,tInt,true); ';
+      $aCookMessa[count($aCookMessa)]=
+         "Zero=0, Повторной инициализации кукиса не произошло"; 
+      // Складываем данные для проверки запросов на значения кукисов
+      $pref='t22='; 
+      $Result=prown\MakeCookie('cookTypeStr');
+      $aEquals[count($aEquals)]=$pref.strval(cookStr); 
+      $aEquals[count($aEquals)]=$pref.strval($Result);
+      $aEquals[count($aEquals)]=$pref.strval(cookStr); 
+      $aEquals[count($aEquals)]=$pref.strval($_COOKIE['cookTypeStr']);
+      $pref='t23='; 
+      $Result=prown\MakeCookie('cookTypeInt');
+      $aEquals[count($aEquals)]=$pref.strval(cookInt); 
+      $aEquals[count($aEquals)]=$pref.strval($Result);
+      $aEquals[count($aEquals)]=$pref.strval(cookInt); 
+      $aEquals[count($aEquals)]=$pref.strval($_COOKIE['cookTypeInt']);
+      $pref='t24='; 
+      $Result=prown\MakeCookie('cookTypeFloat');
+      $aEquals[count($aEquals)]=$pref.strval(cookFloat); 
+      $aEquals[count($aEquals)]=$pref.strval($Result);
+      $aEquals[count($aEquals)]=$pref.strval(cookFloat); 
+      $aEquals[count($aEquals)]=$pref.strval($_COOKIE['cookTypeFloat']);
+      // Закладываем 2 сообщение 2 прохода 
+      $aCookMessa[count($aCookMessa)]=
+         "MakeCookie:cookTypeStr=Типичный,".
+         "cookTypeInt=137,cookTypeFloat=3.1415926 "; 
+      $aCookMessa[count($aCookMessa)]=
+         "t22-t24: Выполнена проверка значений кукисов по именам"; 
    }
    elseif ($s_CookTrack==LastTrack)
    {

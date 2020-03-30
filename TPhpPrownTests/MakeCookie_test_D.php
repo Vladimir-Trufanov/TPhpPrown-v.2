@@ -14,6 +14,6 @@ define ("cookInt",   137);
 define ("cookFloat", 3.1415926);     
 define ("cookZero",  99);     
 
-define ("LastTrack", 2);     // Последний проход теста
+define ("LastTrack", 3);     // Последний проход теста
 
 // ************************************************** MakeCookie_test_D.php ***
