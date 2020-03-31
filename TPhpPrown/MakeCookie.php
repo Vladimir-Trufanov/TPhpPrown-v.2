@@ -71,11 +71,13 @@
 //   $Result  - установленное значение COOKIE в браузере, во внутреннем массиве
 //      $_COOKIE и переменной-кукиса в сценарии сайтовой страницы
 
-// Замечание: 
-//   При изменении кукиса встроенной функцией PHP setcookie меняется только 
+// Замечания: 
+//   1) При изменении кукиса встроенной функцией PHP setcookie меняется только 
 // значение кукиса в браузере, а его величина в массиве $_COOKIE в текущем
 // PHP-сценарии остается без изменения. Поэтому для синхронизации значений (на 
 // сервере) следует использовать MakeCookie.
+//   2) На 05.03.2020 в версии PHP 7.3.8 не удалось проверить действие параметра 
+// "samesite". Не обнаруживаются константы None, Lax, Strict.
 
 require_once "CommonPrown.php";
 require_once "iniConstMem.php";
@@ -135,10 +137,6 @@ function _MakeCookie($Name,$Value,$Type,$Dur,$Options,$ModeError)
 function MakeCookie($Name,$Value=null,$Type=tStr,$Init=false,$Duration=cook512,
    $Options=["path"=>"/","domain"=>"","secure"=>false,"httponly"=>false,"samesite"=>null],
    $ModeError=rvsTriggerError)
-
-   // Замечание: 05.03.2020 на версии PHP 7.3.8 не удалось проверить действие 
-   // параметра "samesite". Не обнаруживаются константы None, Lax, Strict.
-
 {
    // Устанавливаем значение, если инициализация
    if ($Init==true) 
