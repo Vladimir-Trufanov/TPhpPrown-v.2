@@ -172,7 +172,7 @@ function MakeTest($SiteRoot,$aPhpPrown,$lang='PHP')
 // *            Вывести сообщение по тесту их двух подстрок, где              *
 // *      первая подстрока дополнена справа заполнителем до нужной длины      *
 // ****************************************************************************
-function MakeTestMessage($Namei,$Name2='',$len=64,$Colori='#993300')
+function MakeTestMessage($Namei,$Name2='',$len=80,$Colori='#993300')
 {
    $Name=$Namei; $Color=$Colori;
    PrepareColor($Name,$Color);
@@ -205,19 +205,25 @@ function mb_str_padi($input, $pad_length, $pad_string = '-', $pad_type = STR_PAD
 // *           Установить и вырезать из подстроки указание о её цвете         *
 // *                   (выделить цвет и чистую подстроку)                     *
 // ****************************************************************************
+/**
+ * Указание о цвете подстроки включается в её начало с ключевым словом 
+ * "Color" и завершается ";", например:
+ * $Name="Color=#993300;"."*** Цвет подстроки должен быть коричневым ***";
+**/ 
 function PrepareColor(&$Name,&$Color)
 {
-   // Указание о цвете подстроки включается в её начало с ключевым словом 
-   // "Color" и завершается ";", например:
-   // $Name="Color=#993300;"."*** Цвет подстроки должен быть коричневым ***"; 
-   // $Color='#993300';
    $pattern="/Color=([0-9a-zA-Zа-яёА-ЯЁ\s\.\$\n\r\(\)-:,=&;]+);/u";
    $replacement="";
    $NameItog=preg_replace($pattern,$replacement,$Name);
-   $ColorItog=prown\Findes($pattern,$Name);
-   $ColorItog=substr($ColorItog,0,strlen($ColorItog)-1);
-   $ColorItog=substr($ColorItog,6);
-   if (!($ColorItog==='')) $Color=$ColorItog;
+   $value=preg_match($pattern,$Name,$matches,PREG_OFFSET_CAPTURE);
+   if ($value>0) 
+   {
+      $ColorItog=$matches[0][0];
+      $ColorItog=substr($ColorItog,0,strlen($ColorItog)-1);
+      $ColorItog=substr($ColorItog,6);
+   }
+   else $ColorItog='black'; 
+   $Color=$ColorItog;
    $Name=$NameItog;
 }
 // ****************************************************************************

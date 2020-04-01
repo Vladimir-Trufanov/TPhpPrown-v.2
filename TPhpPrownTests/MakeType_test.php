@@ -18,20 +18,21 @@ class test_MakeType extends UnitTestCase
    function test_MakeType_Simple()
    {
       MakeTitle("MakeType");
-      $string='1958';
-      $Result=\prown\MakeType($string,tInt);
+      $string="1958";
+      $Result=prown\MakeType($string,tInt);
       $this->assertEqual($Result,1958);
       $this->assertNotEqual($Result,'1959');  
       MakeTestMessage(
-         '$string="1958"; $Result=\prown\MakeType($string,tInt); ',
+         'Color=blue;$string="1958"; $Result=prown\MakeType($string,tInt); ',
          'Преобразование строчного "1958" к целому 1958',70);
       $string='3.1415926';
-      $Result=\prown\MakeType($string,tFloat);
+      $Result=prown\MakeType($string,tFloat);
       $this->assertEqual($Result,3.1415926);
       $this->assertNotEqual($Result,3.1415926+1959);  
-      MakeTestMessage(
-         '$string="3.1415926"; $Result=\prown\MakeType($string,tFloat); ',
-         'Преобразование строки "3.1415926" к числу 3.1415926',70);
+      MakeTestMessage('2*','2',70);
+      //MakeTestMessage(
+      //   '2*$string="3.1415926"; $Result=prown\MakeType($string,tFloat); ',
+      //   'Преобразование строки "3.1415926" к числу 3.1415926',70);
    }
    // Преобразование строки, как числа по неверному типу
    function test_MakeType_Inpos()
@@ -49,9 +50,10 @@ class test_MakeType extends UnitTestCase
       $Result=\prown\MakeType($string,135,rvsCurrentPos);
       $this->assertEqual($Result,null);
       SimpleMessage(); 
-      MakeTestMessage(
-         '$Result=\prown\MakeType("1958",135,rvsCurrentPos); ',
-         'Преобразование строчного "1958" к целому, но тип указан неверно',70);
+      MakeTestMessage('3*','3',70);
+     // MakeTestMessage(
+     //    '3*$Result=\prown\MakeType("1958",135,rvsCurrentPos); ',
+     //    'Преобразование строчного "1958" к целому, но тип указан неверно',70);
   }
    // Преобразование целого числа к логической переменной
    function test_MakeType_Boolean()
@@ -59,24 +61,24 @@ class test_MakeType extends UnitTestCase
       $value=0; $Result=\prown\MakeType($value,tBool);
       $this->assertFalse($Result);
       MakeTestMessage(
-         '$value=0; $Result=\prown\MakeType($value,tBool); ',
+         '4*$value=0; $Result=\prown\MakeType($value,tBool); ',
          'Преобразования целого = 0 к логическому типу: False',70);
       $value=1; $Result=\prown\MakeType($value,tBool);
       $this->assertTrue($Result);
       MakeTestMessage(
-         '$value=1; $Result=\prown\MakeType($value,tBool); ',
+         '5*$value=1; $Result=\prown\MakeType($value,tBool); ',
          'Преобразования целого = 1 к логическому типу: True',70);
       $value=-1; $Result=\prown\MakeType($value,tBool);
       $this->assertTrue($Result);
       MakeTestMessage(
-         '$value=-1; $Result=\prown\MakeType($value,tBool); ',
+         '6*$value=-1; $Result=\prown\MakeType($value,tBool); ',
          'Преобразования целого = -1 к логическому типу: True',70);
       $value=-10; $Result=\prown\MakeType($value,tBool);
       $this->assertTrue($Result);
       $Result=\prown\MakeType(100,tBool);
       $this->assertTrue($Result);
       MakeTestMessage(
-         '$Result=\prown\MakeType(100,tBool); ',
+         '7*$Result=\prown\MakeType(100,tBool); ',
          'Преобразования целого = 100 к логическому типу: True',70);
       SimpleMessage();
   }

@@ -16,22 +16,21 @@ class test_Findes extends UnitTestCase
    function test_Findes_Simple()
    {
       MakeTitle("Findes",'');
-      //sleep(1);
       $string='Это строка для проверки функции Findes';
       $preg='/Это/u';
       $prefix='Findes("'.$preg.'","'.$string.'"); ';
-      $Result=\prown\Findes($preg,$string);
+      $Result=prown\Findes($preg,$string);
       $this->assertEqual('Это',$Result);
       MakeTestMessage($prefix,'Подстрока '.'"Это"'.' найдена в строке',80);
       
       $prefix='Findes("'.$preg.'","'.$string.'",$point); ';
-      $Result=\prown\Findes($preg,$string,$point);
+      $Result=prown\Findes($preg,$string,$point);
       $this->assertEqual($point,0);
       MakeTestMessage($prefix,'Фрагмент '.'"Это"'.' найден с позиции 0',80);
       
       $preg="/Findes/u";
       $prefix='Findes("'.$preg.'","'.$string.'",$point); ';
-      $Result=\prown\Findes($preg,$string,$point);
+      $Result=prown\Findes($preg,$string,$point);
       $this->assertEqual($point,59);     // 59 позиция, а не 32, так как UTF8
       $this->assertNotEqual($point,32);  // если бы не UTF8
       MakeTestMessage($prefix,'Фрагмент '.'"Findes"'.' найден с байта 59 (не с 32, так как UTF8)',80);
@@ -42,13 +41,13 @@ class test_Findes extends UnitTestCase
       $string='Это строка для проверки функции Findes';
       $preg="/".'строк'."/u";
       $prefix='Findes("'.$preg.'","'.$string.'",$point); ';
-      $Result=\prown\Findes($preg,$string,$point);
+      $Result=prown\Findes($preg,$string,$point);
       $this->assertEqual($point,7);
       MakeTestMessage($prefix,'Фрагмент '.'"строк"'.' найден с 7 позиции',80);
       
       $preg="/".'строки'."/u";
       $prefix='Findes("'.$preg.'","'.$string.'",$point); ';
-      $Result=\prown\Findes($preg,$string,$point);
+      $Result=prown\Findes($preg,$string,$point);
       $this->assertEqual($point,-1);
       $this->assertEqual('',$Result);
       $this->assertEqual($Result,'');
@@ -61,7 +60,7 @@ class test_Findes extends UnitTestCase
       $string=1234;
       $preg="/12/u";
       $prefix='$string=1234; '.'$preg="/12/u"; '.'Findes($preg,$string,$point); ';
-      $Result=\prown\Findes($preg,$string,$point);
+      $Result=prown\Findes($preg,$string,$point);
       $this->assertEqual($point,0);
       MakeTestMessage($prefix,'Поиск в строке, представленной как число, обработан!',80);
   }
