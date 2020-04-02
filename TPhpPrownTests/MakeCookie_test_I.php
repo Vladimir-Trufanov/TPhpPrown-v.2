@@ -7,18 +7,32 @@
 
 //                                                   Автор:       Труфанов В.Е.
 //                                                   Дата создания:  13.01.2019
-// Copyright © 2020 tve                              Посл.изменение: 26.03.2020
+// Copyright © 2020 tve                              Посл.изменение: 02.04.2020
 
 // ****************************************************************************
 // *  Инициализировать сессионную переменную для возможного теста MakeCookie, *
 // * сделать подготовку текущего прохода этого теста, задать очередную порцию *
 // *                              кукисов для теста                           *
 // ****************************************************************************
+
+/**
+ * Заявлено два входа в эту функцию: 
+ * а) из общего тестирования TPhpPrown, когда тестирование MakeCookie 
+ * выбирается из общего меню или когда заказано тестирование ...;
+ * б) со страницы сайта doortry.ru, посвященной функции MakeCookie.
+**/
+ 
 function MakeCookieTest()
 {
-   // Разрешаем выполнение проходов, только когда выбраны тесты MakeCookie
+   // Выполняем проход, когда заказано тестирование MakeCookie
    if (isChecked('formDoor','MakeCookie'))
    {
+      _MakeCookieTest();
+   }
+   // Выполняем проход со страницы сайта doortry.ru о MakeCookie
+   elseif (defined("FuncName")&&(FuncName=='MakeCookie')) 
+   {
+      prown\ConsoleLog('3Поймали MakeCookie');
       _MakeCookieTest();
    }
 }
@@ -38,6 +52,13 @@ function _MakeCookieTest()
       $s_CookTrack++;  
       prown\MakeSession('CookTrack',$s_CookTrack,tInt);     
    }
+   // Трассируем проход в консоли
+   
+   prown\ConsoleLog($s_CookTrack);
+   prown\ConsoleLog('gettype($s_CookTrack)',gettype($s_CookTrack));
+   prown\ConsoleLog('$s_CookTrack',$s_CookTrack);
+   prown\ConsoleLog('ii$s_CookTrack',178);
+   prown\ConsoleLog('$s_CookTrack',$_SESSION['CookTrack']);
    // На нулевом проходе инициируем массив сообщений теста, 
    // массив результатов тестов (проверка всех результатов делается на 
    // последнем проходе, чтобы высветить вывод)

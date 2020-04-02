@@ -85,12 +85,25 @@ TPhpPrown
 [Open project files]
 0=www\index.php
 1=TPhpPrownTests\MakeType_test.php
+2=www\Main.php
+3=TPhpPrownTests\MakeCookie_test.php
+4=TPhpPrownTests\MakeCookie_test_I.php
 [Selected Project Files]
 Main=
-Selected=TPhpPrownTests\MakeType_test.php
+Selected=TPhpPrownTests\MakeCookie_test_I.php
 [www\index.php]
 TopLine=7
 Caret=1,1
 [TPhpPrownTests\MakeType_test.php]
-TopLine=51
+TopLine=40
 Caret=19,70
+[www\Main.php]
+TopLine=23
+Caret=1,35
+Mark1=1,35
+[TPhpPrownTests\MakeCookie_test.php]
+TopLine=9
+Caret=1,1
+[TPhpPrownTests\MakeCookie_test_I.php]
+TopLine=83
+Caret=7,98

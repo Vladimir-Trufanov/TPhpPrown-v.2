@@ -80,12 +80,13 @@ function ConsoleLog($Stringi,$Parmi=null,$isEscape=true)
    // Экранируем параметры при необходимости
    if ($isEscape)
    {
-      $iString=addslashes($iString); 
-      $Parm=addslashes($Parm);
+      if (gettype($iString)=='string') $iString=addslashes($iString);
+      if (gettype($Parm)=='string') $Parm=addslashes($Parm);
    }
    // Формируем текст сообщения
-   if ($Parmi==null) $messa=$iString;
+   if ($Parm===null) $messa=$iString;
    else $messa=$iString.'='.$Parm;
+   //}
    // Выводим сообщение
    ?>
    <script>
