@@ -26,6 +26,7 @@ define ("entryPhpPrown",  "entPhpPrown");   // из общего тестиро�
 define ("entryDoorTry",   "entDoorTry");    // со страницы сайта doortry.ru
 
 function MakeCookieTest($Entry=entryPhpPrown)
+/*
 {
    // Выполняем проход, когда заказано тестирование MakeCookie
    if (isChecked('formDoor','MakeCookie'))
@@ -40,6 +41,7 @@ function MakeCookieTest($Entry=entryPhpPrown)
 }
 // Выполняем инициализацию проходов
 function _MakeCookieTest($Entry)
+*/
 {
    // Выделяем первый в сессии заход для того, чтобы инициировать счетчик
    // проходов по тесту (с перезагрузкой страницы)
