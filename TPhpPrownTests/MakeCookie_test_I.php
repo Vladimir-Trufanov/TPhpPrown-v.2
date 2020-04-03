@@ -16,28 +16,30 @@
 // ****************************************************************************
 
 /**
- * Заявлено два входа в эту функцию: 
+ * Заявлено несколько входов в функцию: 
  * а) из общего тестирования TPhpPrown, когда тестирование MakeCookie 
  * выбирается из общего меню или когда заказано тестирование ...;
  * б) со страницы сайта doortry.ru, посвященной функции MakeCookie.
 **/
- 
-function MakeCookieTest()
+
+define ("entryPhpPrown",  "entPhpPrown");   // из общего тестирования TPhpPrown 
+define ("entryDoorTry",   "entDoorTry");    // со страницы сайта doortry.ru
+
+function MakeCookieTest($Entry=entryPhpPrown)
 {
    // Выполняем проход, когда заказано тестирование MakeCookie
    if (isChecked('formDoor','MakeCookie'))
    {
-      _MakeCookieTest();
+      _MakeCookieTest($Entry);
    }
    // Выполняем проход со страницы сайта doortry.ru о MakeCookie
    elseif (defined("FuncName")&&(FuncName=='MakeCookie')) 
    {
-      prown\ConsoleLog('3Поймали MakeCookie');
-      _MakeCookieTest();
+      _MakeCookieTest($Entry);
    }
 }
 // Выполняем инициализацию проходов
-function _MakeCookieTest()
+function _MakeCookieTest($Entry)
 {
    // Выделяем первый в сессии заход для того, чтобы инициировать счетчик
    // проходов по тесту (с перезагрузкой страницы)
@@ -53,12 +55,7 @@ function _MakeCookieTest()
       prown\MakeSession('CookTrack',$s_CookTrack,tInt);     
    }
    // Трассируем проход в консоли
-   
-   prown\ConsoleLog($s_CookTrack);
-   prown\ConsoleLog('gettype($s_CookTrack)',gettype($s_CookTrack));
-   prown\ConsoleLog('$s_CookTrack',$s_CookTrack);
-   prown\ConsoleLog('ii$s_CookTrack',178);
-   prown\ConsoleLog('$s_CookTrack',$_SESSION['CookTrack']);
+   // prown\ConsoleLog('INI_$s_CookTrack',$s_CookTrack);
    // На нулевом проходе инициируем массив сообщений теста, 
    // массив результатов тестов (проверка всех результатов делается на 
    // последнем проходе, чтобы высветить вывод)
@@ -91,10 +88,21 @@ function _MakeCookieTest()
    // "http://localhost:84/index.php?formDoor[]=MakeCookie&formSubmit=Протестировать"
    if ($s_CookTrack<LastTrack) 
    {
-      $page="/index.php?formDoor%5B%5D=MakeCookie&".
-         "formSubmit=%D0%9F%D1%80%D0%BE%D1%82%D0%B5%D1%81%D1%82%".
-         "D0%B8%D1%80%D0%BE%D0%B2%D0%B0%D1%82%D1%8C";
-      //echo "Location: http://".$_SERVER['HTTP_HOST'].$page;
+      if ($Entry===entryPhpPrown)
+      {
+         $page="/index.php?";
+         $vybor=
+            "formDoor%5B%5D=MakeCookie&".
+            "formSubmit=%D0%9F%D1%80%D0%BE%D1%82%D0%B5%D1%81%D1%82%".
+            "D0%B8%D1%80%D0%BE%D0%B2%D0%B0%D1%82%D1%8C";
+      }
+      else
+      {
+         $page="/Pages/TPhpPrown/_dispTPhpPrown.php?list=ustanovit-novoe-znachenie-cookie-v-brauzere";
+         $vybor='';
+      }
+      $page=$page.$vybor;
+      //echo "<br>Location: http://".$_SERVER['HTTP_HOST'].$page.'<br>';
       Header("Location: http://".$_SERVER['HTTP_HOST'].$page,true);
    }
    // Когда добрались до последнего прохода, то не прерываем сценарий,

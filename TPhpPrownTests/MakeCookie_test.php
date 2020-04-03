@@ -18,7 +18,9 @@ class test_MakeCookie extends UnitTestCase
    {
       $ModeError=rvsCurrentPos;
       // Регистрируем очередной проход
-      $s_CookTrack=$_SESSION['CookTrack'];  
+      $s_CookTrack=$_SESSION['CookTrack']; 
+      // Трассируем проход в консоли
+      // prown\ConsoleLog('OUT_$s_CookTrack',$s_CookTrack);
       // Формируем массив ранее сформированных сообщений
       $s_CookMessa=$_SESSION['CookMessa'];  
       $aCookMessa=unserialize($s_CookMessa);
