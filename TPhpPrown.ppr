@@ -98,12 +98,12 @@ Caret=1,1
 TopLine=41
 Caret=19,70
 [www\Main.php]
-TopLine=9
-Caret=1,14
-Mark1=1,35
+TopLine=17
+Caret=1,36
+Mark1=1,38
 [TPhpPrownTests\MakeCookie_test.php]
 TopLine=9
 Caret=1,1
 [TPhpPrownTests\MakeCookie_test_I.php]
-TopLine=83
-Caret=10,104
+TopLine=33
+Caret=99,26

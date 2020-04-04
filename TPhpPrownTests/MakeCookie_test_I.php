@@ -23,25 +23,55 @@
 **/
 
 define ("entryPhpPrown",  "entPhpPrown");   // из общего тестирования TPhpPrown 
-define ("entryDoorTry",   "entDoorTry");    // со страницы сайта doortry.ru
+define ("entryDoorTry",   "entDoorTry");    // со страниц сайтов doortry.ru, kwinflatht.nichost.ru 
 
-function MakeCookieTest($Entry=entryPhpPrown)
+// ****************************************************************************
+// *                           Перезагрузить страницу                         *
+// ****************************************************************************
+function Headeri($page)
+// Первый вариант - через посылку заголовка
+{
+   //echo '<br>Location: '.$page.'<br>';
+   Header('Location: '.$page,true);
+}
+// С отсрочкой через JavaScript
 /*
 {
-   // Выполняем проход, когда заказано тестирование MakeCookie
-   if (isChecked('formDoor','MakeCookie'))
+   // http://localhost:82/Pages/TPhpPrown/_dispTPhpPrown.php?list=ustanovit-novoe-znachenie-cookie-v-brauzere
+   // https://kwinflatht.nichost.ru/TPhpPrown/ustanovit-novoe-znachenie-cookie-v-brauzere 
+   // https://doortry.ru/TPhpPrown/ustanovit-novoe-znachenie-cookie-v-brauzere
+   
+   ?>
+   <script>
+   timedInfo(); // вызов функции, обязателен, иначе не сработает
+   function timedInfo() 
    {
-      _MakeCookieTest($Entry);
+      setTimeout(one, 1000)
+      setTimeout(two, 3000)
+      setTimeout(three, 5000)
    }
-   // Выполняем проход со страницы сайта doortry.ru о MakeCookie
-   elseif (defined("FuncName")&&(FuncName=='MakeCookie')) 
+   function one() 
    {
-      _MakeCookieTest($Entry);
+      console.log("Установить связь с центром!");
    }
+   function two() 
+   {
+      console.log("Пристегнуть ремни!");
+   }
+   function three() 
+   {
+      console.log("Контрольная проверка связи!");
+      var messa="<?php echo $page; ?>";
+      console.log(messa);
+   }
+   </script>
+   <?php
 }
-// Выполняем инициализацию проходов
-function _MakeCookieTest($Entry)
 */
+// ****************************************************************************
+// *                             Выполнить тесты                              *
+// ****************************************************************************
+function MakeCookieTest($Entry=entryPhpPrown)
 {
    // Выделяем первый в сессии заход для того, чтобы инициировать счетчик
    // проходов по тесту (с перезагрузкой страницы)
@@ -97,9 +127,8 @@ function _MakeCookieTest($Entry)
             "formDoor%5B%5D=MakeCookie&".
             "formSubmit=%D0%9F%D1%80%D0%BE%D1%82%D0%B5%D1%81%D1%82%".
             "D0%B8%D1%80%D0%BE%D0%B2%D0%B0%D1%82%D1%8C";
-         $page=$page.$vybor;
-         //echo "<br>Location: http://".$_SERVER['HTTP_HOST'].$page.'<br>';
-         Header("Location: http://".$_SERVER['HTTP_HOST'].$page,true);
+         $page='http://'.$_SERVER['HTTP_HOST'].$page.$vybor;
+         Headeri($page);
       }
       else
       {
@@ -107,49 +136,15 @@ function _MakeCookieTest($Entry)
          {
             $page="/TPhpPrown/ustanovit-novoe-znachenie-cookie-v-brauzere ";
             $page='https://'.$_SERVER['HTTP_HOST'].$page;
-            //echo '<br>Location: '.$page.'<br>';
-            Header('Location: '.$page,true);
+            Headeri($page);
          }
          elseif ($_SERVER['HTTP_HOST']=='localhost:82')
          {
             $page="/Pages/TPhpPrown/_dispTPhpPrown.php?list=ustanovit-novoe-znachenie-cookie-v-brauzere";
             $page='http://'.$_SERVER['HTTP_HOST'].$page;
-            //echo '<br>Location: '.$page.'<br>';
-            Header('Location: '.$page,true);
+            Headeri($page);
          } 
          else echo '<br>Перезапуск страницы выполняется на незнакомом сайте!<br>';
-         
-         // http://localhost:82/Pages/TPhpPrown/_dispTPhpPrown.php?list=ustanovit-novoe-znachenie-cookie-v-brauzere
-         // https://kwinflatht.nichost.ru/TPhpPrown/ustanovit-novoe-znachenie-cookie-v-brauzere 
-         // https://doortry.ru/TPhpPrown/ustanovit-novoe-znachenie-cookie-v-brauzere
-  
-         /*
-         ?>
-         <script>
-         timedInfo(); // вызов функции, обязателен, иначе не сработает
-         function timedInfo() 
-         {
-            setTimeout(one, 1000)
-            setTimeout(two, 3000)
-            setTimeout(three, 5000)
-         }
-         function one() 
-         {
-            console.log("Установить связь с центром!");
-         }
-         function two() 
-         {
-            console.log("Пристегнуть ремни!");
-         }
-         function three() 
-         {
-            console.log("Контрольная проверка связи!");
-            var messa="<?php echo $page; ?>";
-            console.log(messa);
-         }
-         </script>
-         <?php
-         */
       }
    }
    // Когда добрались до последнего прохода, то не прерываем сценарий,

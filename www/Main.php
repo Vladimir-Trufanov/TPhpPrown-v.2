@@ -31,7 +31,10 @@ require_once $TPhpPrown."/TPhpPrownTests/MakeCookie_test_I.php";
 // Инициализируем сессионную переменную для возможного теста MakeCookie
 // и делаем подготовку текущего прохода этого теста
 //prown\ViewGlobal(avgCOOKIE);
-if (prown\isComRequest(ToTest,'formSubmit')) MakeCookieTest();
+if (prown\isComRequest(ToTest,'formSubmit')&&(isChecked('formDoor','MakeCookie')))
+{
+   MakeCookieTest();
+} 
 ?>
 <!DOCTYPE html>
 <html>
