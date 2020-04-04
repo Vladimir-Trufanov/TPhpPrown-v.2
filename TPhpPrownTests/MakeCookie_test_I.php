@@ -97,15 +97,60 @@ function _MakeCookieTest($Entry)
             "formDoor%5B%5D=MakeCookie&".
             "formSubmit=%D0%9F%D1%80%D0%BE%D1%82%D0%B5%D1%81%D1%82%".
             "D0%B8%D1%80%D0%BE%D0%B2%D0%B0%D1%82%D1%8C";
+         $page=$page.$vybor;
+         //echo "<br>Location: http://".$_SERVER['HTTP_HOST'].$page.'<br>';
+         Header("Location: http://".$_SERVER['HTTP_HOST'].$page,true);
       }
       else
       {
-         $page="/Pages/TPhpPrown/_dispTPhpPrown.php?list=ustanovit-novoe-znachenie-cookie-v-brauzere";
-         $vybor='';
+         if (($_SERVER['HTTP_HOST']=='doortry.ru')||($_SERVER['HTTP_HOST']=='kwinflatht.nichost.ru'))
+         {
+            $page="/TPhpPrown/ustanovit-novoe-znachenie-cookie-v-brauzere ";
+            $page='https://'.$_SERVER['HTTP_HOST'].$page;
+            //echo '<br>Location: '.$page.'<br>';
+            Header('Location: '.$page,true);
+         }
+         elseif ($_SERVER['HTTP_HOST']=='localhost:82')
+         {
+            $page="/Pages/TPhpPrown/_dispTPhpPrown.php?list=ustanovit-novoe-znachenie-cookie-v-brauzere";
+            $page='http://'.$_SERVER['HTTP_HOST'].$page;
+            //echo '<br>Location: '.$page.'<br>';
+            Header('Location: '.$page,true);
+         } 
+         else echo '<br>Перезапуск страницы выполняется на незнакомом сайте!<br>';
+         
+         // http://localhost:82/Pages/TPhpPrown/_dispTPhpPrown.php?list=ustanovit-novoe-znachenie-cookie-v-brauzere
+         // https://kwinflatht.nichost.ru/TPhpPrown/ustanovit-novoe-znachenie-cookie-v-brauzere 
+         // https://doortry.ru/TPhpPrown/ustanovit-novoe-znachenie-cookie-v-brauzere
+  
+         /*
+         ?>
+         <script>
+         timedInfo(); // вызов функции, обязателен, иначе не сработает
+         function timedInfo() 
+         {
+            setTimeout(one, 1000)
+            setTimeout(two, 3000)
+            setTimeout(three, 5000)
+         }
+         function one() 
+         {
+            console.log("Установить связь с центром!");
+         }
+         function two() 
+         {
+            console.log("Пристегнуть ремни!");
+         }
+         function three() 
+         {
+            console.log("Контрольная проверка связи!");
+            var messa="<?php echo $page; ?>";
+            console.log(messa);
+         }
+         </script>
+         <?php
+         */
       }
-      $page=$page.$vybor;
-      //echo "<br>Location: http://".$_SERVER['HTTP_HOST'].$page.'<br>';
-      Header("Location: http://".$_SERVER['HTTP_HOST'].$page,true);
    }
    // Когда добрались до последнего прохода, то не прерываем сценарий,
    // а проходим дальше по коду до вывода данных тестов
