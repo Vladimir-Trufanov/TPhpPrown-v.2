@@ -86,7 +86,6 @@ function ConsoleLog($Stringi,$Parmi=null,$isEscape=true)
    // Формируем текст сообщения
    if ($Parm===null) $messa=$iString;
    else $messa=$iString.'='.$Parm;
-   //}
    // Выводим сообщение
    ?>
    <script>
@@ -108,15 +107,15 @@ function getAbove($SiteRoot)
    $Point=strrpos($Result,'\\');
    // Обратный слэш не найден, считаем что на хостинге (Apache,Linux)
    if ($Point==0) 
-	{
+   {
       // Ищем последний слэш
       $Point=strrpos($Result,'/');
 	   // Если слэш найден, выделяем надсайтовый каталог
-      if ($Point>0) {$Result=substr($SiteRoot,0,$Point);}
+      if ($Point>0) $Result=substr($SiteRoot,0,$Point);
    }
    // Обратный слэш найден, выделяем надсайтовый каталог в Windows
    else 
-	{
+   {
       $Result=substr($SiteRoot,0,$Point);
    }
    return $Result;
@@ -174,11 +173,11 @@ function NoSpace($Value,$Ext)
 {
    $Result=" ";
    if ($Value<0)
-	{
+   {
       if ($Value<-0.0001) $Result="$Value"."$Ext"; 
    }
    if ($Value>0)
-	{
+   {
       if ($Value>0.0001) $Result="$Value"."$Ext"; 
    }
    return $Result;
@@ -191,11 +190,11 @@ function NoZero($Value)
 {
    $Result=" ";
    if ($Value<0)
-	{
+   {
       if ($Value<-0.0001) $Result=$Value; 
    }
    if ($Value>0)
-	{
+   {
       if ($Value>0.0001) $Result=$Value; 
    }
    return $Result;
