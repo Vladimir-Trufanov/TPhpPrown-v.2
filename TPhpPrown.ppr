@@ -61,6 +61,7 @@ TPhpPrown
 			TPhpPrownTests\MakeCookie_test.php
 			TPhpPrownTests\MakeCookie_test_D.php
 			TPhpPrownTests\MakeCookie_test_I.php
+			TPhpPrownTests\MakeRegExp_test.php
 			TPhpPrownTests\MakeType_test.php
 			TPhpPrownTests\MakeUserError_test.php
 		-www
@@ -71,7 +72,7 @@ TPhpPrown
 			www\log.txt
 			www\Main.php
 			www\TPhpPrownTests.js
-		-Материалы
+		+Материалы
 			Материалы\Библиотека для определения типа и модели устройства на PHP.doc
 			Материалы\Руководство по разработке через тестирование для начинающих.doc
 			Материалы\Урок14 - Безопасное программирование.doc
@@ -85,25 +86,37 @@ TPhpPrown
 [Open project files]
 0=www\index.php
 1=www\Main.php
-2=TPhpPrown\Findes.php
-3=TPhpPrown\MakeRegExp.php
-4=TPhpPrown\iniErrMessage.php
+2=TPhpPrown\MakeRegExp.php
+3=TPhpPrown\iniErrMessage.php
+4=TPhpPrownTests\MakeRegExp_test.php
+5=TPhpPrownTests\MakeCookie_test_I.php
+6=TPhpPrown\iniConstMem.php
+7=TPhpPrown\MakeUserError.php
 [Selected Project Files]
 Main=
-Selected=TPhpPrown\iniErrMessage.php
+Selected=TPhpPrown\MakeRegExp.php
 [www\index.php]
 TopLine=7
 Caret=1,1
 [www\Main.php]
-TopLine=17
-Caret=1,36
-Mark1=1,38
-[TPhpPrown\Findes.php]
-TopLine=27
-Caret=1,19
+TopLine=121
+Caret=89,126
+Mark1=1,39
 [TPhpPrown\MakeRegExp.php]
-TopLine=1
-Caret=1,10
+TopLine=27
+Caret=92,46
 [TPhpPrown\iniErrMessage.php]
 TopLine=9
 Caret=1,29
+[TPhpPrownTests\MakeRegExp_test.php]
+TopLine=10
+Caret=18,34
+[TPhpPrownTests\MakeCookie_test_I.php]
+TopLine=81
+Caret=19,98
+[TPhpPrown\iniConstMem.php]
+TopLine=27
+Caret=23,40
+[TPhpPrown\MakeUserError.php]
+TopLine=97
+Caret=1,1

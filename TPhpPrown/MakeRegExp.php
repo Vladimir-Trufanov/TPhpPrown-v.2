@@ -13,7 +13,7 @@
 // ****************************************************************************
 
 // Функция предназначена для проверки и отладки регулярных выражений. Она
-// надстроена над функцией PHP: preg_match. MakeRegExp запускает указанное 
+// надстроена над функцией PHP: preg_match_all. MakeRegExp запускает указанное 
 // регулярное выражение по требуемому тексту и показывает все найденные 
 // фрагменты текста в соответствии с регулярным выражением. 
 // MakeRegExp может использоваться для настройки функции Findes перед встраиваем
@@ -24,7 +24,7 @@ require_once "MakeUserError.php";
 
 // Синтаксис:
 //
-//   MakeRegExp($pattern,$text,&$matches=null,$isTrass=false);
+//   MakeRegExp($pattern,$text,&$matches=null,$isTrass=true);
 
 // Параметры:
 //
@@ -32,8 +32,11 @@ require_once "MakeUserError.php";
 //   $text    - текст, который должен быть обработан регулярным выражением;
 //   $matches - массив найденных фрагментов и позиций их начала после работы
 //      регулярного выражения (параметр по ссылке);
-//   $isTrass=true, если следует выполнить трассировку найденных соответствий
-//      регулярному выражению.
+//   $isTrass=true (по умолчанию), если следует выполнить трассировку найденных
+//      соответствий регулярному выражению.
+//   $isPrintr - флаг управления трассировкой, используется в сочетании с флагом
+//      $isTrass. true (по умолчанию). Если  если следует выполнить трассировку найденных
+//      соответствий регулярному выражению.
 
 // Возвращаемое значение: 
 //
@@ -47,18 +50,21 @@ require_once "MakeUserError.php";
 // ****************************************************************************
 // *  Выполнить функцию preg_match_all, при необходимости, отттрассировать ее *
 // ****************************************************************************
-function MakeRegExp($pattern,$text,&$matches=null,$isTrass=true)
+function MakeRegExp($pattern,$text,&$imatches=null,$isTrass=true,$isPrintr=true)
 {
    $Prefix='TPhpPrown';
+   
    // Ошибки:
    // Warning: preg_match_all(): No ending delimiter '/' found in 
    //        C:\Webservers\kwinflat-ru\www\TPHPPROWN\regx.php on line 17
    // Warning: preg_match_all(): Delimiter must not be alphanumeric or backslash in 
    //        C:\Webservers\kwinflat-ru\www\TPHPPROWN\regx.php on line 20
-    
+   
+   // Готовим массив результатов
+   if ($imatches===null) $imatches=array(); 
    // Выполняем регулярное выражение и получаем результаты поиска
-   $Result=preg_match($pattern,$text,$imatches,PREG_OFFSET_CAPTURE);
-   if (!($matches==null)) $matches=$imatches;   // здесь что-то не так
+   $Result=preg_match_all($pattern,$text,$imatches,PREG_OFFSET_CAPTURE);
+   print_r($imatches); 
 
    // При трассировке показываем текст, шаблон поиска 
    if ($isTrass)
@@ -74,6 +80,7 @@ function MakeRegExp($pattern,$text,&$matches=null,$isTrass=true)
       // что найдено и позиция
       else 
       {
+         /*
          for ($i=0; $i<count($imatches); $i++)
 		   {
             $findes=$imatches[$i];    
@@ -84,15 +91,18 @@ function MakeRegExp($pattern,$text,&$matches=null,$isTrass=true)
                $findes[$j][1];  
             }
          }
+         */
       }
       echo '<br>';
+      
+      
+      
    }
    // Если трассировка не нужна, то выдаем сообщение:
    // "Устарела выборка подстроки регулярным выражением"
    else
    {
-      //trigger_error($Prefix.': '.FetchStrObsolete,E_USER_DEPRECATED);
-      \prown\MakeUserError(FetchStrObsolete,'TPhpPrown',0,E_USER_DEPRECATED);
+      prown\MakeUserError(FetchStrObsolete,'TPhpPrown',rvsCurrentPos,E_USER_DEPRECATED);
    }   
    return $Result;
 }

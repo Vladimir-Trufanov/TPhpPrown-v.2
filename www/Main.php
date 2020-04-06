@@ -20,6 +20,7 @@ require_once $TPhpPrown."/TPhpPrown/getTranslit.php";
 require_once $TPhpPrown."/TPhpPrown/iniConstMem.php";
 require_once $TPhpPrown."/TPhpPrown/isCalcInBrowser.php";
 require_once $TPhpPrown."/TPhpPrown/MakeCookie.php";
+require_once $TPhpPrown."/TPhpPrown/MakeRegExp.php";
 require_once $TPhpPrown."/TPhpPrown/MakeSession.php";
 require_once $TPhpPrown."/TPhpPrown/MakeType.php";
 require_once $TPhpPrown."/TPhpPrown/ViewGlobal.php";
@@ -122,6 +123,7 @@ $aPhpPrown=array
    'Findes'         =>'выбрать из строки подстроку, соответствующую регулярному выражению',   
    'isCalcInBrowser'=>'определить по родительским браузерам работает ли функция Calc для CSS',   
    'MakeCookie'     =>'установить новое значение COOKIE в браузере и в массиве $_COOKIE',
+   'MakeRegExp'     =>'отработать регулярное выражение на тексте и оттрассировать разбор',
    'MakeType'       =>'преобразовать значение к заданному типу',
    'MakeUserError'  =>'cгенерировать ошибку/исключение или просто сформировать сообщение об ошибке',
 );
