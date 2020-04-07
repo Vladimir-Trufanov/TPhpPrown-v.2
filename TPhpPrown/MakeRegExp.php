@@ -106,10 +106,10 @@ function MakeRegExp($pattern,$text,&$imatches=null,$isTrass=mriIsDeprecated)
    }
    // Если трассировка не нужна, то выдаем сообщение:
    // "Устарела выборка подстроки регулярным выражением"
-   //else
-   //{
-   //   prown\MakeUserError(FetchStrObsolete,'TPhpPrown',rvsCurrentPos,E_USER_DEPRECATED);
-   //}
+   if ($isTrass==mriIsDeprecated)
+   {
+      MakeUserError(FetchStrObsolete,'TPhpPrown',rvsCurrentPos,E_USER_DEPRECATED);
+   }
    // Возвращаем результат регулярного выражения
    $imatches=$matches;
    return $Result;
