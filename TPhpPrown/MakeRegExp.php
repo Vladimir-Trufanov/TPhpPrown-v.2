@@ -12,16 +12,12 @@
 // * Copyright © 2018 tve                          Дата создания:  02.04.2018 *
 // ****************************************************************************
 
-// Функция предназначена для проверки и отладки регулярных выражений. Она
-// надстроена над функцией PHP: preg_match_all. MakeRegExp запускает указанное 
+// MakeRegExp предназначена для проверки и отладки регулярных выражений. Она
+// надстроена над функцией PHP: preg_match_all. Функция запускает указанное 
 // регулярное выражение по требуемому тексту и показывает все найденные 
 // фрагменты текста в соответствии с регулярным выражением. 
 // MakeRegExp может использоваться для настройки функции Findes перед встраиваем
 // её в код сценария PHP.
-
-require_once "iniConstMem.php";
-require_once "iniErrMessage.php";
-require_once "MakeUserError.php";
 
 // Синтаксис:
 //
@@ -36,18 +32,22 @@ require_once "MakeUserError.php";
 //   $isTrass - режим трассировки найденных соответствий регулярному выражению:
 //
 //   mriStandTracing - трассировка результатов стандартным выводом;
-//   mriInstallTrace - установленная трассировка MakeRegExp
-//   mriTracingBlock - трассировка заблокирована
-//   mriIsDeprecated - разбор и сообщение устаревшего использования (по умолчанию)
+//   mriInstallTrace - установленная трассировка MakeRegExp;
+//   mriTracingBlock - трассировка заблокирована;
+//   mriIsDeprecated - разбор и сообщение устаревшего использования (по умолчанию).
 
 /// Возвращаемое значение: 
 //
 //   $Result  - количество найденных соответствий регулярному выражению.
-//      $Result=0, если соответствий не найдено. 
+//   $Result=0, если соответствий не найдено. 
 
 // Зарегистрированные ошибки/исключения:
 //   
-//   FetchStrObsolete - "Устарела выборка подстроки регулярным выражением".
+//   FetchStrObsolete - "Устарела функция выборки подстроки MakeRegExp".
+
+require_once "iniConstMem.php";
+require_once "iniErrMessage.php";
+require_once "MakeUserError.php";
 
 // ****************************************************************************
 // *  Выполнить функцию preg_match_all, при необходимости, отттрассировать ее *
@@ -55,13 +55,6 @@ require_once "MakeUserError.php";
 function MakeRegExp($pattern,$text,&$imatches=null,$isTrass=mriIsDeprecated)
 {
    $Prefix='TPhpPrown';
-   
-   // Ошибки:
-   // Warning: preg_match_all(): No ending delimiter '/' found in 
-   //        C:\Webservers\kwinflat-ru\www\TPHPPROWN\regx.php on line 17
-   // Warning: preg_match_all(): Delimiter must not be alphanumeric or backslash in 
-   //        C:\Webservers\kwinflat-ru\www\TPHPPROWN\regx.php on line 20
-   
    // Готовим массив результатов
    if ($imatches===null) $matches=array(); 
    else $matches=$imatches;

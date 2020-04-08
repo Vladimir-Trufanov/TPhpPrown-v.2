@@ -104,11 +104,11 @@ TopLine=121
 Caret=89,126
 Mark1=1,39
 [TPhpPrown\MakeRegExp.php]
-TopLine=87
+TopLine=84
 Caret=4,84
 [TPhpPrown\iniErrMessage.php]
 TopLine=3
-Caret=75,28
+Caret=26,24
 [TPhpPrownTests\MakeRegExp_test.php]
 TopLine=40
 Caret=103,63
