@@ -6,7 +6,7 @@
 
 //                                                   Автор:       Труфанов В.Е.
 //                                                   Дата создания:  31.01.2020
-// Copyright © 2020 TVE                              Посл.изменение: 20.03.2020
+// Copyright © 2020 TVE                              Посл.изменение: 28.06.2020
 
 // Определяем константы перечня элементов массива рабочего пространства ---
 define ("wsSiteRoot",    0);          // Корневой каталог сайта 
@@ -37,7 +37,7 @@ function iniWorkSpace()
       wsTimeRequest => $_SERVER['REQUEST_TIME'],    
       wsRemoteAddr  => $_SERVER['REMOTE_ADDR'],    
       wsSiteName    => $_SERVER['HTTP_HOST'],    
-      wsPhpVersion  => prown\getPhpVersion(),    
+      wsPhpVersion  => prown\getPhpVersion(), 
    );
    return $_WORKSPACE;
 }   

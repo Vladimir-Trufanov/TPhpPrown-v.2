@@ -162,13 +162,13 @@ function ViewArr($Caption,$aArray,$Name)
 // Показать значения глобальных переменных 
 function ViewGlobal($Parm,$_Array=null)
 {
+    //Alert('$Parmi',$Parm);
     if ($Parm==avgCOOKIE)
     {
         ViewArr("Массив значений \$_COOKIE, переданных скрипту через HTTP Cookies",$_COOKIE,"\$_COOKIE");
     }
     elseif ($Parm==avgWORKSPACE)
     {
-       //Alert('$Parmi',$Parm);
        ViewArr("Массив значений \$_WORKSPACE - переменных рабочего пространства",$_Array,"\$_WORKSPACE");
     }
     elseif ($Parm=='avgGET')
