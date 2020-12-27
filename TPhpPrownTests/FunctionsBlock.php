@@ -25,36 +25,40 @@
 //    formSubmit=%D0%92%D1%8B%D0%B1%D1%80%D0%B0%D1%82%D1%8C+%D0%B2%D1%81%D1%91
 //    &
 //    formDoor%5B%5D=Findes можно выбрать все флажки
-function EchoCheck($k,$v,$checkin='')
+function EchoCheck($k,$v,$intype,$checkin='')
 {
-   echo '<input type="checkbox" id="'.$k.'" value="'.$k.'" '.$checkin.' '.
+   echo '<input type="'.$intype.'" id="'.$k.'" value="'.$k.'" '.$checkin.' '.
    'name="formDoor[]" onclick="isCheckClick()">'.$k.' - '.$v.
    '<span style="color: red" id="sp'.$k.'">'.''.'</span>'.
    '<br>';
 }
 function FunctionsCheckbox($aElements,$isCheck=ToTest,
-   $cMess='Укажите прототипы объектов в TJsTools, которые следует протестировать')
+   $cMess='Укажите прототипы объектов в TJsTools, которые следует протестировать',
+   $intype='checkbox')
 {
    $Result = true;
    echo '<form action="'.htmlentities($_SERVER['PHP_SELF']).'" method="post" id="myform">';
    echo '<p>'.$cMess.'?<br><br>';
-   echo '<input type="submit" name="formSubmit" value="'.ChooseAll.'"/><br><br>';
+   if ($intype=='checkbox')
+   {
+      echo '<input type="submit" name="formSubmit" value="'.ChooseAll.'"/><br><br>';
+   }
    foreach($aElements as $k=>$v)
    {
       if ($isCheck==ChooseAll)
       {
          if (!($k=='MakeCookie')) 
          {
-            EchoCheck($k,$v,'checked');
+            EchoCheck($k,$v,$intype,'checked');
          }
          else
          {
-            EchoCheck($k,$v);
+            EchoCheck($k,$v,$intype);
          }
       }
       else
       {
-         EchoCheck($k,$v);
+         EchoCheck($k,$v,$intype);
       }
    }
    echo '</p>';
@@ -118,7 +122,7 @@ function LeadTest()
 // ****************************************************************************
 // http://form.guide/php-form/php-form-checkbox.html
 // http://dnzl.ru/view_post.php?id=182
-function MakeTest($SiteRoot,$aPhpPrown,$lang='PHP')
+function MakeTest($SiteRoot,$aPhpPrown,$lang='PHP',$TestsSubDir='/TPhpPrown/TPhpPrownTests/')
 {
    $SiteAbove=prown\getAbove($SiteRoot);       // Надсайтовый каталог
    $SiteHost=prown\getAbove($SiteAbove);       // Каталог хостинга
@@ -143,7 +147,7 @@ function MakeTest($SiteRoot,$aPhpPrown,$lang='PHP')
                if ($lang=='PHP') 
                {
                   //echo $SiteHost."/TPhpPrown/TPhpPrownTests/".$k."_test.php";
-                  require_once $SiteHost."/TPhpPrown/TPhpPrownTests/".$k."_test.php";
+                  require_once $SiteHost.$TestsSubDir.$k."_test.php";
                }
                else if ($lang=='JS') 
                {
@@ -165,6 +169,44 @@ function MakeTest($SiteRoot,$aPhpPrown,$lang='PHP')
          {
             require_once $SiteHost."/TPhpPrown/TPhpPrownTests/"."FinalMessage_test.php";
          }
+      } 
+   }
+}
+// ****************************************************************************
+// *   Проверить выбор радиокнопки, указывающей на элемент списка, который    *
+// *        следует протестировать и подключить модули тестирования           *
+// ****************************************************************************
+function MakeTToolsTest($SiteRoot,$aPhpPrown,$lang='PHP',$TestsSubDir='/TPhpPrown/TPhpPrownTests/')
+{
+   $SiteAbove=prown\getAbove($SiteRoot);       // Надсайтовый каталог
+   $SiteHost=prown\getAbove($SiteAbove);       // Каталог хостинга
+   if(isset($_REQUEST['formSubmit'])) 
+   {
+      if(empty($_REQUEST['formDoor']))
+      {
+         echo("<p>Элемент для тестирования Вами не выбран!</p>\n</body>\n</html>\n");
+      }
+      else
+      {
+         $aDoor=$_REQUEST['formDoor'];
+         $N=count($aDoor);
+         // Запускаем тестирование и трассировку выбранного элемента
+         foreach($aPhpPrown as $k=>$v)
+         {
+            //echo '<input type="checkbox" checked name="formDoor[]" value="'.$k.'"/>'.$k.' - '.$v.'<br>';
+            if(isChecked('formDoor',$k))
+            {
+
+               //echo $k.' тестируется.<br>';
+               //echo $SiteHost."/TPhpPrown/TPhpPrownTests/".$k."_test.php";
+               
+               require_once $SiteHost.$TestsSubDir.$k."_proba.php";
+               proba_TUploadToServer();                  
+               //require_once($SiteHost.'/TSimpleTest/autorun.php');
+               //require_once $SiteHost.$TestsSubDir.$k."_test.php";
+            }
+         }
+         //require_once $SiteHost."/TPhpPrown/TPhpPrownTests/"."FinalMessage_test.php";
       } 
    }
 }

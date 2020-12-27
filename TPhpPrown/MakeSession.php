@@ -72,7 +72,7 @@ function _MakeSession($Name,$Value,$Type)
 function MakeSession($Name,$Value,$Type,$Init=false)
 {
    // Устанавливаем значение, если инициализация
-   if ($Init==true) 
+   if ($Init===true) 
    {
       if (!(IsSet($_SESSION[$Name]))) 
       {

@@ -140,7 +140,7 @@ function MakeCookie($Name,$Value=null,$Type=tStr,$Init=false,$Duration=cook512,
    $ModeError=rvsTriggerError)
 {
    // Устанавливаем значение, если инициализация
-   if ($Init==true) 
+   if ($Init===true) 
    {
       // Если кукиса еще нет, то устанавливаем его
       if (!(IsSet($_COOKIE[$Name]))) 
@@ -159,7 +159,9 @@ function MakeCookie($Name,$Value=null,$Type=tStr,$Init=false,$Duration=cook512,
       }
    }
    // При запросе значения, возвращаем установленное значение кукиса
-   elseif ($Value==null) 
+   // (здесь идет проверка по типу и значению, так как проверка только по 
+   // значению может не отличить 0 от NULL)
+   elseif ($Value===null) 
    {
       $Result=$_COOKIE[$Name];
    }

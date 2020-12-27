@@ -63,7 +63,7 @@ TPhpPrown
 			TPhpPrownTests\MakeRegExp_test.php
 			TPhpPrownTests\MakeType_test.php
 			TPhpPrownTests\MakeUserError_test.php
-		-www
+		+www
 			www\89.gif
 			www\favicon.ico
 			www\index.php
@@ -93,14 +93,15 @@ TPhpPrown
 6=TPhpPrown\MakeUserError.php
 7=TPhpPrownTests\Findes_test.php
 8=TPhpPrownTests\MakeUserError_test.php
+9=TPhpPrownTests\FunctionsBlock.php
 [Selected Project Files]
 Main=
-Selected=TPhpPrown\iniErrMessage.php
+Selected=TPhpPrownTests\FunctionsBlock.php
 [www\index.php]
-TopLine=7
+TopLine=25
 Caret=1,1
 [www\Main.php]
-TopLine=121
+TopLine=163
 Caret=89,126
 Mark1=1,39
 [TPhpPrown\MakeRegExp.php]
@@ -124,3 +125,6 @@ Caret=1,25
 [TPhpPrownTests\MakeUserError_test.php]
 TopLine=7
 Caret=26,25
+[TPhpPrownTests\FunctionsBlock.php]
+TopLine=13
+Caret=1,1

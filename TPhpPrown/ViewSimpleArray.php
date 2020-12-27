@@ -1,6 +1,6 @@
 <?php namespace prown;
 
-// PHP7/HTML5, EDGE/CHROME                                *** ViewArray.php ***
+// PHP7/HTML5, EDGE/CHROME                          *** ViewSimpleArray.php ***
 
 // ****************************************************************************
 // * TPHPPROWN                                    Показать содержимое массива *
@@ -25,5 +25,5 @@ function ViewArray($fill,$Caption='')
         }
     }
 }
-// ********************************************************** ViewArray.php ***
+// **************************************************** ViewSimpleArray.php ***
 

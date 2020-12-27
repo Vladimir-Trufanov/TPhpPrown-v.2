@@ -171,7 +171,7 @@ function ViewGlobal($Parm,$_Array=null)
     {
        ViewArr("Массив значений \$_WORKSPACE - переменных рабочего пространства",$_Array,"\$_WORKSPACE");
     }
-    elseif ($Parm=='avgGET')
+    elseif ($Parm==avgGET)
     {
         ViewArr("Массив параметров \$_GET, явно переданных скрипту через URL",$_GET,"\$_GET");
     }
@@ -190,11 +190,16 @@ function ViewGlobal($Parm,$_Array=null)
         if (IsSet($_SESSION))
         ViewArr("Переменные сессии, которые доступны для текущего скрипта \$_SESSION",$_SESSION,"\$_SESSION");
     }
-    
     elseif ($Parm==avgFILES)
     {
         //if (IsSet($_FILES))
-        //ViewArr("Элементы \$_FILES, загруженные в текущий скрипт через метод HTTP POST",$_FILES,"\$_FILES");
+        ViewArr("Элементы \$_FILES, загруженные в текущий скрипт через метод HTTP POST",$_FILES,"\$_FILES");
+        //else echo 'Нет загруженных файлов!<br>';
+    }
+    elseif ($Parm==avgPOST)
+    {
+        //if (IsSet($_FILES))
+        ViewArr("Массив параметров, скрыто переданных скрипту \$_POST",$_POST,"\$_POST");
         //else echo 'Нет загруженных файлов!<br>';
     }
     elseif ($Parm==avgSERVER)
@@ -206,11 +211,7 @@ function ViewGlobal($Parm,$_Array=null)
 }
 
 
-// ViewArr("Информация о сервере и среде исполнения \$_SERVER",$_SERVER,"\$_SERVER");
-// 
-// ViewArr("Массив параметров, скрыто переданных скрипту \$_POST",$_POST,"\$_POST");
 
-// ViewArr("Элементы \$_FILES, загруженные в текущий скрипт через метод HTTP POST",$_FILES,"\$_FILES");
 /*
 The problem occurs when you have a form that uses both single file and HTML array feature. 
 The array isn't normalized and tends to make coding for it really sloppy. 
