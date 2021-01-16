@@ -269,13 +269,23 @@ function PrepareColor(&$Name,&$Color)
    $Name=$NameItog;
 }
 // ****************************************************************************
-// *        Вывести сообщение по завершении очередного теста/подтеста         *
+// *            Вывести сообщение с переходом на новую строку или без,        *
+// *               обычно по завершении очередного теста/подтеста             *
 // ****************************************************************************
-function SimpleMessage($Name2=' ',$Color='#993300')
+function PointMessage($Name2=' ',$Color='#993300')
 {
    echo 
       "<span style=\"color:".$Color."; font-weight:bold; ".
       "font-family:'Anonymous Pro', monospace; font-size:0.9em\">".
-      $Name2."</span>".' <br>';
+      $Name2."</span> ";
+}
+function SimpleMessage($Name2=' ',$Color='#993300')
+{
+   PointMessage($Name2,$Color);
+   echo '<br>';
+}
+function OkMessage()
+{
+   SimpleMessage(' Ok','green');
 }
 // ***************************************************** FunctionsBlock.php ***
