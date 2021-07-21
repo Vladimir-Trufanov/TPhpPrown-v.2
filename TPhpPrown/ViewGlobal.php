@@ -179,7 +179,7 @@ function ViewGlobal($Parm,$_Array=null)
     {
         ViewArr("Массив значений глобальных переменных страницы сайта",$GLOBALS,"\$GLOBALS");
     }
-    elseif ($Parm=='avgREQUEST')
+    elseif ($Parm==avgREQUEST)
     {
         ViewArr("Массив \$_REQUEST, содержащий переменные \$_GET, \$_POST, \$_COOKIE",$_REQUEST,"\$_REQUEST");
     }
