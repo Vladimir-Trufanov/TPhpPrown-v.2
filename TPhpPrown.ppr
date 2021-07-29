@@ -5,6 +5,7 @@ Compilator.CompileOnBackground=0
 Compilator.ProgSaveAll=0
 Compilator.ProgRunSelection=0
 Compilator.LogType=0
+Compilator.LogEncoding=0
 DefaultDir=C:\TPhpPrown
 DefaultCP=0
 LogtoEnd=1
@@ -95,13 +96,13 @@ TPhpPrown
 8=TPhpPrownTests\MakeCookie_test.php
 [Selected Project Files]
 Main=
-Selected=TPhpPrown\MakeUserError.php
+Selected=www\Main.php
 [www\index.php]
 TopLine=25
 Caret=1,1
 [www\Main.php]
-TopLine=126
-Caret=89,126
+TopLine=1
+Caret=80,10
 Mark1=1,39
 [TPhpPrown\MakeRegExp.php]
 TopLine=84
