@@ -175,10 +175,10 @@ function isComRequest($subs,$Com='Com')
 // ****************************************************************************
 // *             Проверить, есть ли метка в переданном сообщении              *
 // ****************************************************************************
-function isLabel($mess,$subs,$Before='***',$After='***')
+function isLabel($mess,$subs,$Before='~~~',$After='~~~')
 {
    $Result=false;
-   $Label=makeLabel($subs,$Before='***',$After='***');
+   $Label=makeLabel($subs,$Before,$After);
    $regLabel="/".$Label."/u";
    $s=Findes($regLabel,$mess);
    if ($s==$Label) $Result=true;
@@ -187,7 +187,7 @@ function isLabel($mess,$subs,$Before='***',$After='***')
 // ****************************************************************************
 // *                  Выделить метку для отправляемого сообщения              *
 // ****************************************************************************
-function makeLabel($subs,$Before='***',$After='***')
+function makeLabel($subs,$Before='~~~',$After='~~~')
 {
    $Result=$Before.$subs.$After;
    return $Result;
