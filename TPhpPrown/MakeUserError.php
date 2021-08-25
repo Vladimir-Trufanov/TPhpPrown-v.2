@@ -13,14 +13,14 @@ require_once "iniConstMem.php";
 
 // Синтаксис
 //
-//   MakeUserError($Mess,$Prefix='TPhpPrown',$Mode=0,$errtype=E_USER_ERROR,$div='Ers')
+//   MakeUserError($Mess,$Prefix='TPhpPrown',$Mode=rvsTriggerError,$errtype=E_USER_ERROR,$div='Ers')
 
 // Параметры
 //
 //   $Mess    - текст сообщения об ошибке/исключении;
 //   $Prefix  - префикс сообщения, указывающий на программную систему, в модуле
 //              которой возникла ошибка/исключение;
-//   $Mode    - режим вывода сообщений: rvsCurrentPos, rvsTriggerError, 
+//   $Mode    - режим вывода сообщений: rvsCurrentPos,rvsTriggerError, 
 //              rvsMakeDiv,rvsDialogWindow;
 //   $errtype - тип ошибки/исключения: E_USER_ERROR, E_USER_WARNING, 
 //              E_USER_NOTICE, E_USER_DEPRECATED;
@@ -79,6 +79,14 @@ require_once "iniConstMem.php";
  * странице исключения с трассировкой его всплывания;
 **/
 
+
+function echooi()
+{
+    echo '<br>echooi!<br>';
+}
+
+
+
 // ****************************************************************************
 // *       Развернуть сообщение в диалоговом окне  с помощью JQueryUI         *
 // ****************************************************************************
@@ -106,7 +114,7 @@ function MakeMode2($Mess,$Prefix,$div)
 // *                    Cгенерировать ошибку/исключение или                   *
 // *                  просто сформировать сообщение об ошибке                 *
 // ****************************************************************************
-function MakeUserError($Mess,$Prefix='TPhpPrown',$Mode=0,$errtype=E_USER_ERROR,$div='Ers')
+function MakeUserError($Mess,$Prefix='TPhpPrown',$Mode=rvsTriggerError,$errtype=E_USER_ERROR,$div='Ers')
 {
    $Result=true;
    $Message='['.$Prefix.'] '.$Mess;
