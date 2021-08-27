@@ -5,7 +5,7 @@
 // * TPhpPrown     Вывести сообщение разработчика об ошибке в программируемом *
 // *                      модуле или сформировать пользовательское исключение *
 // *                                                                          *
-// * v1.4, 12.01.2020                              Автор:       Труфанов В.Е. *
+// * v1.5, 27.08.2021                              Автор:       Труфанов В.Е. *
 // * Copyright © 2019 tve                          Дата создания:  17.02.2019 *
 // ****************************************************************************
 
@@ -21,7 +21,7 @@ require_once "iniConstMem.php";
 //   $Prefix  - префикс сообщения, указывающий на программную систему, в модуле
 //              которой возникла ошибка/исключение;
 //   $Mode    - режим вывода сообщений: rvsCurrentPos,rvsTriggerError, 
-//              rvsMakeDiv,rvsDialogWindow;
+//              rvsMakeDiv,rvsDialogWindow,rvsReturn;
 //   $errtype - тип ошибки/исключения: E_USER_ERROR, E_USER_WARNING, 
 //              E_USER_NOTICE, E_USER_DEPRECATED;
 //   $div     - имя div-а для сообщения в режимах rvsMakeDiv,rvsDialogWindow. 
@@ -29,7 +29,8 @@ require_once "iniConstMem.php";
 
 // Возвращаемое значение 
 //
-//   $Result=true, если сообщение сформировано без ошибок 
+//   $Result=true, если сообщение сформировано без ошибок (кроме режима rvsReturn).
+//   В режиме rvsReturn, функция просто возвращает текст сообщение в виде текстовой константы. 
 
 // Зарегистрированные ошибки/исключения
 //   
@@ -79,14 +80,6 @@ require_once "iniConstMem.php";
  * странице исключения с трассировкой его всплывания;
 **/
 
-
-function echooi()
-{
-    echo '<br>echooi!<br>';
-}
-
-
-
 // ****************************************************************************
 // *       Развернуть сообщение в диалоговом окне  с помощью JQueryUI         *
 // ****************************************************************************
@@ -129,6 +122,10 @@ function MakeUserError($Mess,$Prefix='TPhpPrown',$Mode=rvsTriggerError,$errtype=
    elseif ($Mode==rvsDialogWindow)
    {
       MakeMode2($Mess,$Prefix,$div);
+   } 
+   elseif ($Mode==rvsReturn)
+   {
+      $Result=$Message;
    } 
    else
    {
