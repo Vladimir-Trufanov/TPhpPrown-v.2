@@ -100,3 +100,5 @@ Stack trace:
 [07-Apr-2020 10:40:40 Asia/Kuwait] PHP Parse error:  syntax error, unexpected '';' (T_CONSTANT_ENCAPSED_STRING), expecting ',' or ';' in C:\TPhpPrown\TPhpPrown\MakeRegExp.php on line 82
 [07-Apr-2020 10:41:11 Asia/Kuwait] PHP Parse error:  syntax error, unexpected '';' (T_CONSTANT_ENCAPSED_STRING), expecting ',' or ';' in C:\TPhpPrown\TPhpPrown\MakeRegExp.php on line 82
 [07-Apr-2020 14:32:31 Asia/Kuwait] PHP Parse error:  syntax error, unexpected ''.$preg.'' (T_CONSTANT_ENCAPSED_STRING) in C:\TPhpPrown\TPhpPrownTests\MakeRegExp_test.php on line 30
+[08-Sep-2021 21:00:24 Asia/Kuwait] PHP Parse error:  syntax error, unexpected end of file in C:\TPhpPrown\TPhpPrown\ChangeDimInfo.php on line 69
+[08-Sep-2021 21:04:12 Asia/Kuwait] PHP Fatal error:  require_once(): Failed opening required 'C:/TPhpPrown/TPhpPrownTests/ChangeDimInfo_test.php' (include_path='.;C:\php\pear') in C:\TPhpPrown\TPhpPrownTests\FunctionsBlock.php on line 150

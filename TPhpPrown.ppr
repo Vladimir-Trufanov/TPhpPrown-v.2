@@ -18,14 +18,26 @@ Extensions=*.*
 [Project tree]
 TPhpPrown
 	+TPhpPrown
+		-TEntrys
+			TEntrys\AddUsl.php
+			TEntrys\AddZhkvar.php
+			TEntrys\Authentich.php
+			TEntrys\CheckPassword.php
+			TEntrys\ContactUs.php
+			TEntrys\Indoor.php
+			TEntrys\Register.php
+			TEntrys\Register_user_text.php
 		+TPhpPrown
 			-WorkSpace
 				TPhpPrown\WorkSpace\getSiteDevice.php
 				TPhpPrown\WorkSpace\iniWorkSpace.php
 				TPhpPrown\WorkSpace\Mobile_Detect.php
+			TPhpPrown\ChangeDimInfo.php
 			TPhpPrown\CommonPrown.php
 			TPhpPrown\CtrlArray.php
 			TPhpPrown\CtrlNumber.php
+			TPhpPrown\DebugInfo.php
+			TPhpPrown\Findes.php
 			TPhpPrown\getTranslit.php
 			TPhpPrown\iniConstMem.php
 			TPhpPrown\iniErrMessage.php
@@ -62,9 +74,9 @@ TPhpPrown
 			TPhpPrownTests\MakeCookie_test_D.php
 			TPhpPrownTests\MakeCookie_test_I.php
 			TPhpPrownTests\MakeRegExp_test.php
-			TPhpPrownTests\MakeType_test.php
+			TPhpPrownTests\ChangeDimInfo_test.php
 			TPhpPrownTests\MakeUserError_test.php
-		+www
+		-www
 			www\89.gif
 			www\favicon.ico
 			www\index.php
@@ -72,7 +84,7 @@ TPhpPrown
 			www\log.txt
 			www\Main.php
 			www\TPhpPrownTests.js
-		+Материалы
+		-Материалы
 			Материалы\Библиотека для определения типа и модели устройства на PHP.doc
 			Материалы\Руководство по разработке через тестирование для начинающих.doc
 			Материалы\Урок14 - Безопасное программирование.doc
@@ -83,45 +95,40 @@ TPhpPrown
 		README-styled.html
 		TPhpPrown.png
 		TPhpPrown.ppr
-		TPhpPrown\Findes.php
 [Open project files]
 0=www\index.php
 1=www\Main.php
-2=TPhpPrown\MakeRegExp.php
-3=TPhpPrown\iniErrMessage.php
-4=TPhpPrownTests\MakeRegExp_test.php
-5=TPhpPrown\iniConstMem.php
-6=TPhpPrown\MakeUserError.php
-7=TPhpPrownTests\MakeUserError_test.php
-8=TPhpPrownTests\MakeCookie_test.php
+2=TPhpPrown\iniErrMessage.php
+3=TPhpPrown\CommonPrown.php
+4=TPhpPrown\ChangeDimInfo.php
+5=TPhpPrown\MakeType.php
+6=TPhpPrown\iniConstMem.php
+7=TPhpPrownTests\ChangeDimInfo_test.php
 [Selected Project Files]
 Main=
-Selected=www\Main.php
+Selected=TPhpPrownTests\ChangeDimInfo_test.php
 [www\index.php]
-TopLine=25
+TopLine=13
 Caret=1,1
 [www\Main.php]
-TopLine=1
-Caret=80,10
-Mark1=1,39
-[TPhpPrown\MakeRegExp.php]
-TopLine=84
-Caret=4,84
+TopLine=173
+Caret=25,124
+Mark1=1,40
 [TPhpPrown\iniErrMessage.php]
-TopLine=7
-Caret=26,24
-[TPhpPrownTests\MakeRegExp_test.php]
-TopLine=46
-Caret=103,63
+TopLine=9
+Caret=1,18
+[TPhpPrown\CommonPrown.php]
+TopLine=240
+Caret=9,263
+[TPhpPrown\ChangeDimInfo.php]
+TopLine=1
+Caret=72,3
+[TPhpPrown\MakeType.php]
+TopLine=1
+Caret=1,1
 [TPhpPrown\iniConstMem.php]
-TopLine=26
-Caret=82,43
-[TPhpPrown\MakeUserError.php]
-TopLine=115
-Caret=65,132
-[TPhpPrownTests\MakeUserError_test.php]
-TopLine=17
-Caret=1,1
-[TPhpPrownTests\MakeCookie_test.php]
-TopLine=37
-Caret=1,1
+TopLine=55
+Caret=37,78
+[TPhpPrownTests\ChangeDimInfo_test.php]
+TopLine=1
+Caret=1,37
