@@ -14,7 +14,6 @@ define ("ToTest",     "Протестировать");       // Вторая к�
 define ("ChoiceList", "Укажите список прикладных функций библиотеки TPhpPrown"); 
 // Подключаем файлы библиотеки прикладных модулей и рабочего пространства
 $TPhpPrown=$SiteHost.'/TPhpPrown';
-require_once $TPhpPrown."/TPhpPrown/ChangeDimInfo.php";
 require_once $TPhpPrown."/TPhpPrown/CommonPrown.php";
 require_once $TPhpPrown."/TPhpPrown/Findes.php";
 require_once $TPhpPrown."/TPhpPrown/getTranslit.php";
@@ -24,6 +23,7 @@ require_once $TPhpPrown."/TPhpPrown/MakeCookie.php";
 require_once $TPhpPrown."/TPhpPrown/MakeRegExp.php";
 require_once $TPhpPrown."/TPhpPrown/MakeSession.php";
 require_once $TPhpPrown."/TPhpPrown/MakeType.php";
+require_once $TPhpPrown."/TPhpPrown/RecalcSizeInfo.php";
 require_once $TPhpPrown."/TPhpPrown/ViewGlobal.php";
 require_once $TPhpPrown."/TPhpPrown/ViewSimpleArray.php";
 // Подключаем модуль обеспечения тестов
@@ -121,13 +121,13 @@ if (prown\isComRequest(ToTest,'formSubmit')&&(isChecked('formDoor','MakeCookie')
 $aPhpPrown=array
 (            
    'iniWorkSpace'   =>'cформировать массив параметров рабочего пространства сайта',   
-   'ChangeDimInfo'  =>'изменить представление информации о размерности',   
    'Findes'         =>'выбрать из строки подстроку, соответствующую регулярному выражению',   
    'isCalcInBrowser'=>'определить по родительским браузерам работает ли функция Calc для CSS',   
    'MakeCookie'     =>'установить новое значение COOKIE в браузере и в массиве $_COOKIE',
    'MakeRegExp'     =>'отработать регулярное выражение на тексте и оттрассировать разбор',
    'MakeType'       =>'преобразовать значение к заданному типу',
    'MakeUserError'  =>'cгенерировать ошибку/исключение или просто сформировать сообщение об ошибке',
+   'RecalcSizeInfo' =>'изменить представление информации о размерности',   
 );
 
 // ---

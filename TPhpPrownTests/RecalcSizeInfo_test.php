@@ -12,12 +12,12 @@
 
 require_once $SiteHost."/TPhpPrown/TPhpPrown/iniConstMem.php";
 
-class test_ChangeDimInfo extends UnitTestCase 
+class test_RecalcSizeInfo extends UnitTestCase 
 {
    // Преобразование строки к целому числу
-   function test_ChangeDimInfo_Simple()
+   function test_RecalcSizeInfo_Simple()
    {
-      MakeTitle("ChangeDimInfo");
+      MakeTitle("RecalcSizeInfo");
       $string="1958";
       $Result=prown\MakeType($string,tInt);
       $this->assertEqual($Result,1958);
