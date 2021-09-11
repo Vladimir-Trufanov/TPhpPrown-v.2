@@ -18,6 +18,35 @@ class test_RecalcSizeInfo extends UnitTestCase
    function test_RecalcSizeInfo_Simple()
    {
       MakeTitle("RecalcSizeInfo");
+      $Unit='KiB';
+      $Result=prown\RecalcFromBytes($Unit,24962496,2);
+      echo '---'.$Result.'---<br>';
+      $Unit='KiBi';
+      $Result=prown\RecalcFromBytes($Unit,24962496,2,rvsReturn);
+      echo '---'.$Result.'---<br>';
+      
+      $Unit='KiB';
+      //$Unit='GiB';
+      $Result=prown\RecalcSizeInfo(cdiFromBytes,$Unit,24962496,2);
+      echo '---'.$Result.'---<br>';
+      $Result=prown\RecalcSizeInfo(3,$Unit,24962496,2,rvsReturn);
+      echo '---'.$Result.'---<br>';
+      $Result=prown\RecalcSizeInfo('FromBytes',$Unit,24962496,2,rvsReturn);
+      echo '---'.$Result.'---<br>';
+      $Result=prown\RecalcFromBytes($Unit,24962496,0);
+      echo '---'.$Result.'---<br>';
+      $Result=prown\RecalcFromBytes($Unit,24962496,4);
+      echo '---'.$Result.'---<br>';
+      
+      $Result=prown\RecalcToBytes($Unit,2,0); 
+      echo '---'.$Result.'---<br>';
+      $Result=prown\RecalcToBytes($Unit,2.8563,0); 
+      echo '---'.$Result.'---<br>';
+      $Result=prown\RecalcToBytes($Unit,2.8563,2); 
+      echo '---'.$Result.'---<br>';
+      $Result=prown\RecalcSizeInfo(cdiToBytes,$Unit,2.8563,2);
+      echo '---'.$Result.'---<br>';
+      
       $string="1958";
       $Result=prown\MakeType($string,tInt);
       $this->assertEqual($Result,1958);
