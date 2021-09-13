@@ -55,6 +55,7 @@ YiB  йобибайт             2^80
 //      представлен результат (по умолчанию целочисленный результат);
 //   $ModeError - режим вывода сообщений об ошибке (по умолчанию через 
 //      исключение с пользовательской ошибкой на сайте doortry.ru)
+//
 // Возвращаемое значение: 
 //
 //   $Result - пересчитанное значение размерности
@@ -62,6 +63,8 @@ YiB  йобибайт             2^80
 // Зарегистрированные ошибки/исключения:
 //   
 //   RecalcDirectIncorrect - "Неверно указано направление пересчета";
+//   UnitMeasureIncorrect  - "Неверно указана единица измерения"
+
 
 require_once 'iniConstMem.php';
 require_once 'iniErrMessage.php';
@@ -86,8 +89,6 @@ define ("bunits", array(
   'EiB' =>  2 ** 60,   // 15 эксбибайт            2^60
   'ZiB' =>  2 ** 70,   // 16 зебибайт             2^70	
   'YiB' =>  2 ** 80)); // 17 йобибайт             2^80
-  
-// print_r (bunits);
 
 // ****************************************************************************
 // *   Изменить представление информации о размерности, то есть пересчитать   *
@@ -108,17 +109,14 @@ function RecalcSizeInfo($Direct,$Unit,$Size,$Dim=0,$ModeError=rvsTriggerError)
 // *                        мегабайты или мебибайты, ...                      *
 // ****************************************************************************
 function RecalcFromBytes($Unit,$Size,$Dim=0,$ModeError=rvsTriggerError)
-// https://coderoad.ru/2510434/%D0%A4%D0%BE%D1%80%D0%BC%D0%B0%D1%82%D0%B8%D1%80%D0%BE%D0%B2%D0%B0%D0%BD%D0%B8%D0%B5-%D0%B1%D0%B0%D0%B9%D1%82%D0%BE%D0%B2-%D0%B2-%D0%BA%D0%B8%D0%BB%D0%BE%D0%B1%D0%B0%D0%B9%D1%82%D1%8B-%D0%BC%D0%B5%D0%B3%D0%B0%D0%B1%D0%B0%D0%B9%D1%82%D1%8B-%D0%B3%D0%B8%D0%B3%D0%B0%D0%B1%D0%B0%D0%B9%D1%82%D1%8B
 {
    $UnitValue=makeUnit($Unit,$ModeError);
-   //echo '$UnitValue='.$UnitValue.' '.gettype($UnitValue);
    // Пересчитываем значение
    if (gettype($UnitValue)=='integer')
    {
-      $base=log($Size,$UnitValue);
-      return round(pow($UnitValue,$base-floor($base)),$Dim);
+      return round($Size/$UnitValue,$Dim);
    }
-   // Отмечаем ошибку
+   // Отмечаем ошибку "Неверно указана единица измерения"
    else return $UnitValue;
 }
 // ****************************************************************************
@@ -128,7 +126,6 @@ function RecalcFromBytes($Unit,$Size,$Dim=0,$ModeError=rvsTriggerError)
 function RecalcToBytes($Unit,$Size,$Dim=0,$ModeError=rvsTriggerError) 
 {
    $UnitValue=makeUnit($Unit,$ModeError);
-   //echo '$UnitValue='.$UnitValue.' '.gettype($UnitValue);
    if (gettype($UnitValue)=='integer')
    {
       return round($Size*$UnitValue,$Dim);
