@@ -15,6 +15,7 @@ define ("ChoiceList", "Укажите список прикладных функ
 // Подключаем файлы библиотеки прикладных модулей и рабочего пространства
 $TPhpPrown=$SiteHost.'/TPhpPrown';
 require_once $TPhpPrown."/TPhpPrown/CommonPrown.php";
+require_once $TPhpPrown."/TPhpPrown/CreateRightsDir.php";
 require_once $TPhpPrown."/TPhpPrown/Findes.php";
 require_once $TPhpPrown."/TPhpPrown/getTranslit.php";
 require_once $TPhpPrown."/TPhpPrown/iniConstMem.php";
@@ -120,14 +121,15 @@ if (prown\isComRequest(ToTest,'formSubmit')&&(isChecked('formDoor','MakeCookie')
 // и рабочего пространства сайта
 $aPhpPrown=array
 (            
-   'iniWorkSpace'   =>'cформировать массив параметров рабочего пространства сайта',   
-   'Findes'         =>'выбрать из строки подстроку, соответствующую регулярному выражению',   
-   'isCalcInBrowser'=>'определить по родительским браузерам работает ли функция Calc для CSS',   
-   'MakeCookie'     =>'установить новое значение COOKIE в браузере и в массиве $_COOKIE',
-   'MakeRegExp'     =>'отработать регулярное выражение на тексте и оттрассировать разбор',
-   'MakeType'       =>'преобразовать значение к заданному типу',
-   'MakeUserError'  =>'cгенерировать ошибку/исключение или просто сформировать сообщение об ошибке',
-   'RecalcSizeInfo' =>'изменить представление информации о размерности',   
+   'iniWorkSpace'    =>'cформировать массив параметров рабочего пространства сайта',   
+   'CreateRightsDir' =>'cоздать каталог (проверить существование) и задать его права',
+   'Findes'          =>'выбрать из строки подстроку, соответствующую регулярному выражению',   
+   'isCalcInBrowser' =>'определить по родительским браузерам работает ли функция Calc для CSS',   
+   'MakeCookie'      =>'установить новое значение COOKIE в браузере и в массиве $_COOKIE',
+   'MakeRegExp'      =>'отработать регулярное выражение на тексте и оттрассировать разбор',
+   'MakeType'        =>'преобразовать значение к заданному типу',
+   'MakeUserError'   =>'cгенерировать ошибку/исключение или просто сформировать сообщение об ошибке',
+   'RecalcSizeInfo'  =>'изменить представление информации о размерности',   
 );
 
 // ---

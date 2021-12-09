@@ -186,9 +186,9 @@ function ViewGlobal($Parm,$_Array=null)
     
     elseif ($Parm==avgSESSION)
     {
-        //echo "<h2>".$Caption."</h2>";
         if (IsSet($_SESSION))
         ViewArr("Переменные сессии, которые доступны для текущего скрипта \$_SESSION",$_SESSION,"\$_SESSION");
+        else echo 'Нет $_SESSION!<br>';
     }
     elseif ($Parm==avgFILES)
     {

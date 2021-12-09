@@ -106,3 +106,6 @@ Stack trace:
 [11-Sep-2021 06:52:04 Asia/Kuwait] PHP Parse error:  syntax error, unexpected 'echo' (T_ECHO) in C:\TPhpPrown\TPhpPrownTests\RecalcSizeInfo_test.php on line 32
 [11-Sep-2021 07:21:18 Asia/Kuwait] PHP Parse error:  syntax error, unexpected 'else' (T_ELSE) in C:\TPhpPrown\TPhpPrown\RecalcSizeInfo.php on line 90
 [11-Sep-2021 07:22:37 Asia/Kuwait] PHP Parse error:  syntax error, unexpected 'echo' (T_ECHO) in C:\TPhpPrown\TPhpPrownTests\RecalcSizeInfo_test.php on line 25
+[09-Dec-2021 20:10:20 Asia/Kuwait] PHP Fatal error:  require_once(): Failed opening required 'C:/TPhpPrown/TPhpPrownTests/CreateRightsDir_test.php' (include_path='.;C:\php\pear') in C:\TPhpPrown\TPhpPrownTests\FunctionsBlock.php on line 150
+[09-Dec-2021 20:24:31 Asia/Kuwait] PHP Parse error:  syntax error, unexpected '$Unit' (T_VARIABLE) in C:\TPhpPrown\TPhpPrownTests\CreateRightsDir_test.php on line 29
+[09-Dec-2021 20:44:37 Asia/Kuwait] PHP Parse error:  syntax error, unexpected '}', expecting end of file in C:\TPhpPrown\TPhpPrown\CreateRightsDir.php on line 109
