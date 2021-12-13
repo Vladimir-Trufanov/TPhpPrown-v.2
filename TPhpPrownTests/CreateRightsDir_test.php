@@ -3,14 +3,13 @@
 // PHP7/HTML5, EDGE/CHROME                     *** CreateRightsDir_test.php ***
 
 // ****************************************************************************
-// * TPhpPrown               Изменить представление информации о размерности, *
-// *            то есть пересчитать число байт в число килобайт или кибибайт, *
-// *            мегабайт или мебибайт, ... или пересчитать в обратную сторону *
+// * TPhpPrown                      Создать каталог (проверить существование) *
+// *                                                      и задать его права  *
 // ****************************************************************************
 
 //                                                   Автор:       Труфанов В.Е.
-//                                                   Дата создания:  03.09.2021
-// Copyright © 2021 tve                              Посл.изменение: 13.09.2021
+//                                                   Дата создания:  09.12.2021
+// Copyright © 2021 tve                              Посл.изменение: 10.12.2021
 
 require_once $SiteHost."/TPhpPrown/TPhpPrown/iniConstMem.php";
 
@@ -21,11 +20,24 @@ class test_CreateRightsDir extends UnitTestCase
       MakeTitle("CreateRightsDir");
       SimpleMessage();
       
+      /*
+      echo '1 Приветище<br>';
+      error_reporting(E_ALL ^ E_NOTICE);
+      $y = $x/0;
+      $err = error_get_last();
+      var_export($err);
+      echo '2 Приветище<br>';
+      */
+      
+      
       // !!! 09.12.2021
       // $ImgDir='Gallery'; - на домашнем компьютере новый каталог был создан
       // в каталоге "С:\PHP"
-      $ImgDir=$_SERVER['DOCUMENT_ROOT'].'/Gallery';
+      $ImgDir='-'.$_SERVER['DOCUMENT_ROOT'].'/Gallery';
+      //$ImgDir=$_SERVER['DOCUMENT_ROOT'].'/Gallery';
       prown\CreateRightsDir($ImgDir);
+      //print_r(error_get_last()); 
+
       /*
       $Result=prown\CreateRightsDir($ImgDir);
       //$this->assertEqual($Result,24377.44);
