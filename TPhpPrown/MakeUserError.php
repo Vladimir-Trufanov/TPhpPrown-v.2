@@ -109,7 +109,8 @@ function MakeMode2($Mess,$Prefix,$div)
 // ****************************************************************************
 function MakeUserError($Mess,$Prefix='TPhpPrown',$Mode=rvsTriggerError,$errtype=E_USER_ERROR,$div='Ers')
 {
-   $Result=true;
+   //$Result=true;
+   $Result=false;
    $Message='['.$Prefix.'] '.$Mess;
    if ($Mode==rvsCurrentPos)
    {
@@ -132,7 +133,7 @@ function MakeUserError($Mess,$Prefix='TPhpPrown',$Mode=rvsTriggerError,$errtype=
       // Выдаем исключение с сообщением об ошибке
       $Result=trigger_error($Message,$errtype);
       // Выдаем исключение, если неверно указан тип ошибки
-      if ($Result=false)
+      if ($Result==false)
       {
          trigger_error($Prefix.': '.WrongTypeError,$errtype);
       }   

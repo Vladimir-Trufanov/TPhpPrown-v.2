@@ -1,0 +1,2 @@
+[13-Dec-2021 17:45:44 Asia/Kuwait] PHP Parse error:  syntax error, unexpected '-', expecting '(' in C:\TPhpPrown\TPhpPrown\CreateRightsDir.php on line 110
+[13-Dec-2021 21:24:54 Asia/Kuwait] PHP Parse error:  syntax error, unexpected ';', expecting ')' in C:\TPhpPrown\TPhpPrownTests\CreateRightsDir_test.php on line 35

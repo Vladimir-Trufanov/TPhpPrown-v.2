@@ -48,8 +48,8 @@
 // Возвращаемое значение: 
 //
 //   $Result - текст сообщения об ошибке (string) при $ModeError=rvsReturn или 
-//      true/false в случае успешного/неуспешного выполнения функции при 
-//      $ModeError<>rvsReturn
+//      false в случае неуспешного выполнения функции при $ModeError<>rvsReturn;
+//      true - в случае успешного выполнения функции 
 //
 // Зарегистрированные ошибки/исключения:
 //   
@@ -73,31 +73,29 @@ function CreateRightsDir($Dir,$modeDir=0777,$ModeError=rvsTriggerError)
    // Каталога нет, будем создавать его
    {
       ConsoleLog('Каталога нет, будем создавать его!');
-      set_error_handler("prown\CreateRightsHandler");
-      //$is=@mkdir($Dir); 
+      // Обыгрываем возможные ошибки создания каталога:
+      // задаём пользовательский обработчик ошибок, запускаем функцию создания
+      // каталога, восстанавливаем прежний обработчик ошибок
+      set_error_handler("prown\CreateRightsMkdirHandler");
       $is=mkdir($Dir);
-      //print_r(error_get_last()); 
       restore_error_handler();
-      $a=error_get_last();
-      if ($a==null) ConsoleLog('У null длины нет');
-      else          ConsoleLog('Длина $a='.count($a));
-      // Создаем каталог
+      // Так как возникла ошибка создания каталога, то выводим сообщение
       if (!$is)
       {
          // Отмечаем ошибку создания каталога - Directory creation error по 
-         // одной из причин:
-         // а) неправильно указана спецификация каталога (например, в пути или
-         // в названии каталога присутствуют запрещенные символы)
-         ConsoleLog(DirСreateError.': '.$Dir);
-         //$Result=MakeUserError(DirСreateError.': '.$Dir,'TPhpPrown',$ModeError);
+         // одной из причин: а) неправильно указана спецификация каталога 
+         // (например, в пути или в названии каталога присутствуют запрещенные 
+         // символы); б) ...
+         // ConsoleLog(DirСreateError.': '.$Dir);
+         $Result=MakeUserError(DirСreateError.': '.$Dir,'TPhpPrown',$ModeError);
       }
-      // И отдельно (чтобы сработало на старых Windows) задаем права
+      // Каталог создан, отдельно (для срабатывания в старых Windows) задаем права
       else
       {
-         if (!chmod($Dir,$modeDir))
-         {
-           ConsoleLog('Ошибка назначения прав каталога: '.$Dir);
-         }
+         //if (!chmod($Dir,$modeDir))
+         //{
+         //  ConsoleLog('Ошибка назначения прав каталога: '.$Dir);
+         //}
       }
    }
    // Если каталог существует, то будем проверять его права
@@ -107,21 +105,23 @@ function CreateRightsDir($Dir,$modeDir=0777,$ModeError=rvsTriggerError)
    }
    return $Result;
 }
-
-
-function CreateRightsHandler($errno,$errstr,$errfile,$errline)
+// ****************************************************************************
+// *                 Обыграть возможные ошибки создания каталога              *
+// ****************************************************************************
+function CreateRightsMkdirHandler($errno,$errstr,$errfile,$errline)
 {
-   ConsoleLog('$errno='.$errno);
-   ConsoleLog('$errstr='.$errstr);
-   ConsoleLog('$errfile='.$errfile);
-   ConsoleLog('$errline='.$errline);
-   putErrorInfo('CreateRightsHandler',$errno,$errstr,$errfile,$errline);
+   // ConsoleLog('$errno='.$errno);
+   // ConsoleLog('$errstr='.$errstr);
+   // ConsoleLog('$errfile='.$errfile);
+   // ConsoleLog('$errline='.$errline);
    // Если error_reporting нулевой, значит, использован оператор @,
    // все ошибки должны игнорироваться
    if (!error_reporting()) 
    {
-      ConsoleLog(NoErrReporting);
-      return true;
+      //ConsoleLog(NoErrReporting);
+      putErrorInfo('CreateRightsHandler',$errno,
+         '['.NoErrReporting.'] '.$errstr,
+         $errfile,$errline);
    }
    else
    {
@@ -131,88 +131,19 @@ function CreateRightsHandler($errno,$errstr,$errfile,$errline)
       $Resu=Findes('/'.$Find.'/u',$errstr); 
       if ($Resu==$Find) 
       {
-         ConsoleLog(DirNameIncorrect);
+         //ConsoleLog(DirNameIncorrect);
+         putErrorInfo('CreateRightsHandler',$errno,
+            '['.DirNameIncorrect.'] '.$errstr,
+            $errfile,$errline);
       }
       // Обобщаем остальные ошибки
       else 
       {
-         ConsoleLog(DirСreateError);
-         return false;
+         //ConsoleLog(DirСreateError);
+         putErrorInfo('CreateRightsHandler',$errno,
+            '['.DirСreateError.'] '.$errstr,
+            $errfile,$errline);
       }
    }
 }  
-
-
-/*
-function is_octal($x) 
-{
-   return !(decoct(octdec($x)) == $x);
-   
-   // В следующих примерах показан вывод значений в консоль:
-   
-   $x=0123;
-   prown\ConsoleLog(decoct(octdec($x)));     // =   3
-   prown\ConsoleLog($x);                     // =  83
-   $x=123;
-   prown\ConsoleLog(decoct(octdec($x)));     // = 123
-   prown\ConsoleLog($x);                     // = 123
-   
-}
-*/
-
-/*
-function CreateRightsDir($Dir,$modeDir=0777,$ModeError=rvsTriggerError)
-// https://habr.com/ru/sandbox/124577/ - статья про удаление каталога 
-{
-   $Result=true;
-   //MakeUserError(DirNameIncorrect.': '.$Dir,'TPhpPrown----',rvsTriggerError);
-   // Если каталога нет, то будем создавать его
-   ConsoleLog('$Dir='.$Dir); 
-   if (!is_dir($Dir))
-   // Каталога нет, будем создавать его
-   {
-      $errs=35;
-      ConsoleLog('Каталога нет, будем создавать его!');
-      //set_error_handler('prown\CreateRightsHandler',$errstri);
-      //set_error_handler('prown\CreateRightsHandler');
-      //$is=@mkdir($Dir); 
-      $is=mkdir($Dir); 
-      ConsoleLog('Привет! '.sayLogic($is));
-      //ConsoleLog('Привет! '.prown\sayLogic($is));
-      
-      // Создаем каталог
-      //set_error_handler("CreateRightsHandler");
-
-      
-      if (!mkdir($Dir))
-      {
-         // Отмечаем ошибку создания каталога - Directory creation error по 
-         // одной из причин:
-         // а) неправильно указана спецификация каталога (например, в пути или
-         // в названии каталога присутствуют запрещенные символы)
-         ConsoleLog(DirСreateError.': '.$Dir);
-         // Отмечаем ошибку "Неверно указано направление пересчета"
-         //$Result=MakeUserError(DirСreateError.': '.$Dir,'TPhpPrown',$ModeError);
-      }
-      // И отдельно (чтобы сработало на старых Windows) задаем права
-      else
-      {
-         if (!chmod($Dir,$modeDir))
-         {
-           ConsoleLog('Ошибка назначения прав каталога: '.$Dir);
-         }
-      }
-      
-   }
-   // Если каталог существует, то будем проверять его права
-   else
-   {
-      ConsoleLog('Каталог существует, будем проверять его права!'); 
-   }
-   return $Result;
-}
-
-*/
-
-
 // **************************************************** CreateRightsDir.php ***

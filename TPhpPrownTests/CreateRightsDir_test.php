@@ -11,8 +11,6 @@
 //                                                   Дата создания:  09.12.2021
 // Copyright © 2021 tve                              Посл.изменение: 10.12.2021
 
-require_once $SiteHost."/TPhpPrown/TPhpPrown/iniConstMem.php";
-
 class test_CreateRightsDir extends UnitTestCase 
 {
    function test_CreateRightsDir_Simple()
@@ -20,32 +18,56 @@ class test_CreateRightsDir extends UnitTestCase
       MakeTitle("CreateRightsDir");
       SimpleMessage();
       
-      /*
-      echo '1 Приветище<br>';
-      error_reporting(E_ALL ^ E_NOTICE);
-      $y = $x/0;
-      $err = error_get_last();
-      var_export($err);
-      echo '2 Приветище<br>';
-      */
+      // !!! 09.12.2021: $ImgDir='Gallery' - на домашнем компьютере новый 
+      // каталог был создан в корневом каталоге PHP = "С:\PHP"
       
-      
-      // !!! 09.12.2021
-      // $ImgDir='Gallery'; - на домашнем компьютере новый каталог был создан
-      // в каталоге "С:\PHP"
-      $ImgDir='-'.$_SERVER['DOCUMENT_ROOT'].'/Gallery';
-      //$ImgDir=$_SERVER['DOCUMENT_ROOT'].'/Gallery';
-      prown\CreateRightsDir($ImgDir);
-      //print_r(error_get_last()); 
+      // Проверяем ошибку создания каталога с неправильно указанным путем
+      $ImgDir='-'.$_SERVER['DOCUMENT_ROOT'].'/CreateRightsDir';
+      $Result=prown\CreateRightsDir($ImgDir,0777,rvsReturn);
+      $Value='[TPhpPrown] Ошибка создания каталога: -C:\TPhpPrown\www/CreateRightsDir';
+      $this->assertEqual($Result,$Value);
+      SimpleMessage('$ImgDir='."'".'-$_SERVER["DOCUMENT_ROOT"]/CreateRightsDir'."';",'black');
+      MakeTestMessage(
+         '$Result=prown\CreateRightsDir($ImgDir);',
+         'Проверена ошибка создания каталога с неправильно указанным путем',80);
 
+
+      SimpleMessage('<span style="color:black; font-weight:bold; font-family:Anonymous Pro, monospace; font-size:0.9em">');
+      $Result=prown\CreateRightsDir($ImgDir,0777,rvsCurrentPos);
+      SimpleMessage('</span>');
+      SimpleMessage('==='.$Result.'===');
+      $this->assertEqual($Result,true);
+      
+      
+      $Value='[TPhpPrown] Ошибка создания каталога: -C:\TPhpPrown\www/CreateRightsDir';
+      //$this->assertEqual($Result,$Value);
+      //SimpleMessage('$ImgDir='."'".'-$_SERVER["DOCUMENT_ROOT"]/CreateRightsDir'."';",'black');
+     // MakeTestMessage(
+     //    '$Result=prown\CreateRightsDir($ImgDir);',
+     //    'Проверена ошибка создания каталога с неправильно указанным путем',80);
+
+
+
+
+
+
+
+
+
+
+      // Выполняем удаление возможно существующего каталога и проверяем
+      // успешное его создание
+      $ImgDir=$_SERVER['DOCUMENT_ROOT'].'/CreateRightsDir';
+      if(is_dir($ImgDir)) rmdir($ImgDir);
+      $Result=prown\CreateRightsDir($ImgDir,0777,rvsReturn);
+      SimpleMessage('***'.$Result.'***');
+      
       /*
       $Result=prown\CreateRightsDir($ImgDir);
       //$this->assertEqual($Result,24377.44);
       */
-      MakeTestMessage('Код вызова функции','Пробный вызов функции',80);
-      MakeTestMessage('Gallery','Пробный вызов функции',80);
-      
-      //,$modeDir=0777
+      //MakeTestMessage('Код вызова функции','Пробный вызов функции',80);
+      //MakeTestMessage('Gallery','Пробный вызов функции',80);
       
       $Unit='KiB';
       $Result=prown\RecalcSizeInfo(cdiFromBytes,$Unit,24962496,2);
