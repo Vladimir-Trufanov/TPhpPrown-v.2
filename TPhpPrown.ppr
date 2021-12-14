@@ -107,8 +107,7 @@ TPhpPrown
 5=TPhpPrown\CreateRightsDir.php
 6=TPhpPrownTests\CreateRightsDir_test.php
 7=TPhpPrownTests\FunctionsBlock.php
-8=TPhpPrown\MakeUserError.php
-9=..\Webservers\Exploration\_Signaphoto1\SignaUpload.php
+8=..\Webservers\Exploration\_Signaphoto1\SignaUpload.php
 [Selected Project Files]
 Main=
 Selected=TPhpPrown\CreateRightsDir.php
@@ -122,7 +121,7 @@ Mark1=1,41
 Mark2=1,127
 [TPhpPrown\iniErrMessage.php]
 TopLine=7
-Caret=1,19
+Caret=26,20
 [TPhpPrown\iniConstMem.php]
 TopLine=41
 Caret=19,71
@@ -130,17 +129,14 @@ Caret=19,71
 TopLine=220
 Caret=25,256
 [TPhpPrown\CreateRightsDir.php]
-TopLine=149
-Caret=4,181
+TopLine=152
+Caret=4,186
 [TPhpPrownTests\CreateRightsDir_test.php]
-TopLine=33
-Caret=49,62
+TopLine=28
+Caret=9,62
 [TPhpPrownTests\FunctionsBlock.php]
 TopLine=247
 Caret=1,281
-[TPhpPrown\MakeUserError.php]
-TopLine=74
-Caret=1,113
 [..\Webservers\Exploration\_Signaphoto1\SignaUpload.php]
-TopLine=111
-Caret=1,1
+TopLine=33
+Caret=1,65

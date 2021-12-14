@@ -13,10 +13,11 @@
 
 // CreateRightsDir:                   Создать каталог (проверить существование) 
 //                                                           и задать его права 
-define ("DirСreateError",   "Ошибка создания каталога");
-define ("DirNameIncorrect", "Неверно указано название каталога");
-define ("NoErrReporting",   "Указан оператор @, ошибки отключены");
-
+define ("DirСreateError",    "Ошибка создания каталога");
+define ("DirNameIncorrect",  "Неверно указано название каталога");
+define ("NoErrReporting",    "Указан оператор @, ошибки отключены");
+define ("DirRightsNoAssign", "Ошибка назначения прав каталога");
+define ("NoDeterminRights",  "Ошибка определения прав каталога");
 // isCalcInBrowser: Проанализировать UserAgent браузера по версиям родительских
 //                      браузеров и определить работает ли функция Calc для CSS
 define ("ManyBrowsersRec", "В UserAgent присутствует несколько браузеров");

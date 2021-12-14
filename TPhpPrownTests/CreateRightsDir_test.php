@@ -16,7 +16,6 @@ class test_CreateRightsDir extends UnitTestCase
    function test_CreateRightsDir_Simple()
    {
       MakeTitle("CreateRightsDir");
-      SimpleMessage();
       
       // !!! 09.12.2021: $ImgDir='Gallery' - на домашнем компьютере новый 
       // каталог был создан в корневом каталоге PHP = "С:\PHP"
@@ -57,14 +56,10 @@ class test_CreateRightsDir extends UnitTestCase
       
       // --Выполняем удаление возможно существующего каталога и проверяем
       // --успешное его создание
-      $ImgDir=$_SERVER['DOCUMENT_ROOT'].'/CreateRightsDir';
-      if(is_dir($ImgDir)) rmdir($ImgDir);
-      $Result=prown\CreateRightsDir($ImgDir,0977,rvsReturn);
-      $this->assertEqual($Result,true);
-
-      
-      
-      
+      //$ImgDir=$_SERVER['DOCUMENT_ROOT'].'/CreateRightsDir'; $modeDir=017777;
+      //if(is_dir($ImgDir)) rmdir($ImgDir);
+      //$Result=prown\CreateRightsDir($ImgDir,$modeDir,rvsReturn);
+      //$this->assertEqual($Result,true);
       
    }
 }

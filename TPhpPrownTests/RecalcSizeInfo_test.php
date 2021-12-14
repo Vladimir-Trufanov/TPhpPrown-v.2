@@ -19,7 +19,6 @@ class test_RecalcSizeInfo extends UnitTestCase
    function test_RecalcSizeInfo_Simple()
    {
       MakeTitle("RecalcSizeInfo");
-      SimpleMessage();
       
       $Unit='KiB';
       $Result=prown\RecalcSizeInfo(cdiFromBytes,$Unit,24962496,2);

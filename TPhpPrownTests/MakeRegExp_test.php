@@ -16,7 +16,7 @@ class test_MakeRegExp extends UnitTestCase
 
    function test_MakeRegExp_All()
    {
-      MakeTitle("MakeRegExp",'');
+      MakeTitle("MakeRegExp");
 
       $string="В этой строке ищется 'это' функцией MakeRegExp";
       $preg="/это/u";

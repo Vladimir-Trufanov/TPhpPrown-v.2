@@ -80,9 +80,7 @@ function CreateRightsDir($Dir,$modeDir=0777,$ModeError=rvsTriggerError)
    $Result=true;
    // Если каталога нет, то будем создавать его
    if (!is_dir($Dir))
-   // Каталога нет, будем создавать его
    {
-      ConsoleLog('Каталога нет, будем создавать его!');
       // Обыгрываем возможные ошибки создания каталога:
       // задаём пользовательский обработчик ошибок, запускаем функцию создания
       // каталога, восстанавливаем прежний обработчик ошибок
@@ -96,28 +94,44 @@ function CreateRightsDir($Dir,$modeDir=0777,$ModeError=rvsTriggerError)
          // одной из причин: а) неправильно указана спецификация каталога 
          // (например, в пути или в названии каталога присутствуют запрещенные 
          // символы); б) ...
-         // ConsoleLog(DirСreateError.': '.$Dir);
          $Result=MakeUserError(DirСreateError.': '.$Dir,'TPhpPrown',$ModeError);
          if ($ModeError<>rvsReturn) $Result=false;
       }
-      // Каталог создан, отдельно (для срабатывания в старых Windows) задаем права
+   }
+   // Каталог есть и, отдельно, (для срабатывания в старых Windows) задаем права
+   if (is_dir($Dir))
+   {
+      // Обыгрываем возможные ошибки задания прав каталога:
+      set_error_handler("prown\CreateRightsChmodHandler");
+      $is=chmod($Dir,$modeDir);
+      restore_error_handler();
+      // Так как возникла ошибка задания прав, то выводим сообщение
+      if (!$is)
+      {
+         $Result=MakeUserError(DirRightsNoAssign.'[onerror]: '.$Dir,'TPhpPrown',$ModeError);
+         if ($ModeError<>rvsReturn) $Result=false;
+      }
+      // Права заданы, сравниваем заявленные и установленные права
       else
       {
-         // Обыгрываем возможные ошибки задания прав каталога
-         set_error_handler("prown\CreateRightsChmodHandler");
-         $is=chmod($Dir,$modeDir);
+         // Определяем права и обыгрываем возможные ошибки их определения:
+         set_error_handler("prown\CreateRightsPermsHandler");
+         $permissions=fileperms($Dir);
          restore_error_handler();
-         // Так как возникла ошибка задания прав, то выводим сообщение
-         if (!$is)
+         // Так как возникла ошибка определения прав, то выводим сообщение
+         if (!$permissions)
          {
-            ConsoleLog('Ошибка назначения прав каталога: '.$Dir);
+            $Result=MakeUserError(NoDeterminRights.'[onerror]: '.$Dir,'TPhpPrown',$ModeError);
+            if ($ModeError<>rvsReturn) $Result=false;
          }
+         // Сравниваем установленные права с желаемыми
+         $fPermissions=substr(sprintf('%o',$permissions),-4);
+         ConsoleLog($fPermissions);
+         $xPermissions='0'.sprintf('%o',$modeDir);
+         ConsoleLog($xPermissions);
+         if ($fPermissions===$xPermissions) ConsoleLog('Установленные и желаемые права совпадают');
+         else ConsoleLog('Установленные и желаемые права НЕ совпадают');
       }
-   }
-   // Если каталог существует, то будем проверять его права
-   else
-   {
-      ConsoleLog('Каталог существует, будем проверять его права!'); 
    }
    return $Result;
 }
@@ -126,13 +140,13 @@ function CreateRightsDir($Dir,$modeDir=0777,$ModeError=rvsTriggerError)
 // ****************************************************************************
 function CreateRightsMkdirHandler($errno,$errstr,$errfile,$errline)
 {
+   $modul='CreateRightsMkdirHandler';
    // Если error_reporting нулевой, значит, использован оператор @,
    // все ошибки должны игнорироваться
    if (!error_reporting()) 
    {
-      putErrorInfo('CreateRightsHandler',$errno,
-         '['.NoErrReporting.'] '.$errstr,
-         $errfile,$errline);
+      putErrorInfo($modul,$errno,
+         '['.NoErrReporting.'] '.$errstr,$errfile,$errline);
    }
    else
    {
@@ -142,16 +156,14 @@ function CreateRightsMkdirHandler($errno,$errstr,$errfile,$errline)
       $Resu=Findes('/'.$Find.'/u',$errstr); 
       if ($Resu==$Find) 
       {
-         putErrorInfo('CreateRightsHandler',$errno,
-            '['.DirNameIncorrect.'] '.$errstr,
-            $errfile,$errline);
+         putErrorInfo($modul,$errno,
+            '['.DirNameIncorrect.'] '.$errstr,$errfile,$errline);
       }
       // Обобщаем остальные ошибки
       else 
       {
-         putErrorInfo('CreateRightsHandler',$errno,
-            '['.DirСreateError.'] '.$errstr,
-            $errfile,$errline);
+         putErrorInfo($modul,$errno,
+            '['.DirСreateError.'] '.$errstr,$errfile,$errline);
       }
    }
 }  
@@ -160,29 +172,19 @@ function CreateRightsMkdirHandler($errno,$errstr,$errfile,$errline)
 // ****************************************************************************
 function CreateRightsChmodHandler($errno,$errstr,$errfile,$errline)
 {
-   // ConsoleLog('$errno='.$errno);
-   // ConsoleLog('$errstr='.$errstr);
-   // ConsoleLog('$errfile='.$errfile);
-   // ConsoleLog('$errline='.$errline);
-
-   // Отлавливаем ошибку "Неверно указано название каталога"
-   // "Directory name is incorrect"
-   $Find='No such file or directory';
-   $Resu=Findes('/'.$Find.'/u',$errstr); 
-   if ($Resu==$Find) 
-   {
-      //ConsoleLog(DirNameIncorrect);
-      putErrorInfo('CreateRightsHandler',$errno,
-         '['.DirNameIncorrect.'] '.$errstr,
-         $errfile,$errline);
-   }
-   // Обобщаем остальные ошибки
-   else 
-   {
-      //ConsoleLog(DirСreateError);
-      putErrorInfo('CreateRightsHandler',$errno,
-         '['.DirСreateError.'] '.$errstr,
-         $errfile,$errline);
-   }
+   putErrorInfo('CreateRightsChmodHandler',$errno,
+      '['.DirRightsNoAssign.'] '.$errstr,$errfile,$errline);
+}  
+// ****************************************************************************
+// *            Обыграть возможные ошибки определения прав каталога           *
+// ****************************************************************************
+function CreateRightsPermsHandler($errno,$errstr,$errfile,$errline)
+{
+   ConsoleLog('$errno='.$errno);
+   ConsoleLog('$errstr='.$errstr);
+   ConsoleLog('$errfile='.$errfile);
+   ConsoleLog('$errline='.$errline);
+   putErrorInfo('CreateRightsPermsHandler',$errno,
+      '['.NoDeterminRights.'] '.$errstr,$errfile,$errline);
 }  
 // **************************************************** CreateRightsDir.php ***
