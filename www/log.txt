@@ -1,2 +1,5 @@
 [13-Dec-2021 17:45:44 Asia/Kuwait] PHP Parse error:  syntax error, unexpected '-', expecting '(' in C:\TPhpPrown\TPhpPrown\CreateRightsDir.php on line 110
 [13-Dec-2021 21:24:54 Asia/Kuwait] PHP Parse error:  syntax error, unexpected ';', expecting ')' in C:\TPhpPrown\TPhpPrownTests\CreateRightsDir_test.php on line 35
+[14-Dec-2021 15:23:19 Asia/Kuwait] PHP Parse error:  syntax error, unexpected end of file, expecting function (T_FUNCTION) or const (T_CONST) in C:\TPhpPrown\TPhpPrownTests\CreateRightsDir_test.php on line 68
+[14-Dec-2021 15:57:12 Asia/Kuwait] PHP Parse error:  Invalid numeric literal in C:\TPhpPrown\TPhpPrownTests\CreateRightsDir_test.php on line 62
+[14-Dec-2021 15:59:08 Asia/Kuwait] PHP Parse error:  Invalid numeric literal in C:\TPhpPrown\TPhpPrownTests\CreateRightsDir_test.php on line 62

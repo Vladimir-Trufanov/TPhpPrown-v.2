@@ -109,8 +109,7 @@ function MakeMode2($Mess,$Prefix,$div)
 // ****************************************************************************
 function MakeUserError($Mess,$Prefix='TPhpPrown',$Mode=rvsTriggerError,$errtype=E_USER_ERROR,$div='Ers')
 {
-   //$Result=true;
-   $Result=false;
+   $Result=true;
    $Message='['.$Prefix.'] '.$Mess;
    if ($Mode==rvsCurrentPos)
    {

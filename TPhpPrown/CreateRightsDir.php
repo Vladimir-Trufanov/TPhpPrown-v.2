@@ -41,20 +41,30 @@
 //      остальных. Возможные значения: 1 = выполнение, 2 = право на запись,
 //      4 = разрешения на чтение (суммы значений дают возможность установить
 //      несколько разрешений)
+//
+//      rwx --- ---	 => $modeDir=700, только владелец может входить в этот 
+//                      каталог, читать и записывать в него файлы
+//
+//      rwx r-x r-x	 => $modeDir=755, любой пользователь может входить в этот 
+//                      каталог и читать содержимое каталога, но изменять 
+//                      содержимое может только владелец
+//
 //   $ModeError - режим вывода сообщений об ошибке (по умолчанию сообщение 
 //      выводится через исключение с пользовательской ошибкой на сайте 
 //      doortry.ru)
 //
 // Возвращаемое значение: 
 //
-//   $Result - текст сообщения об ошибке (string) при $ModeError=rvsReturn или 
-//      false в случае неуспешного выполнения функции при $ModeError<>rvsReturn;
+//   $Result - текст сообщения об ошибке (string) при $ModeError=rvsReturn; 
+//      false в случае неуспешного выполнения функции;
 //      true - в случае успешного выполнения функции 
 //
 // Зарегистрированные ошибки/исключения:
 //   
-//   ----RecalcDirectIncorrect - "Неверно указано направление пересчета";
-//   ----UnitMeasureIncorrect  - "Неверно указана единица измерения"
+//   DirСreateError - "Ошибка создания каталога". Функция дополнительно 
+//      сбрасывает детальные данные об ошибках в лог-файл (фиксируются следующие
+//      события: DirNameIncorrect - "Неверно указано название каталога";
+//      NoErrReporting - "Указан оператор @, ошибки отключены";
 
 require_once 'iniConstMem.php';
 require_once 'iniErrMessage.php';
@@ -64,11 +74,11 @@ require_once 'MakeUserError.php';
 // *       Создать каталог (проверить существование) и задать его права       *
 // ****************************************************************************
 function CreateRightsDir($Dir,$modeDir=0777,$ModeError=rvsTriggerError)
-// https://habr.com/ru/sandbox/124577/ - статья про удаление каталога 
+// https://habr.com/ru/sandbox/124577/  - статья про удаление каталога 
+// https://advancedhosters.com/ru/chmod - статья по правам каталога или файла
 {
    $Result=true;
    // Если каталога нет, то будем создавать его
-   ConsoleLog('$Dir='.$Dir); 
    if (!is_dir($Dir))
    // Каталога нет, будем создавать его
    {
@@ -88,14 +98,20 @@ function CreateRightsDir($Dir,$modeDir=0777,$ModeError=rvsTriggerError)
          // символы); б) ...
          // ConsoleLog(DirСreateError.': '.$Dir);
          $Result=MakeUserError(DirСreateError.': '.$Dir,'TPhpPrown',$ModeError);
+         if ($ModeError<>rvsReturn) $Result=false;
       }
       // Каталог создан, отдельно (для срабатывания в старых Windows) задаем права
       else
       {
-         //if (!chmod($Dir,$modeDir))
-         //{
-         //  ConsoleLog('Ошибка назначения прав каталога: '.$Dir);
-         //}
+         // Обыгрываем возможные ошибки задания прав каталога
+         set_error_handler("prown\CreateRightsChmodHandler");
+         $is=chmod($Dir,$modeDir);
+         restore_error_handler();
+         // Так как возникла ошибка задания прав, то выводим сообщение
+         if (!$is)
+         {
+            ConsoleLog('Ошибка назначения прав каталога: '.$Dir);
+         }
       }
    }
    // Если каталог существует, то будем проверять его права
@@ -110,15 +126,10 @@ function CreateRightsDir($Dir,$modeDir=0777,$ModeError=rvsTriggerError)
 // ****************************************************************************
 function CreateRightsMkdirHandler($errno,$errstr,$errfile,$errline)
 {
-   // ConsoleLog('$errno='.$errno);
-   // ConsoleLog('$errstr='.$errstr);
-   // ConsoleLog('$errfile='.$errfile);
-   // ConsoleLog('$errline='.$errline);
    // Если error_reporting нулевой, значит, использован оператор @,
    // все ошибки должны игнорироваться
    if (!error_reporting()) 
    {
-      //ConsoleLog(NoErrReporting);
       putErrorInfo('CreateRightsHandler',$errno,
          '['.NoErrReporting.'] '.$errstr,
          $errfile,$errline);
@@ -131,7 +142,6 @@ function CreateRightsMkdirHandler($errno,$errstr,$errfile,$errline)
       $Resu=Findes('/'.$Find.'/u',$errstr); 
       if ($Resu==$Find) 
       {
-         //ConsoleLog(DirNameIncorrect);
          putErrorInfo('CreateRightsHandler',$errno,
             '['.DirNameIncorrect.'] '.$errstr,
             $errfile,$errline);
@@ -139,11 +149,40 @@ function CreateRightsMkdirHandler($errno,$errstr,$errfile,$errline)
       // Обобщаем остальные ошибки
       else 
       {
-         //ConsoleLog(DirСreateError);
          putErrorInfo('CreateRightsHandler',$errno,
             '['.DirСreateError.'] '.$errstr,
             $errfile,$errline);
       }
+   }
+}  
+// ****************************************************************************
+// *               Обыграть возможные ошибки задания прав каталога            *
+// ****************************************************************************
+function CreateRightsChmodHandler($errno,$errstr,$errfile,$errline)
+{
+   // ConsoleLog('$errno='.$errno);
+   // ConsoleLog('$errstr='.$errstr);
+   // ConsoleLog('$errfile='.$errfile);
+   // ConsoleLog('$errline='.$errline);
+
+   // Отлавливаем ошибку "Неверно указано название каталога"
+   // "Directory name is incorrect"
+   $Find='No such file or directory';
+   $Resu=Findes('/'.$Find.'/u',$errstr); 
+   if ($Resu==$Find) 
+   {
+      //ConsoleLog(DirNameIncorrect);
+      putErrorInfo('CreateRightsHandler',$errno,
+         '['.DirNameIncorrect.'] '.$errstr,
+         $errfile,$errline);
+   }
+   // Обобщаем остальные ошибки
+   else 
+   {
+      //ConsoleLog(DirСreateError);
+      putErrorInfo('CreateRightsHandler',$errno,
+         '['.DirСreateError.'] '.$errstr,
+         $errfile,$errline);
    }
 }  
 // **************************************************** CreateRightsDir.php ***
