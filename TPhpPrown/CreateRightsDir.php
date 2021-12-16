@@ -79,13 +79,15 @@ function CreateRightsDir($Dir,$modeDir=0777,$ModeError=rvsTriggerError)
 {
    $Result=true;
    // Если каталога нет, то будем создавать его
+   //clearstatcache(true,$Dir); // сбросили кэш состояния файла
+   clearstatcache();
    if (!is_dir($Dir))
    {
       // Обыгрываем возможные ошибки создания каталога:
       // задаём пользовательский обработчик ошибок, запускаем функцию создания
       // каталога, восстанавливаем прежний обработчик ошибок
       set_error_handler("prown\CreateRightsMkdirHandler");
-      $is=mkdir($Dir);
+      $is=mkdir($Dir,$modeDir);
       restore_error_handler();
       // Так как возникла ошибка создания каталога, то выводим сообщение
       if (!$is)
@@ -98,42 +100,81 @@ function CreateRightsDir($Dir,$modeDir=0777,$ModeError=rvsTriggerError)
          if ($ModeError<>rvsReturn) $Result=false;
       }
    }
-   // Каталог есть и, отдельно, (для срабатывания в старых Windows) задаем права
+   // Каталог есть, сравниваем заявленные и установленные права
+   clearstatcache();
    if (is_dir($Dir))
    {
-      // Обыгрываем возможные ошибки задания прав каталога:
-      set_error_handler("prown\CreateRightsChmodHandler");
-      $is=chmod($Dir,$modeDir);
-      restore_error_handler();
-      // Так как возникла ошибка задания прав, то выводим сообщение
-      if (!$is)
+      // Инициируем строковые представления заявленных и установленных прав
+      $fPermissions='-1'; $xPermissions='-2';
+      // Определяем и сравниваем строки с заявленными и установленными правами
+      $is=getFilePerms($Dir,$modeDir,$fPermissions,$xPermissions);
+      // Если права совпали, то с успехом завершаем работу
+      if ($fPermissions===$xPermissions) 
       {
-         $Result=MakeUserError(DirRightsNoAssign.'[onerror]: '.$Dir,'TPhpPrown',$ModeError);
-         if ($ModeError<>rvsReturn) $Result=false;
+         ConsoleLog('Установленные и желаемые права совпали с первого раза');
       }
-      // Права заданы, сравниваем заявленные и установленные права
-      else
+      // Права не совпали, предполагаем, что находимся в Windows,
+      // будем устанавливать права отдельно
+      else 
       {
-         // Определяем права и обыгрываем возможные ошибки их определения:
-         set_error_handler("prown\CreateRightsPermsHandler");
-         $permissions=fileperms($Dir);
+      
+         // Обыгрываем возможные ошибки задания прав каталога:
+         set_error_handler("prown\CreateRightsChmodHandler");
+         //clearstatcache(true,$Dir);
+         clearstatcache();
+         $is=chmod($Dir,$modeDir);
          restore_error_handler();
-         // Так как возникла ошибка определения прав, то выводим сообщение
-         if (!$permissions)
+         // Так как возникла ошибка задания прав, то выводим сообщение
+         if (!$is)
          {
-            $Result=MakeUserError(NoDeterminRights.'[onerror]: '.$Dir,'TPhpPrown',$ModeError);
+            $Result=MakeUserError(DirRightsNoAssign.'[onerror]: '.$Dir,'TPhpPrown',$ModeError);
             if ($ModeError<>rvsReturn) $Result=false;
          }
-         // Сравниваем установленные права с желаемыми
-         $fPermissions=substr(sprintf('%o',$permissions),-4);
-         ConsoleLog($fPermissions);
-         $xPermissions='0'.sprintf('%o',$modeDir);
-         ConsoleLog($xPermissions);
-         if ($fPermissions===$xPermissions) ConsoleLog('Установленные и желаемые права совпадают');
-         else ConsoleLog('Установленные и желаемые права НЕ совпадают');
+         // Ошибки задания прав нет, поэтому повторно определяем и сравниваем 
+         // строки с заявленными и установленными правами
+         else
+         {
+            $is=getFilePerms($Dir,$modeDir,$fPermissions,$xPermissions); 
+            ConsoleLog('$fPermissions='.$fPermissions.'  $xPermissions='.$xPermissions);
+            if ($fPermissions===$xPermissions) 
+            { 
+               ConsoleLog('Установленные и желаемые права совпадают');
+            }
+            else 
+            {
+               ConsoleLog('Установленные и желаемые права НЕ совпадают');
+            }
+         }
       }
-   }
+   }   
    return $Result;
+}
+// ****************************************************************************
+// *          Получить строки с установленными и заявленными правами          *
+// ****************************************************************************
+function getFilePerms($Dir,$modeDir,&$fPermissions,&$xPermissions)
+{
+   $Result=true;
+   // Формируем строку с заявленными правами 
+   $xPermissions='0'.sprintf('%o',$modeDir);  
+   //clearstatcache(true,$Dir);
+   clearstatcache();
+   // Определяем установленные права и обыгрываем возможные ошибки определения:
+   set_error_handler("prown\CreateRightsPermsHandler");
+   $permissions=fileperms($Dir);
+   restore_error_handler();
+   // Так как возникла ошибка определения прав, то выводим сообщение
+   if (!$permissions)
+   {
+      $Result=MakeUserError(NoDeterminRights.'[onerror]: '.$Dir,'TPhpPrown',$ModeError);
+      if ($ModeError<>rvsReturn) $Result=false;
+   }
+   // Формируем строку с желаемыми правами
+   else
+   {
+      $fPermissions=substr(sprintf('%o',$permissions),-4);
+   }
+   return $Result;  
 }
 // ****************************************************************************
 // *                 Обыграть возможные ошибки создания каталога              *

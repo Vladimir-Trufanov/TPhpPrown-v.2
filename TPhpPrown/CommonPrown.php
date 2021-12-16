@@ -235,7 +235,6 @@ function putErrorInfo($Name,$errno,$errstr,$errfile,$errline)
    // Формируем строку для выгрузки в лог-файл ошибок: $Name - название 
    // модуля, сбрасывающего ошибку; $Today - текущая дата и время в формате
    // MySQL DATETIME;
-   $Name='Proba';
    $Today=date("Y-m-d H:i:s");
    // Склеиваем строку с пользовательской информацией
    $Result="$Name "."$Today ".'$errno='.$errno." $errstr ".

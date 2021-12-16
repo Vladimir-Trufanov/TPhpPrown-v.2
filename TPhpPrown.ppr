@@ -110,7 +110,7 @@ TPhpPrown
 8=..\Webservers\Exploration\_Signaphoto1\SignaUpload.php
 [Selected Project Files]
 Main=
-Selected=TPhpPrown\CreateRightsDir.php
+Selected=TPhpPrownTests\CreateRightsDir_test.php
 [www\index.php]
 TopLine=4
 Caret=1,1
@@ -126,14 +126,14 @@ Caret=26,20
 TopLine=41
 Caret=19,71
 [TPhpPrown\CommonPrown.php]
-TopLine=220
-Caret=25,256
+TopLine=226
+Caret=1,238
 [TPhpPrown\CreateRightsDir.php]
-TopLine=152
-Caret=4,186
+TopLine=128
+Caret=1,150
 [TPhpPrownTests\CreateRightsDir_test.php]
-TopLine=28
-Caret=9,62
+TopLine=15
+Caret=103,78
 [TPhpPrownTests\FunctionsBlock.php]
 TopLine=247
 Caret=1,281
