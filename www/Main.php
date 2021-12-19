@@ -169,6 +169,8 @@ $aPhpPrown=array
 // а также выводятся вместе с сообщением "Элементы для тестирования Вами не 
 // выбраны!"
 
+prown\ConsoleLog('Id Main='.getmypid());
+
 // Выполнить первую ветку (когда был клик "Выбрать все")
 if (prown\isComRequest(ChooseAll,'formSubmit'))
 {

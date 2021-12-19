@@ -73,6 +73,9 @@ function Headeri($page)
 // ****************************************************************************
 function MakeCookieTest($Entry=entryPhpPrown)
 {
+   // Трассируем "откуда вход и число проходов" - только в отладке на IIS
+   // prown\ConsoleLog('$Entry='.$Entry.'; LastTrack='.LastTrack);
+
    // Выделяем первый в сессии заход для того, чтобы инициировать счетчик
    // проходов по тесту (с перезагрузкой страницы)
    if (!IsSet($_SESSION['CookTrack']))
@@ -86,8 +89,9 @@ function MakeCookieTest($Entry=entryPhpPrown)
       $s_CookTrack++;  
       prown\MakeSession('CookTrack',$s_CookTrack,tInt);     
    }
-   // Трассируем проход в консоли
-   // prown\ConsoleLog('INI_$s_CookTrack',$s_CookTrack);
+   // Трассируем номер прохода - только в отладке на IIS
+   // prown\ConsoleLog('Номер прохода: $s_CookTrack='.$s_CookTrack);
+
    // На нулевом проходе инициируем массив сообщений теста, 
    // массив результатов тестов (проверка всех результатов делается на 
    // последнем проходе, чтобы высветить вывод)
@@ -128,6 +132,7 @@ function MakeCookieTest($Entry=entryPhpPrown)
             "formSubmit=%D0%9F%D1%80%D0%BE%D1%82%D0%B5%D1%81%D1%82%".
             "D0%B8%D1%80%D0%BE%D0%B2%D0%B0%D1%82%D1%8C";
          $page='http://'.$_SERVER['HTTP_HOST'].$page.$vybor;
+         prown\ConsoleLog($page);
          Headeri($page);
       }
       else
@@ -138,10 +143,11 @@ function MakeCookieTest($Entry=entryPhpPrown)
             $page='https://'.$_SERVER['HTTP_HOST'].$page;
             Headeri($page);
          }
-         elseif ($_SERVER['HTTP_HOST']=='localhost:82')
+         elseif ($_SERVER['HTTP_HOST']=='localhost:81')
          {
             $page="/Pages/TPhpPrown/_dispTPhpPrown.php?list=ustanovit-novoe-znachenie-cookie-v-brauzere";
             $page='http://'.$_SERVER['HTTP_HOST'].$page;
+            prown\ConsoleLog($page);
             Headeri($page);
          } 
          else echo '<br>Перезапуск страницы выполняется на незнакомом сайте!<br>';

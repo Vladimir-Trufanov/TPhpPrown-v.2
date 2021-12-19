@@ -77,6 +77,7 @@ function CreateRightsDir($Dir,$modeDir=0777,$ModeError=rvsTriggerError)
 // https://habr.com/ru/sandbox/124577/  - статья про удаление каталога 
 // https://advancedhosters.com/ru/chmod - статья по правам каталога или файла
 {
+   ConsoleLog('Id CreateRightsDir='.getmypid());
    $Result=true;
    // Если каталога нет, то будем создавать его
    //clearstatcache(true,$Dir); // сбросили кэш состояния файла
@@ -154,6 +155,8 @@ function CreateRightsDir($Dir,$modeDir=0777,$ModeError=rvsTriggerError)
 // ****************************************************************************
 function getFilePerms($Dir,$modeDir,&$fPermissions,&$xPermissions)
 {
+   ConsoleLog('Id getFilePerms='.getmypid());
+   ConsoleLog('fileowner='.fileowner($Dir));
    $Result=true;
    // Формируем строку с заявленными правами 
    $xPermissions='0'.sprintf('%o',$modeDir);  

@@ -15,6 +15,7 @@ class test_CreateRightsDir extends UnitTestCase
 {
    function test_CreateRightsDir_Simple()
    {
+      prown\ConsoleLog('Id test_CreateRightsDir='.getmypid());
       MakeTitle("CreateRightsDir");
       
       // !!! 09.12.2021: $ImgDir='Gallery' - на домашнем компьютере новый 

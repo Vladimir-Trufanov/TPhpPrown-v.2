@@ -79,7 +79,7 @@ TPhpPrown
 			TPhpPrownTests\MakeType_test.php
 			TPhpPrownTests\MakeUserError_test.php
 			TPhpPrownTests\RecalcSizeInfo_test.php
-		-www
+		+www
 			www\89.gif
 			www\favicon.ico
 			www\index.php
@@ -108,15 +108,16 @@ TPhpPrown
 6=TPhpPrownTests\CreateRightsDir_test.php
 7=TPhpPrownTests\FunctionsBlock.php
 8=..\Webservers\Exploration\_Signaphoto1\SignaUpload.php
+9=TPhpPrownTests\MakeCookie_test_I.php
 [Selected Project Files]
 Main=
-Selected=TPhpPrownTests\CreateRightsDir_test.php
+Selected=TPhpPrownTests\MakeCookie_test_I.php
 [www\index.php]
 TopLine=4
 Caret=1,1
 [www\Main.php]
-TopLine=18
-Caret=52,18
+TopLine=154
+Caret=1,172
 Mark1=1,41
 Mark2=1,127
 [TPhpPrown\iniErrMessage.php]
@@ -129,14 +130,17 @@ Caret=19,71
 TopLine=226
 Caret=1,238
 [TPhpPrown\CreateRightsDir.php]
-TopLine=128
-Caret=1,150
+TopLine=132
+Caret=1,160
 [TPhpPrownTests\CreateRightsDir_test.php]
-TopLine=15
-Caret=103,78
+TopLine=3
+Caret=1,19
 [TPhpPrownTests\FunctionsBlock.php]
 TopLine=247
 Caret=1,281
 [..\Webservers\Exploration\_Signaphoto1\SignaUpload.php]
 TopLine=33
 Caret=1,65
+[TPhpPrownTests\MakeCookie_test_I.php]
+TopLine=129
+Caret=13,146
