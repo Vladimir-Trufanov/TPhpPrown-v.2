@@ -13,9 +13,9 @@
 
 class test_CreateRightsDir extends UnitTestCase 
 {
+
    function test_CreateRightsDir_Simple()
    {
-      prown\ConsoleLog('Id test_CreateRightsDir='.getmypid());
       MakeTitle("CreateRightsDir");
       
       // !!! 09.12.2021: $ImgDir='Gallery' - на домашнем компьютере новый 
@@ -25,8 +25,12 @@ class test_CreateRightsDir extends UnitTestCase
       prown\ConsoleLog('test=1');
       $ImgDir='-'.$_SERVER['DOCUMENT_ROOT'].'/CreateRightsDir';
       $Result=prown\CreateRightsDir($ImgDir,0777,rvsReturn);
-      $Value='[TPhpPrown] Ошибка создания каталога: -C:\TPhpPrown\www/CreateRightsDir';
-      $this->assertEqual($Result,$Value);
+      // '[TPhpPrown] Ошибка создания каталога: 
+      //    -C:\TPhpPrown\www/CreateRightsDir';
+      //    -/home/kwinflatht/kwinflatht.nichost.ru/docs/CreateRightsDir
+      $Find='Ошибка создания каталога';
+      $Resu=Findes('/'.$Find.'/u',$Result); 
+      $this->assertEqual($Resu,$Find);
       SimpleMessage('$ImgDir='."'".'-$_SERVER["DOCUMENT_ROOT"]/CreateRightsDir'."';",'black');
       MakeTestMessage(
          '$Result=prown\CreateRightsDir($ImgDir);',
@@ -37,116 +41,119 @@ class test_CreateRightsDir extends UnitTestCase
       prown\ConsoleLog('test=2');
       $ImgDir=$_SERVER['DOCUMENT_ROOT'].'/CreateRightsDir';
       if(is_dir($ImgDir)) rmdir($ImgDir);
-      clearstatcache();
       $Result=prown\CreateRightsDir($ImgDir,0777,rvsReturn);
       $this->assertEqual($Result,true);
 
-      // Пять раз проверяем возвращаемый результат при успешном создании
+      // Четырежды проверяем возвращаемый результат при успешном создании
       // каталога и при установлении его прав
+      $Find='Установленные и желаемые права не совпадают';
+
       prown\ConsoleLog('test=3, $modeDir=0600');
       if(is_dir($ImgDir)) rmdir($ImgDir);
-      clearstatcache();
-      $Result=prown\CreateRightsDir($ImgDir,0600,rvsCurrentPos);
-      $this->assertEqual($Result,true);
-      
+      $Result=prown\CreateRightsDir($ImgDir,0600,rvsReturn);
+      if (isNichost()) $this->assertEqual($Result,true);
+      else 
+      {
+         $Resu=Findes('/'.$Find.'/u',$Result); 
+         $this->assertEqual($Resu,$Find);
+      }
+
       prown\ConsoleLog('test=4, $modeDir=0755');
       if(is_dir($ImgDir)) rmdir($ImgDir);
-      clearstatcache();
-      $Result=prown\CreateRightsDir($ImgDir,0755,rvsCurrentPos);
-      $this->assertEqual($Result,true);
+      $Result=prown\CreateRightsDir($ImgDir,0755,rvsReturn);
+      if (isNichost()) $this->assertEqual($Result,true);
+      else 
+      {
+         $Resu=Findes('/'.$Find.'/u',$Result); 
+         $this->assertEqual($Resu,$Find);
+      }
       
       prown\ConsoleLog('test=5, $modeDir=0700');
       if(is_dir($ImgDir)) rmdir($ImgDir);
-      clearstatcache();
-      $Result=prown\CreateRightsDir($ImgDir,0700,rvsCurrentPos);
-      $this->assertEqual($Result,true);
+      $Result=prown\CreateRightsDir($ImgDir,0700,rvsReturn);
+      if (isNichost()) $this->assertEqual($Result,true);
+      else 
+      {
+         $Resu=Findes('/'.$Find.'/u',$Result); 
+         $this->assertEqual($Resu,$Find);
+      }
       
       prown\ConsoleLog('test=6, $modeDir=0555');
       if(is_dir($ImgDir)) rmdir($ImgDir);
-      clearstatcache();
       $Result=prown\CreateRightsDir($ImgDir,0555,rvsCurrentPos);
       $this->assertEqual($Result,true);
-      
+      MakeTestMessage(
+         '$modeDir=0555; $Result=prown\CreateRightsDir($ImgDir,$modeDir,rvsCurrentPos); ',
+         'Сравнительные (IIS-Apache) тесты создания каталога с правами: 0600,0755,0700,0555',80);
+
+      // Обыгрываем исключение IIS при удалении каталога с правами 0555
       prown\ConsoleLog('test=7, $modeDir=0777');
-      if(is_dir($ImgDir)) rmdir($ImgDir);
-      clearstatcache();
+      if(is_dir($ImgDir)) 
+      {
+         set_error_handler('self::CreateRightsRmdirHandler');
+         clearstatcache(true,$ImgDir); // сбросили кэш состояния файла
+         $is=rmdir($ImgDir);
+         restore_error_handler();
+         if (isNichost()) $this->assertEqual($is,true);
+         else $this->assertEqual($is,false);
+      }
       $Result=prown\CreateRightsDir($ImgDir,0777,rvsCurrentPos);
       $this->assertEqual($Result,true);
-
+      MakeTestMessage(
+         '$Result=prown\CreateRightsDir($ImgDir,0777,rvsCurrentPos); ',
+         'Обыграно исключение IIS при удалении каталога с правами 0555',80);
 
       // Трижды проверяем возвращаемый результат  
-      // и при изменении прав существующего каталога
-       /*
-      clearstatcache();
+      // при изменении прав существующего каталога
+      $Find='Установленные и желаемые права не совпадают';
+      prown\ConsoleLog('test=8, $modeDir=0600');
+      $Result=prown\CreateRightsDir($ImgDir,0600,rvsReturn);
+      if (isNichost()) $this->assertEqual($Result,true);
+      else 
+      {
+         $Resu=Findes('/'.$Find.'/u',$Result); 
+         $this->assertEqual($Resu,$Find);
+      }
+      prown\ConsoleLog('test=9, $modeDir=0755');
       if(is_dir($ImgDir)) rmdir($ImgDir);
-      $Result=prown\CreateRightsDir($ImgDir,0600,rvsCurrentPos);
-      $this->assertEqual($Result,true);
-      MakeTestMessage('$Result=prown\CreateRightsDir('.'$_SERVER["DOCUMENT_ROOT"]/CreateRightsDir'.');',
-         'Проверено удаление существующего каталога и повторное его создание',80);
-
-      // Проверяем ошибку при создании каталога с типом сообщения "rvsCurrentPos"
-      $ImgDir='-'.$_SERVER['DOCUMENT_ROOT'].'/CreateRightsDir';
-      SimpleMessage('<span>');
-      $Result=prown\CreateRightsDir($ImgDir,0777,rvsCurrentPos);
-      echo ' ........ '.'Проверена ошибка при создании каталога с типом сообщения "rvsCurrentPos"';
-      SimpleMessage('</span>');
-      $this->assertEqual($Result,false);
-      */
-
-      /*
-      // Выполняем тесты по установлению и сравнению прав
-      $ImgDir=$_SERVER['DOCUMENT_ROOT'].'/CreateRightsDir'; 
+      $Result=prown\CreateRightsDir($ImgDir,0755,rvsReturn);
+      if (isNichost()) $this->assertEqual($Result,true);
+      else 
+      {
+         $Resu=Findes('/'.$Find.'/u',$Result); 
+         $this->assertEqual($Resu,$Find);
+      }
+      prown\ConsoleLog('test=10, $modeDir=0700');
       if(is_dir($ImgDir)) rmdir($ImgDir);
-      $modeDir=0600;
+      $Result=prown\CreateRightsDir($ImgDir,0700,rvsReturn);
+      if (isNichost()) $this->assertEqual($Result,true);
+      else 
+      {
+         $Resu=Findes('/'.$Find.'/u',$Result); 
+         $this->assertEqual($Resu,$Find);
+      }
+      MakeTestMessage(
+         '$modeDir=0700; $Result=prown\CreateRightsDir($ImgDir,$modeDir,rvsCurrentPos); ',
+         'Сравнительные (IIS-Apache) тесты изменения прав: 0777->0600->0755->0700',80);
+      
+      prown\ConsoleLog('test=11, $modeDir=01400');
+      $modeDir=01400;
       $Result=prown\CreateRightsDir($ImgDir,$modeDir,rvsReturn);
       $this->assertEqual($Result,true);
-      */
       
-      /*
-      clearstatcache();
-      //clearstatcache(true,$ImgDir);
-      $modeDir=0555;
-      $Result=prown\CreateRightsDir($ImgDir,$modeDir,rvsReturn);
-      
-      
-      clearstatcache();
-      //clearstatcache(true,$ImgDir);
-      $permissions=fileperms($ImgDir);
-      //$fPermissions=sprintf('%o',$permissions);
-      //$fPermissions=substr(sprintf('%o',$permissions),-4);
-
-      prown\ConsoleLog('$modeDir='.decoct($modeDir).'; '.'$permissions='.decoct($permissions));
-      */
-      
-      
-      
-      /*
-      $modeDir=017777;
-      $Result=prown\CreateRightsDir($ImgDir,$modeDir,rvsReturn);
-      $this->assertEqual($Result,true);
-      /*
-      
-      
-      $modeDir=0555;
-      prown\ConsoleLog('$modeDir=0555: '.$modeDir);
-      $ImgDir=$_SERVER['DOCUMENT_ROOT'].'/CreateRightsDir'; 
-      if(is_dir($ImgDir)) rmdir($ImgDir);
-      $Result=prown\CreateRightsDir($ImgDir,$modeDir,rvsReturn);
-      $this->assertEqual($Result,true);
-      */
-      /*
-      $modeDir=0700;
-      if(is_dir($ImgDir)) rmdir($ImgDir);
-      $Result=prown\CreateRightsDir($ImgDir,$modeDir,rvsReturn);
-      $this->assertEqual($Result,true);
-     */ 
-     /* 
-      $modeDir=0755;
-      if(is_dir($ImgDir)) rmdir($ImgDir);
-      $Result=prown\CreateRightsDir($ImgDir,$modeDir,rvsReturn);
-      $this->assertEqual($Result,true);
-      */
       
    }
+   // *************************************************************************
+   // *               Обыграть возможные ошибки удаления каталога             *
+   // *************************************************************************
+   function CreateRightsRmdirHandler($errno,$errstr,$errfile,$errline)
+   {
+      // prown\ConsoleLog('$errno='.$errno);
+      // prown\ConsoleLog('$errstr='.$errstr);
+      // prown\ConsoleLog('$errfile='.$errfile);
+      // prown\ConsoleLog('$errline='.$errline);
+      prown\putErrorInfo('CreateRightsRmdirHandler',$errno,
+          '['.'Ошибка удаления каталога'.'] '.$errstr,$errfile,$errline);
+   }  
 }
 // *********************************************** CreateRightsDir_test.php ***

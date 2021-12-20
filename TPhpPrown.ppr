@@ -27,7 +27,7 @@ TPhpPrown
 			TEntrys\Indoor.php
 			TEntrys\Register.php
 			TEntrys\Register_user_text.php
-		+TPhpPrown
+		-TPhpPrown
 			-WorkSpace
 				TPhpPrown\WorkSpace\getSiteDevice.php
 				TPhpPrown\WorkSpace\iniWorkSpace.php
@@ -65,7 +65,7 @@ TPhpPrown
 			TPhpPrown\ViewSimpleArray.php
 			TPhpPrown\пример_регекс.txt
 			TPhpPrown\регекс_тест.html
-		+TPhpPrownTests
+		-TPhpPrownTests
 			TPhpPrownTests\CreateRightsDir_test.php
 			TPhpPrownTests\FinalMessage_test.php
 			TPhpPrownTests\Findes_test.php
@@ -80,7 +80,10 @@ TPhpPrown
 			TPhpPrownTests\MakeUserError_test.php
 			TPhpPrownTests\RecalcSizeInfo_test.php
 		+www
+			-CreateRightsDir
 			www\89.gif
+			www\Common.php
+			www\errors.txt
 			www\favicon.ico
 			www\index.php
 			www\iniWorkSpace.php
@@ -107,40 +110,36 @@ TPhpPrown
 5=TPhpPrown\CreateRightsDir.php
 6=TPhpPrownTests\CreateRightsDir_test.php
 7=TPhpPrownTests\FunctionsBlock.php
-8=..\Webservers\Exploration\_Signaphoto1\SignaUpload.php
-9=TPhpPrownTests\MakeCookie_test_I.php
+8=www\Common.php
 [Selected Project Files]
 Main=
-Selected=TPhpPrownTests\MakeCookie_test_I.php
+Selected=TPhpPrownTests\CreateRightsDir_test.php
 [www\index.php]
-TopLine=4
-Caret=1,1
+TopLine=6
+Caret=1,36
 [www\Main.php]
-TopLine=154
-Caret=1,172
+TopLine=4
+Caret=75,10
 Mark1=1,41
 Mark2=1,127
 [TPhpPrown\iniErrMessage.php]
-TopLine=7
-Caret=26,20
+TopLine=9
+Caret=74,21
 [TPhpPrown\iniConstMem.php]
 TopLine=41
 Caret=19,71
 [TPhpPrown\CommonPrown.php]
-TopLine=226
-Caret=1,238
+TopLine=203
+Caret=1,250
 [TPhpPrown\CreateRightsDir.php]
-TopLine=132
-Caret=1,160
-[TPhpPrownTests\CreateRightsDir_test.php]
-TopLine=3
-Caret=1,19
-[TPhpPrownTests\FunctionsBlock.php]
-TopLine=247
-Caret=1,281
-[..\Webservers\Exploration\_Signaphoto1\SignaUpload.php]
-TopLine=33
-Caret=1,65
-[TPhpPrownTests\MakeCookie_test_I.php]
 TopLine=129
-Caret=13,146
+Caret=1,146
+[TPhpPrownTests\CreateRightsDir_test.php]
+TopLine=120
+Caret=48,139
+[TPhpPrownTests\FunctionsBlock.php]
+TopLine=245
+Caret=1,281
+[www\Common.php]
+TopLine=1
+Caret=22,15

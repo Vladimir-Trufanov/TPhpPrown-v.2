@@ -7,7 +7,7 @@
 
 //                                                   Автор:       Труфанов В.Е.
 //                                                   Дата создания:  13.01.2019
-// Copyright © 2019 tve                              Посл.изменение: 10.03.2021
+// Copyright © 2019 tve                              Посл.изменение: 20.12.2021
 // Определяем сайтовые константы
 define ("ChooseAll",  "Выбрать все элементы"); // Первая кнопка Submit  
 define ("ToTest",     "Протестировать");       // Вторая кнопка Submit 
@@ -27,13 +27,13 @@ require_once $TPhpPrown."/TPhpPrown/MakeType.php";
 require_once $TPhpPrown."/TPhpPrown/RecalcSizeInfo.php";
 require_once $TPhpPrown."/TPhpPrown/ViewGlobal.php";
 require_once $TPhpPrown."/TPhpPrown/ViewSimpleArray.php";
-// Подключаем модуль обеспечения тестов
+// Подключаем модули обеспечения тестов
+require_once $SiteRoot."/Common.php";
 require_once $TPhpPrown."/TPhpPrownTests/FunctionsBlock.php";
 require_once $TPhpPrown."/TPhpPrownTests/MakeCookie_test_D.php";
 require_once $TPhpPrown."/TPhpPrownTests/MakeCookie_test_I.php";
 // Инициализируем сессионную переменную для возможного теста MakeCookie
 // и делаем подготовку текущего прохода этого теста
-//prown\ViewGlobal(avgCOOKIE);
 if (prown\isComRequest(ToTest,'formSubmit')&&(isChecked('formDoor','MakeCookie')))
 {
    MakeCookieTest();
@@ -133,6 +133,7 @@ $aPhpPrown=array
 );
 
 // ---
+//prown\ViewGlobal(avgCOOKIE);
 //echo  prown\getTranslit('блок общих функций').'<br>';
 //phpinfo();
 //echo 'PHP_VERSION_ID='.PHP_VERSION_ID.'<br>';
@@ -168,8 +169,6 @@ $aPhpPrown=array
 // Поэтому теги </body></html> принудительно вставляются в первую и третью ветки,
 // а также выводятся вместе с сообщением "Элементы для тестирования Вами не 
 // выбраны!"
-
-prown\ConsoleLog('Id Main='.getmypid());
 
 // Выполнить первую ветку (когда был клик "Выбрать все")
 if (prown\isComRequest(ChooseAll,'formSubmit'))

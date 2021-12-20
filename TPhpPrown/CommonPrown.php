@@ -247,7 +247,7 @@ function putErrorInfo($Name,$errno,$errstr,$errfile,$errline)
    // в конец файла. Если файл не существует, пытаемся его создать. В данном 
    // режиме функция fseek() влияет только на позицию чтения, записи всегда 
    // добавляются в конец
-   $fp = fopen("errors.txt","a+");
+   $fp = fopen( $_SERVER['DOCUMENT_ROOT']."/errors.txt","a+");
    // Блокируем файл для записи данных об ошибке (LOCK_EX для получения 
    // эксклюзивной блокировки на запись
    if (flock($fp,LOCK_EX)) 

@@ -132,7 +132,6 @@ function MakeCookieTest($Entry=entryPhpPrown)
             "formSubmit=%D0%9F%D1%80%D0%BE%D1%82%D0%B5%D1%81%D1%82%".
             "D0%B8%D1%80%D0%BE%D0%B2%D0%B0%D1%82%D1%8C";
          $page='http://'.$_SERVER['HTTP_HOST'].$page.$vybor;
-         prown\ConsoleLog($page);
          Headeri($page);
       }
       else
@@ -147,7 +146,6 @@ function MakeCookieTest($Entry=entryPhpPrown)
          {
             $page="/Pages/TPhpPrown/_dispTPhpPrown.php?list=ustanovit-novoe-znachenie-cookie-v-brauzere";
             $page='http://'.$_SERVER['HTTP_HOST'].$page;
-            prown\ConsoleLog($page);
             Headeri($page);
          } 
          else echo '<br>Перезапуск страницы выполняется на незнакомом сайте!<br>';

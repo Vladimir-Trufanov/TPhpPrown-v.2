@@ -65,6 +65,8 @@
 //      сбрасывает детальные данные об ошибках в лог-файл (фиксируются следующие
 //      события: DirNameIncorrect - "Неверно указано название каталога";
 //      NoErrReporting - "Указан оператор @, ошибки отключены";
+//   DirRightsNoAssign - "Ошибка назначения прав каталога"; 
+//   NoDeterminRights  - "Ошибка определения прав каталога";
 
 require_once 'iniConstMem.php';
 require_once 'iniErrMessage.php';
@@ -77,11 +79,9 @@ function CreateRightsDir($Dir,$modeDir=0777,$ModeError=rvsTriggerError)
 // https://habr.com/ru/sandbox/124577/  - статья про удаление каталога 
 // https://advancedhosters.com/ru/chmod - статья по правам каталога или файла
 {
-   ConsoleLog('Id CreateRightsDir='.getmypid());
    $Result=true;
    // Если каталога нет, то будем создавать его
-   //clearstatcache(true,$Dir); // сбросили кэш состояния файла
-   clearstatcache();
+   clearstatcache(true,$Dir); // сбросили кэш состояния файла
    if (!is_dir($Dir))
    {
       // Обыгрываем возможные ошибки создания каталога:
@@ -102,7 +102,7 @@ function CreateRightsDir($Dir,$modeDir=0777,$ModeError=rvsTriggerError)
       }
    }
    // Каталог есть, сравниваем заявленные и установленные права
-   clearstatcache();
+   clearstatcache(true,$Dir); // сбросили кэш состояния файла
    if (is_dir($Dir))
    {
       // Инициируем строковые представления заявленных и установленных прав
@@ -112,17 +112,15 @@ function CreateRightsDir($Dir,$modeDir=0777,$ModeError=rvsTriggerError)
       // Если права совпали, то с успехом завершаем работу
       if ($fPermissions===$xPermissions) 
       {
-         ConsoleLog('Установленные и желаемые права совпали с первого раза');
+         // ConsoleLog('Установленные и желаемые права совпали с первого раза');
       }
       // Права не совпали, предполагаем, что находимся в Windows,
       // будем устанавливать права отдельно
       else 
       {
-      
          // Обыгрываем возможные ошибки задания прав каталога:
          set_error_handler("prown\CreateRightsChmodHandler");
-         //clearstatcache(true,$Dir);
-         clearstatcache();
+         clearstatcache(true,$Dir); // сбросили кэш состояния файла
          $is=chmod($Dir,$modeDir);
          restore_error_handler();
          // Так как возникла ошибка задания прав, то выводим сообщение
@@ -135,15 +133,19 @@ function CreateRightsDir($Dir,$modeDir=0777,$ModeError=rvsTriggerError)
          // строки с заявленными и установленными правами
          else
          {
+            // Инициируем строковые представления заявленных и установленных прав
+            $fPermissions='-3'; $xPermissions='-4';
+            // Определяем и сравниваем строки с заявленными и установленными правами
             $is=getFilePerms($Dir,$modeDir,$fPermissions,$xPermissions); 
-            ConsoleLog('$fPermissions='.$fPermissions.'  $xPermissions='.$xPermissions);
-            if ($fPermissions===$xPermissions) 
-            { 
-               ConsoleLog('Установленные и желаемые права совпадают');
-            }
+            // Завершаем работу, если установленные и желаемые права совпадают
+            if ($fPermissions===$xPermissions) {}
+            // Отмечаем ошибку, если установленные и желаемые права НЕ совпадают
             else 
             {
-               ConsoleLog('Установленные и желаемые права НЕ совпадают');
+               ConsoleLog('$fPermissions='.$fPermissions.'  $xPermissions='.$xPermissions);
+               $Result=MakeUserError(RightsDonotMatch.': '.
+               $fPermissions.'<>'.$xPermissions,'TPhpPrown',$ModeError);
+               if ($ModeError<>rvsReturn) $Result=false;
             }
          }
       }
@@ -155,13 +157,10 @@ function CreateRightsDir($Dir,$modeDir=0777,$ModeError=rvsTriggerError)
 // ****************************************************************************
 function getFilePerms($Dir,$modeDir,&$fPermissions,&$xPermissions)
 {
-   ConsoleLog('Id getFilePerms='.getmypid());
-   ConsoleLog('fileowner='.fileowner($Dir));
    $Result=true;
    // Формируем строку с заявленными правами 
    $xPermissions='0'.sprintf('%o',$modeDir);  
-   //clearstatcache(true,$Dir);
-   clearstatcache();
+   clearstatcache(true,$Dir);
    // Определяем установленные права и обыгрываем возможные ошибки определения:
    set_error_handler("prown\CreateRightsPermsHandler");
    $permissions=fileperms($Dir);
@@ -172,7 +171,7 @@ function getFilePerms($Dir,$modeDir,&$fPermissions,&$xPermissions)
       $Result=MakeUserError(NoDeterminRights.'[onerror]: '.$Dir,'TPhpPrown',$ModeError);
       if ($ModeError<>rvsReturn) $Result=false;
    }
-   // Формируем строку с желаемыми правами
+   // Формируем строку с установленными правами
    else
    {
       $fPermissions=substr(sprintf('%o',$permissions),-4);
@@ -224,10 +223,6 @@ function CreateRightsChmodHandler($errno,$errstr,$errfile,$errline)
 // ****************************************************************************
 function CreateRightsPermsHandler($errno,$errstr,$errfile,$errline)
 {
-   ConsoleLog('$errno='.$errno);
-   ConsoleLog('$errstr='.$errstr);
-   ConsoleLog('$errfile='.$errfile);
-   ConsoleLog('$errline='.$errline);
    putErrorInfo('CreateRightsPermsHandler',$errno,
       '['.NoDeterminRights.'] '.$errstr,$errfile,$errline);
 }  
