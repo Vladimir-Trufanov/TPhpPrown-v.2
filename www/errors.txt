@@ -1,0 +1,14 @@
+CreateRightsMkdirHandler 2021-12-22 21:29:34 $errno=2 [Неверно указано название каталога] mkdir(): No such file or directory C:\TPhpPrown\TPhpPrown\CreateRightsDir.php $errline=92
+CreateRightsRmdirHandler 2021-12-22 21:29:34 $errno=2 [Ошибка удаления каталога] rmdir(C:\TPhpPrown\www/CreateRightsDir): Permission denied C:\TPhpPrown\TPhpPrownTests\CreateRightsDir_test.php $errline=95
+CreateRightsMkdirHandler 2021-12-22 21:30:39 $errno=2 [Неверно указано название каталога] mkdir(): No such file or directory C:\TPhpPrown\TPhpPrown\CreateRightsDir.php $errline=92
+CreateRightsRmdirHandler 2021-12-22 21:30:39 $errno=2 [Ошибка удаления каталога] rmdir(C:\TPhpPrown\www/CreateRightsDir): Permission denied C:\TPhpPrown\TPhpPrownTests\CreateRightsDir_test.php $errline=95
+CreateRightsMkdirHandler 2021-12-22 21:51:43 $errno=2 [Неверно указано название каталога] mkdir(): No such file or directory C:\TPhpPrown\TPhpPrown\CreateRightsDir.php $errline=92
+CreateRightsRmdirHandler 2021-12-22 21:51:43 $errno=2 [Ошибка удаления каталога] rmdir(C:\TPhpPrown\www/CreateRightsDir): Permission denied C:\TPhpPrown\TPhpPrownTests\CreateRightsDir_test.php $errline=95
+CreateRightsMkdirHandler 2021-12-22 22:01:21 $errno=2 [Неверно указано название каталога] mkdir(): No such file or directory C:\TPhpPrown\TPhpPrown\CreateRightsDir.php $errline=92
+CreateRightsRmdirHandler 2021-12-22 22:01:21 $errno=2 [Ошибка удаления каталога] rmdir(C:\TPhpPrown\www/CreateRightsDir): Permission denied C:\TPhpPrown\TPhpPrownTests\CreateRightsDir_test.php $errline=95
+CreateRightsMkdirHandler 2021-12-22 22:02:33 $errno=2 [Неверно указано название каталога] mkdir(): No such file or directory C:\TPhpPrown\TPhpPrown\CreateRightsDir.php $errline=92
+CreateRightsRmdirHandler 2021-12-22 22:02:33 $errno=2 [Ошибка удаления каталога] rmdir(C:\TPhpPrown\www/CreateRightsDir): Permission denied C:\TPhpPrown\TPhpPrownTests\CreateRightsDir_test.php $errline=95
+CreateRightsMkdirHandler 2021-12-22 22:09:39 $errno=2 [Неверно указано название каталога] mkdir(): No such file or directory C:\TPhpPrown\TPhpPrown\CreateRightsDir.php $errline=92
+CreateRightsRmdirHandler 2021-12-22 22:09:39 $errno=2 [Ошибка удаления каталога] rmdir(C:\TPhpPrown\www/CreateRightsDir): Permission denied C:\TPhpPrown\TPhpPrownTests\CreateRightsDir_test.php $errline=95
+CreateRightsMkdirHandler 2021-12-22 22:13:37 $errno=2 [Неверно указано название каталога] mkdir(): No such file or directory C:\TPhpPrown\TPhpPrown\CreateRightsDir.php $errline=92
+CreateRightsRmdirHandler 2021-12-22 22:13:37 $errno=2 [Ошибка удаления каталога] rmdir(C:\TPhpPrown\www/CreateRightsDir): Permission denied C:\TPhpPrown\TPhpPrownTests\CreateRightsDir_test.php $errline=95

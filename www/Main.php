@@ -18,7 +18,6 @@ require_once $TPhpPrown."/TPhpPrown/CommonPrown.php";
 require_once $TPhpPrown."/TPhpPrown/CreateRightsDir.php";
 require_once $TPhpPrown."/TPhpPrown/Findes.php";
 require_once $TPhpPrown."/TPhpPrown/getTranslit.php";
-require_once $TPhpPrown."/TPhpPrown/iniConstMem.php";
 require_once $TPhpPrown."/TPhpPrown/isCalcInBrowser.php";
 require_once $TPhpPrown."/TPhpPrown/MakeCookie.php";
 require_once $TPhpPrown."/TPhpPrown/MakeRegExp.php";
@@ -32,6 +31,8 @@ require_once $SiteRoot."/Common.php";
 require_once $TPhpPrown."/TPhpPrownTests/FunctionsBlock.php";
 require_once $TPhpPrown."/TPhpPrownTests/MakeCookie_test_D.php";
 require_once $TPhpPrown."/TPhpPrownTests/MakeCookie_test_I.php";
+// Разрешаем выводить ошибки на 'kwinflatht.nichost.ru'  
+putSayError();
 // Инициализируем сессионную переменную для возможного теста MakeCookie
 // и делаем подготовку текущего прохода этого теста
 if (prown\isComRequest(ToTest,'formSubmit')&&(isChecked('formDoor','MakeCookie')))

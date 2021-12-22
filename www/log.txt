@@ -7,3 +7,4 @@
 [14-Dec-2021 19:30:24 Asia/Kuwait] PHP Parse error:  Invalid numeric literal in C:\TPhpPrown\TPhpPrownTests\CreateRightsDir_test.php on line 60
 [14-Dec-2021 19:42:40 Asia/Kuwait] PHP Parse error:  Invalid numeric literal in C:\TPhpPrown\TPhpPrownTests\CreateRightsDir_test.php on line 60
 [16-Dec-2021 14:47:29 Asia/Kuwait] PHP Parse error:  syntax error, unexpected 'return' (T_RETURN) in C:\TPhpPrown\TPhpPrown\CreateRightsDir.php on line 147
+[20-Dec-2021 20:21:12 Asia/Kuwait] PHP Parse error:  syntax error, unexpected '*' in C:\TPhpPrown\TPhpPrownTests\CreateRightsDir_test.php on line 202

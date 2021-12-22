@@ -71,6 +71,7 @@
 require_once 'iniConstMem.php';
 require_once 'iniErrMessage.php';
 require_once 'MakeUserError.php';
+require_once 'ViewPerms.php';
  
 // ****************************************************************************
 // *       Создать каталог (проверить существование) и задать его права       *
@@ -149,7 +150,7 @@ function CreateRightsDir($Dir,$modeDir=0777,$ModeError=rvsTriggerError)
             }
          }
       }
-   }   
+   } 
    return $Result;
 }
 // ****************************************************************************
@@ -174,7 +175,11 @@ function getFilePerms($Dir,$modeDir,&$fPermissions,&$xPermissions)
    // Формируем строку с установленными правами
    else
    {
+      //ConsoleLog('$permissions='.sprintf('%o',$permissions).' strlen()='.strlen($permissions));
       $fPermissions=substr(sprintf('%o',$permissions),-4);
+      //ConsoleLog('$fPermissions='.$fPermissions.' substr($fPermissions,0,1)='.substr($fPermissions,0,1));
+      // Если задействованы дополнительные биты прав (Unix), добавляем 0 восьмеричности
+      if (substr($fPermissions,0,1)<>'0') $fPermissions='0'.$fPermissions;
    }
    return $Result;  
 }
@@ -225,5 +230,14 @@ function CreateRightsPermsHandler($errno,$errstr,$errfile,$errline)
 {
    putErrorInfo('CreateRightsPermsHandler',$errno,
       '['.NoDeterminRights.'] '.$errstr,$errfile,$errline);
+}  
+// ****************************************************************************
+// *            Обыграть возможные ошибки определения прав каталога           *
+// ****************************************************************************
+function ProbaHandler($errno,$errstr,$errfile,$errline)
+{
+   putErrorInfo('ProbaHandler',$errno,
+      '['.'ProbaHandler'.'] '.$errstr,$errfile,$errline);
+      return false;
 }  
 // **************************************************** CreateRightsDir.php ***
