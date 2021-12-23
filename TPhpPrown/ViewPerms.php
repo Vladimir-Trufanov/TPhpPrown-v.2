@@ -111,7 +111,6 @@ function ViewPerms($Dir,&$info,$ModeError=rvsTriggerError)
         (($perms & 0x0200) ? 'T' : '-'));
      $info .= ' ';
      $info .= substr(sprintf('%o',$perms), -4);
-     ConsoleLog('$info1='.$info);
    }
    return $Result;
 }

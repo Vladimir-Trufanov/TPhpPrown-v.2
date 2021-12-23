@@ -40,7 +40,6 @@ class test_CreateRightsDir extends UnitTestCase
       // успешное его создание
       prown\ConsoleLog('test=2');
       $ImgDir=$_SERVER['DOCUMENT_ROOT'].'/CreateRightsDir';
-      if(is_dir($ImgDir)) rmdir($ImgDir);
       $Result=prown\CreateRightsDir($ImgDir,0777,rvsReturn);
       $this->assertEqual($Result,true);
 
@@ -84,7 +83,7 @@ class test_CreateRightsDir extends UnitTestCase
       $this->assertEqual($Result,true);
       MakeTestMessage(
          '$modeDir=0555; $Result=prown\CreateRightsDir($ImgDir,$modeDir,rvsCurrentPos); ',
-         'Сравнительные (IIS-Apache) тесты создания каталога с правами: 0600,0755,0700,0555',80);
+         'Сравнительные (IIS-Unix) тесты создания каталога с правами: 0600,0755,0700,0555',80);
 
       // Обыгрываем исключение IIS при удалении каталога с правами 0555
       prown\ConsoleLog('test=7, $modeDir=0777');
@@ -134,100 +133,50 @@ class test_CreateRightsDir extends UnitTestCase
       }
       MakeTestMessage(
          '$modeDir=0700; $Result=prown\CreateRightsDir($ImgDir,$modeDir,rvsCurrentPos); ',
-         'Сравнительные (IIS-Apache) тесты изменения прав: 0777->0600->0755->0700',80);
+         'Сравнительные (IIS-Unix) тесты изменения прав: 0777->0600->0755->0700',80);
       
       // Выполняем последние тесты со сложными правами и ошибками
       prown\ConsoleLog('test=11, $modeDir=0000');
-      $s='-'; // Определили строку для указания прав 
       $modeDir=0000;
       $Result=prown\CreateRightsDir($ImgDir,$modeDir,rvsReturn);
       $this->assertEqual($Result,true);
-      prown\ViewPerms($ImgDir,$a,rvsReturn);
 
       $modeDir=07777;
       $Result=prown\CreateRightsDir($ImgDir,$modeDir,rvsReturn);
       $this->assertEqual($Result,true);
-      prown\ViewPerms($ImgDir,$a,rvsReturn);
-      SimpleMessage($Result,'green');
+      // Определяем строку для указания прав и
+      // формируем сообщение со строчным их представлением
+      $s='-'; prown\ViewPerms($ImgDir,$s,rvsReturn);
+      // Формируем строку сообщения в данном случае с.о:
+      // для Unix как пример использования в правах бит - SUID,SGID,Sticky
+      if (isNichost()) 
+      {
+         $ss='Проверено использования в правах бит - SUID,SGID,Sticky';
+         $this->assertEqual($s,'d.rws.rws.rwt 7777');
+      }
+      // для IIS, как различие между заявленными и установленными правами
+      else
+      {
+         $ss=$Result; $this->assertEqual($ss,
+         '[TPhpPrown] Установленные и желаемые права не совпадают: 0777<>07777');
+      } 
+      MakeTestMessage(
+         '$modeDir=07777; $Result=prown\CreateRightsDir($ImgDir,$modeDir,rvsCurrentPos); ',
+         $ss,80);
+      SimpleMessage('Фактически установленные права: '.$s,'green');
 
-     /* 
-      
-      
-      
-      $modeDir=00400;
+      $modeDir=051400;
       $Result=prown\CreateRightsDir($ImgDir,$modeDir,rvsReturn);
       $this->assertEqual($Result,true);
-      self::ViewPerms($ImgDir);
-      $modeDir=01400;
-      $Result=prown\CreateRightsDir($ImgDir,$modeDir,rvsReturn);
-      $this->assertEqual($Result,true);
-      self::ViewPerms($ImgDir);
-      $modeDir=02400;
-      $Result=prown\CreateRightsDir($ImgDir,$modeDir,rvsReturn);
-      $this->assertEqual($Result,true);
-      self::ViewPerms($ImgDir);
-      $modeDir=02400;
-      $Result=prown\CreateRightsDir($ImgDir,$modeDir,rvsReturn);
-      $this->assertEqual($Result,true);
-      self::ViewPerms($ImgDir);
-      $modeDir=03770;
-      $Result=prown\CreateRightsDir($ImgDir,$modeDir,rvsReturn);
-      $this->assertEqual($Result,true);
-      self::ViewPerms($ImgDir);
-      $modeDir=03777;
-      $Result=prown\CreateRightsDir($ImgDir,$modeDir,rvsReturn);
-      $this->assertEqual($Result,true);
-      self::ViewPerms($ImgDir);
-     
-      $modeDir=04770;
-      $Result=prown\CreateRightsDir($ImgDir,$modeDir,rvsReturn);
-      $this->assertEqual($Result,true);
-      self::ViewPerms($ImgDir);
-      $modeDir=04777;
-      $Result=prown\CreateRightsDir($ImgDir,$modeDir,rvsReturn);
-      $this->assertEqual($Result,true);
-      self::ViewPerms($ImgDir);
-      
-      $modeDir=05770;
-      $Result=prown\CreateRightsDir($ImgDir,$modeDir,rvsReturn);
-      $this->assertEqual($Result,true);
-      self::ViewPerms($ImgDir);
-      $modeDir=05777;
-      $Result=prown\CreateRightsDir($ImgDir,$modeDir,rvsReturn);
-      $this->assertEqual($Result,true);
-      self::ViewPerms($ImgDir);
-      
-      $modeDir=06770;
-      $Result=prown\CreateRightsDir($ImgDir,$modeDir,rvsReturn);
-      $this->assertEqual($Result,true);
-      self::ViewPerms($ImgDir);
-      $modeDir=06777;
-      $Result=prown\CreateRightsDir($ImgDir,$modeDir,rvsReturn);
-      $this->assertEqual($Result,true);
-      self::ViewPerms($ImgDir);
-      
-      $modeDir=07770;
-      $Result=prown\CreateRightsDir($ImgDir,$modeDir,rvsReturn);
-      $this->assertEqual($Result,true);
-      self::ViewPerms($ImgDir);
-      $modeDir=07777;
-      $Result=prown\CreateRightsDir($ImgDir,$modeDir,rvsReturn);
-      $this->assertEqual($Result,true);
-      self::ViewPerms($ImgDir);
-     */
-      
-      
-      /*
-      prown\ConsoleLog('test=11, $modeDir=01400');
-      $modeDir=057777;
-      $modeDir=05777;
+
       $modeDir='0t777';
       $Result=prown\CreateRightsDir($ImgDir,$modeDir,rvsReturn);
       $this->assertEqual($Result,true);
-      */
       
+      // Устанавливаем права на каталог 0777 и удаляем его
+      prown\CreateRightsDir($ImgDir,0777,rvsReturn);
+      if(is_dir($ImgDir)) rmdir($ImgDir);
    }
-   
    // *************************************************************************
    // *               Обыграть возможные ошибки удаления каталога             *
    // *************************************************************************

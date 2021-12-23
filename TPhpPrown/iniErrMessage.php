@@ -19,6 +19,7 @@ define ("NoErrReporting",    "Указан оператор @, ошибки от
 define ("DirRightsNoAssign", "Ошибка назначения прав каталога");
 define ("NoDeterminRights",  "Ошибка определения прав каталога");
 define ("RightsDonotMatch",  "Установленные и желаемые права не совпадают");
+define ("NonWellNumeric",    "Некорректное числовое значение в правах каталога");
 
 // isCalcInBrowser: Проанализировать UserAgent браузера по версиям родительских
 //                      браузеров и определить работает ли функция Calc для CSS

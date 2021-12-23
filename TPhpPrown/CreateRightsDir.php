@@ -143,7 +143,7 @@ function CreateRightsDir($Dir,$modeDir=0777,$ModeError=rvsTriggerError)
             // Отмечаем ошибку, если установленные и желаемые права НЕ совпадают
             else 
             {
-               ConsoleLog('$fPermissions='.$fPermissions.'  $xPermissions='.$xPermissions);
+               //ConsoleLog('$fPermissions='.$fPermissions.'  $xPermissions='.$xPermissions);
                $Result=MakeUserError(RightsDonotMatch.': '.
                $fPermissions.'<>'.$xPermissions,'TPhpPrown',$ModeError);
                if ($ModeError<>rvsReturn) $Result=false;
@@ -160,7 +160,9 @@ function getFilePerms($Dir,$modeDir,&$fPermissions,&$xPermissions)
 {
    $Result=true;
    // Формируем строку с заявленными правами 
-   $xPermissions='0'.sprintf('%o',$modeDir);  
+   if ($modeDir==0000) $xPermissions='0000';
+   else $xPermissions='0'.sprintf('%o',$modeDir);
+   // Если права нулевые, то раздвигаем   
    clearstatcache(true,$Dir);
    // Определяем установленные права и обыгрываем возможные ошибки определения:
    set_error_handler("prown\CreateRightsPermsHandler");
@@ -175,9 +177,7 @@ function getFilePerms($Dir,$modeDir,&$fPermissions,&$xPermissions)
    // Формируем строку с установленными правами
    else
    {
-      //ConsoleLog('$permissions='.sprintf('%o',$permissions).' strlen()='.strlen($permissions));
       $fPermissions=substr(sprintf('%o',$permissions),-4);
-      //ConsoleLog('$fPermissions='.$fPermissions.' substr($fPermissions,0,1)='.substr($fPermissions,0,1));
       // Если задействованы дополнительные биты прав (Unix), добавляем 0 восьмеричности
       if (substr($fPermissions,0,1)<>'0') $fPermissions='0'.$fPermissions;
    }
@@ -220,8 +220,22 @@ function CreateRightsMkdirHandler($errno,$errstr,$errfile,$errline)
 // ****************************************************************************
 function CreateRightsChmodHandler($errno,$errstr,$errfile,$errline)
 {
-   putErrorInfo('CreateRightsChmodHandler',$errno,
-      '['.DirRightsNoAssign.'] '.$errstr,$errfile,$errline);
+   $modul='CreateRightsChmodHandler';
+   // Отлавливаем ошибку "Некорректное числовое значение в правах каталога"
+   // "A non well formed numeric value encountered"
+   $Find='A non well formed numeric value encountered';
+   $Resu=Findes('/'.$Find.'/u',$errstr); 
+   if ($Resu==$Find) 
+   {
+      putErrorInfo($modul,$errno,
+         '['.NonWellNumeric.'] '.$errstr,$errfile,$errline);
+   }
+   // Обобщаем остальные ошибки
+   else 
+   {
+      putErrorInfo($modul,$errno,
+         '['.DirRightsNoAssign.'] '.$errstr,$errfile,$errline);
+   }
 }  
 // ****************************************************************************
 // *            Обыграть возможные ошибки определения прав каталога           *
