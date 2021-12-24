@@ -15,11 +15,11 @@
 //                                                           и задать его права 
 define ("DirСreateError",    "Ошибка создания каталога");
 define ("DirNameIncorrect",  "Неверно указано название каталога");
-define ("NoErrReporting",    "Указан оператор @, ошибки отключены");
 define ("DirRightsNoAssign", "Ошибка назначения прав каталога");
 define ("NoDeterminRights",  "Ошибка определения прав каталога");
-define ("RightsDonotMatch",  "Установленные и желаемые права не совпадают");
+define ("NoErrReporting",    "Указан оператор @, ошибки отключены");
 define ("NonWellNumeric",    "Некорректное числовое значение в правах каталога");
+define ("RightsDonotMatch",  "Установленные и желаемые права не совпадают");
 
 // isCalcInBrowser: Проанализировать UserAgent браузера по версиям родительских
 //                      браузеров и определить работает ли функция Calc для CSS

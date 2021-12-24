@@ -27,7 +27,7 @@ TPhpPrown
 			TEntrys\Indoor.php
 			TEntrys\Register.php
 			TEntrys\Register_user_text.php
-		-TPhpPrown
+		+TPhpPrown
 			-WorkSpace
 				TPhpPrown\WorkSpace\getSiteDevice.php
 				TPhpPrown\WorkSpace\iniWorkSpace.php
@@ -113,9 +113,10 @@ TPhpPrown
 7=TPhpPrownTests\FunctionsBlock.php
 8=www\Common.php
 9=TPhpPrown\ViewPerms.php
+10=TPhpPrown\Findes.php
 [Selected Project Files]
 Main=
-Selected=TPhpPrownTests\CreateRightsDir_test.php
+Selected=TPhpPrown\CreateRightsDir.php
 [www\index.php]
 TopLine=6
 Caret=31,34
@@ -125,8 +126,8 @@ Caret=1,18
 Mark1=1,42
 Mark2=1,128
 [TPhpPrown\iniErrMessage.php]
-TopLine=9
-Caret=29,26
+TopLine=20
+Caret=1,23
 [TPhpPrown\iniConstMem.php]
 TopLine=41
 Caret=19,71
@@ -134,11 +135,11 @@ Caret=19,71
 TopLine=213
 Caret=1,250
 [TPhpPrown\CreateRightsDir.php]
-TopLine=127
-Caret=18,146
+TopLine=255
+Caret=10,7
 [TPhpPrownTests\CreateRightsDir_test.php]
-TopLine=25
-Caret=51,155
+TopLine=94
+Caret=1,43
 [TPhpPrownTests\FunctionsBlock.php]
 TopLine=252
 Caret=31,289
@@ -148,3 +149,6 @@ Caret=77,25
 [TPhpPrown\ViewPerms.php]
 TopLine=78
 Caret=1,114
+[TPhpPrown\Findes.php]
+TopLine=1
+Caret=1,11
