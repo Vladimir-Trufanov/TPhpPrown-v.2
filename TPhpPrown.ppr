@@ -135,10 +135,10 @@ Caret=19,71
 TopLine=213
 Caret=1,250
 [TPhpPrown\CreateRightsDir.php]
-TopLine=255
-Caret=10,7
+TopLine=251
+Caret=1,316
 [TPhpPrownTests\CreateRightsDir_test.php]
-TopLine=94
+TopLine=43
 Caret=1,43
 [TPhpPrownTests\FunctionsBlock.php]
 TopLine=252

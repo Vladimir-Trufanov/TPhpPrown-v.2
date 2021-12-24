@@ -91,7 +91,6 @@
 // $ImgDir=$_SERVER['DOCUMENT_ROOT'].'/CreateRightsDir';
 // $Result=prown\CreateRightsDir($ImgDir,07777,rvsReturn);
 
-//
 // Синтаксис:
 //
 //   $Result=CreateRightsDir($Dir,$modeDir=0777,$ModeError=rvsTriggerError);
@@ -313,14 +312,5 @@ function CreateRightsPermsHandler($errno,$errstr,$errfile,$errline)
 {
    putErrorInfo('CreateRightsPermsHandler',$errno,
       '['.NoDeterminRights.'] '.$errstr,$errfile,$errline);
-}  
-// ****************************************************************************
-// *            Обыграть возможные ошибки определения прав каталога           *
-// ****************************************************************************
-function ProbaHandler($errno,$errstr,$errfile,$errline)
-{
-   putErrorInfo('ProbaHandler',$errno,
-      '['.'ProbaHandler'.'] '.$errstr,$errfile,$errline);
-      return false;
-}  
+} 
 // **************************************************** CreateRightsDir.php ***
