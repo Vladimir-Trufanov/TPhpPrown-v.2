@@ -28,6 +28,13 @@ TPhpPrown
 			TEntrys\Register.php
 			TEntrys\Register_user_text.php
 		+TPhpPrown
+			-BrowsCap
+				TPhpPrown\BrowsCap\browscap.doc
+				TPhpPrown\BrowsCap\full_php_browscap.ini
+				TPhpPrown\BrowsCap\lite_php_browscap.ini
+				TPhpPrown\BrowsCap\php_browscap.ini
+				TPhpPrown\BrowsCap\php_IIS.ini
+				TPhpPrown\BrowsCap\php_rucenter73.ini
 			-WorkSpace
 				TPhpPrown\WorkSpace\getSiteDevice.php
 				TPhpPrown\WorkSpace\iniWorkSpace.php
@@ -38,6 +45,7 @@ TPhpPrown
 			TPhpPrown\CtrlNumber.php
 			TPhpPrown\DebugInfo.php
 			TPhpPrown\Findes.php
+			TPhpPrown\getBrowscap.php
 			TPhpPrown\getTranslit.php
 			TPhpPrown\iniConstMem.php
 			TPhpPrown\iniErrMessage.php
@@ -66,7 +74,7 @@ TPhpPrown
 			TPhpPrown\ViewSimpleArray.php
 			TPhpPrown\пример_регекс.txt
 			TPhpPrown\регекс_тест.html
-		+TPhpPrownTests
+		-TPhpPrownTests
 			TPhpPrownTests\CreateRightsDir_test.php
 			TPhpPrownTests\FinalMessage_test.php
 			TPhpPrownTests\Findes_test.php
@@ -80,8 +88,7 @@ TPhpPrown
 			TPhpPrownTests\MakeType_test.php
 			TPhpPrownTests\MakeUserError_test.php
 			TPhpPrownTests\RecalcSizeInfo_test.php
-		+www
-			-CreateRightsDir
+		-www
 			www\89.gif
 			www\Common.php
 			www\errors.txt
@@ -93,8 +100,11 @@ TPhpPrown
 			www\TPhpPrownTests.js
 		-Материалы
 			Материалы\Библиотека для определения типа и модели устройства на PHP.doc
+			Материалы\Права доступа PHP-начинающим.doc
+			Материалы\Права доступа Unix - SUID SGID Sticky биты.doc
 			Материалы\Руководство по разработке через тестирование для начинающих.doc
 			Материалы\Урок14 - Безопасное программирование.doc
+		.gitignore
 		Favicon-doc.jpg
 		Favicon-png.png
 		README.html
@@ -108,15 +118,12 @@ TPhpPrown
 2=TPhpPrown\iniErrMessage.php
 3=TPhpPrown\iniConstMem.php
 4=TPhpPrown\CommonPrown.php
-5=TPhpPrown\CreateRightsDir.php
-6=TPhpPrownTests\CreateRightsDir_test.php
-7=TPhpPrownTests\FunctionsBlock.php
-8=www\Common.php
-9=TPhpPrown\ViewPerms.php
-10=TPhpPrown\Findes.php
+5=TPhpPrown\WorkSpace\iniWorkSpace.php
+6=TPhpPrown\getBrowscap.php
+7=..\Webservers\Exploration\_Signaphoto1\SignaPhotoHtml.php
 [Selected Project Files]
 Main=
-Selected=TPhpPrown\CreateRightsDir.php
+Selected=TPhpPrown\getBrowscap.php
 [www\index.php]
 TopLine=6
 Caret=31,34
@@ -134,21 +141,12 @@ Caret=19,71
 [TPhpPrown\CommonPrown.php]
 TopLine=213
 Caret=1,250
-[TPhpPrown\CreateRightsDir.php]
-TopLine=251
-Caret=1,316
-[TPhpPrownTests\CreateRightsDir_test.php]
-TopLine=43
-Caret=1,43
-[TPhpPrownTests\FunctionsBlock.php]
-TopLine=252
-Caret=31,289
-[www\Common.php]
-TopLine=1
-Caret=77,25
-[TPhpPrown\ViewPerms.php]
-TopLine=78
-Caret=1,114
-[TPhpPrown\Findes.php]
-TopLine=1
-Caret=1,11
+[TPhpPrown\WorkSpace\iniWorkSpace.php]
+TopLine=15
+Caret=77,19
+[TPhpPrown\getBrowscap.php]
+TopLine=15
+Caret=1,51
+[..\Webservers\Exploration\_Signaphoto1\SignaPhotoHtml.php]
+TopLine=211
+Caret=47,230
