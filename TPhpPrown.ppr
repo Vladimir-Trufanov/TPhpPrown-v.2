@@ -59,6 +59,7 @@ TPhpPrown
 			TPhpPrown\MakeCookie.php
 			TPhpPrown\MakeParm.php
 			TPhpPrown\MakeRegExp.php
+			TPhpPrown\MakeRID.php
 			TPhpPrown\MakeSession.php
 			TPhpPrown\MakeType.php
 			TPhpPrown\MakeUserError.php
@@ -119,11 +120,10 @@ TPhpPrown
 3=TPhpPrown\iniConstMem.php
 4=TPhpPrown\CommonPrown.php
 5=TPhpPrown\WorkSpace\iniWorkSpace.php
-6=TPhpPrown\getBrowscap.php
-7=..\Webservers\Exploration\_Signaphoto1\SignaPhotoHtml.php
+6=TPhpPrown\MakeRID.php
 [Selected Project Files]
 Main=
-Selected=TPhpPrown\getBrowscap.php
+Selected=TPhpPrown\MakeRID.php
 [www\index.php]
 TopLine=6
 Caret=31,34
@@ -144,9 +144,6 @@ Caret=1,250
 [TPhpPrown\WorkSpace\iniWorkSpace.php]
 TopLine=15
 Caret=77,19
-[TPhpPrown\getBrowscap.php]
-TopLine=15
-Caret=1,51
-[..\Webservers\Exploration\_Signaphoto1\SignaPhotoHtml.php]
-TopLine=211
-Caret=47,230
+[TPhpPrown\MakeRID.php]
+TopLine=7
+Caret=5,33
