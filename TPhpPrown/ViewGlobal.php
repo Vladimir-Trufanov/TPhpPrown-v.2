@@ -194,6 +194,25 @@ function ViewGlobal($Parm,$_Array=null)
     {
         //if (IsSet($_FILES))
         ViewArr("Элементы \$_FILES, загруженные в текущий скрипт через метод HTTP POST",$_FILES,"\$_FILES");
+        
+      /*        
+      $i=0;
+      $families = [["Tom", "Alice"], ["Bob", "Kate"], ["Sam", "Mary"]];
+      $families = (array) $_FILES;
+      foreach ($families as $family)
+      {
+         $j=0;
+         foreach ($family as $user)
+         {
+            \prown\ConsoleLog('$i-$j='.$i.'-'.$j); 
+            \prown\ConsoleLog('$user='.$user); 
+            $j=$j+1;
+         }
+         $i=$i+1;
+      }
+      */
+
+        
         //else echo 'Нет загруженных файлов!<br>';
     }
     elseif ($Parm==avgPOST)
