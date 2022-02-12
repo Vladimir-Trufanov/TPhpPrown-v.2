@@ -62,5 +62,82 @@ function getIPsigns()
    return str_replace(['.',':'],'-',$_SERVER['REMOTE_ADDR']);
 }
 
+// Сформировать NumRID - нумерованный идентификатор читателя сайта - спецификацию
+// нового файла, который будет создан в файловой системе сервера
+function MakeNumRID($DirFile,$PostFix,$ExtFile,$isNum=false)
+{
+   // Изначально назначаем префикс имени файла в соответствии с RID 
+   $PrefName=MakeRID(); $PrefNameOut=$PrefName;
+   if ($isNum)
+   {
+      // Проверяем наличие ненумерованного RID-файла
+      $is=isNumFile($PrefName,$DirFile,$PostFix,$ExtFile,null);
+      // Если ненумерованный RID-файл есть, удаляем его и создаем
+      // имя RID-файла с номером "9"
+      if ($is) $PrefNameOut=MakeNumFile($PrefName,$DirFile,$PostFix,$ExtFile,null);
+      // Иначе, перебираем спецификации всех возможных нумерованных RID-файлов 
+      // (9,8,7,6,5,4,3,2,1)
+      else
+      {
+         $i=9;
+         while ($i>0) 
+         {
+            $is=isNumFile($PrefName,$DirFile,$PostFix,$ExtFile,$i);
+            // Если нумерованный RID-файл есть, удаляем его и создаем
+            // имя RID-файла с номером ниже
+            if ($is) 
+            {
+               $PrefNameOut=MakeNumFile($PrefName,$DirFile,$PostFix,$ExtFile,$i);
+               break;
+            }
+            $i=$i-1; 
+         }
+      }
+   }
+   return $PrefNameOut;
+}
+
+// Проверяем по спецификации, есть ли указанный RID-файл
+function isNumFile($PrefName,$DirFile,$PostFix,$ExtFile,$i)
+{
+   $is=false;
+   // Формируем спецификацию файла для проверки существования
+   $NameFile=$PrefName.$PostFix;
+   if ($i<>null) $NameFile=$PrefName.strval($i).$PostFix;
+   $SpecFile=$DirFile.'/'.$NameFile.'.'.$ExtFile;
+   // Проверяем существование файла
+   if (file_exists($SpecFile)) 
+   {
+      $is=true;
+   }
+   return $is;
+}
+// Так как нумерованный RID-файл есть, то удаляем его и создаем
+// имя RID-файла с номером ниже
+function MakeNumFile($PrefName,$DirFile,$PostFix,$ExtFile,$i)
+{
+   // Формируем спецификацию файла для удаления
+   $NameFile=$PrefName.$PostFix;
+   if ($i==null) 
+   {
+      $NameFile=$PrefName.$PostFix;          
+      $DeleFile=$DirFile.'/'.$NameFile.'.'.$ExtFile;
+      $PrefNameOut=$PrefName.'9';      
+   }
+   else if ($i==1) 
+   {
+      $NameFile=$PrefName.'1'.$PostFix;          
+      $DeleFile=$DirFile.'/'.$NameFile.'.'.$ExtFile;
+      $PrefNameOut=$PrefName;      
+   }
+   else
+   {
+      $NameFile=$PrefName.$i.$PostFix;      
+      $DeleFile=$DirFile.'/'.$NameFile.'.'.$ExtFile;
+      $PrefNameOut=$PrefName.strval($i-1);      
+   }
+   if (file_exists($DeleFile)) unlink($DeleFile);
+   return $PrefNameOut;
+}
 // ************************************************************ MakeRID.php ***
  
