@@ -238,7 +238,6 @@ function putErrorInfo($Name,$errno,$errstr,$errfile,$errline,$logfile='x')
 {
    // Переопределяем имя лог-файла
    if ($logfile==='x') $logfile=$_SERVER['DOCUMENT_ROOT']."/errors.txt";
-   Alert($logfile);
    // Формируем строку для выгрузки в лог-файл ошибок: $Name - название 
    // модуля, сбрасывающего ошибку; $Today - текущая дата и время в формате
    // MySQL DATETIME;
