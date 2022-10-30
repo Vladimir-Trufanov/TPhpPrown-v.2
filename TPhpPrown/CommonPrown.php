@@ -100,7 +100,7 @@ function ConsoleLog($Stringi,$Parmi=null,$isEscape=true)
    // Выводим сообщение
    ?>
    <script>
-      var messa="<?php echo $messa; ?>";
+      messa="<?php echo $messa; ?>";
       console.log(messa);
    </script>
    <?php

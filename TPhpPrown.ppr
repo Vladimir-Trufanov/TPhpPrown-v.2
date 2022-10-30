@@ -27,7 +27,7 @@ TPhpPrown
 			TEntrys\Indoor.php
 			TEntrys\Register.php
 			TEntrys\Register_user_text.php
-		+TPhpPrown
+		-TPhpPrown
 			-BrowsCap
 				TPhpPrown\BrowsCap\browscap.doc
 				TPhpPrown\BrowsCap\full_php_browscap.ini
@@ -89,7 +89,9 @@ TPhpPrown
 			TPhpPrownTests\MakeType_test.php
 			TPhpPrownTests\MakeUserError_test.php
 			TPhpPrownTests\RecalcSizeInfo_test.php
-		-www
+		+www
+			-fil
+				www\fil\index.php
 			www\89.gif
 			www\Common.php
 			www\errors.txt
@@ -115,35 +117,21 @@ TPhpPrown
 		TPhpPrown.ppr
 [Open project files]
 0=www\index.php
-1=www\Main.php
-2=TPhpPrown\iniErrMessage.php
-3=TPhpPrown\iniConstMem.php
-4=TPhpPrown\CommonPrown.php
-5=TPhpPrown\WorkSpace\iniWorkSpace.php
-6=TPhpPrown\MakeRID.php
+1=www\insert.php
+2=..\Webservers\Exploration\Signaphoto\SignaUpload.php
+3=..\fil\Погода.txt
 [Selected Project Files]
 Main=
-Selected=TPhpPrown\CommonPrown.php
+Selected=..\fil\Погода.txt
 [www\index.php]
-TopLine=6
+TopLine=19
 Caret=31,34
-[www\Main.php]
-TopLine=6
-Caret=1,18
-Mark1=1,42
-Mark2=1,128
-[TPhpPrown\iniErrMessage.php]
-TopLine=20
-Caret=1,23
-[TPhpPrown\iniConstMem.php]
-TopLine=41
-Caret=19,71
-[TPhpPrown\CommonPrown.php]
-TopLine=231
-Caret=1,241
-[TPhpPrown\WorkSpace\iniWorkSpace.php]
-TopLine=15
-Caret=77,19
-[TPhpPrown\MakeRID.php]
-TopLine=7
-Caret=5,33
+[www\insert.php]
+TopLine=1
+Caret=25,9
+[..\Webservers\Exploration\Signaphoto\SignaUpload.php]
+TopLine=5
+Caret=90,18
+[..\fil\Погода.txt]
+TopLine=1
+Caret=1,1
