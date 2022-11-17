@@ -54,20 +54,6 @@ define ('avgWORKSPACE', 528);  // Переменные рабочего прос
 // Вывести шапку таблицы                          
 function ViewCaption($Caption)
 {
-    echo "   
-    <style>
-    h2 
-    {
-        background: white;
-    }
-    .vgTABLE 
-    {
-        font-size: 1.2em;
-        background: yellow;
-    }
-    </style>
-    "; 
-    
     echo "<h2>".$Caption."</h2>";
     echo "<table class=\"vgTABLE\" width=\"100%\">";
     echo "<tr>";
