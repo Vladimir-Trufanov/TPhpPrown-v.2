@@ -55,10 +55,11 @@ define ('avgWORKSPACE', 528);  // Переменные рабочего прос
 function ViewCaption($Caption)
 {
     echo "<h2>".$Caption."</h2>";
-    echo "<table class=\"vgTABLE\" width=\"100%\">";
+    echo '<table>';
     echo "<tr>";
-    echo "<th class=\"vgKey\">ПАРАМЕТР</th>";
-    echo "<th class=\"vgValue\">ЗНАЧЕНИЕ</th>";
+    echo "<th>ПАРАМЕТР</th>";
+    echo "<th> </th>";
+    echo "<th>ЗНАЧЕНИЕ</th>";
     echo "</tr>";
 }
 // Вывести строку массива
@@ -69,10 +70,11 @@ function ViewLineMiddle($Name,$key,$ivalue)
     if (gettype($ivalue)==tArr) $value=tArr;
     else $value=$ivalue;
     // Выводим строку массива
-     echo "<tr>";
-    echo "<td class=\"vgKey\">".$Name." [\"".$key."\"]"."</td>";
-    echo "<td class=\"vgValue\">".$value."</td>";
     echo "<tr>";
+    echo "<td>".$Name." [\"".$key."\"]"."</td>";
+    echo "<td>".'&nbsp;'."</td>";
+    echo "<td>".$value."</td>";
+    echo "</tr>";
 }
 // Вывести данные массива кукисов с блокировкой "PHPSESSID"
 function ViewCookieMiddle($aArray,$Name)
