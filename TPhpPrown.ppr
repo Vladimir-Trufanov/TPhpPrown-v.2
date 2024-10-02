@@ -28,10 +28,6 @@ TPhpPrown
 			TEntrys\Register.php
 			TEntrys\Register_user_text.php
 		+TPhpPrown
-			+BitofExpert
-				TPhpPrown\BitofExpert\BitofExpert.html
-				TPhpPrown\BitofExpert\BitofExpert.php
-				TPhpPrown\BitofExpert\BitofExpert.phpo
 			-BrowsCap
 				TPhpPrown\BrowsCap\browscap.doc
 				TPhpPrown\BrowsCap\full_php_browscap.ini
@@ -39,7 +35,7 @@ TPhpPrown
 				TPhpPrown\BrowsCap\php_browscap.ini
 				TPhpPrown\BrowsCap\php_IIS.ini
 				TPhpPrown\BrowsCap\php_rucenter73.ini
-			-WorkSpace
+			+WorkSpace
 				TPhpPrown\WorkSpace\getSiteDevice.php
 				TPhpPrown\WorkSpace\iniWorkSpace.php
 				TPhpPrown\WorkSpace\Mobile_Detect.php
@@ -48,7 +44,7 @@ TPhpPrown
 			TPhpPrown\CtrlArray.php
 			TPhpPrown\CtrlNumber.php
 			TPhpPrown\DebugInfo.php
-			TPhpPrown\Replaces.php
+			TPhpPrown\Findes.php
 			TPhpPrown\getBrowscap.php
 			TPhpPrown\getTranslit.php
 			TPhpPrown\iniConstMem.php
@@ -71,6 +67,7 @@ TPhpPrown
 			TPhpPrown\Number2string.php
 			TPhpPrown\PullArray.php
 			TPhpPrown\RecalcSizeInfo.php
+			TPhpPrown\Replaces.php
 			TPhpPrown\SqueezeArrays.php
 			TPhpPrown\StringFilters.php
 			TPhpPrown\TestNumerical.php
@@ -122,29 +119,17 @@ TPhpPrown
 		TPhpPrown.ppr
 [Open project files]
 0=www\index.php
-1=www\insert.php
-2=www\fil\index.php
-3=TPhpPrown\Replaces.php
-4=TPhpPrown\BitofExpert\BitofExpert.phpo
-5=TPhpPrown\iniRegExp.php
+1=www\fil\index.php
+2=TPhpPrown\WorkSpace\iniWorkSpace.php
 [Selected Project Files]
 Main=
-Selected=TPhpPrown\Replaces.php
+Selected=TPhpPrown\WorkSpace\iniWorkSpace.php
 [www\index.php]
 TopLine=3
 Caret=31,34
-[www\insert.php]
-TopLine=1
-Caret=25,9
 [www\fil\index.php]
 TopLine=3
 Caret=1,1
-[TPhpPrown\Replaces.php]
-TopLine=2
-Caret=22,21
-[TPhpPrown\BitofExpert\BitofExpert.phpo]
-TopLine=63
-Caret=89,96
-[TPhpPrown\iniRegExp.php]
-TopLine=8
-Caret=80,45
+[TPhpPrown\WorkSpace\iniWorkSpace.php]
+TopLine=7
+Caret=1,1
