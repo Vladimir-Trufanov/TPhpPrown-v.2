@@ -10,7 +10,7 @@
 //                                                   Дата создания:  30.01.2018
 // Copyright © 2018 tve                              Посл.изменение: 22.02.2018
 
-function ViewArray($fill,$Caption='')
+function ViewSimpleArray($fill,$Caption='')
 {
     echo "<br>";
     // Если массив пуст, то информируем об этом
