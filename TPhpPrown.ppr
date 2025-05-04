@@ -28,14 +28,18 @@ TPhpPrown
 			TEntrys\Register.php
 			TEntrys\Register_user_text.php
 		+TPhpPrown
-			-BrowsCap
+			+BrowsCap
+				-2024-10-03 Browscap
+					TPhpPrown\BrowsCap\2024-10-03 Browscap\lite_php_browscap.ini
+					TPhpPrown\BrowsCap\2024-10-03 Browscap\php_browscap.ini
 				TPhpPrown\BrowsCap\browscap.doc
+				TPhpPrown\BrowsCap\browscap.md
 				TPhpPrown\BrowsCap\full_php_browscap.ini
 				TPhpPrown\BrowsCap\lite_php_browscap.ini
 				TPhpPrown\BrowsCap\php_browscap.ini
 				TPhpPrown\BrowsCap\php_IIS.ini
 				TPhpPrown\BrowsCap\php_rucenter73.ini
-			+WorkSpace
+			-WorkSpace
 				TPhpPrown\WorkSpace\getSiteDevice.php
 				TPhpPrown\WorkSpace\iniWorkSpace.php
 				TPhpPrown\WorkSpace\Mobile_Detect.php
@@ -121,9 +125,12 @@ TPhpPrown
 0=www\index.php
 1=www\fil\index.php
 2=TPhpPrown\WorkSpace\iniWorkSpace.php
+3=TPhpPrown\WorkSpace\getSiteDevice.php
+4=TPhpPrown\MakeRID.php
+5=TPhpPrown\getBrowscap.php
 [Selected Project Files]
 Main=
-Selected=TPhpPrown\WorkSpace\iniWorkSpace.php
+Selected=TPhpPrown\getBrowscap.php
 [www\index.php]
 TopLine=3
 Caret=31,34
@@ -131,5 +138,14 @@ Caret=31,34
 TopLine=3
 Caret=1,1
 [TPhpPrown\WorkSpace\iniWorkSpace.php]
-TopLine=7
+TopLine=99
+Caret=1,1
+[TPhpPrown\WorkSpace\getSiteDevice.php]
+TopLine=1
+Caret=1,1
+[TPhpPrown\MakeRID.php]
+TopLine=32
+Caret=1,37
+[TPhpPrown\getBrowscap.php]
+TopLine=25
 Caret=1,1
